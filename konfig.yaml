@@ -1,35 +1,45 @@
+outputDirectory: /tmp/acme-sdks-out
 generators:
   java:
     version: 1.0.0
     groupId: com.acme
     artifactId: acme-java-sdk
+    outputDirectory: java
   python:
     version: 1.0.0
     packageName: acme_client
     projectName: acme-python-sdk
+    outputDirectory: python
   typescript:
     version: 1.0.0
     npmName: acme-typescript-sdk
+    outputDirectory: typescript
   csharp:
     version: 1.0.0
     packageName: Acme.Net
+    outputDirectory: csharp
   swift:
     version: 1.0.0
     projectName: Acme
     podAuthors: acme.com
+    outputDirectory: swift
   objc:
     version: 1.0.0
     podName: AcmeClient
     authorName: acme.com
     authorEmail: engineering@acme.com
     classPrefix: A
+    outputDirectory: objc
   kotlin:
     version: 1.0.0
     groupId: com.acme
     artifactId: acme-kotlin-sdk
+    outputDirectory: kotlin
   go:
     version: 1.0.0
     packageName: acme
+    outputDirectory: go
   php:
     version: 1.0.0
     packageName: acme-php
+    outputDirectory: php
