@@ -2,7 +2,7 @@
 
 OpenAPI Petstore
 - API version: 1.0.0
-  - Build date: 2022-12-02T10:32:19.878563-08:00[America/Los_Angeles]
+  - Build date: 2022-12-02T12:19:43.026721-08:00[America/Los_Angeles]
 
 This is a sample server Petstore server. For this sample, you can use the api key `special-key` to test the authorization filters.
 

@@ -11,9 +11,18 @@ generators:
     projectName: acme-python-sdk
     outputDirectory: python
   typescript:
-    version: 1.0.0
-    npmName: acme-typescript-sdk
+    packageVersion: 1.0.0
+    generatorVersion: 2
     outputDirectory: typescript
+    npmName: acme-typescript-sdk
+    npmDescription: SDK for Acme REST API
+    clientName: AcmeClient
+    httpClient: node
+    npmAuthor: acme.com
+    useOptions: true
+    git:
+      userId: konfig-dev
+      repoId: acme-sdks/tree/main/typescript
   csharp:
     version: 1.0.0
     packageName: Acme.Net

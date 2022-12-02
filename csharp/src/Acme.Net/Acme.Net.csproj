@@ -12,7 +12,7 @@ The version of the OpenAPI document: 1.0.0
     
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{DF009606-6071-4AE7-9A17-A15158257BEA}</ProjectGuid>
+    <ProjectGuid>{9D78837B-67AF-47D2-A662-CC86FCB5CA2F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Acme.Net</RootNamespace>
