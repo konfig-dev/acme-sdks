@@ -81,7 +81,7 @@ The version of the OpenAPI document: 1.0.0
   <Import Project="$(MsBuildToolsPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
       <ProjectReference Include="..\Acme.Net\Acme.Net.csproj">
-          <Project>{9D78837B-67AF-47D2-A662-CC86FCB5CA2F}</Project>
+          <Project>{B619361D-08B0-42D8-971E-C2A95C6B92C9}</Project>
           <Name>Acme.Net</Name>
       </ProjectReference>
   </ItemGroup>
