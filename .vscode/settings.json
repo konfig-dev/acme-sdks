@@ -1,0 +1,9 @@
+{
+  "spectral.enable": true,
+  "files.associations": {
+    ".konfigignore": "ignore"
+  },
+  "python.analysis.extraPaths": [
+    "./out/sdks/python"
+  ]
+}

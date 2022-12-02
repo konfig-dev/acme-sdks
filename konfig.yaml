@@ -1,0 +1,35 @@
+generators:
+  java:
+    version: 1.0.0
+    groupId: com.acme
+    artifactId: acme-java-sdk
+  python:
+    version: 1.0.0
+    packageName: acme_client
+    projectName: acme-python-sdk
+  typescript:
+    version: 1.0.0
+    npmName: acme-typescript-sdk
+  csharp:
+    version: 1.0.0
+    packageName: Acme.Net
+  swift:
+    version: 1.0.0
+    projectName: Acme
+    podAuthors: acme.com
+  objc:
+    version: 1.0.0
+    podName: AcmeClient
+    authorName: acme.com
+    authorEmail: engineering@acme.com
+    classPrefix: A
+  kotlin:
+    version: 1.0.0
+    groupId: com.acme
+    artifactId: acme-kotlin-sdk
+  go:
+    version: 1.0.0
+    packageName: acme
+  php:
+    version: 1.0.0
+    packageName: acme-php
