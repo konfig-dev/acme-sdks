@@ -62,6 +62,7 @@ class ApiClient(object):
     """
 
     _pool = None
+    _pet_api = None
 
     def __init__(self, configuration=None, header_name=None, header_value=None,
                  cookie=None, pool_threads=1):
@@ -84,6 +85,13 @@ class ApiClient(object):
     def __exit__(self, exc_type, exc_value, traceback):
         self.close()
 
+    @property
+    def pet(self):
+        if self._pet_api is None:
+            from .api.pet_api import PetApi
+            self._pet_api = PetApi(self)
+        return self._pet_api
+
     def close(self):
         if self._pool:
             self._pool.close()
@@ -97,10 +105,11 @@ class ApiClient(object):
         """Create thread pool on first request
          avoids instantiating unused threadpool for blocking clients.
         """
-        if self._pool is None:
-            atexit.register(self.close)
-            self._pool = ThreadPool(self.pool_threads)
-        return self._pool
+        raise NotImplementedError("Multithreading not implemented yet")
+        # if self._pool is None:
+        #     atexit.register(self.close)
+        #     self._pool = ThreadPool(self.pool_threads)
+        # return self._pool
 
     @property
     def user_agent(self):
