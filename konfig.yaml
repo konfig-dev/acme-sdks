@@ -52,3 +52,10 @@ generators:
     version: 1.0.0
     packageName: acme-php
     outputDirectory: php
+additionalGenerators:
+  python_new:
+    generator: python
+    outputDirectory: python-new
+    version: 1.0.0
+    packageName: acme_client
+    projectName: acme-python-sdk
