@@ -791,7 +791,16 @@ class Endpoint(object):
         return params
 
     def __call__(self, *args, **kwargs):
-        """ This method is invoked when endpoints are called """
+        """ This method is invoked when endpoints are called
+        Example:
+
+        api_instance = petApi()
+        api_instance.addPet  # this is an instance of the class Endpoint
+        api_instance.addPet()  # this invokes api_instance.addPet.__call__()
+        which then invokes the callable functions stored in that endpoint at
+        api_instance.addPet.callable or self.callable in this class
+
+        """
         return self.callable(self, *args, **kwargs)
 
     def call_with_http_info(self, **kwargs):
