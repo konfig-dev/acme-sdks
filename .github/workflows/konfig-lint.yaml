@@ -1,0 +1,14 @@
+name: "konfig-lint-openapi-spec"
+on: # rebuild any PRs and main branch changes
+  pull_request:
+  push:
+    branches:
+      - main
+jobs:
+  lint: # make sure spec passes konfig lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: npm install -g konfig-cli
+      - run: konfig init -s
+      - run: konfig lint api.yaml
