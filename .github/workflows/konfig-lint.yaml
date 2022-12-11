@@ -5,7 +5,7 @@ on: # rebuild any PRs and main branch changes
     branches:
       - main
 jobs:
-  lint: # make sure spec passes konfig lint
+  konfig-lint-openapi-spec: # make sure spec passes konfig lint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
