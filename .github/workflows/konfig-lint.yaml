@@ -9,6 +9,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: npm install -g konfig-cli
+      - run: npm install -g konfig-cli@0.0.110
       - run: konfig init -s
       - run: konfig lint api.yaml
