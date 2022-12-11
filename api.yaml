@@ -24,6 +24,7 @@ paths:
         - pet
       summary: Add a new pet to the store
       description: ""
+      operationId: addPet
       responses:
         "200":
           description: successful operation
