@@ -27,6 +27,7 @@ generators:
   csharp:
     version: 1.0.0
     packageName: Acme.Net
+    logoPath: logo.png
     outputDirectory: csharp
   swift:
     version: 1.0.0
@@ -49,6 +50,9 @@ generators:
     version: 1.0.0
     packageName: acme
     outputDirectory: go
+    git:
+      userId: konfig-dev
+      repoId: acme-sdks/go
   php:
     version: 1.0.0
     packageName: acme-php

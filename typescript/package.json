@@ -5,10 +5,12 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "repository": "https://github.com/konfig-dev/acme-sdks/tree/main/typescript",
+  "homepage": "https://github.com/konfig-dev/acme-sdks/tree/main/typescript",
   "author": "acme.com",
   "license": "MIT",
   "scripts": {
-    "build": "yarn clean && tsc -p tsconfig.build.json",
+    "build": "npm run clean && tsc -p tsconfig.build.json",
+    "release": "npm run build && npm publish",
     "clean": "rm -rf dist/",
     "test": "jest"
   },
