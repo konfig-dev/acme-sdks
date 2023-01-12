@@ -26,7 +26,7 @@ All URIs are relative to *http://petstore.swagger.io/v2*
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *PetAPI* | [**addPet**](docs/PetAPI.md#addpet) | **POST** /pet | Add a new pet to the store
-*PetAPI* | [**deletePet**](docs/PetAPI.md#deletepet) | **DELETE** /pet/{petId} | Deletes a pet
+*PetAPI* | [**delete**](docs/PetAPI.md#delete) | **DELETE** /pet/{petId} | Deletes a pet
 *PetAPI* | [**findPetsByStatus**](docs/PetAPI.md#findpetsbystatus) | **GET** /pet/findByStatus | Finds Pets by status
 *PetAPI* | [**findPetsByTags**](docs/PetAPI.md#findpetsbytags) | **GET** /pet/findByTags | Finds Pets by tags
 *PetAPI* | [**getPetById**](docs/PetAPI.md#getpetbyid) | **GET** /pet/{petId} | Find pet by ID

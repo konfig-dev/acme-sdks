@@ -46,7 +46,7 @@ extern NSInteger kAPetApiMissingParamErrorCode;
 ///  code:400 message:"Invalid pet value"
 ///
 /// @return void
--(NSURLSessionTask*) deletePetWithPetId: (NSNumber*) petId
+-(NSURLSessionTask*) deleteWithPetId: (NSNumber*) petId
     apiKey: (NSString*) apiKey
     completionHandler: (void (^)(NSError* error)) handler;
 

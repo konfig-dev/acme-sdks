@@ -5,7 +5,7 @@ All URIs are relative to *http://petstore.swagger.io/v2*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**add_pet**](PetApi.md#add_pet) | **POST** /pet | Add a new pet to the store
-[**delete_pet**](PetApi.md#delete_pet) | **DELETE** /pet/{petId} | Deletes a pet
+[**delete**](PetApi.md#delete) | **DELETE** /pet/{petId} | Deletes a pet
 [**find_pets_by_status**](PetApi.md#find_pets_by_status) | **GET** /pet/findByStatus | Finds Pets by status
 [**find_pets_by_tags**](PetApi.md#find_pets_by_tags) | **GET** /pet/findByTags | Finds Pets by tags
 [**get_pet_by_id**](PetApi.md#get_pet_by_id) | **GET** /pet/{petId} | Find pet by ID
@@ -105,8 +105,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **delete_pet**
-> delete_pet(pet_id)
+# **delete**
+> delete(pet_id)
 
 Deletes a pet
 
@@ -143,17 +143,17 @@ with acme_client.ApiClient(configuration) as api_client:
     # example passing only required values which don't have defaults set
     try:
         # Deletes a pet
-        api_instance.delete_pet(pet_id)
+        api_instance.delete(pet_id)
     except acme_client.ApiException as e:
-        print("Exception when calling PetApi->delete_pet: %s\n" % e)
+        print("Exception when calling PetApi->delete: %s\n" % e)
 
     # example passing only required values which don't have defaults set
     # and optional values
     try:
         # Deletes a pet
-        api_instance.delete_pet(pet_id, api_key=api_key)
+        api_instance.delete(pet_id, api_key=api_key)
     except acme_client.ApiException as e:
-        print("Exception when calling PetApi->delete_pet: %s\n" % e)
+        print("Exception when calling PetApi->delete: %s\n" % e)
 ```
 
 

@@ -5,7 +5,7 @@ All URIs are relative to *http://petstore.swagger.io/v2*
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
 | [**AddPet**](PetApi.md#addpet) | **POST** /pet | Add a new pet to the store |
-| [**DeletePet**](PetApi.md#deletepet) | **DELETE** /pet/{petId} | Deletes a pet |
+| [**Delete**](PetApi.md#delete) | **DELETE** /pet/{petId} | Deletes a pet |
 | [**FindPetsByStatus**](PetApi.md#findpetsbystatus) | **GET** /pet/findByStatus | Finds Pets by status |
 | [**FindPetsByTags**](PetApi.md#findpetsbytags) | **GET** /pet/findByTags | Finds Pets by tags |
 | [**GetPetById**](PetApi.md#getpetbyid) | **GET** /pet/{petId} | Find pet by ID |
@@ -106,9 +106,9 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="deletepet"></a>
-# **DeletePet**
-> void DeletePet (long petId, string apiKey = null)
+<a name="delete"></a>
+# **Delete**
+> void Delete (long petId, string apiKey = null)
 
 Deletes a pet
 
@@ -122,7 +122,7 @@ using Acme.Net.Model;
 
 namespace Example
 {
-    public class DeletePetExample
+    public class DeleteExample
     {
         public static void Main()
         {
@@ -138,11 +138,11 @@ namespace Example
             try
             {
                 // Deletes a pet
-                apiInstance.DeletePet(petId, apiKey);
+                apiInstance.Delete(petId, apiKey);
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling PetApi.DeletePet: " + e.Message);
+                Debug.Print("Exception when calling PetApi.Delete: " + e.Message);
                 Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
@@ -151,18 +151,18 @@ namespace Example
 }
 ```
 
-#### Using the DeletePetWithHttpInfo variant
+#### Using the DeleteWithHttpInfo variant
 This returns an ApiResponse object which contains the response data, status code and headers.
 
 ```csharp
 try
 {
     // Deletes a pet
-    apiInstance.DeletePetWithHttpInfo(petId, apiKey);
+    apiInstance.DeleteWithHttpInfo(petId, apiKey);
 }
 catch (ApiException e)
 {
-    Debug.Print("Exception when calling PetApi.DeletePetWithHttpInfo: " + e.Message);
+    Debug.Print("Exception when calling PetApi.DeleteWithHttpInfo: " + e.Message);
     Debug.Print("Status Code: " + e.ErrorCode);
     Debug.Print(e.StackTrace);
 }

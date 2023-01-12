@@ -5,7 +5,7 @@ All URIs are relative to *http://petstore.swagger.io/v2*
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
 | [**addPet**](PetApi.md#addPet) | **POST** /pet | Add a new pet to the store |
-| [**deletePet**](PetApi.md#deletePet) | **DELETE** /pet/{petId} | Deletes a pet |
+| [**delete**](PetApi.md#delete) | **DELETE** /pet/{petId} | Deletes a pet |
 | [**findPetsByStatus**](PetApi.md#findPetsByStatus) | **GET** /pet/findByStatus | Finds Pets by status |
 | [**findPetsByTags**](PetApi.md#findPetsByTags) | **GET** /pet/findByTags | Finds Pets by tags |
 | [**getPetById**](PetApi.md#getPetById) | **GET** /pet/{petId} | Find pet by ID |
@@ -82,9 +82,9 @@ public class Example {
 | **200** | successful operation |  -  |
 | **405** | Invalid input |  -  |
 
-<a name="deletePet"></a>
-# **deletePet**
-> deletePet(petId, apiKey)
+<a name="delete"></a>
+# **delete**
+> delete(petId, apiKey)
 
 Deletes a pet
 
@@ -113,9 +113,9 @@ public class Example {
     Long petId = 56L; // Long | Pet id to delete
     String apiKey = "apiKey_example"; // String | 
     try {
-      apiInstance.deletePet(petId, apiKey);
+      apiInstance.delete(petId, apiKey);
     } catch (ApiException e) {
-      System.err.println("Exception when calling PetApi#deletePet");
+      System.err.println("Exception when calling PetApi#delete");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());

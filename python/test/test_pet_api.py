@@ -30,8 +30,8 @@ class TestPetApi(unittest.TestCase):
         """
         pass
 
-    def test_delete_pet(self):
-        """Test case for delete_pet
+    def test_delete(self):
+        """Test case for delete
 
         Deletes a pet  # noqa: E501
         """

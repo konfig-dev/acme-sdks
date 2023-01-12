@@ -67,15 +67,15 @@ namespace Acme.Net.Test.Api
         }
 
         /// <summary>
-        /// Test DeletePet
+        /// Test Delete
         /// </summary>
         [Fact]
-        public void DeletePetTest()
+        public void DeleteTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
             //long petId = null;
             //string apiKey = null;
-            //instance.DeletePet(petId, apiKey);
+            //instance.Delete(petId, apiKey);
         }
 
         /// <summary>

@@ -55,7 +55,7 @@ namespace Acme.Net.Api
         /// <param name="apiKey"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns></returns>
-        void DeletePet(long petId, string apiKey = default(string), int operationIndex = 0);
+        void Delete(long petId, string apiKey = default(string), int operationIndex = 0);
 
         /// <summary>
         /// Deletes a pet
@@ -68,7 +68,7 @@ namespace Acme.Net.Api
         /// <param name="apiKey"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> DeletePetWithHttpInfo(long petId, string apiKey = default(string), int operationIndex = 0);
+        ApiResponse<Object> DeleteWithHttpInfo(long petId, string apiKey = default(string), int operationIndex = 0);
         /// <summary>
         /// Finds Pets by status
         /// </summary>
@@ -254,7 +254,7 @@ namespace Acme.Net.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task DeletePetAsync(long petId, string apiKey = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task DeleteAsync(long petId, string apiKey = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// Deletes a pet
@@ -268,7 +268,7 @@ namespace Acme.Net.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> DeletePetWithHttpInfoAsync(long petId, string apiKey = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<Object>> DeleteWithHttpInfoAsync(long petId, string apiKey = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Finds Pets by status
         /// </summary>
@@ -739,9 +739,9 @@ namespace Acme.Net.Api
         /// <param name="apiKey"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns></returns>
-        public void DeletePet(long petId, string apiKey = default(string), int operationIndex = 0)
+        public void Delete(long petId, string apiKey = default(string), int operationIndex = 0)
         {
-            DeletePetWithHttpInfo(petId, apiKey);
+            DeleteWithHttpInfo(petId, apiKey);
         }
 
         /// <summary>
@@ -752,7 +752,7 @@ namespace Acme.Net.Api
         /// <param name="apiKey"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        public Acme.Net.Client.ApiResponse<Object> DeletePetWithHttpInfo(long petId, string apiKey = default(string), int operationIndex = 0)
+        public Acme.Net.Client.ApiResponse<Object> DeleteWithHttpInfo(long petId, string apiKey = default(string), int operationIndex = 0)
         {
             Acme.Net.Client.RequestOptions localVarRequestOptions = new Acme.Net.Client.RequestOptions();
 
@@ -781,7 +781,7 @@ namespace Acme.Net.Api
                 localVarRequestOptions.HeaderParameters.Add("api_key", Acme.Net.Client.ClientUtils.ParameterToString(apiKey)); // header parameter
             }
 
-            localVarRequestOptions.Operation = "PetApi.DeletePet";
+            localVarRequestOptions.Operation = "PetApi.Delete";
             localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (petstore_auth) required
@@ -805,7 +805,7 @@ namespace Acme.Net.Api
             var localVarResponse = this.Client.Delete<Object>("/pet/{petId}", localVarRequestOptions, this.Configuration);
             if (this.ExceptionFactory != null)
             {
-                Exception _exception = this.ExceptionFactory("DeletePet", localVarResponse);
+                Exception _exception = this.ExceptionFactory("Delete", localVarResponse);
                 if (_exception != null)
                 {
                     throw _exception;
@@ -824,9 +824,9 @@ namespace Acme.Net.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task DeletePetAsync(long petId, string apiKey = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task DeleteAsync(long petId, string apiKey = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            await DeletePetWithHttpInfoAsync(petId, apiKey, operationIndex, cancellationToken).ConfigureAwait(false);
+            await DeleteWithHttpInfoAsync(petId, apiKey, operationIndex, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -838,7 +838,7 @@ namespace Acme.Net.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Acme.Net.Client.ApiResponse<Object>> DeletePetWithHttpInfoAsync(long petId, string apiKey = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Acme.Net.Client.ApiResponse<Object>> DeleteWithHttpInfoAsync(long petId, string apiKey = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
 
             Acme.Net.Client.RequestOptions localVarRequestOptions = new Acme.Net.Client.RequestOptions();
@@ -868,7 +868,7 @@ namespace Acme.Net.Api
                 localVarRequestOptions.HeaderParameters.Add("api_key", Acme.Net.Client.ClientUtils.ParameterToString(apiKey)); // header parameter
             }
 
-            localVarRequestOptions.Operation = "PetApi.DeletePet";
+            localVarRequestOptions.Operation = "PetApi.Delete";
             localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (petstore_auth) required
@@ -893,7 +893,7 @@ namespace Acme.Net.Api
 
             if (this.ExceptionFactory != null)
             {
-                Exception _exception = this.ExceptionFactory("DeletePet", localVarResponse);
+                Exception _exception = this.ExceptionFactory("Delete", localVarResponse);
                 if (_exception != null)
                 {
                     throw _exception;

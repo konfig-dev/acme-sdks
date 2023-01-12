@@ -83,7 +83,7 @@ All URIs are relative to *http://petstore.swagger.io/v2*
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *PetApi* | [**AddPet**](docs/PetApi.md#addpet) | **Post** /pet | Add a new pet to the store
-*PetApi* | [**DeletePet**](docs/PetApi.md#deletepet) | **Delete** /pet/{petId} | Deletes a pet
+*PetApi* | [**Delete**](docs/PetApi.md#delete) | **Delete** /pet/{petId} | Deletes a pet
 *PetApi* | [**FindPetsByStatus**](docs/PetApi.md#findpetsbystatus) | **Get** /pet/findByStatus | Finds Pets by status
 *PetApi* | [**FindPetsByTags**](docs/PetApi.md#findpetsbytags) | **Get** /pet/findByTags | Finds Pets by tags
 *PetApi* | [**GetPetById**](docs/PetApi.md#getpetbyid) | **Get** /pet/{petId} | Find pet by ID

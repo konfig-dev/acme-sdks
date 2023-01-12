@@ -54,10 +54,10 @@ public class PetApiTest {
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void deletePetTest() throws ApiException {
+    public void deleteTest() throws ApiException {
         Long petId = null;
         String apiKey = null;
-        api.deletePet(petId, apiKey);
+        api.delete(petId, apiKey);
         // TODO: test validations
     }
 

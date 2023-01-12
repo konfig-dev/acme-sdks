@@ -5,7 +5,7 @@ All URIs are relative to *http://petstore.swagger.io/v2*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**addPet**](PetApi.md#addPet) | **POST** /pet | Add a new pet to the store
-[**deletePet**](PetApi.md#deletePet) | **DELETE** /pet/{petId} | Deletes a pet
+[**delete**](PetApi.md#delete) | **DELETE** /pet/{petId} | Deletes a pet
 [**findPetsByStatus**](PetApi.md#findPetsByStatus) | **GET** /pet/findByStatus | Finds Pets by status
 [**findPetsByTags**](PetApi.md#findPetsByTags) | **GET** /pet/findByTags | Finds Pets by tags
 [**getPetById**](PetApi.md#getPetById) | **GET** /pet/{petId} | Find pet by ID
@@ -63,9 +63,9 @@ Configure petstore_auth:
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-<a name="deletePet"></a>
-# **deletePet**
-> deletePet(petId, apiKey)
+<a name="delete"></a>
+# **delete**
+> delete(petId, apiKey)
 
 Deletes a pet
 
@@ -81,12 +81,12 @@ val apiInstance = PetApi()
 val petId : kotlin.Long = 789 // kotlin.Long | Pet id to delete
 val apiKey : kotlin.String = apiKey_example // kotlin.String | 
 try {
-    apiInstance.deletePet(petId, apiKey)
+    apiInstance.delete(petId, apiKey)
 } catch (e: ClientException) {
-    println("4xx response calling PetApi#deletePet")
+    println("4xx response calling PetApi#delete")
     e.printStackTrace()
 } catch (e: ServerException) {
-    println("5xx response calling PetApi#deletePet")
+    println("5xx response calling PetApi#delete")
     e.printStackTrace()
 }
 ```

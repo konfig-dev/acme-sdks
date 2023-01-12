@@ -223,7 +223,7 @@ paths:
         - pet
       summary: Deletes a pet
       description: ""
-      operationId: deletePet
+      operationId: Pet_delete
       parameters:
         - name: api_key
           in: header

@@ -5,7 +5,7 @@ All URIs are relative to *http://petstore.swagger.io/v2*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**AddPet**](PetApi.md#AddPet) | **Post** /pet | Add a new pet to the store
-[**DeletePet**](PetApi.md#DeletePet) | **Delete** /pet/{petId} | Deletes a pet
+[**Delete**](PetApi.md#Delete) | **Delete** /pet/{petId} | Deletes a pet
 [**FindPetsByStatus**](PetApi.md#FindPetsByStatus) | **Get** /pet/findByStatus | Finds Pets by status
 [**FindPetsByTags**](PetApi.md#FindPetsByTags) | **Get** /pet/findByTags | Finds Pets by tags
 [**GetPetById**](PetApi.md#GetPetById) | **Get** /pet/{petId} | Find pet by ID
@@ -81,9 +81,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## DeletePet
+## Delete
 
-> DeletePet(ctx, petId).ApiKey(apiKey).Execute()
+> Delete(ctx, petId).ApiKey(apiKey).Execute()
 
 Deletes a pet
 
@@ -107,9 +107,9 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PetApi.DeletePet(context.Background(), petId).ApiKey(apiKey).Execute()
+    resp, r, err := apiClient.PetApi.Delete(context.Background(), petId).ApiKey(apiKey).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PetApi.DeletePet``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `PetApi.Delete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -125,7 +125,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiDeletePetRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiDeleteRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes

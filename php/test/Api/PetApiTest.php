@@ -84,12 +84,12 @@ class PetApiTest extends TestCase
     }
 
     /**
-     * Test case for deletePet
+     * Test case for delete
      *
      * Deletes a pet.
      *
      */
-    public function testDeletePet()
+    public function testDelete()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

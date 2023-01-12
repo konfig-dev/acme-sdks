@@ -187,7 +187,7 @@ export class PetService {
      * @returns void
      * @throws ApiError
      */
-    public deletePet({
+    public petDelete({
         petId,
         apiKey,
     }: {

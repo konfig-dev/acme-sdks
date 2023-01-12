@@ -5,7 +5,7 @@ All URIs are relative to *http://petstore.swagger.io/v2*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**addPet**](APetApi.md#addpet) | **POST** /pet | Add a new pet to the store
-[**deletePet**](APetApi.md#deletepet) | **DELETE** /pet/{petId} | Deletes a pet
+[**delete**](APetApi.md#delete) | **DELETE** /pet/{petId} | Deletes a pet
 [**findPetsByStatus**](APetApi.md#findpetsbystatus) | **GET** /pet/findByStatus | Finds Pets by status
 [**findPetsByTags**](APetApi.md#findpetsbytags) | **GET** /pet/findByTags | Finds Pets by tags
 [**getPetById**](APetApi.md#getpetbyid) | **GET** /pet/{petId} | Find pet by ID
@@ -69,9 +69,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **deletePet**
+# **delete**
 ```objc
--(NSURLSessionTask*) deletePetWithPetId: (NSNumber*) petId
+-(NSURLSessionTask*) deleteWithPetId: (NSNumber*) petId
     apiKey: (NSString*) apiKey
         completionHandler: (void (^)(NSError* error)) handler;
 ```
@@ -94,11 +94,11 @@ NSString* apiKey = @"apiKey_example"; //  (optional)
 APetApi*apiInstance = [[APetApi alloc] init];
 
 // Deletes a pet
-[apiInstance deletePetWithPetId:petId
+[apiInstance deleteWithPetId:petId
               apiKey:apiKey
           completionHandler: ^(NSError* error) {
                         if (error) {
-                            NSLog(@"Error calling APetApi->deletePet: %@", error);
+                            NSLog(@"Error calling APetApi->delete: %@", error);
                         }
                     }];
 ```

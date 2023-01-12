@@ -68,8 +68,8 @@ open class PetAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func deletePet(petId: Int64, apiKey: String? = nil, apiResponseQueue: DispatchQueue = AcmeAPI.apiResponseQueue, completion: @escaping ((_ data: Void?, _ error: Error?) -> Void)) -> RequestTask {
-        return deletePetWithRequestBuilder(petId: petId, apiKey: apiKey).execute(apiResponseQueue) { result in
+    open class func delete(petId: Int64, apiKey: String? = nil, apiResponseQueue: DispatchQueue = AcmeAPI.apiResponseQueue, completion: @escaping ((_ data: Void?, _ error: Error?) -> Void)) -> RequestTask {
+        return deleteWithRequestBuilder(petId: petId, apiKey: apiKey).execute(apiResponseQueue) { result in
             switch result {
             case .success:
                 completion((), nil)
@@ -90,7 +90,7 @@ open class PetAPI {
      - parameter apiKey: (header)  (optional)
      - returns: RequestBuilder<Void> 
      */
-    open class func deletePetWithRequestBuilder(petId: Int64, apiKey: String? = nil) -> RequestBuilder<Void> {
+    open class func deleteWithRequestBuilder(petId: Int64, apiKey: String? = nil) -> RequestBuilder<Void> {
         var localVariablePath = "/pet/{petId}"
         let petIdPreEscape = "\(APIHelper.mapValueToPathItem(petId))"
         let petIdPostEscape = petIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""

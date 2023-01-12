@@ -5,7 +5,7 @@ All URIs are relative to http://petstore.swagger.io/v2, except if the operation 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
 | [**addPet()**](PetApi.md#addPet) | **POST** /pet | Add a new pet to the store |
-| [**deletePet()**](PetApi.md#deletePet) | **DELETE** /pet/{petId} | Deletes a pet |
+| [**delete()**](PetApi.md#delete) | **DELETE** /pet/{petId} | Deletes a pet |
 | [**findPetsByStatus()**](PetApi.md#findPetsByStatus) | **GET** /pet/findByStatus | Finds Pets by status |
 | [**findPetsByTags()**](PetApi.md#findPetsByTags) | **GET** /pet/findByTags | Finds Pets by tags |
 | [**getPetById()**](PetApi.md#getPetById) | **GET** /pet/{petId} | Find pet by ID |
@@ -74,10 +74,10 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `deletePet()`
+## `delete()`
 
 ```php
-deletePet($pet_id, $api_key)
+delete($pet_id, $api_key)
 ```
 
 Deletes a pet
@@ -105,9 +105,9 @@ $pet_id = 56; // int | Pet id to delete
 $api_key = 'api_key_example'; // string
 
 try {
-    $apiInstance->deletePet($pet_id, $api_key);
+    $apiInstance->delete($pet_id, $api_key);
 } catch (Exception $e) {
-    echo 'Exception when calling PetApi->deletePet: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling PetApi->delete: ', $e->getMessage(), PHP_EOL;
 }
 ```
 

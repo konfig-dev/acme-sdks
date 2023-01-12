@@ -90,14 +90,14 @@ class PetApi(object):
             },
             api_client=api_client
         )
-        self.delete_pet_endpoint = _Endpoint(
+        self.delete_endpoint = _Endpoint(
             settings={
                 'response_type': None,
                 'auth': [
                     'petstore_auth'
                 ],
                 'endpoint_path': '/pet/{petId}',
-                'operation_id': 'delete_pet',
+                'operation_id': 'delete',
                 'http_method': 'DELETE',
                 'servers': None,
             },
@@ -571,7 +571,7 @@ class PetApi(object):
             pet
         return self.add_pet_endpoint.call_with_http_info(**kwargs)
 
-    def delete_pet(
+    def delete(
         self,
         pet_id,
         **kwargs
@@ -582,7 +582,7 @@ class PetApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.delete_pet(pet_id, async_req=True)
+        >>> thread = api.delete(pet_id, async_req=True)
         >>> result = thread.get()
 
         Args:
@@ -653,7 +653,7 @@ class PetApi(object):
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
         kwargs['pet_id'] = \
             pet_id
-        return self.delete_pet_endpoint.call_with_http_info(**kwargs)
+        return self.delete_endpoint.call_with_http_info(**kwargs)
 
     def find_pets_by_status(
         self,

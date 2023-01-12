@@ -164,7 +164,7 @@ paths:
   /pet/{petId}:
     delete:
       description: ""
-      operationId: deletePet
+      operationId: Pet_delete
       parameters:
       - explode: false
         in: header

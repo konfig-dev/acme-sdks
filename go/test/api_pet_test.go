@@ -33,13 +33,13 @@ func Test_acme_PetApiService(t *testing.T) {
 
     })
 
-    t.Run("Test PetApiService DeletePet", func(t *testing.T) {
+    t.Run("Test PetApiService Delete", func(t *testing.T) {
 
         t.Skip("skip test")  // remove to run test
 
         var petId int64
 
-        resp, httpRes, err := apiClient.PetApi.DeletePet(petId).Execute()
+        resp, httpRes, err := apiClient.PetApi.Delete(petId).Execute()
 
         require.Nil(t, err)
         require.NotNil(t, resp)

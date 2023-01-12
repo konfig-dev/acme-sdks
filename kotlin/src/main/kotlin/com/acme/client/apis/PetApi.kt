@@ -130,8 +130,8 @@ class PetApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClient = A
      * @throws ServerException If the API returns a server error response
      */
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun deletePet(petId: kotlin.Long, apiKey: kotlin.String? = null) : Unit {
-        val localVarResponse = deletePetWithHttpInfo(petId = petId, apiKey = apiKey)
+    fun delete(petId: kotlin.Long, apiKey: kotlin.String? = null) : Unit {
+        val localVarResponse = deleteWithHttpInfo(petId = petId, apiKey = apiKey)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> Unit
@@ -158,8 +158,8 @@ class PetApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClient = A
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Throws(IllegalStateException::class, IOException::class)
-    fun deletePetWithHttpInfo(petId: kotlin.Long, apiKey: kotlin.String?) : ApiResponse<Unit?> {
-        val localVariableConfig = deletePetRequestConfig(petId = petId, apiKey = apiKey)
+    fun deleteWithHttpInfo(petId: kotlin.Long, apiKey: kotlin.String?) : ApiResponse<Unit?> {
+        val localVariableConfig = deleteRequestConfig(petId = petId, apiKey = apiKey)
 
         return request<Unit, Unit>(
             localVariableConfig
@@ -167,13 +167,13 @@ class PetApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClient = A
     }
 
     /**
-     * To obtain the request config of the operation deletePet
+     * To obtain the request config of the operation delete
      *
      * @param petId Pet id to delete
      * @param apiKey  (optional)
      * @return RequestConfig
      */
-    fun deletePetRequestConfig(petId: kotlin.Long, apiKey: kotlin.String?) : RequestConfig<Unit> {
+    fun deleteRequestConfig(petId: kotlin.Long, apiKey: kotlin.String?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()

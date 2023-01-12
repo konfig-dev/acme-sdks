@@ -75,7 +75,7 @@ class PetApi
             'application/json',
             'application/xml',
         ],
-        'deletePet' => [
+        'delete' => [
             'application/json',
         ],
         'findPetsByStatus' => [
@@ -432,39 +432,39 @@ class PetApi
     }
 
     /**
-     * Operation deletePet
+     * Operation delete
      *
      * Deletes a pet
      *
      * @param  int $pet_id Pet id to delete (required)
      * @param  string $api_key api_key (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['delete'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function deletePet($pet_id, $api_key = null, string $contentType = self::contentTypes['deletePet'][0])
+    public function delete($pet_id, $api_key = null, string $contentType = self::contentTypes['delete'][0])
     {
-        $this->deletePetWithHttpInfo($pet_id, $api_key, $contentType);
+        $this->deleteWithHttpInfo($pet_id, $api_key, $contentType);
     }
 
     /**
-     * Operation deletePetWithHttpInfo
+     * Operation deleteWithHttpInfo
      *
      * Deletes a pet
      *
      * @param  int $pet_id Pet id to delete (required)
      * @param  string $api_key (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['delete'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deletePetWithHttpInfo($pet_id, $api_key = null, string $contentType = self::contentTypes['deletePet'][0])
+    public function deleteWithHttpInfo($pet_id, $api_key = null, string $contentType = self::contentTypes['delete'][0])
     {
-        $request = $this->deletePetRequest($pet_id, $api_key, $contentType);
+        $request = $this->deleteRequest($pet_id, $api_key, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -511,20 +511,20 @@ class PetApi
     }
 
     /**
-     * Operation deletePetAsync
+     * Operation deleteAsync
      *
      * Deletes a pet
      *
      * @param  int $pet_id Pet id to delete (required)
      * @param  string $api_key (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['delete'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deletePetAsync($pet_id, $api_key = null, string $contentType = self::contentTypes['deletePet'][0])
+    public function deleteAsync($pet_id, $api_key = null, string $contentType = self::contentTypes['delete'][0])
     {
-        return $this->deletePetAsyncWithHttpInfo($pet_id, $api_key, $contentType)
+        return $this->deleteAsyncWithHttpInfo($pet_id, $api_key, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -533,21 +533,21 @@ class PetApi
     }
 
     /**
-     * Operation deletePetAsyncWithHttpInfo
+     * Operation deleteAsyncWithHttpInfo
      *
      * Deletes a pet
      *
      * @param  int $pet_id Pet id to delete (required)
      * @param  string $api_key (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['delete'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deletePetAsyncWithHttpInfo($pet_id, $api_key = null, string $contentType = self::contentTypes['deletePet'][0])
+    public function deleteAsyncWithHttpInfo($pet_id, $api_key = null, string $contentType = self::contentTypes['delete'][0])
     {
         $returnType = '';
-        $request = $this->deletePetRequest($pet_id, $api_key, $contentType);
+        $request = $this->deleteRequest($pet_id, $api_key, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -573,22 +573,22 @@ class PetApi
     }
 
     /**
-     * Create request for operation 'deletePet'
+     * Create request for operation 'delete'
      *
      * @param  int $pet_id Pet id to delete (required)
      * @param  string $api_key (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['delete'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deletePetRequest($pet_id, $api_key = null, string $contentType = self::contentTypes['deletePet'][0])
+    public function deleteRequest($pet_id, $api_key = null, string $contentType = self::contentTypes['delete'][0])
     {
 
         // verify the required parameter 'pet_id' is set
         if ($pet_id === null || (is_array($pet_id) && count($pet_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $pet_id when calling deletePet'
+                'Missing the required parameter $pet_id when calling delete'
             );
         }
 

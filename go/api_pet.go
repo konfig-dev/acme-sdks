@@ -135,33 +135,33 @@ func (a *PetApiService) AddPetExecute(r ApiAddPetRequest) (*Pet, *http.Response,
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiDeletePetRequest struct {
+type ApiDeleteRequest struct {
 	ctx context.Context
 	ApiService *PetApiService
 	petId int64
 	apiKey *string
 }
 
-func (r ApiDeletePetRequest) ApiKey(apiKey string) ApiDeletePetRequest {
+func (r ApiDeleteRequest) ApiKey(apiKey string) ApiDeleteRequest {
 	r.apiKey = &apiKey
 	return r
 }
 
-func (r ApiDeletePetRequest) Execute() (*http.Response, error) {
-	return r.ApiService.DeletePetExecute(r)
+func (r ApiDeleteRequest) Execute() (*http.Response, error) {
+	return r.ApiService.DeleteExecute(r)
 }
 
 /*
-DeletePet Deletes a pet
+Delete Deletes a pet
 
 
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param petId Pet id to delete
- @return ApiDeletePetRequest
+ @return ApiDeleteRequest
 */
-func (a *PetApiService) DeletePet(petId int64) ApiDeletePetRequest {
-	return ApiDeletePetRequest{
+func (a *PetApiService) Delete(petId int64) ApiDeleteRequest {
+	return ApiDeleteRequest{
 		ApiService: a,
 		ctx: a.client.cfg.Context,
 		petId: petId,
@@ -169,14 +169,14 @@ func (a *PetApiService) DeletePet(petId int64) ApiDeletePetRequest {
 }
 
 // Execute executes the request
-func (a *PetApiService) DeletePetExecute(r ApiDeletePetRequest) (*http.Response, error) {
+func (a *PetApiService) DeleteExecute(r ApiDeleteRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PetApiService.DeletePet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PetApiService.Delete")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}

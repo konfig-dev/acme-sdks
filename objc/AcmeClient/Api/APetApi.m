@@ -125,7 +125,7 @@ NSInteger kAPetApiMissingParamErrorCode = 234513;
 ///
 ///  @returns void
 ///
--(NSURLSessionTask*) deletePetWithPetId: (NSNumber*) petId
+-(NSURLSessionTask*) deleteWithPetId: (NSNumber*) petId
     apiKey: (NSString*) apiKey
     completionHandler: (void (^)(NSError* error)) handler {
     // verify the required parameter 'petId' is set

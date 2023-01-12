@@ -204,7 +204,7 @@ public class PetApi {
         return localVarCall;
     }
     /**
-     * Build call for deletePet
+     * Build call for delete
      * @param petId Pet id to delete (required)
      * @param apiKey  (optional)
      * @param _callback Callback for upload/download progress
@@ -216,7 +216,7 @@ public class PetApi {
         <tr><td> 400 </td><td> Invalid pet value </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call deletePetCall(Long petId, String apiKey, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call deleteCall(Long petId, String apiKey, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -265,13 +265,13 @@ public class PetApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call deletePetValidateBeforeCall(Long petId, String apiKey, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call deleteValidateBeforeCall(Long petId, String apiKey, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'petId' is set
         if (petId == null) {
-            throw new ApiException("Missing the required parameter 'petId' when calling deletePet(Async)");
+            throw new ApiException("Missing the required parameter 'petId' when calling delete(Async)");
         }
 
-        return deletePetCall(petId, apiKey, _callback);
+        return deleteCall(petId, apiKey, _callback);
 
     }
 
@@ -287,8 +287,8 @@ public class PetApi {
         <tr><td> 400 </td><td> Invalid pet value </td><td>  -  </td></tr>
      </table>
      */
-    public void deletePet(Long petId, String apiKey) throws ApiException {
-        deletePetWithHttpInfo(petId, apiKey);
+    public void delete(Long petId, String apiKey) throws ApiException {
+        deleteWithHttpInfo(petId, apiKey);
     }
 
     /**
@@ -304,8 +304,8 @@ public class PetApi {
         <tr><td> 400 </td><td> Invalid pet value </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Void> deletePetWithHttpInfo(Long petId, String apiKey) throws ApiException {
-        okhttp3.Call localVarCall = deletePetValidateBeforeCall(petId, apiKey, null);
+    public ApiResponse<Void> deleteWithHttpInfo(Long petId, String apiKey) throws ApiException {
+        okhttp3.Call localVarCall = deleteValidateBeforeCall(petId, apiKey, null);
         return localVarApiClient.execute(localVarCall);
     }
 
@@ -323,9 +323,9 @@ public class PetApi {
         <tr><td> 400 </td><td> Invalid pet value </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call deletePetAsync(Long petId, String apiKey, final ApiCallback<Void> _callback) throws ApiException {
+    public okhttp3.Call deleteAsync(Long petId, String apiKey, final ApiCallback<Void> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = deletePetValidateBeforeCall(petId, apiKey, _callback);
+        okhttp3.Call localVarCall = deleteValidateBeforeCall(petId, apiKey, _callback);
         localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }

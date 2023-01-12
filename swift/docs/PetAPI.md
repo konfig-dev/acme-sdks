@@ -5,7 +5,7 @@ All URIs are relative to *http://petstore.swagger.io/v2*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**addPet**](PetAPI.md#addpet) | **POST** /pet | Add a new pet to the store
-[**deletePet**](PetAPI.md#deletepet) | **DELETE** /pet/{petId} | Deletes a pet
+[**delete**](PetAPI.md#delete) | **DELETE** /pet/{petId} | Deletes a pet
 [**findPetsByStatus**](PetAPI.md#findpetsbystatus) | **GET** /pet/findByStatus | Finds Pets by status
 [**findPetsByTags**](PetAPI.md#findpetsbytags) | **GET** /pet/findByTags | Finds Pets by tags
 [**getPetById**](PetAPI.md#getpetbyid) | **GET** /pet/{petId} | Find pet by ID
@@ -64,9 +64,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **deletePet**
+# **delete**
 ```swift
-    open class func deletePet(petId: Int64, apiKey: String? = nil, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func delete(petId: Int64, apiKey: String? = nil, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
 ```
 
 Deletes a pet
@@ -82,7 +82,7 @@ let petId = 987 // Int64 | Pet id to delete
 let apiKey = "apiKey_example" // String |  (optional)
 
 // Deletes a pet
-PetAPI.deletePet(petId: petId, apiKey: apiKey) { (response, error) in
+PetAPI.delete(petId: petId, apiKey: apiKey) { (response, error) in
     guard error == nil else {
         print(error)
         return
