@@ -18,7 +18,7 @@ export class PetService {
      * @returns Pet successful operation
      * @throws ApiError
      */
-    public addPet({
+    public helloThereAddPet({
         requestBody,
     }: {
         /**
