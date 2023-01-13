@@ -1,738 +1,5106 @@
 openapi: 3.0.0
-servers:
-  - url: "http://petstore.swagger.io/v2"
 info:
-  description: >-
-    This is a sample server Petstore server. For this sample, you can use the api key
-    `special-key` to test the authorization filters.
+  title: DOJAH APIs
   version: 1.0.0
-  title: OpenAPI Petstore
-  license:
-    name: Apache-2.0
-    url: "https://www.apache.org/licenses/LICENSE-2.0.html"
+  description: Use Dojah to verify, onboard and manage user identity across Africa!
+  x-konfig-ignore:
+    no-additional-properties: true
+servers:
+  - url: https://api.dojah.io
+  - url: https://sandbox.dojah.io
+components:
+  securitySchemes:
+    apikeyAuth:
+      type: apiKey
+      name: Authorization
+      in: header
+    appIdAuth:
+      type: apiKey
+      name: AppId
+      in: header
 tags:
-  - name: pet
-    description: Everything about your Pets
-  - name: store
-    description: Access to Petstore orders
-  - name: user
-    description: Operations about user
+  - name: Services
+  - name: KYC
+  - name: GH KYC
+  - name: UG KYC
+  - name: KE KYC
+  - name: KYB
+  - name: Authentication
+  - name: Wallet
+  - name: Financial
+  - name: ML
+  - name: AML
+  - name: WebHooks
 paths:
-  /pet:
-    post:
-      tags:
-        - pet
-      summary: Add a new pet to the store
-      description: ""
-      operationId: Hello there_add_pet
-      responses:
-        "200":
-          description: successful operation
-          content:
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/Pet"
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Pet"
-        "405":
-          description: Invalid input
-      security:
-        - petstore_auth:
-            - "write:pets"
-            - "read:pets"
-      requestBody:
-        $ref: "#/components/requestBodies/Pet"
-    put:
-      tags:
-        - pet
-      summary: Update an existing pet
-      description: ""
-      operationId: updatePet
-      responses:
-        "200":
-          description: successful operation
-          content:
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/Pet"
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Pet"
-        "400":
-          description: Invalid ID supplied
-        "404":
-          description: Pet not found
-        "405":
-          description: Validation exception
-      security:
-        - petstore_auth:
-            - "write:pets"
-            - "read:pets"
-      requestBody:
-        $ref: "#/components/requestBodies/Pet"
-  /pet/findByStatus:
+  /api/v1/gh/kyc/dl:
     get:
       tags:
-        - pet
-      summary: Finds Pets by status
-      description: Multiple status values can be provided with comma separated strings
-      operationId: findPetsByStatus
+        - GH KYC
+      summary: Driver's License
+      operationId: GHKYC_getDriversLicense
+      security:
+        - apikeyAuth: []
+        - appIdAuth: []
       parameters:
-        - name: status
+        - name: id
           in: query
-          description: Status values that need to be considered for filter
-          required: true
-          style: form
-          explode: false
-          deprecated: true
-          schema:
-            type: array
-            items:
-              type: string
-              enum:
-                - available
-                - pending
-                - sold
-              default: available
-      responses:
-        "200":
-          description: successful operation
-          content:
-            application/xml:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/Pet"
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/Pet"
-        "400":
-          description: Invalid status value
-      security:
-        - petstore_auth:
-            - "read:pets"
-  /pet/findByTags:
-    get:
-      tags:
-        - pet
-      summary: Finds Pets by tags
-      description: >-
-        Multiple tags can be provided with comma separated strings. Use tag1,
-        tag2, tag3 for testing.
-      operationId: findPetsByTags
-      parameters:
-        - name: tags
-          in: query
-          description: Tags to filter by
-          required: true
-          style: form
-          explode: false
-          schema:
-            type: array
-            items:
-              type: string
-      responses:
-        "200":
-          description: successful operation
-          content:
-            application/xml:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/Pet"
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/Pet"
-        "400":
-          description: Invalid tag value
-      security:
-        - petstore_auth:
-            - "read:pets"
-      deprecated: true
-  "/pet/{petId}":
-    get:
-      tags:
-        - pet
-      summary: Find pet by ID
-      description: Returns a single pet
-      operationId: getPetById
-      parameters:
-        - name: petId
-          in: path
-          description: ID of pet to return
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        "200":
-          description: successful operation
-          content:
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/Pet"
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Pet"
-        "400":
-          description: Invalid ID supplied
-        "404":
-          description: Pet not found
-      security:
-        - api_key: []
-    post:
-      tags:
-        - pet
-      summary: Updates a pet in the store with form data
-      description: ""
-      operationId: updatePetWithForm
-      parameters:
-        - name: petId
-          in: path
-          description: ID of pet that needs to be updated
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        "405":
-          description: Invalid input
-      security:
-        - petstore_auth:
-            - "write:pets"
-            - "read:pets"
-      requestBody:
-        content:
-          application/x-www-form-urlencoded:
-            schema:
-              type: object
-              properties:
-                name:
-                  description: Updated name of the pet
-                  type: string
-                status:
-                  description: Updated status of the pet
-                  type: string
-    delete:
-      tags:
-        - pet
-      summary: Deletes a pet
-      description: ""
-      operationId: Pet_delete
-      parameters:
-        - name: api_key
-          in: header
-          required: false
           schema:
             type: string
-        - name: petId
-          in: path
-          description: Pet id to delete
-          required: true
+          example: V0000000
+        - name: full_name
+          in: query
           schema:
-            type: integer
-            format: int64
-      responses:
-        "400":
-          description: Invalid pet value
-      security:
-        - petstore_auth:
-            - "write:pets"
-            - "read:pets"
-  "/pet/{petId}/uploadImage":
-    post:
-      tags:
-        - pet
-      summary: uploads an image
-      description: ""
-      operationId: uploadFile
-      parameters:
-        - name: petId
-          in: path
-          description: ID of pet to update
-          required: true
+            type: string
+          example: John Doe
+        - name: date_of_birth
+          in: query
           schema:
-            type: integer
-            format: int64
+            type: string
+          example: "1988-09-01"
       responses:
         "200":
-          description: successful operation
+          description: OK
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: "*"
+            x-moesif-transaction-id:
+              schema:
+                type: string
+                example: f83d945e-a520-4f69-a6c8-57c093d3a956
+            service:
+              schema:
+                type: string
+                example: kyc_ghana_drivers_license
+            product:
+              schema:
+                type: string
+                example: kyc
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            ETag:
+              schema:
+                type: string
+                example: W/"8d93a-oziFRNZhAWQN2hwX/rJJPiwF/Gg"
+            Vary:
+              schema:
+                type: string
+                example: Accept-Encoding
+            Content-Encoding:
+              schema:
+                type: string
+                example: gzip
+            Date:
+              schema:
+                type: string
+                example: Thu, 16 Dec 2021 23:41:00 GMT
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ApiResponse"
+                type: object
+              example:
+                entity:
+                  certificate_date: "2010-07-19"
+                  date_of_birth: "1988-09-01"
+                  expiry_date: "2016-08-25"
+                  full_name: John Doe
+                  id: V0000000
+                  is_date_of_birth_match: true
+                  is_full_name_match: true
+                  issue_date: "2010-08-25"
+                  picture: <base64 encoded image>
+                  pin: DOE-310203-03-01
+                  processing_center: VR3
+                  status: 200
+  /api/v1/gh/kyc/passport:
+    get:
+      tags:
+        - GH KYC
+      operationId: GHKYC_getPassport
+      summary: Passport
       security:
-        - petstore_auth:
-            - "write:pets"
-            - "read:pets"
+        - apikeyAuth: []
+        - appIdAuth: []
+      parameters:
+        - name: id
+          in: query
+          schema:
+            type: string
+          example: G0000000
+        - name: first_name
+          in: query
+          schema:
+            type: string
+          example: John
+        - name: last_name
+          in: query
+          schema:
+            type: string
+          example: Doe
+        - name: middle_name
+          in: query
+          schema:
+            type: string
+          example: Jack
+        - name: date_of_birth
+          in: query
+          schema:
+            type: string
+          example: "1990-04-05"
+      responses:
+        "200":
+          description: OK
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: "*"
+            x-moesif-transaction-id:
+              schema:
+                type: string
+                example: ba33059b-043c-4cf8-b60a-f95fd231423d
+            service:
+              schema:
+                type: string
+                example: kyc_ghana_passport
+            product:
+              schema:
+                type: string
+                example: kyc
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            ETag:
+              schema:
+                type: string
+                example: W/"8d984-e3YZTs56aQzqh6gOQicMov2GSZE"
+            Vary:
+              schema:
+                type: string
+                example: Accept-Encoding
+            Content-Encoding:
+              schema:
+                type: string
+                example: gzip
+            Date:
+              schema:
+                type: string
+                example: Thu, 16 Dec 2021 23:53:15 GMT
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                entity:
+                  date_of_birth: "1990-04-05"
+                  expiry_date: "2022-10-03"
+                  first_name: John
+                  gender: MALE
+                  id: G0000000
+                  is_date_of_birth_match: true
+                  is_first_name_match: false
+                  is_last_name_match: true
+                  is_middle_name_match: true
+                  issue_date: "2017-11-03"
+                  last_name: Doe
+                  middle_name: Jack
+                  picture: <base64 encoded image>
+                  place_of_birth: TEMA
+                  place_of_issue: ACCRA
+                  status: 200
+  /api/v1/gh/kyc/ssnit:
+    get:
+      tags:
+        - GH KYC
+      summary: SSNIT
+      operationId: GHKYC_getSsnit
+      security:
+        - apikeyAuth: []
+        - appIdAuth: []
+      parameters:
+        - name: id
+          in: query
+          schema:
+            type: string
+          example: G0000000
+        - name: full_name
+          in: query
+          schema:
+            type: string
+          example: John Doe
+        - name: date_of_birth
+          in: query
+          schema:
+            type: string
+          example: "1990-04-05"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                entity:
+                  card_serial: R1970200019702
+                  date_of_birth: "1980-02-03"
+                  full_name: John Doe
+                  gender: MALE
+                  id: C000000000000
+                  is_date_of_birth_match: true
+                  is_full_name_match: true
+                  picture: <base64 encoded image>
+                  status: 200
+  /api/v1/ug/kyc/voter:
+    get:
+      tags:
+        - UG KYC
+      summary: Voters ID
+      operationId: UGKYC_getVoter
+      security:
+        - apikeyAuth: []
+        - appIdAuth: []
+      parameters:
+        - name: id
+          in: query
+          schema:
+            type: integer
+          example: "67335751"
+        - name: first_name
+          in: query
+          schema:
+            type: string
+          example: Happy
+        - name: last_name
+          in: query
+          schema:
+            type: string
+          example: Christmas
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  entity:
+                    type: object
+                    properties:
+                      voter_number:
+                        type: string
+                      first_name:
+                        type: string
+                      last_name:
+                        type: string
+                      gender:
+                        type: string
+                      village:
+                        type: string
+                      district:
+                        type: string
+                      constituency:
+                        type: string
+                      sub_county:
+                        type: string
+                      parish:
+                        type: string
+                      polling_station:
+                        type: string
+                      is_first_name_match:
+                        type: boolean
+                      is_last_name_match:
+                        type: boolean
+                    required:
+                      - voter_number
+                      - first_name
+                      - last_name
+                      - gender
+                      - village
+                      - district
+                      - constituency
+                      - sub_county
+                      - parish
+                      - polling_station
+                      - is_first_name_match
+                      - is_last_name_match
+                required:
+                  - entity
+  /api/v1/ke/kyc/id:
+    get:
+      tags:
+        - KE KYC
+      summary: KYC - National ID
+      operationId: KEKYC_getNationalId
+      security:
+        - apikeyAuth: []
+        - appIdAuth: []
+      parameters:
+        - name: id
+          in: query
+          schema:
+            type: integer
+          example: "24798402"
+        - name: first_name
+          in: query
+          schema:
+            type: string
+          example: ZEDEKIAH
+        - name: last_name
+          in: query
+          schema:
+            type: string
+          example: ANDENGA
+        - name: middle_name
+          in: query
+          schema:
+            type: string
+        - name: date_of_birth
+          in: query
+          schema:
+            type: string
+          example: "1985-12-29"
+        - name: gender
+          in: query
+          schema:
+            type: string
+          example: M
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/kyc/dl:
+    get:
+      tags:
+        - KYC
+      summary: KYC - Get Drivers License Info
+      operationId: KYC_getDriversLicense
+      security:
+        - apikeyAuth: []
+        - appIdAuth: []
+      parameters:
+        - name: license_number
+          in: query
+          schema:
+            type: string
+          example: FKJ49409AB13
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                entity:
+                  personal_details:
+                    firstname: TOBI
+                    othername: OLALEKAN
+                    surname: OLOLADE
+                    mother_maiden_name: OGUNSOLA
+                    gender: Male
+                    birth_date: 18/05/1992
+                    blood_group_id: B+
+                    facial_mark: "No"
+                    glasses: "No"
+                    height: "1.7"
+                    universaltax_identity_number: ""
+                    nin_number: ""
+                    country: Nigeria
+                    state: Edo
+                    lga: Etsako East
+                    is_disability: "No"
+                    disability_reason: ""
+  /api/v1/kyc/nuban:
+    get:
+      tags:
+        - KYC
+      summary: KYC - Get NUBAN Information
+      operationId: KYC_getNuban
+      security:
+        - apikeyAuth: []
+      parameters:
+        - name: AppId
+          in: header
+          schema:
+            type: string
+          example: "{{app_id}}"
+        - name: bank_code
+          in: query
+          schema:
+            type: integer
+          example: "058"
+        - name: account_number
+          in: query
+          schema:
+            type: integer
+          example: "0011223344"
+      responses:
+        "200":
+          description: OK
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: "*"
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: "547"
+            ETag:
+              schema:
+                type: string
+                example: W/"223-awqCLWeHqrkGXYT0u4ObwmhtaeM"
+            Date:
+              schema:
+                type: string
+                example: Tue, 06 Oct 2020 14:54:49 GMT
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                entity:
+                  account_currency: "566"
+                  account_name: MOSHOOD KOLAWOLE SALIU
+                  account_number: "3046507407"
+                  account_type: "10"
+                  address_1: .
+                  address_2: ""
+                  city: LAGOS
+                  country_code: NG
+                  country_of_birth: NIGERIA
+                  country_of_issue: Nigeria
+                  dob: 10/06/1982
+                  expiry_date: ""
+                  first_name: MOSHOOD
+                  identity_number: "22271325556"
+                  identity_type: BVN
+                  last_name: SALIU
+                  nationality: OTHRS
+                  other_names: KOLAWOLE
+                  phone: "2348137877844"
+                  postal_code: "234"
+                  reference: 91b360c9-0360-44b1-978f-ef56ad8fa2a2
+                  state_code: LAGOS
+  /api/v1/kyc/bvn:
+    get:
+      tags:
+        - KYC
+      summary: KYC - Validate BVN
+      operationId: KYC_validateBvn
+      security:
+        - apikeyAuth: []
+      parameters:
+        - name: AppId
+          in: header
+          schema:
+            type: string
+          example: "{{app_id}}"
+        - name: bvn
+          in: query
+          schema:
+            type: integer
+          example: "22250148240"
+        - name: first_name
+          in: query
+          schema:
+            type: string
+          example: FRANCIS
+        - name: dob
+          in: query
+          schema:
+            type: string
+          example: "1982-02-19"
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/kyc/bvn/basic:
+    get:
+      tags:
+        - KYC
+      summary: KYC - Get Basic BVN Info
+      operationId: KYC_getBasicBvn
+      security:
+        - apikeyAuth: []
+        - appIdAuth: []
+      parameters:
+        - name: bvn
+          in: query
+          schema:
+            type: integer
+          example: "22468537919"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                entity:
+                  first_name: JOSHUA
+                  last_name: OLADIPO
+                  dob: 28-Jun-00
+                  formatted_dob: "2000-06-28"
+                  mobile: "07085460116"
+                  bvn: "22468537919"
+  /api/v1/kyc/bvn/full:
+    get:
+      tags:
+        - KYC
+      summary: KYC - Lookup BVN Basic
+      operationId: KYC_getFullBvn
+      security:
+        - apikeyAuth: []
+        - appIdAuth: []
+      parameters:
+        - name: bvn
+          in: query
+          schema:
+            type: integer
+          example: "22222222222"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                entity:
+                  bvn: "22468537919"
+                  date_of_birth: 28-Jun-2000
+                  email: OLADIPOJOSHUAOLUWATIMILEYIN@YAHOO.COM
+                  enrollment_bank: "058"
+                  enrollment_branch: UNILORIN
+                  first_name: JOSHUA
+                  gender: Male
+                  image: <base64 encoded image>
+                  last_name: OLADIPO
+                  level_of_account: Level 2 - Medium Level Accounts
+                  lga_of_origin: Odo Otin
+                  lga_of_residence: Ilorin South
+                  marital_status: Single
+                  middle_name: OLUWATIMILEYIN
+                  name_on_card: OLADIPO, JOSHUA O
+                  nationality: Nigeria
+                  nin: ""
+                  phone_number1: "07085460116"
+                  phone_number2: ""
+                  reference: 91b126d1-2467-42fc-b8d5-1cbd32257954
+                  registration_date: 21-Mar-2018
+                  residential_address: 24, AKATA OWODE, ILORIN
+                  state_of_origin: Osun State
+                  state_of_residence: Kwara State
+                  title: Mr
+                  watch_listed: "NO"
+  /api/v1/kyc/bvn/advance:
+    get:
+      tags:
+        - KYC
+      summary: KYC - Lookup BVN Premium
+      operationId: KYC_getPremiumBvn
+      security:
+        - apikeyAuth: []
+      parameters:
+        - name: AppId
+          in: header
+          schema:
+            type: string
+          example: "{{app_id}}"
+        - name: bvn
+          in: query
+          schema:
+            type: integer
+          example: "22305638508"
+      responses:
+        "200":
+          description: OK
+          headers:
+            Date:
+              schema:
+                type: string
+                example: Thu, 28 Oct 2021 23:22:04 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            access-control-allow-origin:
+              schema:
+                type: string
+                example: "*"
+            x-moesif-transaction-id:
+              schema:
+                type: string
+                example: 6925a539-953c-49a5-8835-ab3034c268e5
+            service:
+              schema:
+                type: string
+                example: kyc_bvn_advance
+            product:
+              schema:
+                type: string
+                example: kyc
+            etag:
+              schema:
+                type: string
+                example: W/"8dad6-9+aM0fugmLIDPxSAQYKB6fzpqNA"
+            vary:
+              schema:
+                type: string
+                example: Accept-Encoding
+            CF-Cache-Status:
+              schema:
+                type: string
+                example: DYNAMIC
+            Expect-CT:
+              schema:
+                type: string
+                example: >-
+                  max-age=604800,
+                  report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+            Report-To:
+              schema:
+                type: string
+                example: >-
+                  {"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=N8Knn6%2F6B8Y0NZm6wpjxiXsENx6u%2FlMRevPNAb0IrHo6yXQDcqqsZK%2Fx1DhZ5aX7JOLAKKizfiy3KaoTYpoOTNy0Mh5uPFuevRpB5jVualn1UmavKmNdk3YSQB0cPeVOLUQJG7E0%2BebAwg%3D%3D"}],"group":"cf-nel","max_age":604800}
+            NEL:
+              schema:
+                type: string
+                example: '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+            Server:
+              schema:
+                type: string
+                example: cloudflare
+            CF-RAY:
+              schema:
+                type: string
+                example: 6a57e76cde23150d-MAD
+            Content-Encoding:
+              schema:
+                type: string
+                example: br
+            alt-svc:
+              schema:
+                type: string
+                example: >-
+                  h3=":443"; ma=86400, h3-29=":443"; ma=86400, h3-28=":443";
+                  ma=86400, h3-27=":443"; ma=86400
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                entity:
+                  bvn: "22222222222"
+                  date_of_birth: 28-Jun-2000
+                  email: ISAACTHOMPSONBROWN@YAHOO.COM
+                  enrollment_bank: "058"
+                  enrollment_branch: UNILORIN
+                  first_name: JOSHUA
+                  gender: Male
+                  image: <base64 encoded image>
+                  last_name: ISAAC
+                  level_of_account: Level 2 - Medium Level Accounts
+                  lga_of_origin: Odo Otin
+                  lga_of_residence: Ilorin South
+                  marital_status: Single
+                  middle_name: THOMPSONBROWN
+                  name_on_card: ISAAC, THOMPSON O
+                  nationality: Nigeria
+                  nin: ""
+                  phone_number1: "07012345678"
+                  phone_number2: ""
+                  registration_date: 21-Mar-2018
+                  residential_address: 24, OSHODI SURULERE, ILORIN
+                  state_of_origin: Osun State
+                  state_of_residence: Kwara State
+                  title: Mr
+                  watch_listed: "NO"
+                  status: 200
+  /api/v1/kyc/vnin:
+    get:
+      tags:
+        - KYC
+      summary: Lookup VNIN
+      operationId: KYC_getVnin
+      security:
+        - apikeyAuth: []
+        - appIdAuth: []
+      parameters:
+        - name: vnin
+          in: query
+          schema:
+            type: string
+          example: AB012345678910YZ
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /v1/kyc/phone_number/basic:
+    get:
+      tags:
+        - KYC
+      summary: KYC Lookup Phone Number Basic
+      operationId: KYC_getBasicPhoneNumber
+      security:
+        - apikeyAuth: []
+        - appIdAuth: []
+      parameters:
+        - name: phone_number
+          in: query
+          schema:
+            type: integer
+          example: "08068810228"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                entity:
+                  msisdn: "2348103100000"
+                  firstName: John
+                  lastName: Doe
+                  email: test@test.com
+                  encryptedPan: 1235246646GVDG
+                  dateOfBirth: 18/08/1997
+                  bvn: "2222222222"
+                  address: " 25 Okota"
+                  address_city: Shomolu
+                  address_state: Lagos
+                  account_number: "1234567897"
+                  bank_code: "054"
+                  gender: Male
+  /api/v1/kyc/phone_number:
+    get:
+      tags:
+        - KYC
+      summary: KYC - Lookup Phone Number
+      operationId: KYC_getPhoneNumber
+      security:
+        - apikeyAuth: []
+        - appIdAuth: []
+      parameters:
+        - name: phone_number
+          in: query
+          schema:
+            type: integer
+          example: "08011111111"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                entity:
+                  msisdn: "09011111111"
+                  firstName: John
+                  middleName: Doe
+                  lastName: Doe
+                  maritalStatus: Married
+                  gender: Male
+                  birthDate: 11-11-1972
+                  birthLga: Ikeja
+                  birthState: Lagos
+                  educationalLevel: Higher
+                  emplymentStatus: 25 ikeja
+                  nspokenLang: English
+                  ospokenlang: Yoruba
+                  profession: Tailor
+                  religion: Muslim
+                  residenceAddressLine1: 25 Agege motor ways
+                  residenceTown: Oshogbo
+                  residenceLga: Ikeja
+                  residenceState: Lagos
+                  residenceStatus: Occupant
+                  selfOriginLga: Lagos Island
+                  selfOriginPlace: Yaba
+                  selfOriginState: Muslim
+                  state: Lagos
+                  lga: Ikeja
+                  nin: "111111111111111"
+                  title: Mr
+                  height: 5 9
+                  picture: <base64 encoded image>
+                  status: 200
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                error: Result Not Found
+  /v1/kyc/age_verification:
+    get:
+      tags:
+        - KYC
+      summary: KYC - Age Verification
+      operationId: KYC_verifyAge
+      security:
+        - apikeyAuth: []
+      parameters:
+        - name: AppId
+          in: header
+          schema:
+            type: string
+          example: "{{app_id}}"
+        - name: mode
+          in: query
+          schema:
+            type: string
+          example: account_number
+        - name: account_number
+          in: query
+          schema:
+            type: integer
+          example: "3046507407"
+        - name: bank_code
+          in: query
+          schema:
+            type: integer
+          example: "011"
+        - name: dob
+          in: query
+          schema:
+            type: string
+          example: "1993-06-10"
+        - name: first_name
+          in: query
+          schema:
+            type: string
+          example: Mosh
+        - name: last_name
+          in: query
+          schema:
+            type: string
+          example: Saliu
+      responses:
+        "200":
+          description: OK
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: "*"
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: "104"
+            ETag:
+              schema:
+                type: string
+                example: W/"68-yERzSjzlwoE0rxH3I+l3xtgO17I"
+            Date:
+              schema:
+                type: string
+                example: Wed, 07 Oct 2020 16:39:16 GMT
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                entity:
+                  first_name: MOSHOOD
+                  last_name: SALIU
+                  date_of_birth: "1993-06-10"
+                  verification: true
+  /v1/kyc/bvn/verify:
+    post:
+      tags:
+        - KYC
+      summary: KYC - Selfie BVN Verificatoin
+      operationId: KYC_verifySelfieBvn
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                bvn: "22468537919"
+                selfie_image: <base64 encoded image>
+      security:
+        - apikeyAuth: []
+      parameters:
+        - name: AppId
+          in: header
+          schema:
+            type: string
+          example: "{{app_id}}"
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /v1/kyc/nin/verify:
+    post:
+      tags:
+        - KYC
+      summary: KYC - Selfie NIN Verification
+      operationId: KYC_verifySelfieNin
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                nin: "79628483753"
+                selfie_image: <base64 encoded image>
+      security:
+        - apikeyAuth: []
+      parameters:
+        - name: AppId
+          in: header
+          schema:
+            type: string
+          example: "{{app_id}}"
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/kyc/vin:
+    get:
+      tags:
+        - KYC
+      summary: KYC - Get VIN
+      operationId: KYC_getVIN
+      security:
+        - apikeyAuth: []
+      parameters:
+        - name: AppId
+          in: header
+          schema:
+            type: string
+          example: "{{app_id}}"
+        - name: mode
+          in: query
+          schema:
+            type: string
+          example: vin
+        - name: firstname
+          in: query
+          schema:
+            type: string
+          example: moshood
+        - name: lastname
+          in: query
+          schema:
+            type: string
+          example: saliu
+        - name: vin
+          in: query
+          schema:
+            type: integer
+          example: "55586"
+        - name: state
+          in: query
+          schema:
+            type: string
+          example: ondo
+      responses:
+        "200":
+          description: OK
+          headers:
+            Date:
+              schema:
+                type: string
+                example: Mon, 12 Apr 2021 13:31:13 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: "*"
+            ETag:
+              schema:
+                type: string
+                example: W/"174-qSAnNYHgL5xH0o9R4/PAQ2cDzrE"
+            CF-Cache-Status:
+              schema:
+                type: string
+                example: DYNAMIC
+            cf-request-id:
+              schema:
+                type: string
+                example: 0967e04d310000bf5f9c310000000001
+            Expect-CT:
+              schema:
+                type: string
+                example: >-
+                  max-age=604800,
+                  report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+            Report-To:
+              schema:
+                type: string
+                example: >-
+                  {"max_age":604800,"group":"cf-nel","endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report?s=L1%2Bm8V1sbTZHEDg%2BrFsXtRcV2iIeRuQ9Zkt%2B49L91xIYYLr4oP7HU3DZaBVLfUjM%2F03DJHObMPkO6gpfaIuY6i%2FoCS0npvp5%2FDbAQzo%3D"}]}
+            NEL:
+              schema:
+                type: string
+                example: '{"report_to":"cf-nel","max_age":604800}'
+            Server:
+              schema:
+                type: string
+                example: cloudflare
+            CF-RAY:
+              schema:
+                type: string
+                example: 63eccff518a0bf5f-AMS
+            Content-Encoding:
+              schema:
+                type: string
+                example: br
+            alt-svc:
+              schema:
+                type: string
+                example: >-
+                  h3-27=":443"; ma=86400, h3-28=":443"; ma=86400, h3-29=":443";
+                  ma=86400
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                entity:
+                  full_name: SALIU MOSHOOD KOLAWOLE
+                  "voter_identification_number:": 90F5B1C5BD295355586
+                  "gender:": Male
+                  "occupation:": STUDENT
+                  "time_of_registration:": "2011-01-18 13:59:46"
+                  "state:": ONDO
+                  "local_government:": IDANRE
+                  "registration_area_ward:": ISALU JIGBOKIN
+                  "polling_unit:": OJAJIGBOKIN, O/S IN FRONT OF ABANA I & II
+                  polling_unit_code: 28/08/08/005
+  /v1/kyc/email:
+    get:
+      tags:
+        - KYC
+      summary: KYC - Get Email Reputation
+      operationId: KYC_getEmailReputation
+      security:
+        - apikeyAuth: []
+      parameters:
+        - name: AppId
+          in: header
+          schema:
+            type: string
+          example: "{{app_id}}"
+        - name: email
+          in: query
+          schema:
+            type: string
+          example: johndoe@gmail.com
+      responses:
+        "200":
+          description: OK
+          headers:
+            Date:
+              schema:
+                type: string
+                example: Wed, 21 Jul 2021 23:05:12 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            CF-Ray:
+              schema:
+                type: string
+                example: 6728128dadddc500-LOS
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: "*"
+            ETag:
+              schema:
+                type: string
+                example: W/"2e9-pCb+uGuPEvkJjAiEzq42IVp9ATs"
+            CF-Cache-Status:
+              schema:
+                type: string
+                example: DYNAMIC
+            Expect-CT:
+              schema:
+                type: string
+                example: >-
+                  max-age=604800,
+                  report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            Report-To:
+              schema:
+                type: string
+                example: >-
+                  {"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=XuvPXoaWVVjuT0s2pSoW3bC1PldQJXghR%2ByyYpfEKlTJMY2YZikSIKrSH8ujg7ikMaXtY4BjH1Niw1An4Jl3FKWfX1XL%2B30bj1prYkxmTYAFiMJ3iqXydDlE%2BqYyMR4%3D"}],"group":"cf-nel","max_age":604800}
+            NEL:
+              schema:
+                type: string
+                example: '{"report_to":"cf-nel","max_age":604800}'
+            Vary:
+              schema:
+                type: string
+                example: Accept-Encoding
+            Server:
+              schema:
+                type: string
+                example: cloudflare
+            Content-Encoding:
+              schema:
+                type: string
+                example: br
+            alt-svc:
+              schema:
+                type: string
+                example: >-
+                  h3-27=":443"; ma=86400, h3-28=":443"; ma=86400, h3-29=":443";
+                  ma=86400, h3=":443"; ma=86400
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                entity:
+                  email: johndoe@gmail.com
+                  reputation: high
+                  suspicious: false
+                  references: 178
+                  details:
+                    blacklisted: false
+                    malicious_activity: false
+                    malicious_activity_recent: false
+                    credentials_leaked: true
+                    credentials_leaked_recent: false
+                    data_breach: true
+                    first_seen: 07/01/2008
+                    last_seen: 03/22/2021
+                    domain_exists: true
+                    domain_reputation: n/a
+                    new_domain: false
+                    days_since_domain_creation: 9474
+                    suspicious_tld: false
+                    spam: false
+                    free_provider: true
+                    disposable: false
+                    deliverable: true
+                    accept_all: false
+                    valid_mx: true
+                    primary_mx: gmail-smtp-in.l.google.com
+                    spoofable: true
+                    spf_strict: true
+                    dmarc_enforced: false
+                    profiles:
+                      - aboutme
+                      - flickr
+                      - angellist
+                      - foursquare
+                      - myspace
+                      - twitter
+                      - vimeo
+                      - linkedin
+  /v1/kyc/nuban/bvn:
+    get:
+      tags:
+        - KYC
+      summary: Lookup BVN from NUBAN
+      operationId: KYC_getBvnFromNuban
+      security:
+        - apikeyAuth: []
+      parameters:
+        - name: AppId
+          in: header
+          schema:
+            type: string
+          example: "{{app_id}}"
+        - name: bank_code
+          in: query
+          schema:
+            type: integer
+          example: "057"
+        - name: account_number
+          in: query
+          schema:
+            type: integer
+          example: "2174879334"
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/kyc/passport:
+    get:
+      tags:
+        - KYC
+      summary: KYC - Passport
+      operationId: KYC_getPassport
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: "{{secret_key}}"
+        - name: Appid
+          in: header
+          schema:
+            type: string
+          example: "{{app_id}}"
+        - name: passport_number
+          in: query
+          schema:
+            type: integer
+          example: "70142502085"
+        - name: surname
+          in: query
+          schema:
+            type: string
+          example: ololade
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/document/analysis:
+    post:
+      tags:
+        - KYC
+      summary: KYC - Document Analysis
+      operationId: KYC_analyzeDocument
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: "{{secret_key}}"
+        - name: AppId
+          in: header
+          schema:
+            type: string
+          example: "{{app_id}}"
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/kyc/cac/search:
+    get:
+      tags:
+        - KYB
+      summary: CAC Name Search
+      security:
+        - apikeyAuth: []
+      parameters:
+        - name: AppId
+          in: header
+          schema:
+            type: string
+          example: "{{app_id}}"
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: "{{secret_key}}"
+        - name: company_name
+          in: query
+          schema:
+            type: string
+          example: UseClink
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /v1/kyc/cac:
+    get:
+      tags:
+        - KYB
+      summary: "KYC - Get CAC "
+      security:
+        - apikeyAuth: []
+      parameters:
+        - name: AppId
+          in: header
+          schema:
+            type: string
+          example: "{{app_id}}"
+        - name: rc_number
+          in: query
+          schema:
+            type: integer
+          example: "1432074"
+        - name: company_name
+          in: query
+          schema:
+            type: string
+          example: ELTA SOLUTIONS LIMITED
+      responses:
+        "200":
+          description: OK
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: "*"
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: "263"
+            ETag:
+              schema:
+                type: string
+                example: W/"107-41SJwH2M/TDtOClRlqxed6NP2lI"
+            Date:
+              schema:
+                type: string
+                example: Tue, 06 Oct 2020 16:08:17 GMT
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                entity:
+                  rc_number: "1261103"
+                  company_name: ELTAFORD LIMITED
+                  address: NO 37 ISAIAH ROAD UBEJI
+                  date_of_registration: "2015-05-15"
+  /v1/kyc/cac/basic:
+    get:
+      tags:
+        - KYB
+      summary: KYB - Get CAC 2
+      security:
+        - apikeyAuth: []
+      parameters:
+        - name: AppId
+          in: header
+          schema:
+            type: string
+          example: "{{app_id}}"
+        - name: rc
+          in: query
+          schema:
+            type: integer
+          example: "3330883"
+        - name: type
+          in: query
+          schema:
+            type: string
+          example: bn
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /v1/kyc/cac/advance:
+    get:
+      tags:
+        - KYB
+      summary: KYC - Get CAC Advanced
+      security:
+        - apikeyAuth: []
+      parameters:
+        - name: AppId
+          in: header
+          schema:
+            type: string
+          example: "{{app_id}}"
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: "{{secret_key}}"
+        - name: rc
+          in: query
+          schema:
+            type: integer
+          example: "1432074"
+        - name: type
+          in: query
+          schema:
+            type: string
+          example: co
+        - name: class
+          in: query
+          schema:
+            type: string
+          example: advance
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /v1/kyc/tin:
+    get:
+      tags:
+        - KYB
+      summary: KYC - Fetch Tin
+      security:
+        - apikeyAuth: []
+      parameters:
+        - name: AppId
+          in: header
+          schema:
+            type: string
+          example: "{{app_id}}"
+        - name: tin
+          in: query
+          schema:
+            type: string
+          example: 21148119-0001
+      responses:
+        "200":
+          description: OK
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: "*"
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: "244"
+            ETag:
+              schema:
+                type: string
+                example: W/"f4-33tq3v78T6aKG4EjlF+RD4NJEG4"
+            Date:
+              schema:
+                type: string
+                example: Fri, 02 Oct 2020 12:31:55 GMT
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                entity:
+                  Search: 21148119-0001
+                  Taxpayer_Name: SMILE IDENTITY NIGERIA LIMITED LAGOS
+                  CAC_Reg_No: "1539621"
+                  FIRSTIN: 21148119-0001
+                  JITTIN: N/A
+                  Tax_Office: MSTO IKOYI
+                  Phone_No: sundayoguntola@hotmail.com
+                  Email: "07055427676"
+  /api/v1/messaging/sms:
+    post:
+      tags:
+        - Authentication
+      summary: Messaging - Send SMS
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                destination: "08068810228"
+                message: Checking to see if you are Okay
+                channel: whatsapp
+                sender_id: Kedesa
+      security:
+        - apikeyAuth: []
+      parameters:
+        - name: AppId
+          in: header
+          schema:
+            type: string
+          example: "{{app_id}}"
+      responses:
+        "200":
+          description: OK
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: "*"
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: "130"
+            ETag:
+              schema:
+                type: string
+                example: W/"82-hQNuuW562XiuyVWQdEM6qK2o3Yc"
+            Date:
+              schema:
+                type: string
+                example: Mon, 05 Oct 2020 14:01:49 GMT
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                entity:
+                  status: true
+                  mobile: "2348068810228"
+                  message_id: true_2348068810228@c.us_3EB094F69064FF74BD76
+                  batch_id: "90512"
+  /v1/messaging/sms/get_status:
+    get:
+      tags:
+        - Authentication
+      summary: Messaging - Get SMS Status
+      security:
+        - apikeyAuth: []
+      parameters:
+        - name: AppId
+          in: header
+          schema:
+            type: string
+          example: "{{app_id}}"
+        - name: message_id
+          in: query
+          schema:
+            type: string
+          example: 54818c8a-4aed-4e5f-b846-8274fd4e0bbd
+      responses:
+        "200":
+          description: OK
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: "*"
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: "31"
+            ETag:
+              schema:
+                type: string
+                example: W/"1f-J3nlrUdeElvtvkF2S/UaHZnypss"
+            Date:
+              schema:
+                type: string
+                example: Wed, 14 Oct 2020 13:11:20 GMT
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                entity:
+                  status: DELIVRD
+  /v1/messaging/otp:
+    post:
+      tags:
+        - Authentication
+      summary: Messaging - Send OTP
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                destination: "08068810228"
+                length: 6
+                channel: sms
+                sender_id: Dojah
+                priority: true
+      security:
+        - apikeyAuth: []
+      parameters:
+        - name: AppId
+          in: header
+          schema:
+            type: string
+          example: "{{app_id}}"
+      responses:
+        "200":
+          description: OK
+          headers:
+            Date:
+              schema:
+                type: string
+                example: Fri, 29 Oct 2021 00:11:30 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            access-control-allow-origin:
+              schema:
+                type: string
+                example: "*"
+            x-moesif-transaction-id:
+              schema:
+                type: string
+                example: c77bc061-4a70-42b9-88dd-c8bcb1ce64c4
+            etag:
+              schema:
+                type: string
+                example: W/"bc-oKUpfG+wOCA/ZZdrr7UCJAuXZOs"
+            vary:
+              schema:
+                type: string
+                example: Accept-Encoding
+            CF-Cache-Status:
+              schema:
+                type: string
+                example: DYNAMIC
+            Expect-CT:
+              schema:
+                type: string
+                example: >-
+                  max-age=604800,
+                  report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+            Report-To:
+              schema:
+                type: string
+                example: >-
+                  {"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=yutdxK3QJ9sWDVJWM8%2BhTq9o8reYJNw71SINNYN0anY70dzCpDQpTX1SiDzm%2FHPZaaHPovp9RttEjeQbUfzKQSyDuj%2BXSyuRD4bUNVd%2BRrV76JDo0o1EOUgXpDUL7sbncLIx27ewTrLoBQ%3D%3D"}],"group":"cf-nel","max_age":604800}
+            NEL:
+              schema:
+                type: string
+                example: '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+            Server:
+              schema:
+                type: string
+                example: cloudflare
+            CF-RAY:
+              schema:
+                type: string
+                example: 6a582fc3df637767-LHR
+            Content-Encoding:
+              schema:
+                type: string
+                example: br
+            alt-svc:
+              schema:
+                type: string
+                example: >-
+                  h3=":443"; ma=86400, h3-29=":443"; ma=86400, h3-28=":443";
+                  ma=86400, h3-27=":443"; ma=86400
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                entity:
+                  - reference_id: 1cd58f6c-8729-4837-90ec-ff22949525cf
+                    destination: "08068810228"
+                    status_id: dj_f93ec2a0-2515-49ef-97f3-e6a137c7830a
+                    status: "sms OTP sent successfully "
+  /v1/messaging/otp/validate:
+    get:
+      tags:
+        - Authentication
+      summary: Messaging - Validate OTP
+      security:
+        - apikeyAuth: []
+      parameters:
+        - name: AppId
+          in: header
+          schema:
+            type: string
+          example: "{{app_id}}"
+        - name: reference_id
+          in: query
+          schema:
+            type: string
+          example: a89e4b64-367f-414f-a189-1800bc364b05
+        - name: code
+          in: query
+          schema:
+            type: integer
+          example: "081974"
+      responses:
+        "200":
+          description: OK
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: "*"
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: "25"
+            ETag:
+              schema:
+                type: string
+                example: W/"19-GBsO/UtcMY9D47ZVGAp0psXl/eA"
+            Date:
+              schema:
+                type: string
+                example: Mon, 05 Oct 2020 17:31:58 GMT
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                entity:
+                  valid: true
+  /api/v1/messaging/sender_ids:
+    get:
+      tags:
+        - Authentication
+      summary: Messaging - Get Sender IDs
+      security:
+        - apikeyAuth: []
+      parameters:
+        - name: AppId
+          in: header
+          schema:
+            type: string
+          example: "{{app_id}}"
+      responses:
+        "200":
+          description: OK
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: "*"
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: "330"
+            ETag:
+              schema:
+                type: string
+                example: W/"14a-pjN0reHYtXysWCyKwGmi/Sfm4qU"
+            Date:
+              schema:
+                type: string
+                example: Fri, 30 Oct 2020 01:04:02 GMT
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                entity:
+                  - sender_id: Dojah
+                    activated: false
+                    createdAt: "2020-10-29T23:27:50.633Z"
+                  - sender_id: Dojah
+                    activated: false
+                    createdAt: "2020-10-29T23:41:34.977Z"
+                  - sender_id: Dojah
+                    activated: false
+                    createdAt: "2020-10-29T23:49:03.363Z"
+                  - sender_id: Dojaher
+                    activated: false
+                    createdAt: "2020-10-30T00:53:02.348Z"
+  /api/v1/messaging/sender_id:
+    post:
+      tags:
+        - Authentication
+      summary: Messaging - Request Sender ID
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                sender_id: Dojah
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: "{{secret_key}}"
+        - name: AppId
+          in: header
+          schema:
+            type: string
+          example: "{{app_id}}"
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /v1/wallet/ngn/create:
+    post:
+      tags:
+        - Wallet
+      summary: Create NGN Wallet
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                last_name: Dojah
+                first_name: Inc
+                phone_number: "08068810258"
+                dob: 18-May-1992
+                route: WEMA
+      security:
+        - apikeyAuth: []
+      parameters:
+        - name: AppId
+          in: header
+          schema:
+            type: string
+          example: "{{app_id}}"
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: "{{secret_key}}"
+      responses:
+        "200":
+          description: OK
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: "*"
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: "140"
+            ETag:
+              schema:
+                type: string
+                example: W/"8c-YS3fYUipsutx+W2IxHQkCO1CeU8"
+            Date:
+              schema:
+                type: string
+                example: Mon, 25 Jan 2021 16:49:43 GMT
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                example-0:
+                  summary: Create NGN Wallet
+                  value:
+                    entity:
+                      wallet_id: 352a14e2-25ab-448a-86ed-8e9041540599
+                      wallet_amount: 0
+                      account_number: "1000039707"
+                      phone_number: "08159090922"
+                example-1:
+                  summary: Create NGN Wallet Pelumi
+                  value:
+                    entity:
+                      wallet_id: 867a8cae-8073-4914-8b04-d7fd096c1006
+                      wallet_amount: 0
+                      account_number: "1004204891"
+                      phone_number: "09059895710"
+  /v1/wallet/ngn/retrieve:
+    get:
+      tags:
+        - Wallet
+      summary: Retrieve Wallet Details
+      security:
+        - apikeyAuth: []
+      parameters:
+        - name: AppId
+          in: header
+          schema:
+            type: string
+          example: "{{app_id}}"
+        - name: wallet_id
+          in: query
+          schema:
+            type: string
+          example: 694a047f-fb99-46d7-8c3c-d655716a834a
+      responses:
+        "200":
+          description: OK
+          headers:
+            Date:
+              schema:
+                type: string
+                example: Thu, 28 Oct 2021 22:31:45 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            access-control-allow-origin:
+              schema:
+                type: string
+                example: "*"
+            x-moesif-transaction-id:
+              schema:
+                type: string
+                example: 3079fdf5-dd11-4ac4-a8f8-37ce02eb4823
+            service:
+              schema:
+                type: string
+                example: retrieve_wallet_details
+            product:
+              schema:
+                type: string
+                example: wallet
+            etag:
+              schema:
+                type: string
+                example: W/"a6-3BuJW39Z3Xb0YgSKa9EAbvZJC1c"
+            vary:
+              schema:
+                type: string
+                example: Accept-Encoding
+            CF-Cache-Status:
+              schema:
+                type: string
+                example: DYNAMIC
+            Expect-CT:
+              schema:
+                type: string
+                example: >-
+                  max-age=604800,
+                  report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+            Report-To:
+              schema:
+                type: string
+                example: >-
+                  {"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=tQFlZ1RZ3TenWsfrZYApbkIzqoORp12TJj0%2Bc%2BCYeTCmTcIP%2FJF58UwV%2FKIXCbVT2EF8UvwrbhlLv98LmeSPpgj6cnD4dvb1Smk%2B2z6LTU8RBYpiiroHrBiVwA4n9h9chB2ZlWNzbeTQng%3D%3D"}],"group":"cf-nel","max_age":604800}
+            NEL:
+              schema:
+                type: string
+                example: '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+            Server:
+              schema:
+                type: string
+                example: cloudflare
+            CF-RAY:
+              schema:
+                type: string
+                example: 6a579db5face7768-LHR
+            Content-Encoding:
+              schema:
+                type: string
+                example: br
+            alt-svc:
+              schema:
+                type: string
+                example: >-
+                  h3=":443"; ma=86400, h3-29=":443"; ma=86400, h3-28=":443";
+                  ma=86400, h3-27=":443"; ma=86400
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                entity:
+                  wallet_id: 694a047f-fb99-46d7-8c3c-d655716a834a
+                  wallet_amount: 500
+                  account_number: "7091821832"
+                  phone_number: "08068810258"
+                  bank_name: WEMA BANK
+  /v1/wallet/ngn/accounts:
+    get:
+      tags:
+        - Wallet
+      summary: Get Wallets
+      security:
+        - apikeyAuth: []
+      parameters:
+        - name: AppId
+          in: header
+          schema:
+            type: string
+          example: "{{app_id}}"
+        - name: app_id
+          in: query
+          schema:
+            type: string
+          example: "{{app_id}}"
+      responses:
+        "200":
+          description: OK
+          headers:
+            Date:
+              schema:
+                type: string
+                example: Thu, 28 Oct 2021 22:08:44 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            access-control-allow-origin:
+              schema:
+                type: string
+                example: "*"
+            x-moesif-transaction-id:
+              schema:
+                type: string
+                example: 68180338-3a01-468e-8a1e-50a3d68e066c
+            service:
+              schema:
+                type: string
+                example: wallets_fetch
+            product:
+              schema:
+                type: string
+                example: wallet
+            etag:
+              schema:
+                type: string
+                example: W/"f2-9haBFyP47m0OLh++NccGhRlBA6s"
+            vary:
+              schema:
+                type: string
+                example: Accept-Encoding
+            CF-Cache-Status:
+              schema:
+                type: string
+                example: DYNAMIC
+            Expect-CT:
+              schema:
+                type: string
+                example: >-
+                  max-age=604800,
+                  report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+            Report-To:
+              schema:
+                type: string
+                example: >-
+                  {"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=5QyNmdAMKJXgqFdf8ayW4jYnJXamkXPYW3kHZxn9Sq%2BaP5PpcUZH1GogxSVWZ9BNd4I8S8UDdjtilUg48yeqrXgIZpybl1cKQL5%2FnO1WfyJf2%2FgHWOpizQa%2FrkmqHkieHrt17DBkiX0T9g%3D%3D"}],"group":"cf-nel","max_age":604800}
+            NEL:
+              schema:
+                type: string
+                example: '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+            Server:
+              schema:
+                type: string
+                example: cloudflare
+            CF-RAY:
+              schema:
+                type: string
+                example: 6a577c01bbdf76e7-LHR
+            Content-Encoding:
+              schema:
+                type: string
+                example: br
+            alt-svc:
+              schema:
+                type: string
+                example: >-
+                  h3=":443"; ma=86400, h3-29=":443"; ma=86400, h3-28=":443";
+                  ma=86400, h3-27=":443"; ma=86400
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                entity:
+                  app_id: 5f3a4c693a7ea9003e4067e6
+                  total_amount: 500
+                  client_wallets:
+                    - wallet_id: 694a047f-fb99-46d7-8c3c-d655716a834a
+                      wallet_amount: 500
+                      account_number: "7091821832"
+                      phone_number: "08068810258"
+                      bank_name: WEMA BANK
+  /v1/wallet/ngn/transaction:
+    get:
+      tags:
+        - Wallet
+      summary: Retrieve Transaction Details
+      security:
+        - apikeyAuth: []
+      parameters:
+        - name: AppId
+          in: header
+          schema:
+            type: string
+          example: "{{app_id}}"
+        - name: transaction_id
+          in: query
+          schema:
+            type: string
+          example: Dojah-c02585e5-9a8b-4230-8c1b-11fd2869f4ce
+      responses:
+        "200":
+          description: OK
+          headers:
+            Date:
+              schema:
+                type: string
+                example: Mon, 19 Jul 2021 11:55:32 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            CF-Ray:
+              schema:
+                type: string
+                example: 6713c2e1e9e3a861-CDG
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: "*"
+            ETag:
+              schema:
+                type: string
+                example: W/"18a-qdUHEFuYjWVoZpNB1HSscF8M9Tg"
+            CF-Cache-Status:
+              schema:
+                type: string
+                example: DYNAMIC
+            Expect-CT:
+              schema:
+                type: string
+                example: >-
+                  max-age=604800,
+                  report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            Report-To:
+              schema:
+                type: string
+                example: >-
+                  {"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=reT%2B7xCKCI389wOJbdAQYE1Cv7WHy6MlrwdLiqf1vZzmmTLtpJn0GmptEARWR93ZBSpuiJYTdCmLKifkZw1HencupuiK7dYKdN3gEq8L9zPHJn6BHkUYzrPhRoDTjN4%3D"}],"group":"cf-nel","max_age":604800}
+            NEL:
+              schema:
+                type: string
+                example: '{"report_to":"cf-nel","max_age":604800}'
+            Vary:
+              schema:
+                type: string
+                example: Accept-Encoding
+            Server:
+              schema:
+                type: string
+                example: cloudflare
+            Content-Encoding:
+              schema:
+                type: string
+                example: br
+            alt-svc:
+              schema:
+                type: string
+                example: >-
+                  h3-27=":443"; ma=86400, h3-28=":443"; ma=86400, h3-29=":443";
+                  ma=86400, h3=":443"; ma=86400
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                example-0:
+                  summary: Retrieve Transaction Details Pelumi
+                  value:
+                    entity:
+                      wallet_id: 867a8cae-8073-4914-8b04-d7fd096c1006
+                      transaction_amount: 100
+                      transaction_type: deposit
+                      recipient_account_number: "1004204891"
+                      sender_account_number: ""
+                      transaction_remarks: Dojah-wallet-credit
+                      transaction_reason: null
+                      transaction_id: Dojah-c02585e5-9a8b-4230-8c1b-11fd2869f4ce
+                      transaction_status: COMPLETED
+                      date_created: "2021-07-19T11:54:01.905196Z"
+                example-1:
+                  summary: Retrieve Transaction Details
+                  value:
+                    entity:
+                      wallet_id: 867a8cae-8073-4914-8b04-d7fd096c1006
+                      transaction_amount: 50
+                      transaction_type: transfer
+                      recipient_account_number: "0129531822"
+                      sender_account_number: "1004204891"
+                      transaction_remarks: ""
+                      transaction_reason: wallet has Insufficient balance
+                      transaction_id: Dojah-4b0ecd96-9914-4e78-8ce9-21ebc4a34ee8
+                      transaction_status: FAILED
+                      date_created: "2021-07-19T11:57:38.517618Z"
+  /v1/wallet/ngn/transactions:
+    get:
+      tags:
+        - Wallet
+      summary: Fetch Wallet Transactions
+      security:
+        - apikeyAuth: []
+      parameters:
+        - name: AppId
+          in: header
+          schema:
+            type: string
+          example: "{{app_id}}"
+        - name: wallet_id
+          in: query
+          schema:
+            type: string
+          example: 694a047f-fb99-46d7-8c3c-d655716a834a
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /v1/wallet/ngn/transfer:
+    post:
+      tags:
+        - Wallet
+      summary: Transfer Funds
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                amount: "50"
+                recipient_bank_code: "058"
+                recipient_account_number: "0037466959"
+                wallet_id: 6187eb92-a4ad-420f-98cf-05a34188f467
+      security:
+        - apikeyAuth: []
+      parameters:
+        - name: AppId
+          in: header
+          schema:
+            type: string
+          example: "{{app_id}}"
+      responses:
+        "200":
+          description: OK
+          headers:
+            Date:
+              schema:
+                type: string
+                example: Mon, 19 Jul 2021 10:44:04 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            CF-Ray:
+              schema:
+                type: string
+                example: 67135a2e9e175998-IAD
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: "*"
+            ETag:
+              schema:
+                type: string
+                example: W/"182-h8cn7nlBpNZ0VaJcIyR5AJqLkLw"
+            CF-Cache-Status:
+              schema:
+                type: string
+                example: DYNAMIC
+            Expect-CT:
+              schema:
+                type: string
+                example: >-
+                  max-age=604800,
+                  report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            Report-To:
+              schema:
+                type: string
+                example: >-
+                  {"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=p4C%2FwRO%2F7ofJ0xKbeJywokrw3LkWfF%2F4zMRKDs1Dtrm2ZTpnCV4K%2FyCmdxgzFuNFL9n3I7rqr%2B6YST4GuFVEI8LvrSHKdp6bP%2Fnrt6asPQA5ln1Chiadms0qjnaeV%2Bc%3D"}],"group":"cf-nel","max_age":604800}
+            NEL:
+              schema:
+                type: string
+                example: '{"report_to":"cf-nel","max_age":604800}'
+            Vary:
+              schema:
+                type: string
+                example: Accept-Encoding
+            Server:
+              schema:
+                type: string
+                example: cloudflare
+            Content-Encoding:
+              schema:
+                type: string
+                example: br
+            alt-svc:
+              schema:
+                type: string
+                example: >-
+                  h3-27=":443"; ma=86400, h3-28=":443"; ma=86400, h3-29=":443";
+                  ma=86400, h3=":443"; ma=86400
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                example-0:
+                  summary: Transfer Funds
+                  value:
+                    entity:
+                      wallet_id: edb6c29e-a32c-4d38-8e66-62f0e731db0d
+                      transaction_amount: 10
+                      transaction_type: transfer
+                      recipient_account_number: "0129531822"
+                      sender_account_number: "1004108810"
+                      transaction_remarks: ""
+                      transaction_reason: null
+                      transaction_id: Dojah-6bddb625-3ca9-41c0-b0fb-13f7f11adf90
+                      transaction_status: PROCESSING
+                      date_created: "2021-07-19T10:44:03.610405Z"
+                example-1:
+                  summary: Transfer Funds
+                  value:
+                    entity:
+                      wallet_id: 867a8cae-8073-4914-8b04-d7fd096c1006
+                      transaction_amount: 50
+                      transaction_type: transfer
+                      recipient_account_number: "0129531822"
+                      sender_account_number: "1004204891"
+                      transaction_remarks: ""
+                      transaction_reason: null
+                      transaction_id: Dojah-4b0ecd96-9914-4e78-8ce9-21ebc4a34ee8
+                      transaction_status: PROCESSING
+                      date_created: "2021-07-19T11:57:38.517618Z"
+                example-2:
+                  summary: Transfer Funds
+                  value:
+                    entity:
+                      wallet_id: 867a8cae-8073-4914-8b04-d7fd096c1006
+                      transaction_amount: 100
+                      transaction_type: transfer
+                      recipient_account_number: "0129531822"
+                      sender_account_number: "1004204891"
+                      transaction_remarks: ""
+                      transaction_reason: null
+                      transaction_id: Dojah-404e608c-4c85-4a87-b8ed-968564cdb67f
+                      transaction_status: PROCESSING
+                      date_created: "2021-07-21T04:29:03.786408Z"
+  /v1/wallet/ngn/transfer/internal:
+    post:
+      tags:
+        - Wallet
+      summary: Transfer Funds (Internal)
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                amount: 5
+                recipient_wallet_id: 619de017-5bf8-401d-b34c-9ca69d0bf7e7
+                sender_wallet_id: 1b9494d3-58a7-4e72-9a73-174b908f55b7
+      security:
+        - apikeyAuth: []
+      parameters:
+        - name: AppId
+          in: header
+          schema:
+            type: string
+          example: "{{app_id}}"
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /v1/wallet/ngn/inward:
+    post:
+      tags:
+        - Wallet
+      summary: Credit Inward (Sandbox only)
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                amount: "20000"
+                account_number: "1000048972"
+                originator_account_number: "1234567889"
+                originator_account_name: saliu moshood
+                originator_bank: "000004"
+                validate: false
+                timestamp: "2021-01-11T09:34:55.879Z"
+                environment: sandbox
+      security:
+        - apikeyAuth: []
+      parameters:
+        - name: AppId
+          in: header
+          schema:
+            type: string
+          example: "{{app_id}}"
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /v1/wallet/ngn/debit:
+    post:
+      tags:
+        - Wallet
+      summary: Debit Subwallet
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                amount: "1"
+                wallet_id: 1b9494d3-58a7-4e72-9a73-174b908f55b7
+      security:
+        - apikeyAuth: []
+      parameters:
+        - name: AppId
+          in: header
+          schema:
+            type: string
+          example: "{{app_id}}"
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /v1/wallet/ngn/credit:
+    post:
+      tags:
+        - Wallet
+      summary: Credit Sub-wallet
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                amount: "12"
+                wallet_id: 867a8cae-8073-4914-8b04-d7fd096c1006
+      security:
+        - apikeyAuth: []
+      responses:
+        "200":
+          description: OK
+          headers:
+            Date:
+              schema:
+                type: string
+                example: Mon, 19 Jul 2021 11:54:02 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            CF-Ray:
+              schema:
+                type: string
+                example: 6713c0af98e0a861-CDG
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: "*"
+            ETag:
+              schema:
+                type: string
+                example: W/"18a-qdUHEFuYjWVoZpNB1HSscF8M9Tg"
+            CF-Cache-Status:
+              schema:
+                type: string
+                example: DYNAMIC
+            Expect-CT:
+              schema:
+                type: string
+                example: >-
+                  max-age=604800,
+                  report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            Report-To:
+              schema:
+                type: string
+                example: >-
+                  {"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=ZOYZrccMLtm7t9y8DYeH48V2Uentj7wq%2B2SALn6vCI8zD0fVKDYC9BqekAZ%2Fs5yjb0tSJkMkyubuWTJk0L%2BehcHjJ9o8h%2BKSL6nTvZe6YC3MnXecLijKEb52W5obXEs%3D"}],"group":"cf-nel","max_age":604800}
+            NEL:
+              schema:
+                type: string
+                example: '{"report_to":"cf-nel","max_age":604800}'
+            Vary:
+              schema:
+                type: string
+                example: Accept-Encoding
+            Server:
+              schema:
+                type: string
+                example: cloudflare
+            Content-Encoding:
+              schema:
+                type: string
+                example: br
+            alt-svc:
+              schema:
+                type: string
+                example: >-
+                  h3-27=":443"; ma=86400, h3-28=":443"; ma=86400, h3-29=":443";
+                  ma=86400, h3=":443"; ma=86400
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                entity:
+                  wallet_id: 867a8cae-8073-4914-8b04-d7fd096c1006
+                  transaction_amount: 100
+                  transaction_type: deposit
+                  recipient_account_number: "1004204891"
+                  sender_account_number: ""
+                  transaction_remarks: Dojah-wallet-credit
+                  transaction_reason: null
+                  transaction_id: Dojah-c02585e5-9a8b-4230-8c1b-11fd2869f4ce
+                  transaction_status: COMPLETED
+                  date_created: "2021-07-19T11:54:01.905196Z"
+  /api/v1/financial/account_information/:
+    get:
+      tags:
+        - Financial
+      summary: Get Account Information
+      description: /services/@app_id/account/@account_id
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: "{{secret_key}}"
+        - name: AppId
+          in: header
+          schema:
+            type: string
+          example: "{{app_id}}"
+        - name: account_id
+          in: query
+          schema:
+            type: string
+          example: d5b86083-08c5-4de2-ac19-7610a16c297d
+      responses:
+        "200":
+          description: OK
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: "*"
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: "179"
+            ETag:
+              schema:
+                type: string
+                example: W/"b3-poBOGU65YY7wo1Qj/QX2tYuAuhM"
+            Date:
+              schema:
+                type: string
+                example: Fri, 28 Aug 2020 15:45:37 GMT
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                name: SALIU, MOSHOOD KOLAWOLE
+                account_number: "0150927834"
+                bvn: "5556"
+                account_type: GT Crea8-e-savers
+                currency: Naira
+                account_status: Active
+                balance: 34,976.80
+  /api/v1/financial/account_transactions:
+    get:
+      tags:
+        - Financial
+      summary: Get Account Transactions
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: "{{secret_key}}"
+        - name: AppId
+          in: header
+          schema:
+            type: string
+          example: "{{app_id}}"
+        - name: account_id
+          in: query
+          schema:
+            type: string
+          example: d5b86083-08c5-4de2-ac19-7610a16c297d
+        - name: length
+          in: query
+          schema:
+            type: integer
+          example: "200"
+      responses:
+        "200":
+          description: OK
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: "*"
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: "3148"
+            ETag:
+              schema:
+                type: string
+                example: W/"c4c-oy+56YKJSnRpacOSt7tUEOoefrU"
+            Date:
+              schema:
+                type: string
+                example: Tue, 06 Oct 2020 14:55:33 GMT
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                entity:
+                  transactions:
+                    - id: 1870
+                      transaction_date: "2020-09-28"
+                      value_date: "2020-09-28"
+                      trans_type: debit
+                      bank_name: Guaranty Trust Bank
+                      amount: "1.87"
+                      reference: "0"
+                      narration: >-
+                        VALUE ADDED TAX 000013200928140356000182528304 VAT ON
+                        NIP TRANSFER FOR 000013200928140356000182528304 via
+                        GTWORLD TO KMB/OLUWATOBILOBA OLOLADE
+                        ReF:GW492440265000000100002009281402
+                    - id: 1871
+                      transaction_date: "2020-09-28"
+                      value_date: "2020-09-28"
+                      trans_type: debit
+                      bank_name: Guaranty Trust Bank
+                      amount: "25.00"
+                      reference: "0"
+                      narration: >-
+                        COMMISSION 000013200928140356000182528304 NIP TRANSFER
+                        COMMISSION FOR 000013200928140356000182528304 via
+                        GTWORLD TO KMB/OLUWATOBILOBA OLOLADE
+                        ReF:GW492440265000000100002009281402
+                    - id: 1872
+                      transaction_date: "2020-09-28"
+                      value_date: "2020-09-28"
+                      trans_type: debit
+                      bank_name: Guaranty Trust Bank
+                      amount: "10000.00"
+                      reference: "0"
+                      narration: >-
+                        NIBSS Instant Payment Outward
+                        000013200928140356000182528304 via GTWORLD TO
+                        KMB/OLUWATOBILOBA OLOLADE
+                        /26.875/REF:GW4924402650000001000020092814 f
+                    - id: 1873
+                      transaction_date: "2020-09-28"
+                      value_date: "2020-09-28"
+                      trans_type: credit
+                      bank_name: Guaranty Trust Bank
+                      amount: "20000.00"
+                      reference: "0"
+                      narration: >-
+                        TRANSFER BETWEEN CUSTOMERS via GAPS 637368962161801700-1
+                        from ELTA SOLUTIONS LIMITED to OLOLADE OLUWATOBILOBA
+                        REF:215824649000374669592809201323
+                    - id: 1874
+                      transaction_date: "2020-09-28"
+                      value_date: "2020-09-28"
+                      trans_type: debit
+                      bank_name: Guaranty Trust Bank
+                      amount: "500.00"
+                      reference: "0"
+                      narration: >-
+                        Airtime Purchase
+                        USSD-101CT0000000002033042235-2348068810228
+                    - id: 1875
+                      transaction_date: "2020-09-26"
+                      value_date: "2020-09-26"
+                      trans_type: debit
+                      bank_name: Guaranty Trust Bank
+                      amount: "50.00"
+                      reference: "0"
+                      narration: >-
+                        STAMP DUTY CHARGE 26092020 STAMP DUTY CHARGE -
+                        26/09/2020
+                    - id: 1876
+                      transaction_date: "2020-09-26"
+                      value_date: "2020-09-26"
+                      trans_type: debit
+                      bank_name: Guaranty Trust Bank
+                      amount: "1.87"
+                      reference: "0"
+                      narration: >-
+                        VALUE ADDED TAX 000013200926153958000180345243 VAT ON
+                        USSD NIP RECOVERY CHARGE
+                        ReF:000013200926153958000180345243
+                    - id: 1877
+                      transaction_date: "2020-09-26"
+                      value_date: "2020-09-26"
+                      trans_type: debit
+                      bank_name: Guaranty Trust Bank
+                      amount: "25.00"
+                      reference: "0"
+                      narration: >-
+                        COMMISSION 000013200926153958000180345243 USSD NIP
+                        RECOVERY CHARGE ReF:000013200926153958000180345243
+                    - id: 1878
+                      transaction_date: "2020-09-26"
+                      value_date: "2020-09-26"
+                      trans_type: debit
+                      bank_name: Guaranty Trust Bank
+                      amount: "14500.00"
+                      reference: "0"
+                      narration: >-
+                        NIBSS Instant Payment Outward
+                        000013200926153958000180345243 USSD NIP Transfer from
+                        08068810228 TO ZBN/OLALEKAN MOSES ADEYEMI
+                        /26.875/REF:000013200926153958000180345243
+                    - id: 1879
+                      transaction_date: "2020-09-26"
+                      value_date: "2020-09-26"
+                      trans_type: credit
+                      bank_name: Guaranty Trust Bank
+                      amount: "1.87"
+                      reference: "0"
+                      narration: >-
+                        FAILED NIBSS INSTANT PAYMENT
+                        000013200926151310000180305048 NIP Reversal: (ZBN
+                        returned: Beneficiary Bank not available)
+                        REF:000013200926151310000180305048
+                  total: 521
+                  previous_page: ""
+                  next_page: 2
+                  total_pages: 53
+                  current_page: 1
+  /v1/financial/account_subscription:
+    get:
+      tags:
+        - Financial
+      summary: Get Account Subscriptions
+      security:
+        - apikeyAuth: []
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: "{{secret_key}}"
+        - name: AppId
+          in: header
+          schema:
+            type: string
+          example: "{{app_id}}"
+        - name: account_id
+          in: query
+          schema:
+            type: string
+          example: 02f63911-a958-4025-9d72-8bd2d7da274b
+      responses:
+        "200":
+          description: OK
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: "*"
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: "108"
+            ETag:
+              schema:
+                type: string
+                example: W/"6c-a/jqufcJ1VX0CWOqBzUEbCc4UEA"
+            Date:
+              schema:
+                type: string
+                example: Tue, 06 Oct 2020 14:56:13 GMT
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                entity:
+                  subscriptions: []
+                  total: 0
+                  previous_page: ""
+                  next_page: ""
+                  total_pages: 1
+                  current_page: 1
+  /v1/financial/bvn_information/basic:
+    get:
+      tags:
+        - Financial
+      summary: Get BVN Information Basic
+      security:
+        - apikeyAuth: []
+      parameters:
+        - name: AppId
+          in: header
+          schema:
+            type: string
+          example: "{{app_id}}"
+        - name: account_id
+          in: query
+          schema:
+            type: string
+          example: 34c7a2a10b4d4050869fe6f0aa6f0a30
+      responses:
+        "200":
+          description: OK
+          headers:
+            Date:
+              schema:
+                type: string
+                example: Wed, 07 Apr 2021 09:32:53 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: "*"
+            ETag:
+              schema:
+                type: string
+                example: W/"92-KYGBv8CDVrAOUBkr5veGc8HZOSo"
+            CF-Cache-Status:
+              schema:
+                type: string
+                example: DYNAMIC
+            cf-request-id:
+              schema:
+                type: string
+                example: 094d468772000006e582184000000001
+            Expect-CT:
+              schema:
+                type: string
+                example: >-
+                  max-age=604800,
+                  report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+            Report-To:
+              schema:
+                type: string
+                example: >-
+                  {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report?s=6eQEpUAJ1kexdxth2VMT1tGBMg0aHwGg5CcUCx8s5NM1%2BioB0c3G4bZbdO6b2DOmjXShH6j5eiucvmHnSa8zorrehM92zf4NwPpZs1oychk%3D"}]}
+            NEL:
+              schema:
+                type: string
+                example: '{"report_to":"cf-nel","max_age":604800}'
+            Server:
+              schema:
+                type: string
+                example: cloudflare
+            CF-RAY:
+              schema:
+                type: string
+                example: 63c240524bff06e5-LHR
+            Content-Encoding:
+              schema:
+                type: string
+                example: br
+            alt-svc:
+              schema:
+                type: string
+                example: >-
+                  h3-27=":443"; ma=86400, h3-28=":443"; ma=86400, h3-29=":443";
+                  ma=86400
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                entity:
+                  first_name: ISAAC
+                  last_name: THOMPSON
+                  dob: 28-Jun-00
+                  formatted_dob: "2000-06-28"
+                  mobile: 070***28116
+                  bvn: 2246***3719
+  /v1/financial/bvn_information/full:
+    get:
+      tags:
+        - Financial
+      summary: Get BVN Information Full
+      security:
+        - apikeyAuth: []
+      parameters:
+        - name: AppId
+          in: header
+          schema:
+            type: string
+          example: "{{app_id}}"
+        - name: account_id
+          in: query
+          schema:
+            type: string
+          example: 34c7a2a10b4d4050869fe6f0aa6f0a30
+      responses:
+        "200":
+          description: OK
+          headers:
+            Date:
+              schema:
+                type: string
+                example: Wed, 07 Apr 2021 09:34:06 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: "*"
+            ETag:
+              schema:
+                type: string
+                example: W/"8dac9-cB4sTK0o4oZ5qDkRv3sWImrmwbc"
+            CF-Cache-Status:
+              schema:
+                type: string
+                example: DYNAMIC
+            cf-request-id:
+              schema:
+                type: string
+                example: 094d47a1be000006e5b1838000000001
+            Expect-CT:
+              schema:
+                type: string
+                example: >-
+                  max-age=604800,
+                  report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+            Report-To:
+              schema:
+                type: string
+                example: >-
+                  {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report?s=t%2FkFrIoSYsoQNk%2BfNg1Pluqc6UKyJd2IQtS%2FnwttiaUsr22LpZaongUbSMG2rOudfOyfovtLyRvc%2Bglr2Mh2HiFpGkiF2NvpQvgXGhXJFB8%3D"}]}
+            NEL:
+              schema:
+                type: string
+                example: '{"report_to":"cf-nel","max_age":604800}'
+            Server:
+              schema:
+                type: string
+                example: cloudflare
+            CF-RAY:
+              schema:
+                type: string
+                example: 63c24215fd1a06e5-LHR
+            Content-Encoding:
+              schema:
+                type: string
+                example: br
+            alt-svc:
+              schema:
+                type: string
+                example: >-
+                  h3-27=":443"; ma=86400, h3-28=":443"; ma=86400, h3-29=":443";
+                  ma=86400
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                entity:
+                  bvn: "22222222222"
+                  date_of_birth: 28-Jun-2000
+                  email: ISAACTHOMPSONBROWN@YAHOO.COM
+                  enrollment_bank: "058"
+                  enrollment_branch: UNILORIN
+                  first_name: JOSHUA
+                  gender: Male
+                  image: <base64 encoded image>
+                  last_name: ISAAC
+                  level_of_account: Level 2 - Medium Level Accounts
+                  lga_of_origin: Odo Otin
+                  lga_of_residence: Ilorin South
+                  marital_status: Single
+                  middle_name: THOMPSONBROWN
+                  name_on_card: ISAAC, THOMPSON O
+                  nationality: Nigeria
+                  nin: ""
+                  phone_number1: "07012345678"
+                  phone_number2: ""
+                  registration_date: 21-Mar-2018
+                  residential_address: 24, OSHODI SURULERE, ILORIN
+                  state_of_origin: Osun State
+                  state_of_residence: Kwara State
+                  title: Mr
+                  watch_listed: "NO"
+  /v1/financial/spending_pattern:
+    get:
+      tags:
+        - Financial
+      summary: Get Spending Pattern
+      security:
+        - apikeyAuth: []
+      parameters:
+        - name: AppId
+          in: header
+          schema:
+            type: string
+          example: "{{app_id}}"
+        - name: account_id
+          in: query
+          schema:
+            type: string
+          example: 02f63911-a958-4025-9d72-8bd2d7da274b
+      responses:
+        "200":
+          description: OK
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: "*"
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: "362"
+            ETag:
+              schema:
+                type: string
+                example: W/"16a-RjLBQLt4UamrdUWd7vqcKo3moqE"
+            Date:
+              schema:
+                type: string
+                example: Sat, 26 Sep 2020 14:33:16 GMT
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                entity:
+                  pattern:
+                    Others:
+                      sum: 398924.72
+                      count: 43
+                      percentage: 89.1006424877234
+                    Food:
+                      sum: 20000
+                      count: 1
+                      percentage: 4.4670404224498
+                    Airtime/Data:
+                      sum: 14598.01
+                      count: 25
+                      percentage: 3.26049503786632
+                    Bank Transfer:
+                      sum: 13315
+                      count: 3
+                      percentage: 2.973932161245954
+                    Charges:
+                      sum: 886
+                      count: 27
+                      percentage: 0.19788989071452615
+  /v1/financial/earning_structure:
+    get:
+      tags:
+        - Financial
+      summary: Get Earning Structure
+      security:
+        - apikeyAuth: []
+      parameters:
+        - name: AppId
+          in: header
+          schema:
+            type: string
+          example: "{{app_id}}"
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: "{{secret_key}}"
+        - name: account_id
+          in: query
+          schema:
+            type: string
+          example: 02f63911-a958-4025-9d72-8bd2d7da274b
+      responses:
+        "200":
+          description: OK
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: "*"
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: "118"
+            ETag:
+              schema:
+                type: string
+                example: W/"76-+Iimx69sMQWukFXI4cHDIuHZB10"
+            Date:
+              schema:
+                type: string
+                example: Mon, 05 Oct 2020 17:14:25 GMT
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                entity:
+                  average_monthly_income: 1070300.0383333336
+                  salary_earner: false
+                  consistent: false
+                  number_of_days: 183
+  /v1/financial/transactions:
+    post:
+      tags:
+        - Financial
+      summary: Collect Transactions
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                transactions:
+                  - transaction_date: "2021-04-30"
+                    transaction_amount: "2016.4"
+                    transaction_description: 0033199479:Int.Pd:01-04-2021 to 30-04-2 |
+                    transaction_type: credit
+                    reference_number: 12345tgfnde9000
+                  - transaction_date: "2021-05-30"
+                    transaction_amount: "2016.4"
+                    transaction_description: 0033199479:Int.Pd:01 deposit
+                    transaction_type: credit
+                    reference_number: 12345tgfnde98999
+                app_id: 6138a052147a0100341ca124
+      security:
+        - apikeyAuth: []
+      parameters:
+        - name: AppId
+          in: header
+          schema:
+            type: string
+          example: "{{app_id}}"
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: "{{secret_key}}"
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/financial/transactions/pdf:
+    post:
+      tags:
+        - Financial
+      summary: Collect Status via PDF Statement
       requestBody:
         content:
           multipart/form-data:
             schema:
               type: object
               properties:
-                additionalMetadata:
-                  description: Additional data to pass to server
-                  type: string
-                file:
-                  description: file to upload
+                statement:
                   type: string
                   format: binary
-  /store/inventory:
-    get:
-      tags:
-        - store
-      summary: Returns pet inventories by status
-      description: Returns a map of status codes to quantities
-      operationId: getInventory
+                bank_code:
+                  type: integer
+                  example: "033"
+      parameters:
+        - name: AppId
+          in: header
+          schema:
+            type: string
+          example: "{{app_id}}"
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: "{{secret_key}}"
       responses:
         "200":
-          description: successful operation
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/financial/analysis:
+    get:
+      tags:
+        - Financial
+      summary: Get Account Analysis
+      security:
+        - apikeyAuth: []
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: "{{secret_key}}"
+        - name: AppId
+          in: header
+          schema:
+            type: string
+          example: "{{app_id}}"
+      responses:
+        "200":
+          description: OK
+          headers:
+            Date:
+              schema:
+                type: string
+                example: Sat, 10 Sep 2022 15:11:09 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: "*"
+            uuid:
+              schema:
+                type: string
+                example: f377e70d-943e-4444-9b60-7a91f7ee0f4a
+            x-moesif-transaction-id:
+              schema:
+                type: string
+                example: 5d27e6ba-d290-4466-892b-2f9f20a0008d
+            service:
+              schema:
+                type: string
+                example: analysis
+            product:
+              schema:
+                type: string
+                example: Financial
+            ETag:
+              schema:
+                type: string
+                example: W/"f7c-7maSkyunvReuG8ZutOm0b4UJB58"
+            Vary:
+              schema:
+                type: string
+                example: Accept-Encoding
+            CF-Cache-Status:
+              schema:
+                type: string
+                example: DYNAMIC
+            Report-To:
+              schema:
+                type: string
+                example: >-
+                  {"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=3uOd2U4h2dejKgswBDZs5gJ6%2FZC4va8RoddUP6aDte0AYMBFdb4qch669C85YrBnLHB5T7S7ROAHy1tS8IWv9krrt6lQRHrvOTd9v%2BvAl8jttWuYxFt6Azu1M8WJvKSYSkvBmLS2bf%2FB%2Fw%3D%3D"}],"group":"cf-nel","max_age":604800}
+            NEL:
+              schema:
+                type: string
+                example: '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+            Server:
+              schema:
+                type: string
+                example: cloudflare
+            CF-RAY:
+              schema:
+                type: string
+                example: 7489182c08d64939-CPT
+            Content-Encoding:
+              schema:
+                type: string
+                example: br
+            alt-svc:
+              schema:
+                type: string
+                example: h3=":443"; ma=86400, h3-29=":443"; ma=86400
           content:
             application/json:
               schema:
                 type: object
-                additionalProperties:
-                  type: integer
-                  format: int32
-      security:
-        - api_key: []
-  /store/order:
+              example:
+                entity:
+                  accountBreakdown:
+                    TotalCreditEntry: 306935.75
+                    TotalDebitMade: 321986.57
+                    averageMonthlyBalance: 0
+                    averageMonthlyCredits: 25577.98
+                    averageMonthlyDebits: 20124.16
+                    averageWeeklyBalance: 0
+                    averageWeeklyCredits: 6530.55
+                    averageWeeklyDebits: 5031.04
+                    closingBalance: 0
+                    firstDateInStatement: "2021-04-12"
+                    lastDateInStatement: "2022-07-03"
+                    numberOfTransactingMonths: 6
+                    periodInStatement: April - July
+                    yearInStatement: 2021, 2022
+                  expenseBreakdown:
+                    MaximumExpense: pos web pmt oluwafunmilola b aso l00ng
+                    atmLocations:
+                      - lagos
+                      - yabatech
+                      - yaba
+                    averageMonthlyExpenseOnAirtimeandData: 2200
+                    averageMonthlyExpenseOnAtmAndPOS: 39663.05
+                    averageMonthlyExpenseOnChargesAndStampDuty: 108.88
+                    averageMonthlyExpenseOnEntertainment: 168.46
+                    averageMonthlyExpenseOnGambling: 0
+                    averageMonthlyExpenseOnHealth: 91.67
+                    averageMonthlyExpenseOnHospitalityandFood: 0
+                    averageMonthlyExpenseOnInsurance: 0
+                    averageMonthlyExpenseOnInternationalTransactions: 0
+                    averageMonthlyExpenseOnOnlineandWeb: 24955.55
+                    averageMonthlyExpenseOnRent: 0
+                    averageMonthlyExpenseOnSavingsAndInvestments: 0
+                    averageMonthlyExpenseOnTransfer: 11692.5
+                    averageMonthlyExpenseOnTransportation: 0
+                    averageMonthlyExpenseOnUSSD: 333.33
+                    averageMonthlyExpenseOnUtilities: 0
+                    averageMonthlyExpenseonTravel: 0
+                    averageMonthlyRecurringExpenses: 0
+                    averageMonthlyTotalExpenses: 53555.55
+                    minimumSalary: 653.25
+                    monthWithmaximumExpense: 2/2022
+                    mostFrequentExpense: atm_and_pos_transactions
+                    mostFrequentExpenseCategory: atm_and_pos_transactions
+                    totalExpenseOnAirtimeAndData: 13200
+                    totalExpenseOnInternationalTransactions: 0
+                    totalExpenseOnSavingsAndInvestments: 0
+                    totalExpenseOnTransfer: 70155.02
+                    totalExpenseOnTransportation: 0
+                    totalExpenseOnTravel: 0
+                    totalExpenseOnUSSD: 2000
+                    totalExpenseOnUtilities: 0
+                    totalExpenseonChargesAndStampDuty: 237978.3
+                    totalExpenseonEntertainment: 1010.75
+                    totalExpenseonGambling: 0
+                    totalExpenseonHealth: 550
+                    totalExpenseonHospitalityandFood: 0
+                    totalExpenseonInsurance: 0
+                    totalExpenseonOnlineandWeb: 149733.3
+                    totalMonthlyExpenses: 321333.32
+                    totalRecurringExpenses: 0
+                  fundsManagement:
+                    accountActivity: 0.1
+                    accountSweep: "No"
+                    averageMonthlyLoanAmount: 0
+                    averageMonthlyLoanRepaymentAmount: 0
+                    gamblingRate: 0
+                    gamblingStatus: No Gambling Transactions Found
+                    loanInflowAmount: null
+                    loanRepaymentToInflowAmount: 0
+                    monthToMonthInflowToOutflowAmount: Positive Cash Flow
+                    numberOfCreditLoanTransactions: null
+                    numberOfDebitRepaymentTransactions: null
+                    overallInflowToOutflowAmount: Negative Cash Flow
+                    percentOfInflowIrregularity: 0
+                    totalLoanAmount: 0
+                    totalLoanRepaymentAmount: 0
+                  inflowBreakdown:
+                    AdditionalIncome: "Yes"
+                    RecurringSalaryPayments: null
+                    aSalaryEarner: "No"
+                    averageAdditionalIncome: 9166.67
+                    averageGuaranteedSalary: 0
+                    estimatedSalaryPaymentDay: null
+                    lastDateOfSalaryPayment: null
+                    minimumSalary: 0
+                    netAverageMonthlySalary: 0
+                    numberOfAdditionalIncomePayments: 2
+                    totalnumberOfSalaryPayments: 0
+                  transactionRoutineBreakdown:
+                    MaximumExpense: 0
+                    lastCreditReceived: "2022-03-04"
+                    lastDebitMade: "2022-07-03"
+                    mostFrequentBalanceRange: <10000
+                    mostFrequentTransactionRange: <10000
+                    numberOfCardRequests: 0
+                    percentNumberOfDaysBalanceWasLessThan10ThousandNaira: 1
+                    percentNumberOfDaysTransactionsWasLessThan10ThousandNaira: 0.96
+                    percentOfBalancesBetween100ThousandTo500ThousandNaira: 0
+                    percentOfBalancesBetween10ThousandTo100ThousandNaira: 0
+                    percentOfBalancesBetween500ThousandToOneMillionNaira: 0
+                    percentOfBalancesGreaterThanOneMillionNaira: 0
+                    percentOfBalancesLessThan10ThousandNaira: 1
+                    percentOfTransactionsBetween100ThousandTo500ThousandNaira: 0
+                    percentOfTransactionsBetween10ThousandTo100ThousandNaira: 0.12
+                    percentOfTransactionsBetween500ThousandToOneMillionNaira: 0
+                    percentOfTransactionsGreaterThanOneMillionNaira: 0
+                    percentOfTransactionsLessThan10ThousandNaira: 0.88
+                    percentofCreditTransactions: 0.19
+                    percentofDebitTransactions: 0.81
+                    totalAmountOfTransactions: 129
+                  status: 200
+  /v1/kyc/photoid/verify:
     post:
       tags:
-        - store
-      summary: Place an order for a pet
-      description: ""
-      operationId: placeOrder
-      responses:
-        "200":
-          description: successful operation
-          content:
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/Order"
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Order"
-        "400":
-          description: Invalid Order
+        - ML
+      summary: KYC - Selfie Photo ID Verification
       requestBody:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/Order"
-        description: order placed for purchasing the pet
-        required: true
-  "/store/order/{orderId}":
-    get:
-      tags:
-        - store
-      summary: Find purchase order by ID
-      description: >-
-        For valid response try integer IDs with value <= 5 or > 10. Other values
-        will generated exceptions
-      operationId: getOrderById
+              type: object
+              example:
+                selfie_image: <base64 encoded image>
+                photoid_image: <base64 encoded image>
+      security:
+        - apikeyAuth: []
       parameters:
-        - name: orderId
-          in: path
-          description: ID of pet that needs to be fetched
-          required: true
-          schema:
-            type: integer
-            format: int64
-            minimum: 1
-            maximum: 5
-      responses:
-        "200":
-          description: successful operation
-          content:
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/Order"
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Order"
-        "400":
-          description: Invalid ID supplied
-        "404":
-          description: Order not found
-    delete:
-      tags:
-        - store
-      summary: Delete purchase order by ID
-      description: >-
-        For valid response try integer IDs with value < 1000. Anything above
-        1000 or nonintegers will generate API errors
-      operationId: deleteOrder
-      parameters:
-        - name: orderId
-          in: path
-          description: ID of the order that needs to be deleted
-          required: true
+        - name: AppId
+          in: header
           schema:
             type: string
+          example: "{{app_id}}"
       responses:
-        "400":
-          description: Invalid ID supplied
-        "404":
-          description: Order not found
-  /user:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /v1/ml/ocr:
     post:
       tags:
-        - user
-      summary: Create user
-      description: This can only be done by the logged in user.
-      operationId: createUser
-      responses:
-        default:
-          description: successful operation
-      security:
-        - api_key: []
+        - ML
+      summary: BVN Ocr
       requestBody:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/User"
-        description: Created user object
-        required: true
-  /user/createWithArray:
-    post:
-      tags:
-        - user
-      summary: Creates list of users with given input array
-      description: ""
-      operationId: createUsersWithArrayInput
-      responses:
-        default:
-          description: successful operation
+              type: object
+              example:
+                image: <base64 encoded image>
       security:
-        - api_key: []
-      requestBody:
-        $ref: "#/components/requestBodies/UserArray"
-  /user/createWithList:
-    post:
-      tags:
-        - user
-      summary: Creates list of users with given input array
-      description: ""
-      operationId: createUsersWithListInput
-      responses:
-        default:
-          description: successful operation
-      security:
-        - api_key: []
-      requestBody:
-        $ref: "#/components/requestBodies/UserArray"
-  /user/login:
-    get:
-      tags:
-        - user
-      summary: Logs user into the system
-      description: ""
-      operationId: loginUser
+        - apikeyAuth: []
       parameters:
-        - name: username
-          in: query
-          description: The user name for login
-          required: true
+        - name: AppId
+          in: header
           schema:
             type: string
-            pattern: '^[a-zA-Z0-9]+[a-zA-Z0-9\.\-_]*[a-zA-Z0-9]+$'
-        - name: password
-          in: query
-          description: The password for login in clear text
-          required: true
-          schema:
-            type: string
+          example: "{{app_id}}"
       responses:
         "200":
-          description: successful operation
+          description: Successful response
+          content:
+            application/json: {}
+  /v1/ml/ocr/generic:
+    post:
+      tags:
+        - ML
+      summary: Generic OCR Service
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                img: <base64 encoded image>
+      parameters:
+        - name: AppId
+          in: header
+          schema:
+            type: string
+          example: "{{app_id}}"
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: "{{secret_key}}"
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /v1/document/analysis/dl:
+    post:
+      tags:
+        - ML
+      summary: Document Analysis Drivers License
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                img: <base64 encoded image>
+      parameters:
+        - name: Appid
+          in: header
+          schema:
+            type: string
+          example: "{{app_id}}"
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: "{{secret_key}}"
+      responses:
+        "200":
+          description: OK
           headers:
-            Set-Cookie:
-              description: >-
-                Cookie authentication key for use with the `api_key`
-                apiKey authentication.
+            Access-Control-Allow-Origin:
               schema:
                 type: string
-                example: AUTH_KEY=abcde12345; Path=/; HttpOnly
-            X-Rate-Limit:
-              description: calls per hour allowed by the user
+                example: "*"
+            x-moesif-transaction-id:
+              schema:
+                type: string
+                example: dd0980f1-8a58-4b0a-a4b1-a0cfba9ab3b2
+            service:
+              schema:
+                type: string
+                example: dl_ocr
+            product:
+              schema:
+                type: string
+                example: ml
+            price:
               schema:
                 type: integer
-                format: int32
-            X-Expires-After:
-              description: date in UTC when token expires
+                example: "20"
+            Content-Type:
               schema:
                 type: string
-                format: date-time
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: "487"
+            ETag:
+              schema:
+                type: string
+                example: W/"1e7-YIcIcr3MU8k7brHp9SVxmxgemVc"
+            Vary:
+              schema:
+                type: string
+                example: Accept-Encoding
+            Date:
+              schema:
+                type: string
+                example: Mon, 24 Jan 2022 01:22:11 GMT
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
           content:
-            application/xml:
-              schema:
-                type: string
             application/json:
               schema:
-                type: string
-        "400":
-          description: Invalid username/password supplied
-  /user/logout:
-    get:
+                type: object
+              example:
+                entity:
+                  data:
+                    ADDRESS: 25 GADO NASKO ROAD KUBAWA
+                    CITY_IN_ADDRESS: ABUJA
+                    CLASS: D
+                    COUNTY: ""
+                    DATE_OF_BIRTH: 18-05-1992
+                    DATE_OF_ISSUE: 22-01-2019
+                    DOCUMENT_NUMBER: FKJ49409AB13
+                    ENDORSEMENTS: P
+                    EXPIRATION_DATE: 18-05-2024
+                    FIRST_NAME: TOBI
+                    ID_TYPE: DRIVER LICENSE FRONT
+                    LAST_NAME: OLOLADE
+                    MIDDLE_NAME: OLALEKAN
+                    PLACE_OF_BIRTH: ""
+                    RESTRICTIONS: ""
+                    STATE_IN_ADDRESS: ""
+                    STATE_NAME: ""
+                    SUFFIX: ""
+                    VETERAN: ""
+                    ZIP_CODE_IN_ADDRESS: "08060141707"
+  /v1/document/analysis/passport:
+    post:
       tags:
-        - user
-      summary: Logs out current logged in user session
-      description: ""
-      operationId: logoutUser
-      responses:
-        default:
-          description: successful operation
-      security:
-        - api_key: []
-  "/user/{username}":
-    get:
-      tags:
-        - user
-      summary: Get user by user name
-      description: ""
-      operationId: getUserByName
-      parameters:
-        - name: username
-          in: path
-          description: The name that needs to be fetched. Use user1 for testing.
-          required: true
-          schema:
-            type: string
-      responses:
-        "200":
-          description: successful operation
-          content:
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/User"
-            application/json:
-              schema:
-                $ref: "#/components/schemas/User"
-        "400":
-          description: Invalid username supplied
-        "404":
-          description: User not found
-    put:
-      tags:
-        - user
-      summary: Updated user
-      description: This can only be done by the logged in user.
-      operationId: updateUser
-      parameters:
-        - name: username
-          in: path
-          description: name that need to be deleted
-          required: true
-          schema:
-            type: string
-      responses:
-        "400":
-          description: Invalid user supplied
-        "404":
-          description: User not found
-      security:
-        - api_key: []
+        - ML
+      summary: Document Analysis Passport
       requestBody:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/User"
-        description: Updated user object
-        required: true
+              type: object
+              example:
+                img: <base64 encoded image>
+      parameters:
+        - name: Appid
+          in: header
+          schema:
+            type: string
+          example: "{{app_id}}"
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: "{{secret_key}}"
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/aml/screening:
+    post:
+      tags:
+        - AML
+      summary: AML Screening
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                first_name: "Obama "
+                last_name: " "
+                date_of_birth: "1997-08-18"
+      parameters:
+        - name: Appid
+          in: header
+          schema:
+            type: string
+          example: "{{app_id}}"
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: "{{secret_key}}"
+      responses:
+        "200":
+          description: OK
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: "*"
+            x-moesif-transaction-id:
+              schema:
+                type: string
+                example: d844a747-13ce-41dc-a476-686395110f3c
+            service:
+              schema:
+                type: string
+                example: name_search
+            product:
+              schema:
+                type: string
+                example: aml
+            price:
+              schema:
+                type: integer
+                example: "100"
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: "85"
+            ETag:
+              schema:
+                type: string
+                example: W/"55-diQHKam5ygu0IcV+PYFsKMC+sos"
+            Vary:
+              schema:
+                type: string
+                example: Accept-Encoding
+            Date:
+              schema:
+                type: string
+                example: Fri, 04 Feb 2022 14:17:14 GMT
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                entity:
+                  reference_id: 8fd7008d-7c3d-4f49-91fd-005ba2fc7da2
+                  status: PENDING
+  /v1/aml/screening/info:
+    get:
+      tags:
+        - AML
+      summary: Get AML Info
+      parameters:
+        - name: Appid
+          in: header
+          schema:
+            type: string
+          example: "{{app_id}}"
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: "{{secret_key}}"
+        - name: reference_id
+          in: query
+          schema:
+            type: string
+          example: c574a3c8-dc27-4013-8bbc-462e7ed87d55
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/balance:
+    get:
+      tags:
+        - General
+      summary: Get Dojah Wallet Balance
+      security:
+        - apikeyAuth: []
+        - appIdAuth: []
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                entity:
+                  wallet_balance: "550.50"
+        "401":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                error: "Your Secret Key is Missing"
+  /v1/purchase/airtime:
+    post:
+      tags:
+        - General
+      summary: Purchase - Send Airtime
+      security:
+        - apikeyAuth: []
+        - appIdAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                destination: "08068810228"
+                amount: "100"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                entity:
+                  data:
+                    - destination: "2348068810228"
+                      status: Sent
+                  reference_id: dj_f6139f6f-5056-4551-a4c2-089b7667a7ff
+  /v1/purchase/data:
+    post:
+      tags:
+        - General
+      summary: Purchase - Buy Data
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                plan: 9MOBILE_1.5GB
+                destination: "09090577941"
+      security:
+        - apikeyAuth: []
+        - appIdAuth: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /v1/purchase/data/plans:
+    get:
+      tags:
+        - General
+      summary: Purchase - Get Data Plans
+      security:
+        - apikeyAuth: []
+        - appIdAuth: []
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                entity:
+                  - amount: 1000
+                    description: 9MOBILE 1.5GB data bundle
+                    plan: 9MOBILE_1.5GB
+                  - amount: 2000
+                    description: 9MOBILE 4.5GB data bundle
+                    plan: 9MOBILE_4.5GB
+                  - amount: 3000
+                    description: 9MOBILE 4GB data bundle
+                    plan: 9MOBILE_4GB
+                  - amount: 4000
+                    description: "9MOBILE 11.5GB data bundle "
+                    plan: 9MOBILE_11.5GB
+                  - amount: 5000
+                    description: "9MOBILE 15GB data bundle "
+                    plan: 9MOBILE_15GB
+                  - amount: 18000
+                    description: "9MOBILE 27.5GB data bundle "
+                    plan: 9MOBILE_27.5GB
+                  - amount: 27500
+                    description: "9MOBILE 30GB data bundle "
+                    plan: 9MOBILE_30GB
+                  - amount: 55000
+                    description: "9MOBILE 60GB data bundle "
+                    plan: 9MOBILE_60GB
+                  - amount: 50
+                    description: AIRTEL 40 MB data bundle
+                    plan: AIRTEL_40MB
+                  - amount: 100
+                    description: AIRTEL 100 MB data bundle
+                    plan: AIRTEL_100MB
+                  - amount: 200
+                    description: AIRTEL 200 MB data bundle
+                    plan: AIRTEL_200MB
+                  - amount: 300
+                    description: AIRTEL 350 MB data bundle
+                    plan: AIRTEL_350MB
+                  - amount: 500
+                    description: AIRTEL 750 MB data bundle
+                    plan: AIRTEL_750MB
+                  - amount: 1000
+                    description: AIRTEL 1.5GB data bundle
+                    plan: AIRTEL_1.5GB
+                  - amount: 1500
+                    description: AIRTEL 3GB Data Bundle
+                    plan: AIRTEL_3GB
+                  - amount: 2500
+                    description: AIRTEL 6GB Data Bundle
+                    plan: AIRTEL_6GB
+                  - amount: 3000
+                    description: AIRTEL 8GB Data Bundle
+                    plan: AIRTEL_8GB
+                  - amount: 4000
+                    description: AIRTEL 11GB Data Bundle
+                    plan: AIRTEL_11GB
+                  - amount: 5000
+                    description: AIRTEL 15GB Data Bundle
+                    plan: AIRTEL_15GB
+                  - amount: 10000
+                    description: AIRTEL 40GB Data Bundle
+                    plan: AIRTEL_40GB
+                  - amount: 15000
+                    description: AIRTEL 75GB Data Bundle
+                    plan: AIRTEL_75GB
+                  - amount: 100
+                    description: GLO 35 MB data bundle
+                    plan: GLO_35MB
+                  - amount: 200
+                    description: GLO 100 MB DATA BUNDLE
+                    plan: GLO_100MB
+                  - amount: 500
+                    description: GLO 920 MB DATA BUNDLE
+                    plan: GLO_920MB
+                  - amount: 1000
+                    description: GLO 1.8GB data purchase
+                    plan: GLO_1.8GB
+                  - amount: 2000
+                    description: GLO 4.5GB data bundle
+                    plan: GLO_4.5GB
+                  - amount: 2500
+                    description: GLO 7.2GB data bundle
+                    plan: GLO_7.2GB
+                  - amount: 3000
+                    description: GLO 8.75GB DATA BUNDLE
+                    plan: GLO_8.75GB
+                  - amount: 4000
+                    description: GLO 12.5GB DATA BUNDLE
+                    plan: GLO_12.5GB
+                  - amount: 5000
+                    description: GLO 15.6GB DATA BUNDLE
+                    plan: GLO_15.6GB
+                  - amount: 8000
+                    description: GLO 25GB DATA BUNDLE
+                    plan: GLO_25GB
+                  - amount: 10000
+                    description: GLO 32.5GB DATA BUNDLE
+                    plan: GLO_32.5GB
+                  - amount: 15000
+                    description: GLO 52.5GB DATA BUNDLE
+                    plan: GLO_52.5GB
+                  - amount: 18000
+                    description: GLO 62.5GB DATA BUNDLE
+                    plan: GLO_62.5GB
+                  - amount: 200
+                    description: MTN 200 MB DATA BUNDLE
+                    plan: MTN_200MB
+                  - amount: 500
+                    description: MTN 750MB data top-up service
+                    plan: MTN_750MB
+                  - amount: 1000
+                    description: MTN 1.5 GB DATA BUNDLE
+                    plan: MTN_1.5GB
+                  - amount: 2000
+                    description: MTN 4.5 GB DATA BUNDLE
+                    plan: MTN_4.5GB
+                  - amount: 3500
+                    description: MTN 10 GB DATA BUNDLE
+                    plan: MTN_10GB
+                  - amount: 5000
+                    description: MTN 15 GB DATA BUNDLE
+                    plan: MTN_15GB
+                  - amount: 10000
+                    description: MTN 40 GB DATA BUNDLE
+                    plan: MTN_40GB
+                  - amount: 20000
+                    description: MTN 75 GB DATA BUNDLE
+                    plan: MTN_75GB
+                  - amount: 50000
+                    description: MTN 120 GB DATA BUNDLE
+                    plan: MTN_120GB
+  /v1/general/banks:
+    get:
+      tags:
+        - General
+      summary: General - Get Banks
+      security:
+        - apikeyAuth: []
+        - appIdAuth: []
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                entity:
+                  - name: First Bank of Nigeria
+                    code: "011"
+                    longcode: "011151003"
+                    gateway: ibank
+                    slug: first-bank-of-nigeria
+                    country: Nigeria
+                    currency: NGN
+                  - name: First City Monument Bank
+                    code: "214"
+                    longcode: "214150018"
+                    gateway: emandate
+                    slug: first-city-monument-bank
+                    country: Nigeria
+                    currency: NGN
+                  - name: Suntrust Bank
+                    code: "100"
+                    longcode: ""
+                    gateway: null
+                    slug: suntrust-bank
+                    country: Nigeria
+                    currency: NGN
+                  - name: CEMCS Microfinance Bank
+                    code: "50823"
+                    longcode: ""
+                    gateway: null
+                    slug: cemcs-microfinance-bank
+                    country: Nigeria
+                    currency: NGN
+                  - name: FSDH Merchant Bank Limited
+                    code: "501"
+                    longcode: ""
+                    gateway: null
+                    slug: fsdh-merchant-bank-limited
+                    country: Nigeria
+                    currency: NGN
+                  - name: Heritage Bank
+                    code: "030"
+                    longcode: "030159992"
+                    gateway: null
+                    slug: heritage-bank
+                    country: Nigeria
+                    currency: NGN
+                  - name: ASO Savings and Loans
+                    code: "401"
+                    longcode: ""
+                    gateway: null
+                    slug: asosavings
+                    country: Nigeria
+                    currency: NGN
+                  - name: Stanbic IBTC Bank
+                    code: "221"
+                    longcode: "221159522"
+                    gateway: null
+                    slug: stanbic-ibtc-bank
+                    country: Nigeria
+                    currency: NGN
+                  - name: Fidelity Bank
+                    code: "070"
+                    longcode: "070150003"
+                    gateway: emandate
+                    slug: fidelity-bank
+                    country: Nigeria
+                    currency: NGN
+                  - name: Providus Bank
+                    code: "101"
+                    longcode: ""
+                    gateway: null
+                    slug: providus-bank
+                    country: Nigeria
+                    currency: NGN
+                  - name: Unity Bank
+                    code: "215"
+                    longcode: "215154097"
+                    gateway: emandate
+                    slug: unity-bank
+                    country: Nigeria
+                    currency: NGN
+                  - name: TCF MFB
+                    code: "51211"
+                    longcode: ""
+                    gateway: null
+                    slug: tcf-mfb
+                    country: Nigeria
+                    currency: NGN
+                  - name: Polaris Bank
+                    code: "076"
+                    longcode: "076151006"
+                    gateway: null
+                    slug: polaris-bank
+                    country: Nigeria
+                    currency: NGN
+                  - name: Titan Bank
+                    code: "102"
+                    longcode: ""
+                    gateway: null
+                    slug: titan-bank
+                    country: Nigeria
+                    currency: NGN
+                  - name: Guaranty Trust Bank
+                    code: "058"
+                    longcode: "058152036"
+                    gateway: ibank
+                    slug: guaranty-trust-bank
+                    country: Nigeria
+                    currency: NGN
+                  - name: Keystone Bank
+                    code: "082"
+                    longcode: "082150017"
+                    gateway: null
+                    slug: keystone-bank
+                    country: Nigeria
+                    currency: NGN
+                  - name: Union Bank of Nigeria
+                    code: "032"
+                    longcode: "032080474"
+                    gateway: emandate
+                    slug: union-bank-of-nigeria
+                    country: Nigeria
+                    currency: NGN
+                  - name: Access Bank (Diamond)
+                    code: "063"
+                    longcode: "063150162"
+                    gateway: emandate
+                    slug: access-bank-diamond
+                    country: Nigeria
+                    currency: NGN
+                  - name: Kuda Bank
+                    code: "50211"
+                    longcode: ""
+                    gateway: digitalbankmandate
+                    slug: kuda-bank
+                    country: Nigeria
+                    currency: NGN
+                  - name: United Bank For Africa
+                    code: "033"
+                    longcode: "033153513"
+                    gateway: emandate
+                    slug: united-bank-for-africa
+                    country: Nigeria
+                    currency: NGN
+                  - name: Rubies MFB
+                    code: "125"
+                    longcode: ""
+                    gateway: null
+                    slug: rubies-mfb
+                    country: Nigeria
+                    currency: NGN
+                  - name: Wema Bank
+                    code: "035"
+                    longcode: "035150103"
+                    gateway: null
+                    slug: wema-bank
+                    country: Nigeria
+                    currency: NGN
+                  - name: Eyowo
+                    code: "50126"
+                    longcode: ""
+                    gateway: null
+                    slug: eyowo
+                    country: Nigeria
+                    currency: NGN
+                  - name: Ecobank Nigeria
+                    code: "050"
+                    longcode: "050150010"
+                    gateway: null
+                    slug: ecobank-nigeria
+                    country: Nigeria
+                    currency: NGN
+                  - name: ALAT by WEMA
+                    code: 035A
+                    longcode: "035150103"
+                    gateway: emandate
+                    slug: alat-by-wema
+                    country: Nigeria
+                    currency: NGN
+                  - name: Jaiz Bank
+                    code: "301"
+                    longcode: "301080020"
+                    gateway: null
+                    slug: jaiz-bank
+                    country: Nigeria
+                    currency: NGN
+                  - name: Bowen Microfinance Bank
+                    code: "50931"
+                    longcode: ""
+                    gateway: null
+                    slug: bowen-microfinance-bank
+                    country: Nigeria
+                    currency: NGN
+                  - name: VFD
+                    code: "566"
+                    longcode: ""
+                    gateway: null
+                    slug: vfd
+                    country: Nigeria
+                    currency: NGN
+                  - name: Parallex Bank
+                    code: "526"
+                    longcode: ""
+                    gateway: null
+                    slug: parallex-bank
+                    country: Nigeria
+                    currency: NGN
+                  - name: Zenith Bank
+                    code: "057"
+                    longcode: "057150013"
+                    gateway: emandate
+                    slug: zenith-bank
+                    country: Nigeria
+                    currency: NGN
+                  - name: TAJ Bank
+                    code: "302"
+                    longcode: ""
+                    gateway: null
+                    slug: taj-bank
+                    country: Nigeria
+                    currency: NGN
+                  - name: Parkway - ReadyCash
+                    code: "311"
+                    longcode: ""
+                    gateway: null
+                    slug: parkway-ready-cash
+                    country: Nigeria
+                    currency: NGN
+                  - name: Hackman Microfinance Bank
+                    code: "51251"
+                    longcode: ""
+                    gateway: null
+                    slug: hackman-microfinance-bank
+                    country: Nigeria
+                    currency: NGN
+                  - name: Citibank Nigeria
+                    code: "023"
+                    longcode: "023150005"
+                    gateway: null
+                    slug: citibank-nigeria
+                    country: Nigeria
+                    currency: NGN
+                  - name: One Finance
+                    code: "565"
+                    longcode: ""
+                    gateway: null
+                    slug: one-finance
+                    country: Nigeria
+                    currency: NGN
+                  - name: Sterling Bank
+                    code: "232"
+                    longcode: "232150016"
+                    gateway: emandate
+                    slug: sterling-bank
+                    country: Nigeria
+                    currency: NGN
+                  - name: Access Bank
+                    code: "044"
+                    longcode: "044150149"
+                    gateway: emandate
+                    slug: access-bank
+                    country: Nigeria
+                    currency: NGN
+                  - name: Ekondo Microfinance Bank
+                    code: "562"
+                    longcode: ""
+                    gateway: null
+                    slug: ekondo-microfinance-bank
+                    country: Nigeria
+                    currency: NGN
+                  - name: Globus Bank
+                    code: "00103"
+                    longcode: "103015001"
+                    gateway: null
+                    slug: globus-bank
+                    country: Nigeria
+                    currency: NGN
+                  - name: Lagos Building Investment Company Plc.
+                    code: "90052"
+                    longcode: ""
+                    gateway: null
+                    slug: lbic-plc
+                    country: Nigeria
+                    currency: NGN
+                  - name: Hasal Microfinance Bank
+                    code: "50383"
+                    longcode: ""
+                    gateway: null
+                    slug: hasal-microfinance-bank
+                    country: Nigeria
+                    currency: NGN
+                  - name: Standard Chartered Bank
+                    code: "068"
+                    longcode: "068150015"
+                    gateway: null
+                    slug: standard-chartered-bank
+                    country: Nigeria
+                    currency: NGN
+                  - name: Sparkle Microfinance Bank
+                    code: "51310"
+                    longcode: ""
+                    gateway: null
+                    slug: sparkle-microfinance-bank
+                    country: Nigeria
+                    currency: NGN
+  /v1/general/account:
+    get:
+      tags:
+        - General
+      summary: General Resolve NUBAN
+      security:
+        - apikeyAuth: []
+        - appIdAuth: []
+      parameters:
+        - name: bank_code
+          in: query
+          schema:
+            type: integer
+          example: "058"
+        - name: account_number
+          in: query
+          schema:
+            type: integer
+          example: "0037466959"
+      responses:
+        "200":
+          description: OK
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: "*"
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: "82"
+            ETag:
+              schema:
+                type: string
+                example: W/"52-b4fGqDl+l8q39mqXsC98SGncy1Q"
+            Date:
+              schema:
+                type: string
+                example: Sat, 03 Oct 2020 20:56:03 GMT
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                entity:
+                  account_number: "3046507407"
+                  account_name: SALIU MOSHOOD KOLAWOLE
+  /v1/general/bin:
+    get:
+      tags:
+        - General
+      summary: General Resolve BIN
+      security:
+        - apikeyAuth: []
+        - appIdAuth: []
+      parameters:
+        - name: card_bin
+          in: query
+          schema:
+            type: integer
+          example: "506118"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                entity:
+                  bin: "506118"
+                  brand: Verve
+                  sub_brand: ""
+                  country_code: NG
+                  country_name: Nigeria
+                  card_type: DEBIT
+                  bank: Ecobank Nigeria
+  /v1/ml/categorize_transaction:
+    post:
+      tags:
+        - Services
+      summary: Categorize Transactions
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                description: >-
+                  POS/WEB PURCHASE TRANSACTION -047608- -253842-MUNCHIES BY MOE
+                  OY OYNG
+                trans_type: debit
+      security:
+        - apikeyAuth: []
+      parameters:
+        - name: AppId
+          in: header
+          schema:
+            type: string
+          example: "{{app_id}}"
+      responses:
+        "200":
+          description: OK
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: "*"
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: "175"
+            ETag:
+              schema:
+                type: string
+                example: W/"af-kJ3eLwfn4ZuaBgJBiEUiUMNAE5M"
+            Date:
+              schema:
+                type: string
+                example: Sun, 27 Sep 2020 23:52:14 GMT
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                entity:
+                  category: Bill Payments
+                  sub_category: Others
+                  service_id: 0
+                  is_subscription: 0
+                  duration: ""
+                  service_name: ""
+                  label: Others
+                  mode_of_payment: web/pos
+  /api/v1/captcha:
+    post:
+      tags:
+        - Services
+      summary: Captcha Service
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: "{{secret_key}}"
+        - name: Appid
+          in: header
+          schema:
+            type: string
+          example: "{{app_id}}"
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/fraud_decision:
+    get:
+      tags:
+        - Services
+      summary: Fraud Decision
+      security:
+        - apikeyAuth: []
+        - appIdAuth: []
+      parameters:
+        - name: verification_id
+          in: query
+          schema:
+            type: integer
+          example: "87461111"
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/kyc/accounts:
+    get:
+      tags:
+        - Services
+      summary: Fetch Bank Accounts
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: "{{secret_key}}"
+        - name: AppId
+          in: header
+          schema:
+            type: string
+          example: "{{app_id}}"
+        - name: mobile_number
+          in: query
+          schema:
+            type: integer
+          example: "08068810228"
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/webhook/subscribe:
+    post:
+      tags:
+        - WebHooks
+      summary: Subscribe to service
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                webhook: https://webhook.site/c587711d-d9f2-4982-9107-b1f9789a5dfe
+                service: kyc_widget
+      security:
+        - apikeyAuth: []
+      parameters:
+        - name: AppId
+          in: header
+          schema:
+            type: string
+          example: "{{app_id}}"
+      responses:
+        "200":
+          description: OK
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: "*"
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: "82"
+            ETag:
+              schema:
+                type: string
+                example: W/"52-Mg51PJcV3OhbOfOAiK6f1/y5nVg"
+            Date:
+              schema:
+                type: string
+                example: Mon, 07 Jun 2021 23:48:13 GMT
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                entity: >-
+                  Pls, confirm subscription with the subscribe_url sent to this
+                  webhook
+  /api/v1/webhook/delete:
     delete:
       tags:
-        - user
-      summary: Delete user
-      description: This can only be done by the logged in user.
-      operationId: deleteUser
-      parameters:
-        - name: username
-          in: path
-          description: The name that needs to be deleted
-          required: true
-          schema:
-            type: string
-      responses:
-        "400":
-          description: Invalid username supplied
-        "404":
-          description: User not found
+        - WebHooks
+      summary: Delete Webhook
       security:
-        - api_key: []
-externalDocs:
-  description: Find out more about Swagger
-  url: "http://swagger.io"
-components:
-  requestBodies:
-    UserArray:
-      content:
-        application/json:
+        - apikeyAuth: []
+      parameters:
+        - name: AppId
+          in: header
           schema:
-            type: array
-            items:
-              $ref: "#/components/schemas/User"
-      description: List of user object
-      required: true
-    Pet:
-      content:
-        application/json:
-          schema:
-            $ref: "#/components/schemas/Pet"
-        application/xml:
-          schema:
-            $ref: "#/components/schemas/Pet"
-      description: Pet object that needs to be added to the store
-      required: true
-  securitySchemes:
-    petstore_auth:
-      type: oauth2
-      flows:
-        implicit:
-          authorizationUrl: "http://petstore.swagger.io/api/oauth/dialog"
-          scopes:
-            "write:pets": modify pets in your account
-            "read:pets": read your pets
-    api_key:
-      type: apiKey
-      name: api_key
-      in: header
-  schemas:
-    Order:
-      title: Pet Order
-      description: An order for a pets from the pet store
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        petId:
-          type: integer
-          format: int64
-        quantity:
-          type: integer
-          format: int32
-        shipDate:
-          type: string
-          format: date-time
-        status:
-          type: string
-          description: Order Status
-          enum:
-            - placed
-            - approved
-            - delivered
-        complete:
-          type: boolean
-          default: false
-      xml:
-        name: Order
-    Category:
-      title: Pet category
-      description: A category for a pet
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        name:
-          type: string
-          pattern: '^[a-zA-Z0-9]+[a-zA-Z0-9\.\-_]*[a-zA-Z0-9]+$'
-      xml:
-        name: Category
-    User:
-      title: a User
-      description: A User who is purchasing from the pet store
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        username:
-          type: string
-        firstName:
-          type: string
-        lastName:
-          type: string
-        email:
-          type: string
-        password:
-          type: string
-        phone:
-          type: string
-        userStatus:
-          type: integer
-          format: int32
-          description: User Status
-      xml:
-        name: User
-    Tag:
-      title: Pet Tag
-      description: A tag for a pet
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        name:
-          type: string
-      xml:
-        name: Tag
-    Pet:
-      title: a Pet
-      description: A pet for sale in the pet store
-      type: object
-      required:
-        - name
-        - photoUrls
-      properties:
-        id:
-          type: integer
-          format: int64
-        category:
-          $ref: "#/components/schemas/Category"
-        name:
-          type: string
-          example: doggie
-        photoUrls:
-          type: array
-          xml:
-            name: photoUrl
-            wrapped: true
-          items:
             type: string
-        tags:
-          type: array
-          xml:
-            name: tag
-            wrapped: true
-          items:
-            $ref: "#/components/schemas/Tag"
-        status:
-          type: string
-          description: pet status in the store
-          deprecated: true
-          enum:
-            - available
-            - pending
-            - sold
-      xml:
-        name: Pet
-    ApiResponse:
-      title: An uploaded response
-      description: Describes the result of uploading an image resource
-      type: object
-      properties:
-        code:
-          type: integer
-          format: int32
-        type:
-          type: string
-        message:
-          type: string
+          example: "{{app_id}}"
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/webhook/fetch:
+    get:
+      tags:
+        - WebHooks
+      summary: Fetch All Webhooks
+      security:
+        - apikeyAuth: []
+      parameters:
+        - name: AppId
+          in: header
+          schema:
+            type: string
+          example: "{{app_id}}"
+      responses:
+        "200":
+          description: OK
+          headers:
+            Date:
+              schema:
+                type: string
+                example: Fri, 29 Oct 2021 00:54:49 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            access-control-allow-origin:
+              schema:
+                type: string
+                example: "*"
+            x-moesif-transaction-id:
+              schema:
+                type: string
+                example: b590fe04-8f07-4801-82a2-81edddc2a7eb
+            etag:
+              schema:
+                type: string
+                example: W/"372-nrl6N1/lKfQjwSH5E3czVC2O7Jo"
+            vary:
+              schema:
+                type: string
+                example: Accept-Encoding
+            CF-Cache-Status:
+              schema:
+                type: string
+                example: DYNAMIC
+            Expect-CT:
+              schema:
+                type: string
+                example: >-
+                  max-age=604800,
+                  report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+            Report-To:
+              schema:
+                type: string
+                example: >-
+                  {"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=S0evXHIXXRiYwRETMKJ%2B8yP9ogneeaQ%2BO0%2FeQdmxEKCdnFerh4Pe2HV4BraL0C9FZOUmn8%2FkixVL6pM9WI7Hmr8XbV5SqsSb9zvhm%2Fg72%2Bfiqn6qITfZEJg9faAmmpI2tsg9"}],"group":"cf-nel","max_age":604800}
+            NEL:
+              schema:
+                type: string
+                example: '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+            Server:
+              schema:
+                type: string
+                example: cloudflare
+            CF-RAY:
+              schema:
+                type: string
+                example: 6a586f4c2c957478-LHR
+            Content-Encoding:
+              schema:
+                type: string
+                example: br
+            alt-svc:
+              schema:
+                type: string
+                example: >-
+                  h3=":443"; ma=86400, h3-29=":443"; ma=86400, h3-28=":443";
+                  ma=86400, h3-27=":443"; ma=86400
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                entity:
+                  - app_id: 60d4aebc1e90de0033ad14ad
+                    endpoint: https://staging.dojah.io/webhooks/ngn_wallet
+                    environment: sandbox
+                    service: ngn_wallet
+                    confirmation_status: Invalid Subscription Arn
+                    date_created: "2021-09-15T13:02:17.286834+01:00"
+                    date_updated: "2021-09-15T13:02:17.286880+01:00"
+                  - app_id: 60d4aebc1e90de0033ad14ad
+                    endpoint: https://staging.dojah.io/webhooks/ngn_wallet
+                    environment: sandbox
+                    service: sms
+                    confirmation_status: Invalid Subscription Arn
+                    date_created: "2021-08-06T05:12:24.445507+01:00"
+                    date_updated: "2021-08-06T05:12:24.445546+01:00"
+  /api/v1/webhook/notify:
+    post:
+      tags:
+        - WebHooks
+      summary: Post Hook
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                subject: kyc_widget
+                data:
+                  stuff: "12345678"
+      parameters:
+        - name: AppId
+          in: header
+          schema:
+            type: string
+          example: "{{app_id}}"
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: "{{secret_key}}"
+      responses:
+        "200":
+          description: OK
+          headers:
+            Date:
+              schema:
+                type: string
+                example: Wed, 06 Apr 2022 23:18:47 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: "*"
+            x-moesif-transaction-id:
+              schema:
+                type: string
+                example: 9b7bc9f2-3ff7-4308-a934-58e841c66208
+            ETag:
+              schema:
+                type: string
+                example: W/"2b-uacOFZZCf1Qb0O+efVLOFPlW0Wc"
+            Vary:
+              schema:
+                type: string
+                example: Accept-Encoding
+            CF-Cache-Status:
+              schema:
+                type: string
+                example: DYNAMIC
+            Expect-CT:
+              schema:
+                type: string
+                example: >-
+                  max-age=604800,
+                  report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+            Report-To:
+              schema:
+                type: string
+                example: >-
+                  {"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=elsD6JAPRBoZ5sUFKtR2pbD2NPBDV%2BtMtuOERaFq%2F5pfhYm88dbZpwD0IGCAuT4r4GYNCt55jEhurd3kE3DIeutCrDELfPpMGdZp4MVROPCy%2BoaFCwcF8gf6SJYqmnQ8ibPx8aWW"}],"group":"cf-nel","max_age":604800}
+            NEL:
+              schema:
+                type: string
+                example: '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+            Server:
+              schema:
+                type: string
+                example: cloudflare
+            CF-RAY:
+              schema:
+                type: string
+                example: 6f7e3e9bfa783e99-CPT
+            Content-Encoding:
+              schema:
+                type: string
+                example: br
+            alt-svc:
+              schema:
+                type: string
+                example: h3=":443"; ma=86400, h3-29=":443"; ma=86400
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                entity: App event created successfully
