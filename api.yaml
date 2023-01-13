@@ -24,7 +24,7 @@ paths:
         - pet
       summary: Add a new pet to the store
       description: ""
-      operationId: Hello there_add_pet
+      operationId: Hellothere_add_pet
       responses:
         "200":
           description: successful operation
