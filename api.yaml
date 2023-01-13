@@ -24,7 +24,7 @@ paths:
         - pet
       summary: Add a new pet to the store
       description: ""
-      operationId: Hello there_add_pet
+      operationId: addPet
       responses:
         "200":
           description: successful operation
@@ -223,7 +223,7 @@ paths:
         - pet
       summary: Deletes a pet
       description: ""
-      operationId: Pet_delete
+      operationId: deletePet
       parameters:
         - name: api_key
           in: header
