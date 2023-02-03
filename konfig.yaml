@@ -6,11 +6,17 @@ generators:
     groupId: com.acme
     artifactId: acme-java-sdk
     outputDirectory: java
+    git:
+      userId: konfig-dev
+      repoId: acme-sdks/tree/main/java
   python:
     version: 1.0.0
     packageName: acme_client
     projectName: acme-python-sdk
     outputDirectory: python
+    git:
+      userId: konfig-dev
+      repoId: acme-sdks/tree/main/python
   typescript:
     packageVersion: 1.0.0
     generatorVersion: 2
@@ -29,11 +35,17 @@ generators:
     packageName: Acme.Net
     logoPath: logo.png
     outputDirectory: csharp
+    git:
+      userId: konfig-dev
+      repoId: acme-sdks/tree/main/csharp
   swift:
     version: 1.0.0
     projectName: Acme
     podAuthors: acme.com
     outputDirectory: swift
+    git:
+      userId: konfig-dev
+      repoId: acme-sdks/tree/main/swift
   objc:
     version: 1.0.0
     podName: AcmeClient
@@ -41,11 +53,17 @@ generators:
     authorEmail: engineering@acme.com
     classPrefix: A
     outputDirectory: objc
+    git:
+      userId: konfig-dev
+      repoId: acme-sdks/tree/main/objc
   kotlin:
     version: 1.0.0
     groupId: com.acme
     artifactId: acme-kotlin-sdk
     outputDirectory: kotlin
+    git:
+      userId: konfig-dev
+      repoId: acme-sdks/tree/main/kotlin
   go:
     version: 1.0.0
     packageName: acme
@@ -57,6 +75,9 @@ generators:
     version: 1.0.0
     packageName: acme-php
     outputDirectory: php
+    git:
+      userId: konfig-dev
+      repoId: acme-sdks/tree/main/php
 # additionalGenerators:
 #   python_new:
 #     generator: python
