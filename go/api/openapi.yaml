@@ -23,7 +23,7 @@ paths:
   /pet:
     post:
       description: ""
-      operationId: Hello there_add_pet
+      operationId: Hellothere_add_pet
       requestBody:
         $ref: '#/components/requestBodies/Pet'
       responses:

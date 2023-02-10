@@ -25,7 +25,6 @@ Add a new pet to the store
 
 ### Example
 ```swift
-// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import Acme
 
 let pet = Pet(id: 123, category: Category(id: 123, name: "name_example"), name: "name_example", photoUrls: ["photoUrls_example"], tags: [Tag(id: 123, name: "name_example")], status: "status_example") // Pet | Pet object that needs to be added to the store
@@ -75,7 +74,6 @@ Deletes a pet
 
 ### Example
 ```swift
-// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import Acme
 
 let petId = 987 // Int64 | Pet id to delete
@@ -127,7 +125,6 @@ Multiple status values can be provided with comma separated strings
 
 ### Example
 ```swift
-// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import Acme
 
 let status = ["status_example"] // [String] | Status values that need to be considered for filter
@@ -177,7 +174,6 @@ Multiple tags can be provided with comma separated strings. Use tag1, tag2, tag3
 
 ### Example
 ```swift
-// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import Acme
 
 let tags = ["inner_example"] // [String] | Tags to filter by
@@ -227,7 +223,6 @@ Returns a single pet
 
 ### Example
 ```swift
-// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import Acme
 
 let petId = 987 // Int64 | ID of pet to return
@@ -277,7 +272,6 @@ Update an existing pet
 
 ### Example
 ```swift
-// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import Acme
 
 let pet = Pet(id: 123, category: Category(id: 123, name: "name_example"), name: "name_example", photoUrls: ["photoUrls_example"], tags: [Tag(id: 123, name: "name_example")], status: "status_example") // Pet | Pet object that needs to be added to the store
@@ -327,7 +321,6 @@ Updates a pet in the store with form data
 
 ### Example
 ```swift
-// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import Acme
 
 let petId = 987 // Int64 | ID of pet that needs to be updated
@@ -381,7 +374,6 @@ uploads an image
 
 ### Example
 ```swift
-// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import Acme
 
 let petId = 987 // Int64 | ID of pet to update

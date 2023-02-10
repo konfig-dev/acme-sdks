@@ -13,13 +13,13 @@ import (
     "github.com/stretchr/testify/assert"
     "github.com/stretchr/testify/require"
     "testing"
-    openapiclient "github.com/konfig-dev/acme-sdks/go"
+    acme "github.com/konfig-dev/acme-sdks/go"
 )
 
 func Test_acme_PetApiService(t *testing.T) {
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
+    configuration := acme.NewConfiguration()
+    apiClient := acme.NewAPIClient(configuration)
 
     t.Run("Test PetApiService AddPet", func(t *testing.T) {
 

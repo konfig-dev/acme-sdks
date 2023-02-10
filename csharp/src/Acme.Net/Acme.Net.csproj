@@ -17,7 +17,7 @@
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\Acme.Net.xml</DocumentationFile>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <RepositoryUrl>https:////</RepositoryUrl>
+    <RepositoryUrl>https://github.com/konfig-dev/acme-sdks/tree/main/csharp</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageReleaseNotes>Minor update</PackageReleaseNotes>
   </PropertyGroup>

@@ -18,7 +18,7 @@ The SDK requires [**ARC (Automatic Reference Counting)**](http://stackoverflow.c
 Add the following to the Podfile:
 
 ```ruby
-pod 'AcmeClient', :git => 'https:////.git'
+pod 'AcmeClient', :git => 'https://github.com/konfig-dev/acme-sdks/tree/main/objc.git'
 ```
 
 To specify a particular branch, append `, :branch => 'branch-name-here'`

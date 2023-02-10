@@ -32,14 +32,14 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    acme "github.com/konfig-dev/acme-sdks/go"
 )
 
 func main() {
-    pet := *openapiclient.NewPet("doggie", []string{"PhotoUrls_example"}) // Pet | Pet object that needs to be added to the store
+    pet := *acme.NewPet("doggie", []string{"PhotoUrls_example"}) // Pet | Pet object that needs to be added to the store
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
+    configuration := acme.NewConfiguration()
+    apiClient := acme.NewAPIClient(configuration)
     resp, r, err := apiClient.PetApi.AddPet(context.Background()).Pet(pet).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PetApi.AddPet``: %v\n", err)
@@ -98,15 +98,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    acme "github.com/konfig-dev/acme-sdks/go"
 )
 
 func main() {
     petId := int64(789) // int64 | Pet id to delete
     apiKey := "apiKey_example" // string |  (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
+    configuration := acme.NewConfiguration()
+    apiClient := acme.NewAPIClient(configuration)
     resp, r, err := apiClient.PetApi.Delete(context.Background(), petId).ApiKey(apiKey).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PetApi.Delete``: %v\n", err)
@@ -168,14 +168,14 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    acme "github.com/konfig-dev/acme-sdks/go"
 )
 
 func main() {
     status := []string{"Status_example"} // []string | Status values that need to be considered for filter
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
+    configuration := acme.NewConfiguration()
+    apiClient := acme.NewAPIClient(configuration)
     resp, r, err := apiClient.PetApi.FindPetsByStatus(context.Background()).Status(status).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PetApi.FindPetsByStatus``: %v\n", err)
@@ -234,14 +234,14 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    acme "github.com/konfig-dev/acme-sdks/go"
 )
 
 func main() {
     tags := []string{"Inner_example"} // []string | Tags to filter by
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
+    configuration := acme.NewConfiguration()
+    apiClient := acme.NewAPIClient(configuration)
     resp, r, err := apiClient.PetApi.FindPetsByTags(context.Background()).Tags(tags).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PetApi.FindPetsByTags``: %v\n", err)
@@ -300,14 +300,14 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    acme "github.com/konfig-dev/acme-sdks/go"
 )
 
 func main() {
     petId := int64(789) // int64 | ID of pet to return
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
+    configuration := acme.NewConfiguration()
+    apiClient := acme.NewAPIClient(configuration)
     resp, r, err := apiClient.PetApi.GetPetById(context.Background(), petId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PetApi.GetPetById``: %v\n", err)
@@ -370,14 +370,14 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    acme "github.com/konfig-dev/acme-sdks/go"
 )
 
 func main() {
-    pet := *openapiclient.NewPet("doggie", []string{"PhotoUrls_example"}) // Pet | Pet object that needs to be added to the store
+    pet := *acme.NewPet("doggie", []string{"PhotoUrls_example"}) // Pet | Pet object that needs to be added to the store
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
+    configuration := acme.NewConfiguration()
+    apiClient := acme.NewAPIClient(configuration)
     resp, r, err := apiClient.PetApi.UpdatePet(context.Background()).Pet(pet).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PetApi.UpdatePet``: %v\n", err)
@@ -436,7 +436,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    acme "github.com/konfig-dev/acme-sdks/go"
 )
 
 func main() {
@@ -444,8 +444,8 @@ func main() {
     name := "name_example" // string | Updated name of the pet (optional)
     status := "status_example" // string | Updated status of the pet (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
+    configuration := acme.NewConfiguration()
+    apiClient := acme.NewAPIClient(configuration)
     resp, r, err := apiClient.PetApi.UpdatePetWithForm(context.Background(), petId).Name(name).Status(status).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PetApi.UpdatePetWithForm``: %v\n", err)
@@ -508,7 +508,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    acme "github.com/konfig-dev/acme-sdks/go"
 )
 
 func main() {
@@ -516,8 +516,8 @@ func main() {
     additionalMetadata := "additionalMetadata_example" // string | Additional data to pass to server (optional)
     file := os.NewFile(1234, "some_file") // *os.File | file to upload (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
+    configuration := acme.NewConfiguration()
+    apiClient := acme.NewAPIClient(configuration)
     resp, r, err := apiClient.PetApi.UploadFile(context.Background(), petId).AdditionalMetadata(additionalMetadata).File(file).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PetApi.UploadFile``: %v\n", err)

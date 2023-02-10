@@ -23,13 +23,13 @@ import (
 // StoreApiService StoreApi service
 type StoreApiService service
 
-type ApiDeleteOrderRequest struct {
+type StoreApiDeleteOrderRequest struct {
 	ctx context.Context
 	ApiService *StoreApiService
 	orderId string
 }
 
-func (r ApiDeleteOrderRequest) Execute() (*http.Response, error) {
+func (r StoreApiDeleteOrderRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteOrderExecute(r)
 }
 
@@ -40,10 +40,10 @@ For valid response try integer IDs with value < 1000. Anything above 1000 or non
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param orderId ID of the order that needs to be deleted
- @return ApiDeleteOrderRequest
+ @return StoreApiDeleteOrderRequest
 */
-func (a *StoreApiService) DeleteOrder(orderId string) ApiDeleteOrderRequest {
-	return ApiDeleteOrderRequest{
+func (a *StoreApiService) DeleteOrder(orderId string) StoreApiDeleteOrderRequest {
+	return StoreApiDeleteOrderRequest{
 		ApiService: a,
 		ctx: a.client.cfg.Context,
 		orderId: orderId,
@@ -51,7 +51,7 @@ func (a *StoreApiService) DeleteOrder(orderId string) ApiDeleteOrderRequest {
 }
 
 // Execute executes the request
-func (a *StoreApiService) DeleteOrderExecute(r ApiDeleteOrderRequest) (*http.Response, error) {
+func (a *StoreApiService) DeleteOrderExecute(r StoreApiDeleteOrderRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
@@ -115,12 +115,12 @@ func (a *StoreApiService) DeleteOrderExecute(r ApiDeleteOrderRequest) (*http.Res
 	return localVarHTTPResponse, nil
 }
 
-type ApiGetInventoryRequest struct {
+type StoreApiGetInventoryRequest struct {
 	ctx context.Context
 	ApiService *StoreApiService
 }
 
-func (r ApiGetInventoryRequest) Execute() (map[string]int32, *http.Response, error) {
+func (r StoreApiGetInventoryRequest) Execute() (map[string]int32, *http.Response, error) {
 	return r.ApiService.GetInventoryExecute(r)
 }
 
@@ -130,10 +130,10 @@ GetInventory Returns pet inventories by status
 Returns a map of status codes to quantities
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiGetInventoryRequest
+ @return StoreApiGetInventoryRequest
 */
-func (a *StoreApiService) GetInventory() ApiGetInventoryRequest {
-	return ApiGetInventoryRequest{
+func (a *StoreApiService) GetInventory() StoreApiGetInventoryRequest {
+	return StoreApiGetInventoryRequest{
 		ApiService: a,
 		ctx: a.client.cfg.Context,
 	}
@@ -141,7 +141,7 @@ func (a *StoreApiService) GetInventory() ApiGetInventoryRequest {
 
 // Execute executes the request
 //  @return map[string]int32
-func (a *StoreApiService) GetInventoryExecute(r ApiGetInventoryRequest) (map[string]int32, *http.Response, error) {
+func (a *StoreApiService) GetInventoryExecute(r StoreApiGetInventoryRequest) (map[string]int32, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -228,13 +228,13 @@ func (a *StoreApiService) GetInventoryExecute(r ApiGetInventoryRequest) (map[str
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiGetOrderByIdRequest struct {
+type StoreApiGetOrderByIdRequest struct {
 	ctx context.Context
 	ApiService *StoreApiService
 	orderId int64
 }
 
-func (r ApiGetOrderByIdRequest) Execute() (*Order, *http.Response, error) {
+func (r StoreApiGetOrderByIdRequest) Execute() (*Order, *http.Response, error) {
 	return r.ApiService.GetOrderByIdExecute(r)
 }
 
@@ -245,10 +245,10 @@ For valid response try integer IDs with value <= 5 or > 10. Other values will ge
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param orderId ID of pet that needs to be fetched
- @return ApiGetOrderByIdRequest
+ @return StoreApiGetOrderByIdRequest
 */
-func (a *StoreApiService) GetOrderById(orderId int64) ApiGetOrderByIdRequest {
-	return ApiGetOrderByIdRequest{
+func (a *StoreApiService) GetOrderById(orderId int64) StoreApiGetOrderByIdRequest {
+	return StoreApiGetOrderByIdRequest{
 		ApiService: a,
 		ctx: a.client.cfg.Context,
 		orderId: orderId,
@@ -257,7 +257,7 @@ func (a *StoreApiService) GetOrderById(orderId int64) ApiGetOrderByIdRequest {
 
 // Execute executes the request
 //  @return Order
-func (a *StoreApiService) GetOrderByIdExecute(r ApiGetOrderByIdRequest) (*Order, *http.Response, error) {
+func (a *StoreApiService) GetOrderByIdExecute(r StoreApiGetOrderByIdRequest) (*Order, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -337,19 +337,19 @@ func (a *StoreApiService) GetOrderByIdExecute(r ApiGetOrderByIdRequest) (*Order,
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiPlaceOrderRequest struct {
+type StoreApiPlaceOrderRequest struct {
 	ctx context.Context
 	ApiService *StoreApiService
 	order *Order
 }
 
 // order placed for purchasing the pet
-func (r ApiPlaceOrderRequest) Order(order Order) ApiPlaceOrderRequest {
+func (r StoreApiPlaceOrderRequest) Order(order Order) StoreApiPlaceOrderRequest {
 	r.order = &order
 	return r
 }
 
-func (r ApiPlaceOrderRequest) Execute() (*Order, *http.Response, error) {
+func (r StoreApiPlaceOrderRequest) Execute() (*Order, *http.Response, error) {
 	return r.ApiService.PlaceOrderExecute(r)
 }
 
@@ -359,10 +359,10 @@ PlaceOrder Place an order for a pet
 
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiPlaceOrderRequest
+ @return StoreApiPlaceOrderRequest
 */
-func (a *StoreApiService) PlaceOrder() ApiPlaceOrderRequest {
-	return ApiPlaceOrderRequest{
+func (a *StoreApiService) PlaceOrder() StoreApiPlaceOrderRequest {
+	return StoreApiPlaceOrderRequest{
 		ApiService: a,
 		ctx: a.client.cfg.Context,
 	}
@@ -370,7 +370,7 @@ func (a *StoreApiService) PlaceOrder() ApiPlaceOrderRequest {
 
 // Execute executes the request
 //  @return Order
-func (a *StoreApiService) PlaceOrderExecute(r ApiPlaceOrderRequest) (*Order, *http.Response, error) {
+func (a *StoreApiService) PlaceOrderExecute(r StoreApiPlaceOrderRequest) (*Order, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}

@@ -19,11 +19,11 @@ To install the bindings via [Composer](https://getcomposer.org/), add the follow
   "repositories": [
     {
       "type": "vcs",
-      "url": "https:////.git"
+      "url": "https://github.com/konfig-dev/acme-sdks/tree/main/php.git"
     }
   ],
   "require": {
-    "/": "*@dev"
+    "konfig-dev/acme-sdks/tree/main/php": "*@dev"
   }
 }
 ```

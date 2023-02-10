@@ -35,7 +35,7 @@ setup(
     description="OpenAPI Petstore",
     author="Konfig",
     author_email="engineering@konfigthis.com",
-    url="https:////",
+    url="https://github.com/konfig-dev/acme-sdks/tree/main/python",
     keywords=["Konfig", "OpenAPI Petstore"],
     python_requires=">=3.6",
     install_requires=REQUIRES,

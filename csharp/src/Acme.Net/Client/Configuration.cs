@@ -110,7 +110,7 @@ namespace Acme.Net.Client
         public Configuration()
         {
             Proxy = null;
-            UserAgent = WebUtility.UrlEncode("OpenAPI-Generator/1.0.0/csharp");
+            UserAgent = WebUtility.UrlEncode("Konfig/1.0.0/csharp");
             BasePath = "http://petstore.swagger.io/v2";
             DefaultHeaders = new ConcurrentDictionary<string, string>();
             ApiKey = new ConcurrentDictionary<string, string>();

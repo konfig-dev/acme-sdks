@@ -12,4 +12,15 @@ targets:
       APPLICATION_EXTENSION_API_ONLY: true
     scheme: {}
     dependencies:
-    - carthage: AnyCodable
+      - carthage: AnyCodable
+  Test:
+    type: Test
+    platform: iOS
+    deploymentTarget: "9.0"
+    sources: [Tests]
+    info:
+      path: ./Info.plist
+      version: 1.0.0
+    scheme: {}
+    dependencies:
+      - carthage: Nuitee

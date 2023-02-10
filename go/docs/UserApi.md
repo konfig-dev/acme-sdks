@@ -32,14 +32,14 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    acme "github.com/konfig-dev/acme-sdks/go"
 )
 
 func main() {
-    user := *openapiclient.NewUser() // User | Created user object
+    user := *acme.NewUser() // User | Created user object
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
+    configuration := acme.NewConfiguration()
+    apiClient := acme.NewAPIClient(configuration)
     resp, r, err := apiClient.UserApi.CreateUser(context.Background()).User(user).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UserApi.CreateUser``: %v\n", err)
@@ -96,14 +96,14 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    acme "github.com/konfig-dev/acme-sdks/go"
 )
 
 func main() {
-    user := []openapiclient.User{*openapiclient.NewUser()} // []User | List of user object
+    user := []acme.User{*acme.NewUser()} // []User | List of user object
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
+    configuration := acme.NewConfiguration()
+    apiClient := acme.NewAPIClient(configuration)
     resp, r, err := apiClient.UserApi.CreateUsersWithArrayInput(context.Background()).User(user).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UserApi.CreateUsersWithArrayInput``: %v\n", err)
@@ -160,14 +160,14 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    acme "github.com/konfig-dev/acme-sdks/go"
 )
 
 func main() {
-    user := []openapiclient.User{*openapiclient.NewUser()} // []User | List of user object
+    user := []acme.User{*acme.NewUser()} // []User | List of user object
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
+    configuration := acme.NewConfiguration()
+    apiClient := acme.NewAPIClient(configuration)
     resp, r, err := apiClient.UserApi.CreateUsersWithListInput(context.Background()).User(user).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UserApi.CreateUsersWithListInput``: %v\n", err)
@@ -224,14 +224,14 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    acme "github.com/konfig-dev/acme-sdks/go"
 )
 
 func main() {
     username := "username_example" // string | The name that needs to be deleted
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
+    configuration := acme.NewConfiguration()
+    apiClient := acme.NewAPIClient(configuration)
     resp, r, err := apiClient.UserApi.DeleteUser(context.Background(), username).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UserApi.DeleteUser``: %v\n", err)
@@ -292,14 +292,14 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    acme "github.com/konfig-dev/acme-sdks/go"
 )
 
 func main() {
     username := "username_example" // string | The name that needs to be fetched. Use user1 for testing.
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
+    configuration := acme.NewConfiguration()
+    apiClient := acme.NewAPIClient(configuration)
     resp, r, err := apiClient.UserApi.GetUserByName(context.Background(), username).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UserApi.GetUserByName``: %v\n", err)
@@ -362,15 +362,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    acme "github.com/konfig-dev/acme-sdks/go"
 )
 
 func main() {
     username := "username_example" // string | The user name for login
     password := "password_example" // string | The password for login in clear text
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
+    configuration := acme.NewConfiguration()
+    apiClient := acme.NewAPIClient(configuration)
     resp, r, err := apiClient.UserApi.LoginUser(context.Background()).Username(username).Password(password).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UserApi.LoginUser``: %v\n", err)
@@ -430,13 +430,13 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    acme "github.com/konfig-dev/acme-sdks/go"
 )
 
 func main() {
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
+    configuration := acme.NewConfiguration()
+    apiClient := acme.NewAPIClient(configuration)
     resp, r, err := apiClient.UserApi.LogoutUser(context.Background()).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UserApi.LogoutUser``: %v\n", err)
@@ -489,15 +489,15 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    acme "github.com/konfig-dev/acme-sdks/go"
 )
 
 func main() {
     username := "username_example" // string | name that need to be deleted
-    user := *openapiclient.NewUser() // User | Updated user object
+    user := *acme.NewUser() // User | Updated user object
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
+    configuration := acme.NewConfiguration()
+    apiClient := acme.NewAPIClient(configuration)
     resp, r, err := apiClient.UserApi.UpdateUser(context.Background(), username).User(user).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UserApi.UpdateUser``: %v\n", err)
