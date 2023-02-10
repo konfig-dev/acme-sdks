@@ -1,4 +1,4 @@
-# acme-java-sdk
+# acme-android-sdk
 
 OpenAPI Petstore
 - API version: 1.0.0
@@ -38,7 +38,7 @@ Add this dependency to your project's POM:
 ```xml
 <dependency>
   <groupId>com.acme</groupId>
-  <artifactId>acme-java-sdk</artifactId>
+  <artifactId>acme-android-sdk</artifactId>
   <version>1.0.0</version>
   <scope>compile</scope>
 </dependency>
@@ -54,7 +54,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "com.acme:acme-java-sdk:1.0.0"
+     implementation "com.acme:acme-android-sdk:1.0.0"
   }
 ```
 
@@ -68,7 +68,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/acme-java-sdk-1.0.0.jar`
+* `target/acme-android-sdk-1.0.0.jar`
 * `target/lib/*.jar`
 
 ## Getting Started

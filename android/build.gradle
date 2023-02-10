@@ -89,7 +89,7 @@ if(hasProperty('target') && target == 'android') {
     publishing {
         publications {
             maven(MavenPublication) {
-               artifactId = 'acme-java-sdk'
+               artifactId = 'acme-android-sdk'
                from components.java
             }
         }
