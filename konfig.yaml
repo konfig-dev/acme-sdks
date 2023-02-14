@@ -1,14 +1,6 @@
 outputDirectory: /tmp/acme-sdks-out
 specPath: api.yaml
 generators:
-  android:
-    version: 1.0.0
-    groupId: com.acme
-    artifactId: acme-android-sdk
-    outputDirectory: android
-    git:
-      userId: konfig-dev
-      repoId: acme-sdks/tree/main/android
   java:
     version: 1.0.0
     groupId: com.acme

@@ -28,11 +28,11 @@ let orderId = "orderId_example" // String | ID of the order that needs to be del
 // Delete purchase order by ID
 StoreAPI.deleteOrder(orderId: orderId) { (response, error) in
     guard error == nil else {
-        print(error)
+        print(error!)
         return
     }
 
-    if (response) {
+    if response != nil {
         dump(response)
     }
 }
@@ -57,7 +57,7 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: Not defined
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 # **getInventory**
 ```swift
@@ -76,11 +76,11 @@ import Acme
 // Returns pet inventories by status
 StoreAPI.getInventory() { (response, error) in
     guard error == nil else {
-        print(error)
+        print(error!)
         return
     }
 
-    if (response) {
+    if response != nil {
         dump(response)
     }
 }
@@ -102,7 +102,7 @@ This endpoint does not need any parameter.
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 # **getOrderById**
 ```swift
@@ -122,11 +122,11 @@ let orderId = 987 // Int64 | ID of pet that needs to be fetched
 // Find purchase order by ID
 StoreAPI.getOrderById(orderId: orderId) { (response, error) in
     guard error == nil else {
-        print(error)
+        print(error!)
         return
     }
 
-    if (response) {
+    if response != nil {
         dump(response)
     }
 }
@@ -151,7 +151,7 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/xml, application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 # **placeOrder**
 ```swift
@@ -171,11 +171,11 @@ let order = Order(id: 123, petId: 123, quantity: 123, shipDate: Date(), status: 
 // Place an order for a pet
 StoreAPI.placeOrder(order: order) { (response, error) in
     guard error == nil else {
-        print(error)
+        print(error!)
         return
     }
 
-    if (response) {
+    if response != nil {
         dump(response)
     }
 }
@@ -200,5 +200,5 @@ No authorization required
  - **Content-Type**: application/json
  - **Accept**: application/xml, application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 

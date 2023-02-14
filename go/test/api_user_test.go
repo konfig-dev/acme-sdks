@@ -10,6 +10,8 @@ Testing UserApiService
 package acme
 
 import (
+    "os"
+    "context"
     "github.com/stretchr/testify/assert"
     "github.com/stretchr/testify/require"
     "testing"
@@ -19,6 +21,10 @@ import (
 func Test_acme_UserApiService(t *testing.T) {
 
     configuration := acme.NewConfiguration()
+    apiKey := os.Getenv("API_KEY")
+    configuration.Context = context.WithValue(configuration.Context, acme.ContextAPIKeys, map[string]acme.APIKey{
+        "api_key": {Key: apiKey},
+    })
     apiClient := acme.NewAPIClient(configuration)
 
     t.Run("Test UserApiService CreateUser", func(t *testing.T) {
