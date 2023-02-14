@@ -18,15 +18,9 @@ generators:
       userId: konfig-dev
       repoId: acme-sdks/tree/main/python
   typescript:
-    packageVersion: 1.0.0
-    generatorVersion: 2
-    outputDirectory: typescript
+    version: 1.0.0
     npmName: acme-typescript-sdk
-    npmDescription: SDK for Acme REST API
-    clientName: AcmeClient
-    httpClient: node
-    npmAuthor: acme.com
-    useOptions: true
+    outputDirectory: typescript
     git:
       userId: konfig-dev
       repoId: acme-sdks/tree/main/typescript
