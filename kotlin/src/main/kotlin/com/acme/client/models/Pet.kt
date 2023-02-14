@@ -25,9 +25,9 @@ import com.squareup.moshi.Json
  *
  * @param name 
  * @param photoUrls 
+ * @param tags 
  * @param id 
  * @param category 
- * @param tags 
  * @param status pet status in the store
  */
 
@@ -40,14 +40,14 @@ data class Pet (
     @Json(name = "photoUrls")
     val photoUrls: kotlin.collections.List<kotlin.String>,
 
+    @Json(name = "tags")
+    val tags: kotlin.collections.List<Tag>? = null,
+
     @Json(name = "id")
     val id: kotlin.Long? = null,
 
     @Json(name = "category")
     val category: Category? = null,
-
-    @Json(name = "tags")
-    val tags: kotlin.collections.List<Tag>? = null,
 
     /* pet status in the store */
     @Json(name = "status")

@@ -23,57 +23,57 @@ class TestUserApi(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def test_create_user(self):
-        """Test case for create_user
+    def test_create(self):
+        """Test case for create
 
         Create user  # noqa: E501
         """
         pass
 
-    def test_create_users_with_array_input(self):
-        """Test case for create_users_with_array_input
+    def test_create_with_array(self):
+        """Test case for create_with_array
 
         Creates list of users with given input array  # noqa: E501
         """
         pass
 
-    def test_create_users_with_list_input(self):
-        """Test case for create_users_with_list_input
+    def test_create_with_list(self):
+        """Test case for create_with_list
 
         Creates list of users with given input array  # noqa: E501
         """
         pass
 
-    def test_delete_user(self):
-        """Test case for delete_user
+    def test_delete(self):
+        """Test case for delete
 
         Delete user  # noqa: E501
         """
         pass
 
-    def test_get_user_by_name(self):
-        """Test case for get_user_by_name
+    def test_get_by_name(self):
+        """Test case for get_by_name
 
         Get user by user name  # noqa: E501
         """
         pass
 
-    def test_login_user(self):
-        """Test case for login_user
+    def test_login(self):
+        """Test case for login
 
         Logs user into the system  # noqa: E501
         """
         pass
 
-    def test_logout_user(self):
-        """Test case for logout_user
+    def test_logout(self):
+        """Test case for logout
 
         Logs out current logged in user session  # noqa: E501
         """
         pass
 
-    def test_update_user(self):
-        """Test case for update_user
+    def test_update(self):
+        """Test case for update
 
         Updated user  # noqa: E501
         """

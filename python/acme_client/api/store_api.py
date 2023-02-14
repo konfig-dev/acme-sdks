@@ -21,6 +21,7 @@ from acme_client.model_utils import (  # noqa: F401
     none_type,
     validate_and_convert_types
 )
+from acme_client.model.get_inventory_response import GetInventoryResponse
 from acme_client.model.order import Order
 
 
@@ -84,7 +85,7 @@ class StoreApi(object):
         )
         self.get_inventory_endpoint = _Endpoint(
             settings={
-                'response_type': ({str: (int,)},),
+                'response_type': (GetInventoryResponse,),
                 'auth': [
                     'api_key'
                 ],
@@ -364,7 +365,7 @@ class StoreApi(object):
             async_req (bool): execute request asynchronously
 
         Returns:
-            {str: (int,)}
+            GetInventoryResponse
                 If the method is called asynchronously, returns the request
                 thread.
         """

@@ -4,19 +4,19 @@ All URIs are relative to *http://petstore.swagger.io/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createUser**](AUserApi.md#createuser) | **POST** /user | Create user
-[**createUsersWithArrayInput**](AUserApi.md#createuserswitharrayinput) | **POST** /user/createWithArray | Creates list of users with given input array
-[**createUsersWithListInput**](AUserApi.md#createuserswithlistinput) | **POST** /user/createWithList | Creates list of users with given input array
-[**deleteUser**](AUserApi.md#deleteuser) | **DELETE** /user/{username} | Delete user
-[**getUserByName**](AUserApi.md#getuserbyname) | **GET** /user/{username} | Get user by user name
-[**loginUser**](AUserApi.md#loginuser) | **GET** /user/login | Logs user into the system
-[**logoutUser**](AUserApi.md#logoutuser) | **GET** /user/logout | Logs out current logged in user session
-[**updateUser**](AUserApi.md#updateuser) | **PUT** /user/{username} | Updated user
+[**create**](AUserApi.md#create) | **POST** /user | Create user
+[**createWithArray**](AUserApi.md#createwitharray) | **POST** /user/createWithArray | Creates list of users with given input array
+[**createWithList**](AUserApi.md#createwithlist) | **POST** /user/createWithList | Creates list of users with given input array
+[**delete**](AUserApi.md#delete) | **DELETE** /user/{username} | Delete user
+[**getByName**](AUserApi.md#getbyname) | **GET** /user/{username} | Get user by user name
+[**login**](AUserApi.md#login) | **GET** /user/login | Logs user into the system
+[**logout**](AUserApi.md#logout) | **GET** /user/logout | Logs out current logged in user session
+[**update**](AUserApi.md#update) | **PUT** /user/{username} | Updated user
 
 
-# **createUser**
+# **create**
 ```objc
--(NSURLSessionTask*) createUserWithUser: (AUser*) user
+-(NSURLSessionTask*) createWithUser: (AUser*) user
         completionHandler: (void (^)(NSError* error)) handler;
 ```
 
@@ -39,10 +39,10 @@ AUser* user = [[AUser alloc] init]; // Created user object
 AUserApi*apiInstance = [[AUserApi alloc] init];
 
 // Create user
-[apiInstance createUserWithUser:user
+[apiInstance createWithUser:user
           completionHandler: ^(NSError* error) {
                         if (error) {
-                            NSLog(@"Error calling AUserApi->createUser: %@", error);
+                            NSLog(@"Error calling AUserApi->create: %@", error);
                         }
                     }];
 ```
@@ -68,9 +68,9 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **createUsersWithArrayInput**
+# **createWithArray**
 ```objc
--(NSURLSessionTask*) createUsersWithArrayInputWithUser: (NSArray<AUser>*) user
+-(NSURLSessionTask*) createWithArrayWithUser: (NSArray<AUser>*) user
         completionHandler: (void (^)(NSError* error)) handler;
 ```
 
@@ -93,10 +93,10 @@ NSArray<AUser>* user = @[[[AUser alloc] init]]; // List of user object
 AUserApi*apiInstance = [[AUserApi alloc] init];
 
 // Creates list of users with given input array
-[apiInstance createUsersWithArrayInputWithUser:user
+[apiInstance createWithArrayWithUser:user
           completionHandler: ^(NSError* error) {
                         if (error) {
-                            NSLog(@"Error calling AUserApi->createUsersWithArrayInput: %@", error);
+                            NSLog(@"Error calling AUserApi->createWithArray: %@", error);
                         }
                     }];
 ```
@@ -122,9 +122,9 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **createUsersWithListInput**
+# **createWithList**
 ```objc
--(NSURLSessionTask*) createUsersWithListInputWithUser: (NSArray<AUser>*) user
+-(NSURLSessionTask*) createWithListWithUser: (NSArray<AUser>*) user
         completionHandler: (void (^)(NSError* error)) handler;
 ```
 
@@ -147,10 +147,10 @@ NSArray<AUser>* user = @[[[AUser alloc] init]]; // List of user object
 AUserApi*apiInstance = [[AUserApi alloc] init];
 
 // Creates list of users with given input array
-[apiInstance createUsersWithListInputWithUser:user
+[apiInstance createWithListWithUser:user
           completionHandler: ^(NSError* error) {
                         if (error) {
-                            NSLog(@"Error calling AUserApi->createUsersWithListInput: %@", error);
+                            NSLog(@"Error calling AUserApi->createWithList: %@", error);
                         }
                     }];
 ```
@@ -176,9 +176,9 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **deleteUser**
+# **delete**
 ```objc
--(NSURLSessionTask*) deleteUserWithUsername: (NSString*) username
+-(NSURLSessionTask*) deleteWithUsername: (NSString*) username
         completionHandler: (void (^)(NSError* error)) handler;
 ```
 
@@ -201,10 +201,10 @@ NSString* username = @"username_example"; // The name that needs to be deleted
 AUserApi*apiInstance = [[AUserApi alloc] init];
 
 // Delete user
-[apiInstance deleteUserWithUsername:username
+[apiInstance deleteWithUsername:username
           completionHandler: ^(NSError* error) {
                         if (error) {
-                            NSLog(@"Error calling AUserApi->deleteUser: %@", error);
+                            NSLog(@"Error calling AUserApi->delete: %@", error);
                         }
                     }];
 ```
@@ -230,9 +230,9 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **getUserByName**
+# **getByName**
 ```objc
--(NSURLSessionTask*) getUserByNameWithUsername: (NSString*) username
+-(NSURLSessionTask*) getByNameWithUsername: (NSString*) username
         completionHandler: (void (^)(AUser* output, NSError* error)) handler;
 ```
 
@@ -248,13 +248,13 @@ NSString* username = @"username_example"; // The name that needs to be fetched. 
 AUserApi*apiInstance = [[AUserApi alloc] init];
 
 // Get user by user name
-[apiInstance getUserByNameWithUsername:username
+[apiInstance getByNameWithUsername:username
           completionHandler: ^(AUser* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
                         if (error) {
-                            NSLog(@"Error calling AUserApi->getUserByName: %@", error);
+                            NSLog(@"Error calling AUserApi->getByName: %@", error);
                         }
                     }];
 ```
@@ -280,9 +280,9 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **loginUser**
+# **login**
 ```objc
--(NSURLSessionTask*) loginUserWithUsername: (NSString*) username
+-(NSURLSessionTask*) loginWithUsername: (NSString*) username
     password: (NSString*) password
         completionHandler: (void (^)(NSString* output, NSError* error)) handler;
 ```
@@ -300,14 +300,14 @@ NSString* password = @"password_example"; // The password for login in clear tex
 AUserApi*apiInstance = [[AUserApi alloc] init];
 
 // Logs user into the system
-[apiInstance loginUserWithUsername:username
+[apiInstance loginWithUsername:username
               password:password
           completionHandler: ^(NSString* output, NSError* error) {
                         if (output) {
                             NSLog(@"%@", output);
                         }
                         if (error) {
-                            NSLog(@"Error calling AUserApi->loginUser: %@", error);
+                            NSLog(@"Error calling AUserApi->login: %@", error);
                         }
                     }];
 ```
@@ -334,9 +334,9 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **logoutUser**
+# **logout**
 ```objc
--(NSURLSessionTask*) logoutUserWithCompletionHandler: 
+-(NSURLSessionTask*) logoutWithCompletionHandler: 
         (void (^)(NSError* error)) handler;
 ```
 
@@ -358,10 +358,10 @@ ADefaultConfiguration *apiConfig = [ADefaultConfiguration sharedConfig];
 AUserApi*apiInstance = [[AUserApi alloc] init];
 
 // Logs out current logged in user session
-[apiInstance logoutUserWithCompletionHandler: 
+[apiInstance logoutWithCompletionHandler: 
           ^(NSError* error) {
                         if (error) {
-                            NSLog(@"Error calling AUserApi->logoutUser: %@", error);
+                            NSLog(@"Error calling AUserApi->logout: %@", error);
                         }
                     }];
 ```
@@ -384,9 +384,9 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **updateUser**
+# **update**
 ```objc
--(NSURLSessionTask*) updateUserWithUsername: (NSString*) username
+-(NSURLSessionTask*) updateWithUsername: (NSString*) username
     user: (AUser*) user
         completionHandler: (void (^)(NSError* error)) handler;
 ```
@@ -411,11 +411,11 @@ AUser* user = [[AUser alloc] init]; // Updated user object
 AUserApi*apiInstance = [[AUserApi alloc] init];
 
 // Updated user
-[apiInstance updateUserWithUsername:username
+[apiInstance updateWithUsername:username
               user:user
           completionHandler: ^(NSError* error) {
                         if (error) {
-                            NSLog(@"Error calling AUserApi->updateUser: %@", error);
+                            NSLog(@"Error calling AUserApi->update: %@", error);
                         }
                     }];
 ```

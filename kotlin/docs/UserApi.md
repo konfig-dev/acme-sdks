@@ -4,19 +4,19 @@ All URIs are relative to *http://petstore.swagger.io/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createUser**](UserApi.md#createUser) | **POST** /user | Create user
-[**createUsersWithArrayInput**](UserApi.md#createUsersWithArrayInput) | **POST** /user/createWithArray | Creates list of users with given input array
-[**createUsersWithListInput**](UserApi.md#createUsersWithListInput) | **POST** /user/createWithList | Creates list of users with given input array
-[**deleteUser**](UserApi.md#deleteUser) | **DELETE** /user/{username} | Delete user
-[**getUserByName**](UserApi.md#getUserByName) | **GET** /user/{username} | Get user by user name
-[**loginUser**](UserApi.md#loginUser) | **GET** /user/login | Logs user into the system
-[**logoutUser**](UserApi.md#logoutUser) | **GET** /user/logout | Logs out current logged in user session
-[**updateUser**](UserApi.md#updateUser) | **PUT** /user/{username} | Updated user
+[**create**](UserApi.md#create) | **POST** /user | Create user
+[**createWithArray**](UserApi.md#createWithArray) | **POST** /user/createWithArray | Creates list of users with given input array
+[**createWithList**](UserApi.md#createWithList) | **POST** /user/createWithList | Creates list of users with given input array
+[**delete**](UserApi.md#delete) | **DELETE** /user/{username} | Delete user
+[**getByName**](UserApi.md#getByName) | **GET** /user/{username} | Get user by user name
+[**login**](UserApi.md#login) | **GET** /user/login | Logs user into the system
+[**logout**](UserApi.md#logout) | **GET** /user/logout | Logs out current logged in user session
+[**update**](UserApi.md#update) | **PUT** /user/{username} | Updated user
 
 
-<a name="createUser"></a>
-# **createUser**
-> createUser(user)
+<a name="create"></a>
+# **create**
+> create(user)
 
 Create user
 
@@ -31,12 +31,12 @@ This can only be done by the logged in user.
 val apiInstance = UserApi()
 val user : User =  // User | Created user object
 try {
-    apiInstance.createUser(user)
+    apiInstance.create(user)
 } catch (e: ClientException) {
-    println("4xx response calling UserApi#createUser")
+    println("4xx response calling UserApi#create")
     e.printStackTrace()
 } catch (e: ServerException) {
-    println("5xx response calling UserApi#createUser")
+    println("5xx response calling UserApi#create")
     e.printStackTrace()
 }
 ```
@@ -63,9 +63,9 @@ Configure api_key:
  - **Content-Type**: application/json
  - **Accept**: Not defined
 
-<a name="createUsersWithArrayInput"></a>
-# **createUsersWithArrayInput**
-> createUsersWithArrayInput(user)
+<a name="createWithArray"></a>
+# **createWithArray**
+> createWithArray(user)
 
 Creates list of users with given input array
 
@@ -80,12 +80,12 @@ Creates list of users with given input array
 val apiInstance = UserApi()
 val user : kotlin.collections.List<User> =  // kotlin.collections.List<User> | List of user object
 try {
-    apiInstance.createUsersWithArrayInput(user)
+    apiInstance.createWithArray(user)
 } catch (e: ClientException) {
-    println("4xx response calling UserApi#createUsersWithArrayInput")
+    println("4xx response calling UserApi#createWithArray")
     e.printStackTrace()
 } catch (e: ServerException) {
-    println("5xx response calling UserApi#createUsersWithArrayInput")
+    println("5xx response calling UserApi#createWithArray")
     e.printStackTrace()
 }
 ```
@@ -112,9 +112,9 @@ Configure api_key:
  - **Content-Type**: application/json
  - **Accept**: Not defined
 
-<a name="createUsersWithListInput"></a>
-# **createUsersWithListInput**
-> createUsersWithListInput(user)
+<a name="createWithList"></a>
+# **createWithList**
+> createWithList(user)
 
 Creates list of users with given input array
 
@@ -129,12 +129,12 @@ Creates list of users with given input array
 val apiInstance = UserApi()
 val user : kotlin.collections.List<User> =  // kotlin.collections.List<User> | List of user object
 try {
-    apiInstance.createUsersWithListInput(user)
+    apiInstance.createWithList(user)
 } catch (e: ClientException) {
-    println("4xx response calling UserApi#createUsersWithListInput")
+    println("4xx response calling UserApi#createWithList")
     e.printStackTrace()
 } catch (e: ServerException) {
-    println("5xx response calling UserApi#createUsersWithListInput")
+    println("5xx response calling UserApi#createWithList")
     e.printStackTrace()
 }
 ```
@@ -161,9 +161,9 @@ Configure api_key:
  - **Content-Type**: application/json
  - **Accept**: Not defined
 
-<a name="deleteUser"></a>
-# **deleteUser**
-> deleteUser(username)
+<a name="delete"></a>
+# **delete**
+> delete(username)
 
 Delete user
 
@@ -178,12 +178,12 @@ This can only be done by the logged in user.
 val apiInstance = UserApi()
 val username : kotlin.String = username_example // kotlin.String | The name that needs to be deleted
 try {
-    apiInstance.deleteUser(username)
+    apiInstance.delete(username)
 } catch (e: ClientException) {
-    println("4xx response calling UserApi#deleteUser")
+    println("4xx response calling UserApi#delete")
     e.printStackTrace()
 } catch (e: ServerException) {
-    println("5xx response calling UserApi#deleteUser")
+    println("5xx response calling UserApi#delete")
     e.printStackTrace()
 }
 ```
@@ -210,9 +210,9 @@ Configure api_key:
  - **Content-Type**: Not defined
  - **Accept**: Not defined
 
-<a name="getUserByName"></a>
-# **getUserByName**
-> User getUserByName(username)
+<a name="getByName"></a>
+# **getByName**
+> User getByName(username)
 
 Get user by user name
 
@@ -227,13 +227,13 @@ Get user by user name
 val apiInstance = UserApi()
 val username : kotlin.String = username_example // kotlin.String | The name that needs to be fetched. Use user1 for testing.
 try {
-    val result : User = apiInstance.getUserByName(username)
+    val result : User = apiInstance.getByName(username)
     println(result)
 } catch (e: ClientException) {
-    println("4xx response calling UserApi#getUserByName")
+    println("4xx response calling UserApi#getByName")
     e.printStackTrace()
 } catch (e: ServerException) {
-    println("5xx response calling UserApi#getUserByName")
+    println("5xx response calling UserApi#getByName")
     e.printStackTrace()
 }
 ```
@@ -257,9 +257,9 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="loginUser"></a>
-# **loginUser**
-> kotlin.String loginUser(username, password)
+<a name="login"></a>
+# **login**
+> kotlin.String login(username, password)
 
 Logs user into the system
 
@@ -275,13 +275,13 @@ val apiInstance = UserApi()
 val username : kotlin.String = username_example // kotlin.String | The user name for login
 val password : kotlin.String = password_example // kotlin.String | The password for login in clear text
 try {
-    val result : kotlin.String = apiInstance.loginUser(username, password)
+    val result : kotlin.String = apiInstance.login(username, password)
     println(result)
 } catch (e: ClientException) {
-    println("4xx response calling UserApi#loginUser")
+    println("4xx response calling UserApi#login")
     e.printStackTrace()
 } catch (e: ServerException) {
-    println("5xx response calling UserApi#loginUser")
+    println("5xx response calling UserApi#login")
     e.printStackTrace()
 }
 ```
@@ -306,9 +306,9 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="logoutUser"></a>
-# **logoutUser**
-> logoutUser()
+<a name="logout"></a>
+# **logout**
+> logout()
 
 Logs out current logged in user session
 
@@ -322,12 +322,12 @@ Logs out current logged in user session
 
 val apiInstance = UserApi()
 try {
-    apiInstance.logoutUser()
+    apiInstance.logout()
 } catch (e: ClientException) {
-    println("4xx response calling UserApi#logoutUser")
+    println("4xx response calling UserApi#logout")
     e.printStackTrace()
 } catch (e: ServerException) {
-    println("5xx response calling UserApi#logoutUser")
+    println("5xx response calling UserApi#logout")
     e.printStackTrace()
 }
 ```
@@ -351,9 +351,9 @@ Configure api_key:
  - **Content-Type**: Not defined
  - **Accept**: Not defined
 
-<a name="updateUser"></a>
-# **updateUser**
-> updateUser(username, user)
+<a name="update"></a>
+# **update**
+> update(username, user)
 
 Updated user
 
@@ -369,12 +369,12 @@ val apiInstance = UserApi()
 val username : kotlin.String = username_example // kotlin.String | name that need to be deleted
 val user : User =  // User | Updated user object
 try {
-    apiInstance.updateUser(username, user)
+    apiInstance.update(username, user)
 } catch (e: ClientException) {
-    println("4xx response calling UserApi#updateUser")
+    println("4xx response calling UserApi#update")
     e.printStackTrace()
 } catch (e: ServerException) {
-    println("5xx response calling UserApi#updateUser")
+    println("5xx response calling UserApi#update")
     e.printStackTrace()
 }
 ```

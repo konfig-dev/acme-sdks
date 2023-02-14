@@ -72,96 +72,96 @@ class UserApiTest extends TestCase
     }
 
     /**
-     * Test case for createUser
+     * Test case for create
      *
      * Create user.
      *
      */
-    public function testCreateUser()
+    public function testCreate()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for createUsersWithArrayInput
+     * Test case for createWithArray
      *
      * Creates list of users with given input array.
      *
      */
-    public function testCreateUsersWithArrayInput()
+    public function testCreateWithArray()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for createUsersWithListInput
+     * Test case for createWithList
      *
      * Creates list of users with given input array.
      *
      */
-    public function testCreateUsersWithListInput()
+    public function testCreateWithList()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for deleteUser
+     * Test case for delete
      *
      * Delete user.
      *
      */
-    public function testDeleteUser()
+    public function testDelete()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getUserByName
+     * Test case for getByName
      *
      * Get user by user name.
      *
      */
-    public function testGetUserByName()
+    public function testGetByName()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for loginUser
+     * Test case for login
      *
      * Logs user into the system.
      *
      */
-    public function testLoginUser()
+    public function testLogin()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for logoutUser
+     * Test case for logout
      *
      * Logs out current logged in user session.
      *
      */
-    public function testLogoutUser()
+    public function testLogout()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for updateUser
+     * Test case for update
      *
      * Updated user.
      *
      */
-    public function testUpdateUser()
+    public function testUpdate()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

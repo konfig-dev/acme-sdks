@@ -75,21 +75,18 @@ namespace Example
             // Configure custom BasePath if desired
             // config.BasePath = "http://petstore.swagger.io/v2";
 
-            // Configure OAuth2 access token for authorization: petstore_auth
-            config.AccessToken = "YOUR_ACCESS_TOKEN";
-
-            var apiInstance = new PetApi(config);
-            var pet = new Pet(); // Pet | Pet object that needs to be added to the store
+            var apiInstance = new MiscellaneousApi(config);
+            var paginateRequest = new PaginateRequest(); // PaginateRequest |  (optional) 
 
             try
             {
-                // Add a new pet to the store
-                Pet result = apiInstance.AddPet(pet);
+                // Pagination sandbox
+                PaginateResponse result = apiInstance.Paginate(paginateRequest);
                 Debug.WriteLine(result);
             }
             catch (ApiException e)
             {
-                Debug.Print("Exception when calling PetApi.AddPet: " + e.Message );
+                Debug.Print("Exception when calling MiscellaneousApi.Paginate: " + e.Message );
                 Debug.Print("Status Code: "+ e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
@@ -106,26 +103,27 @@ All URIs are relative to *http://petstore.swagger.io/v2*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*PetApi* | [**AddPet**](docs/PetApi.md#addpet) | **POST** /pet | Add a new pet to the store
+*MiscellaneousApi* | [**Paginate**](docs/MiscellaneousApi.md#paginate) | **GET** /pagination | Pagination sandbox
+*PetApi* | [**Add**](docs/PetApi.md#add) | **POST** /pet | Add a new pet to the store
 *PetApi* | [**Delete**](docs/PetApi.md#delete) | **DELETE** /pet/{petId} | Deletes a pet
-*PetApi* | [**FindPetsByStatus**](docs/PetApi.md#findpetsbystatus) | **GET** /pet/findByStatus | Finds Pets by status
-*PetApi* | [**FindPetsByTags**](docs/PetApi.md#findpetsbytags) | **GET** /pet/findByTags | Finds Pets by tags
-*PetApi* | [**GetPetById**](docs/PetApi.md#getpetbyid) | **GET** /pet/{petId} | Find pet by ID
-*PetApi* | [**UpdatePet**](docs/PetApi.md#updatepet) | **PUT** /pet | Update an existing pet
-*PetApi* | [**UpdatePetWithForm**](docs/PetApi.md#updatepetwithform) | **POST** /pet/{petId} | Updates a pet in the store with form data
-*PetApi* | [**UploadFile**](docs/PetApi.md#uploadfile) | **POST** /pet/{petId}/uploadImage | uploads an image
+*PetApi* | [**FindByStatus**](docs/PetApi.md#findbystatus) | **GET** /pet/findByStatus | Finds Pets by status
+*PetApi* | [**FindByTags**](docs/PetApi.md#findbytags) | **GET** /pet/findByTags | Finds Pets by tags
+*PetApi* | [**GetById**](docs/PetApi.md#getbyid) | **GET** /pet/{petId} | Find pet by ID
+*PetApi* | [**Update**](docs/PetApi.md#update) | **PUT** /pet | Update an existing pet
+*PetApi* | [**UpdateWithForm**](docs/PetApi.md#updatewithform) | **POST** /pet/{petId} | Updates a pet in the store with form data
+*PetApi* | [**UploadImage**](docs/PetApi.md#uploadimage) | **POST** /pet/{petId}/uploadImage | uploads an image
 *StoreApi* | [**DeleteOrder**](docs/StoreApi.md#deleteorder) | **DELETE** /store/order/{orderId} | Delete purchase order by ID
 *StoreApi* | [**GetInventory**](docs/StoreApi.md#getinventory) | **GET** /store/inventory | Returns pet inventories by status
 *StoreApi* | [**GetOrderById**](docs/StoreApi.md#getorderbyid) | **GET** /store/order/{orderId} | Find purchase order by ID
 *StoreApi* | [**PlaceOrder**](docs/StoreApi.md#placeorder) | **POST** /store/order | Place an order for a pet
-*UserApi* | [**CreateUser**](docs/UserApi.md#createuser) | **POST** /user | Create user
-*UserApi* | [**CreateUsersWithArrayInput**](docs/UserApi.md#createuserswitharrayinput) | **POST** /user/createWithArray | Creates list of users with given input array
-*UserApi* | [**CreateUsersWithListInput**](docs/UserApi.md#createuserswithlistinput) | **POST** /user/createWithList | Creates list of users with given input array
-*UserApi* | [**DeleteUser**](docs/UserApi.md#deleteuser) | **DELETE** /user/{username} | Delete user
-*UserApi* | [**GetUserByName**](docs/UserApi.md#getuserbyname) | **GET** /user/{username} | Get user by user name
-*UserApi* | [**LoginUser**](docs/UserApi.md#loginuser) | **GET** /user/login | Logs user into the system
-*UserApi* | [**LogoutUser**](docs/UserApi.md#logoutuser) | **GET** /user/logout | Logs out current logged in user session
-*UserApi* | [**UpdateUser**](docs/UserApi.md#updateuser) | **PUT** /user/{username} | Updated user
+*UserApi* | [**Create**](docs/UserApi.md#create) | **POST** /user | Create user
+*UserApi* | [**CreateWithArray**](docs/UserApi.md#createwitharray) | **POST** /user/createWithArray | Creates list of users with given input array
+*UserApi* | [**CreateWithList**](docs/UserApi.md#createwithlist) | **POST** /user/createWithList | Creates list of users with given input array
+*UserApi* | [**Delete**](docs/UserApi.md#delete) | **DELETE** /user/{username} | Delete user
+*UserApi* | [**GetByName**](docs/UserApi.md#getbyname) | **GET** /user/{username} | Get user by user name
+*UserApi* | [**Login**](docs/UserApi.md#login) | **GET** /user/login | Logs user into the system
+*UserApi* | [**Logout**](docs/UserApi.md#logout) | **GET** /user/logout | Logs out current logged in user session
+*UserApi* | [**Update**](docs/UserApi.md#update) | **PUT** /user/{username} | Updated user
 
 
 <a name="documentation-for-models"></a>
@@ -134,6 +132,11 @@ Class | Method | HTTP request | Description
  - [Model.ApiResponse](docs/ApiResponse.md)
  - [Model.Category](docs/Category.md)
  - [Model.Order](docs/Order.md)
+ - [Model.PaginateRequest](docs/PaginateRequest.md)
+ - [Model.PaginateResponse](docs/PaginateResponse.md)
+ - [Model.PaginateResponseEdges](docs/PaginateResponseEdges.md)
+ - [Model.PaginateResponseEdgesNode](docs/PaginateResponseEdgesNode.md)
+ - [Model.PaginateResponsePageInfo](docs/PaginateResponsePageInfo.md)
  - [Model.Pet](docs/Pet.md)
  - [Model.Tag](docs/Tag.md)
  - [Model.User](docs/User.md)

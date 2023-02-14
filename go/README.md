@@ -81,26 +81,27 @@ All URIs are relative to *http://petstore.swagger.io/v2*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*PetApi* | [**AddPet**](docs/PetApi.md#addpet) | **Post** /pet | Add a new pet to the store
+*MiscellaneousApi* | [**Paginate**](docs/MiscellaneousApi.md#paginate) | **Get** /pagination | Pagination sandbox
+*PetApi* | [**Add**](docs/PetApi.md#add) | **Post** /pet | Add a new pet to the store
 *PetApi* | [**Delete**](docs/PetApi.md#delete) | **Delete** /pet/{petId} | Deletes a pet
-*PetApi* | [**FindPetsByStatus**](docs/PetApi.md#findpetsbystatus) | **Get** /pet/findByStatus | Finds Pets by status
-*PetApi* | [**FindPetsByTags**](docs/PetApi.md#findpetsbytags) | **Get** /pet/findByTags | Finds Pets by tags
-*PetApi* | [**GetPetById**](docs/PetApi.md#getpetbyid) | **Get** /pet/{petId} | Find pet by ID
-*PetApi* | [**UpdatePet**](docs/PetApi.md#updatepet) | **Put** /pet | Update an existing pet
-*PetApi* | [**UpdatePetWithForm**](docs/PetApi.md#updatepetwithform) | **Post** /pet/{petId} | Updates a pet in the store with form data
-*PetApi* | [**UploadFile**](docs/PetApi.md#uploadfile) | **Post** /pet/{petId}/uploadImage | uploads an image
+*PetApi* | [**FindByStatus**](docs/PetApi.md#findbystatus) | **Get** /pet/findByStatus | Finds Pets by status
+*PetApi* | [**FindByTags**](docs/PetApi.md#findbytags) | **Get** /pet/findByTags | Finds Pets by tags
+*PetApi* | [**GetById**](docs/PetApi.md#getbyid) | **Get** /pet/{petId} | Find pet by ID
+*PetApi* | [**Update**](docs/PetApi.md#update) | **Put** /pet | Update an existing pet
+*PetApi* | [**UpdateWithForm**](docs/PetApi.md#updatewithform) | **Post** /pet/{petId} | Updates a pet in the store with form data
+*PetApi* | [**UploadImage**](docs/PetApi.md#uploadimage) | **Post** /pet/{petId}/uploadImage | uploads an image
 *StoreApi* | [**DeleteOrder**](docs/StoreApi.md#deleteorder) | **Delete** /store/order/{orderId} | Delete purchase order by ID
 *StoreApi* | [**GetInventory**](docs/StoreApi.md#getinventory) | **Get** /store/inventory | Returns pet inventories by status
 *StoreApi* | [**GetOrderById**](docs/StoreApi.md#getorderbyid) | **Get** /store/order/{orderId} | Find purchase order by ID
 *StoreApi* | [**PlaceOrder**](docs/StoreApi.md#placeorder) | **Post** /store/order | Place an order for a pet
-*UserApi* | [**CreateUser**](docs/UserApi.md#createuser) | **Post** /user | Create user
-*UserApi* | [**CreateUsersWithArrayInput**](docs/UserApi.md#createuserswitharrayinput) | **Post** /user/createWithArray | Creates list of users with given input array
-*UserApi* | [**CreateUsersWithListInput**](docs/UserApi.md#createuserswithlistinput) | **Post** /user/createWithList | Creates list of users with given input array
-*UserApi* | [**DeleteUser**](docs/UserApi.md#deleteuser) | **Delete** /user/{username} | Delete user
-*UserApi* | [**GetUserByName**](docs/UserApi.md#getuserbyname) | **Get** /user/{username} | Get user by user name
-*UserApi* | [**LoginUser**](docs/UserApi.md#loginuser) | **Get** /user/login | Logs user into the system
-*UserApi* | [**LogoutUser**](docs/UserApi.md#logoutuser) | **Get** /user/logout | Logs out current logged in user session
-*UserApi* | [**UpdateUser**](docs/UserApi.md#updateuser) | **Put** /user/{username} | Updated user
+*UserApi* | [**Create**](docs/UserApi.md#create) | **Post** /user | Create user
+*UserApi* | [**CreateWithArray**](docs/UserApi.md#createwitharray) | **Post** /user/createWithArray | Creates list of users with given input array
+*UserApi* | [**CreateWithList**](docs/UserApi.md#createwithlist) | **Post** /user/createWithList | Creates list of users with given input array
+*UserApi* | [**Delete**](docs/UserApi.md#delete) | **Delete** /user/{username} | Delete user
+*UserApi* | [**GetByName**](docs/UserApi.md#getbyname) | **Get** /user/{username} | Get user by user name
+*UserApi* | [**Login**](docs/UserApi.md#login) | **Get** /user/login | Logs user into the system
+*UserApi* | [**Logout**](docs/UserApi.md#logout) | **Get** /user/logout | Logs out current logged in user session
+*UserApi* | [**Update**](docs/UserApi.md#update) | **Put** /user/{username} | Updated user
 
 
 ## Documentation For Models
@@ -108,6 +109,11 @@ Class | Method | HTTP request | Description
  - [ApiResponse](docs/ApiResponse.md)
  - [Category](docs/Category.md)
  - [Order](docs/Order.md)
+ - [PaginateRequest](docs/PaginateRequest.md)
+ - [PaginateResponse](docs/PaginateResponse.md)
+ - [PaginateResponseEdges](docs/PaginateResponseEdges.md)
+ - [PaginateResponseEdgesNode](docs/PaginateResponseEdgesNode.md)
+ - [PaginateResponsePageInfo](docs/PaginateResponsePageInfo.md)
  - [Pet](docs/Pet.md)
  - [Tag](docs/Tag.md)
  - [User](docs/User.md)

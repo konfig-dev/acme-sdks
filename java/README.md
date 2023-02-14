@@ -110,28 +110,21 @@ Please follow the [installation](#installation) instruction and execute the foll
 import com.acme.client.ApiClient;
 import com.acme.client.ApiException;
 import com.acme.client.Configuration;
-import com.acme.client.auth.*;
 import com.acme.client.model.*;
-import com.acme.client.api.PetApi;
+import com.acme.client.api.MiscellaneousApi;
 
 public class Example {
   public static void main(String[] args) {
-
     ApiClient apiClient = Configuration.getDefaultApiClient();
-    // Set custom base path if desired
-    // apiClient.setBasePath("http://petstore.swagger.io/v2");
-    
-    // Configure OAuth2 access token for authorization: petstore_auth
-    OAuth petstore_auth = (OAuth) apiClient.getAuthentication("petstore_auth");
-    petstore_auth.setAccessToken("YOUR ACCESS TOKEN");
+    apiClient.setBasePath("http://petstore.swagger.io/v2");
 
-    PetApi apiInstance = new PetApi(apiClient);
-    Pet pet = new Pet(); // Pet | Pet object that needs to be added to the store
+    MiscellaneousApi apiInstance = new MiscellaneousApi(apiClient);
+    PaginateRequest paginateRequest = new PaginateRequest(); // PaginateRequest | 
     try {
-      Pet result = apiInstance.addPet(pet);
+      PaginateResponse result = apiInstance.paginate(paginateRequest);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling PetApi#addPet");
+      System.err.println("Exception when calling MiscellaneousApi#paginate");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -148,26 +141,27 @@ All URIs are relative to *http://petstore.swagger.io/v2*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*PetApi* | [**addPet**](docs/PetApi.md#addPet) | **POST** /pet | Add a new pet to the store
+*MiscellaneousApi* | [**paginate**](docs/MiscellaneousApi.md#paginate) | **GET** /pagination | Pagination sandbox
+*PetApi* | [**add**](docs/PetApi.md#add) | **POST** /pet | Add a new pet to the store
 *PetApi* | [**delete**](docs/PetApi.md#delete) | **DELETE** /pet/{petId} | Deletes a pet
-*PetApi* | [**findPetsByStatus**](docs/PetApi.md#findPetsByStatus) | **GET** /pet/findByStatus | Finds Pets by status
-*PetApi* | [**findPetsByTags**](docs/PetApi.md#findPetsByTags) | **GET** /pet/findByTags | Finds Pets by tags
-*PetApi* | [**getPetById**](docs/PetApi.md#getPetById) | **GET** /pet/{petId} | Find pet by ID
-*PetApi* | [**updatePet**](docs/PetApi.md#updatePet) | **PUT** /pet | Update an existing pet
-*PetApi* | [**updatePetWithForm**](docs/PetApi.md#updatePetWithForm) | **POST** /pet/{petId} | Updates a pet in the store with form data
-*PetApi* | [**uploadFile**](docs/PetApi.md#uploadFile) | **POST** /pet/{petId}/uploadImage | uploads an image
+*PetApi* | [**findByStatus**](docs/PetApi.md#findByStatus) | **GET** /pet/findByStatus | Finds Pets by status
+*PetApi* | [**findByTags**](docs/PetApi.md#findByTags) | **GET** /pet/findByTags | Finds Pets by tags
+*PetApi* | [**getById**](docs/PetApi.md#getById) | **GET** /pet/{petId} | Find pet by ID
+*PetApi* | [**update**](docs/PetApi.md#update) | **PUT** /pet | Update an existing pet
+*PetApi* | [**updateWithForm**](docs/PetApi.md#updateWithForm) | **POST** /pet/{petId} | Updates a pet in the store with form data
+*PetApi* | [**uploadImage**](docs/PetApi.md#uploadImage) | **POST** /pet/{petId}/uploadImage | uploads an image
 *StoreApi* | [**deleteOrder**](docs/StoreApi.md#deleteOrder) | **DELETE** /store/order/{orderId} | Delete purchase order by ID
 *StoreApi* | [**getInventory**](docs/StoreApi.md#getInventory) | **GET** /store/inventory | Returns pet inventories by status
 *StoreApi* | [**getOrderById**](docs/StoreApi.md#getOrderById) | **GET** /store/order/{orderId} | Find purchase order by ID
 *StoreApi* | [**placeOrder**](docs/StoreApi.md#placeOrder) | **POST** /store/order | Place an order for a pet
-*UserApi* | [**createUser**](docs/UserApi.md#createUser) | **POST** /user | Create user
-*UserApi* | [**createUsersWithArrayInput**](docs/UserApi.md#createUsersWithArrayInput) | **POST** /user/createWithArray | Creates list of users with given input array
-*UserApi* | [**createUsersWithListInput**](docs/UserApi.md#createUsersWithListInput) | **POST** /user/createWithList | Creates list of users with given input array
-*UserApi* | [**deleteUser**](docs/UserApi.md#deleteUser) | **DELETE** /user/{username} | Delete user
-*UserApi* | [**getUserByName**](docs/UserApi.md#getUserByName) | **GET** /user/{username} | Get user by user name
-*UserApi* | [**loginUser**](docs/UserApi.md#loginUser) | **GET** /user/login | Logs user into the system
-*UserApi* | [**logoutUser**](docs/UserApi.md#logoutUser) | **GET** /user/logout | Logs out current logged in user session
-*UserApi* | [**updateUser**](docs/UserApi.md#updateUser) | **PUT** /user/{username} | Updated user
+*UserApi* | [**create**](docs/UserApi.md#create) | **POST** /user | Create user
+*UserApi* | [**createWithArray**](docs/UserApi.md#createWithArray) | **POST** /user/createWithArray | Creates list of users with given input array
+*UserApi* | [**createWithList**](docs/UserApi.md#createWithList) | **POST** /user/createWithList | Creates list of users with given input array
+*UserApi* | [**delete**](docs/UserApi.md#delete) | **DELETE** /user/{username} | Delete user
+*UserApi* | [**getByName**](docs/UserApi.md#getByName) | **GET** /user/{username} | Get user by user name
+*UserApi* | [**login**](docs/UserApi.md#login) | **GET** /user/login | Logs user into the system
+*UserApi* | [**logout**](docs/UserApi.md#logout) | **GET** /user/logout | Logs out current logged in user session
+*UserApi* | [**update**](docs/UserApi.md#update) | **PUT** /user/{username} | Updated user
 
 
 ## Documentation for Models
@@ -175,6 +169,11 @@ Class | Method | HTTP request | Description
  - [Category](docs/Category.md)
  - [ModelApiResponse](docs/ModelApiResponse.md)
  - [Order](docs/Order.md)
+ - [PaginateRequest](docs/PaginateRequest.md)
+ - [PaginateResponse](docs/PaginateResponse.md)
+ - [PaginateResponseEdges](docs/PaginateResponseEdges.md)
+ - [PaginateResponseEdgesNode](docs/PaginateResponseEdgesNode.md)
+ - [PaginateResponsePageInfo](docs/PaginateResponsePageInfo.md)
  - [Pet](docs/Pet.md)
  - [Tag](docs/Tag.md)
  - [User](docs/User.md)

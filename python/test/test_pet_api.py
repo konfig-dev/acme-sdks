@@ -23,8 +23,8 @@ class TestPetApi(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def test_add_pet(self):
-        """Test case for add_pet
+    def test_add(self):
+        """Test case for add
 
         Add a new pet to the store  # noqa: E501
         """
@@ -37,43 +37,43 @@ class TestPetApi(unittest.TestCase):
         """
         pass
 
-    def test_find_pets_by_status(self):
-        """Test case for find_pets_by_status
+    def test_find_by_status(self):
+        """Test case for find_by_status
 
         Finds Pets by status  # noqa: E501
         """
         pass
 
-    def test_find_pets_by_tags(self):
-        """Test case for find_pets_by_tags
+    def test_find_by_tags(self):
+        """Test case for find_by_tags
 
         Finds Pets by tags  # noqa: E501
         """
         pass
 
-    def test_get_pet_by_id(self):
-        """Test case for get_pet_by_id
+    def test_get_by_id(self):
+        """Test case for get_by_id
 
         Find pet by ID  # noqa: E501
         """
         pass
 
-    def test_update_pet(self):
-        """Test case for update_pet
+    def test_update(self):
+        """Test case for update
 
         Update an existing pet  # noqa: E501
         """
         pass
 
-    def test_update_pet_with_form(self):
-        """Test case for update_pet_with_form
+    def test_update_with_form(self):
+        """Test case for update_with_form
 
         Updates a pet in the store with form data  # noqa: E501
         """
         pass
 
-    def test_upload_file(self):
-        """Test case for upload_file
+    def test_upload_image(self):
+        """Test case for upload_image
 
         uploads an image  # noqa: E501
         """

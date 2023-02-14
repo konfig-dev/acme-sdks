@@ -23,46 +23,46 @@ import (
 // UserApiService UserApi service
 type UserApiService service
 
-type UserApiCreateUserRequest struct {
+type UserApiCreateRequest struct {
 	ctx context.Context
 	ApiService *UserApiService
 	user *User
 }
 
 // Created user object
-func (r UserApiCreateUserRequest) User(user User) UserApiCreateUserRequest {
+func (r UserApiCreateRequest) User(user User) UserApiCreateRequest {
 	r.user = &user
 	return r
 }
 
-func (r UserApiCreateUserRequest) Execute() (*http.Response, error) {
-	return r.ApiService.CreateUserExecute(r)
+func (r UserApiCreateRequest) Execute() (*http.Response, error) {
+	return r.ApiService.CreateExecute(r)
 }
 
 /*
-CreateUser Create user
+Create Create user
 
 This can only be done by the logged in user.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return UserApiCreateUserRequest
+ @return UserApiCreateRequest
 */
-func (a *UserApiService) CreateUser() UserApiCreateUserRequest {
-	return UserApiCreateUserRequest{
+func (a *UserApiService) Create() UserApiCreateRequest {
+	return UserApiCreateRequest{
 		ApiService: a,
 		ctx: a.client.cfg.Context,
 	}
 }
 
 // Execute executes the request
-func (a *UserApiService) CreateUserExecute(r UserApiCreateUserRequest) (*http.Response, error) {
+func (a *UserApiService) CreateExecute(r UserApiCreateRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserApiService.CreateUser")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserApiService.Create")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -137,46 +137,46 @@ func (a *UserApiService) CreateUserExecute(r UserApiCreateUserRequest) (*http.Re
 	return localVarHTTPResponse, nil
 }
 
-type UserApiCreateUsersWithArrayInputRequest struct {
+type UserApiCreateWithArrayRequest struct {
 	ctx context.Context
 	ApiService *UserApiService
 	user *[]User
 }
 
 // List of user object
-func (r UserApiCreateUsersWithArrayInputRequest) User(user []User) UserApiCreateUsersWithArrayInputRequest {
+func (r UserApiCreateWithArrayRequest) User(user []User) UserApiCreateWithArrayRequest {
 	r.user = &user
 	return r
 }
 
-func (r UserApiCreateUsersWithArrayInputRequest) Execute() (*http.Response, error) {
-	return r.ApiService.CreateUsersWithArrayInputExecute(r)
+func (r UserApiCreateWithArrayRequest) Execute() (*http.Response, error) {
+	return r.ApiService.CreateWithArrayExecute(r)
 }
 
 /*
-CreateUsersWithArrayInput Creates list of users with given input array
+CreateWithArray Creates list of users with given input array
 
 
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return UserApiCreateUsersWithArrayInputRequest
+ @return UserApiCreateWithArrayRequest
 */
-func (a *UserApiService) CreateUsersWithArrayInput() UserApiCreateUsersWithArrayInputRequest {
-	return UserApiCreateUsersWithArrayInputRequest{
+func (a *UserApiService) CreateWithArray() UserApiCreateWithArrayRequest {
+	return UserApiCreateWithArrayRequest{
 		ApiService: a,
 		ctx: a.client.cfg.Context,
 	}
 }
 
 // Execute executes the request
-func (a *UserApiService) CreateUsersWithArrayInputExecute(r UserApiCreateUsersWithArrayInputRequest) (*http.Response, error) {
+func (a *UserApiService) CreateWithArrayExecute(r UserApiCreateWithArrayRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserApiService.CreateUsersWithArrayInput")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserApiService.CreateWithArray")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -251,46 +251,46 @@ func (a *UserApiService) CreateUsersWithArrayInputExecute(r UserApiCreateUsersWi
 	return localVarHTTPResponse, nil
 }
 
-type UserApiCreateUsersWithListInputRequest struct {
+type UserApiCreateWithListRequest struct {
 	ctx context.Context
 	ApiService *UserApiService
 	user *[]User
 }
 
 // List of user object
-func (r UserApiCreateUsersWithListInputRequest) User(user []User) UserApiCreateUsersWithListInputRequest {
+func (r UserApiCreateWithListRequest) User(user []User) UserApiCreateWithListRequest {
 	r.user = &user
 	return r
 }
 
-func (r UserApiCreateUsersWithListInputRequest) Execute() (*http.Response, error) {
-	return r.ApiService.CreateUsersWithListInputExecute(r)
+func (r UserApiCreateWithListRequest) Execute() (*http.Response, error) {
+	return r.ApiService.CreateWithListExecute(r)
 }
 
 /*
-CreateUsersWithListInput Creates list of users with given input array
+CreateWithList Creates list of users with given input array
 
 
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return UserApiCreateUsersWithListInputRequest
+ @return UserApiCreateWithListRequest
 */
-func (a *UserApiService) CreateUsersWithListInput() UserApiCreateUsersWithListInputRequest {
-	return UserApiCreateUsersWithListInputRequest{
+func (a *UserApiService) CreateWithList() UserApiCreateWithListRequest {
+	return UserApiCreateWithListRequest{
 		ApiService: a,
 		ctx: a.client.cfg.Context,
 	}
 }
 
 // Execute executes the request
-func (a *UserApiService) CreateUsersWithListInputExecute(r UserApiCreateUsersWithListInputRequest) (*http.Response, error) {
+func (a *UserApiService) CreateWithListExecute(r UserApiCreateWithListRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserApiService.CreateUsersWithListInput")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserApiService.CreateWithList")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -365,27 +365,27 @@ func (a *UserApiService) CreateUsersWithListInputExecute(r UserApiCreateUsersWit
 	return localVarHTTPResponse, nil
 }
 
-type UserApiDeleteUserRequest struct {
+type UserApiDeleteRequest struct {
 	ctx context.Context
 	ApiService *UserApiService
 	username string
 }
 
-func (r UserApiDeleteUserRequest) Execute() (*http.Response, error) {
-	return r.ApiService.DeleteUserExecute(r)
+func (r UserApiDeleteRequest) Execute() (*http.Response, error) {
+	return r.ApiService.DeleteExecute(r)
 }
 
 /*
-DeleteUser Delete user
+Delete Delete user
 
 This can only be done by the logged in user.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param username The name that needs to be deleted
- @return UserApiDeleteUserRequest
+ @return UserApiDeleteRequest
 */
-func (a *UserApiService) DeleteUser(username string) UserApiDeleteUserRequest {
-	return UserApiDeleteUserRequest{
+func (a *UserApiService) Delete(username string) UserApiDeleteRequest {
+	return UserApiDeleteRequest{
 		ApiService: a,
 		ctx: a.client.cfg.Context,
 		username: username,
@@ -393,14 +393,14 @@ func (a *UserApiService) DeleteUser(username string) UserApiDeleteUserRequest {
 }
 
 // Execute executes the request
-func (a *UserApiService) DeleteUserExecute(r UserApiDeleteUserRequest) (*http.Response, error) {
+func (a *UserApiService) DeleteExecute(r UserApiDeleteRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserApiService.DeleteUser")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserApiService.Delete")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -471,27 +471,27 @@ func (a *UserApiService) DeleteUserExecute(r UserApiDeleteUserRequest) (*http.Re
 	return localVarHTTPResponse, nil
 }
 
-type UserApiGetUserByNameRequest struct {
+type UserApiGetByNameRequest struct {
 	ctx context.Context
 	ApiService *UserApiService
 	username string
 }
 
-func (r UserApiGetUserByNameRequest) Execute() (*User, *http.Response, error) {
-	return r.ApiService.GetUserByNameExecute(r)
+func (r UserApiGetByNameRequest) Execute() (*User, *http.Response, error) {
+	return r.ApiService.GetByNameExecute(r)
 }
 
 /*
-GetUserByName Get user by user name
+GetByName Get user by user name
 
 
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param username The name that needs to be fetched. Use user1 for testing.
- @return UserApiGetUserByNameRequest
+ @return UserApiGetByNameRequest
 */
-func (a *UserApiService) GetUserByName(username string) UserApiGetUserByNameRequest {
-	return UserApiGetUserByNameRequest{
+func (a *UserApiService) GetByName(username string) UserApiGetByNameRequest {
+	return UserApiGetByNameRequest{
 		ApiService: a,
 		ctx: a.client.cfg.Context,
 		username: username,
@@ -500,7 +500,7 @@ func (a *UserApiService) GetUserByName(username string) UserApiGetUserByNameRequ
 
 // Execute executes the request
 //  @return User
-func (a *UserApiService) GetUserByNameExecute(r UserApiGetUserByNameRequest) (*User, *http.Response, error) {
+func (a *UserApiService) GetByNameExecute(r UserApiGetByNameRequest) (*User, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -508,7 +508,7 @@ func (a *UserApiService) GetUserByNameExecute(r UserApiGetUserByNameRequest) (*U
 		localVarReturnValue  *User
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserApiService.GetUserByName")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserApiService.GetByName")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -574,7 +574,7 @@ func (a *UserApiService) GetUserByNameExecute(r UserApiGetUserByNameRequest) (*U
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type UserApiLoginUserRequest struct {
+type UserApiLoginRequest struct {
 	ctx context.Context
 	ApiService *UserApiService
 	username *string
@@ -582,31 +582,31 @@ type UserApiLoginUserRequest struct {
 }
 
 // The user name for login
-func (r UserApiLoginUserRequest) Username(username string) UserApiLoginUserRequest {
+func (r UserApiLoginRequest) Username(username string) UserApiLoginRequest {
 	r.username = &username
 	return r
 }
 
 // The password for login in clear text
-func (r UserApiLoginUserRequest) Password(password string) UserApiLoginUserRequest {
+func (r UserApiLoginRequest) Password(password string) UserApiLoginRequest {
 	r.password = &password
 	return r
 }
 
-func (r UserApiLoginUserRequest) Execute() (string, *http.Response, error) {
-	return r.ApiService.LoginUserExecute(r)
+func (r UserApiLoginRequest) Execute() (string, *http.Response, error) {
+	return r.ApiService.LoginExecute(r)
 }
 
 /*
-LoginUser Logs user into the system
+Login Logs user into the system
 
 
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return UserApiLoginUserRequest
+ @return UserApiLoginRequest
 */
-func (a *UserApiService) LoginUser() UserApiLoginUserRequest {
-	return UserApiLoginUserRequest{
+func (a *UserApiService) Login() UserApiLoginRequest {
+	return UserApiLoginRequest{
 		ApiService: a,
 		ctx: a.client.cfg.Context,
 	}
@@ -614,7 +614,7 @@ func (a *UserApiService) LoginUser() UserApiLoginUserRequest {
 
 // Execute executes the request
 //  @return string
-func (a *UserApiService) LoginUserExecute(r UserApiLoginUserRequest) (string, *http.Response, error) {
+func (a *UserApiService) LoginExecute(r UserApiLoginRequest) (string, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -622,7 +622,7 @@ func (a *UserApiService) LoginUserExecute(r UserApiLoginUserRequest) (string, *h
 		localVarReturnValue  string
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserApiService.LoginUser")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserApiService.Login")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -695,39 +695,39 @@ func (a *UserApiService) LoginUserExecute(r UserApiLoginUserRequest) (string, *h
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type UserApiLogoutUserRequest struct {
+type UserApiLogoutRequest struct {
 	ctx context.Context
 	ApiService *UserApiService
 }
 
-func (r UserApiLogoutUserRequest) Execute() (*http.Response, error) {
-	return r.ApiService.LogoutUserExecute(r)
+func (r UserApiLogoutRequest) Execute() (*http.Response, error) {
+	return r.ApiService.LogoutExecute(r)
 }
 
 /*
-LogoutUser Logs out current logged in user session
+Logout Logs out current logged in user session
 
 
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return UserApiLogoutUserRequest
+ @return UserApiLogoutRequest
 */
-func (a *UserApiService) LogoutUser() UserApiLogoutUserRequest {
-	return UserApiLogoutUserRequest{
+func (a *UserApiService) Logout() UserApiLogoutRequest {
+	return UserApiLogoutRequest{
 		ApiService: a,
 		ctx: a.client.cfg.Context,
 	}
 }
 
 // Execute executes the request
-func (a *UserApiService) LogoutUserExecute(r UserApiLogoutUserRequest) (*http.Response, error) {
+func (a *UserApiService) LogoutExecute(r UserApiLogoutRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserApiService.LogoutUser")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserApiService.Logout")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -797,7 +797,7 @@ func (a *UserApiService) LogoutUserExecute(r UserApiLogoutUserRequest) (*http.Re
 	return localVarHTTPResponse, nil
 }
 
-type UserApiUpdateUserRequest struct {
+type UserApiUpdateRequest struct {
 	ctx context.Context
 	ApiService *UserApiService
 	username string
@@ -805,26 +805,26 @@ type UserApiUpdateUserRequest struct {
 }
 
 // Updated user object
-func (r UserApiUpdateUserRequest) User(user User) UserApiUpdateUserRequest {
+func (r UserApiUpdateRequest) User(user User) UserApiUpdateRequest {
 	r.user = &user
 	return r
 }
 
-func (r UserApiUpdateUserRequest) Execute() (*http.Response, error) {
-	return r.ApiService.UpdateUserExecute(r)
+func (r UserApiUpdateRequest) Execute() (*http.Response, error) {
+	return r.ApiService.UpdateExecute(r)
 }
 
 /*
-UpdateUser Updated user
+Update Updated user
 
 This can only be done by the logged in user.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param username name that need to be deleted
- @return UserApiUpdateUserRequest
+ @return UserApiUpdateRequest
 */
-func (a *UserApiService) UpdateUser(username string) UserApiUpdateUserRequest {
-	return UserApiUpdateUserRequest{
+func (a *UserApiService) Update(username string) UserApiUpdateRequest {
+	return UserApiUpdateRequest{
 		ApiService: a,
 		ctx: a.client.cfg.Context,
 		username: username,
@@ -832,14 +832,14 @@ func (a *UserApiService) UpdateUser(username string) UserApiUpdateUserRequest {
 }
 
 // Execute executes the request
-func (a *UserApiService) UpdateUserExecute(r UserApiUpdateUserRequest) (*http.Response, error) {
+func (a *UserApiService) UpdateExecute(r UserApiUpdateRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserApiService.UpdateUser")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UserApiService.Update")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}

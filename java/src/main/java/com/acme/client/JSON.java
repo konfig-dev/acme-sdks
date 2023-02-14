@@ -95,6 +95,11 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new com.acme.client.model.Category.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.acme.client.model.ModelApiResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.acme.client.model.Order.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.acme.client.model.PaginateRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.acme.client.model.PaginateResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.acme.client.model.PaginateResponseEdges.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.acme.client.model.PaginateResponseEdgesNode.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.acme.client.model.PaginateResponsePageInfo.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.acme.client.model.Pet.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.acme.client.model.Tag.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.acme.client.model.User.CustomTypeAdapterFactory());

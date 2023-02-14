@@ -34,7 +34,7 @@ namespace Acme.Net.Api
         /// <param name="pet">Pet object that needs to be added to the store</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>Pet</returns>
-        Pet AddPet(Pet pet, int operationIndex = 0);
+        Pet Add(Pet pet, int operationIndex = 0);
 
         /// <summary>
         /// Add a new pet to the store
@@ -46,16 +46,15 @@ namespace Acme.Net.Api
         /// <param name="pet">Pet object that needs to be added to the store</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Pet</returns>
-        ApiResponse<Pet> AddPetWithHttpInfo(Pet pet, int operationIndex = 0);
+        ApiResponse<Pet> AddWithHttpInfo(Pet pet, int operationIndex = 0);
         /// <summary>
         /// Deletes a pet
         /// </summary>
         /// <exception cref="Acme.Net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="petId">Pet id to delete</param>
-        /// <param name="apiKey"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns></returns>
-        void Delete(long petId, string apiKey = default(string), int operationIndex = 0);
+        void Delete(long petId, int operationIndex = 0);
 
         /// <summary>
         /// Deletes a pet
@@ -65,10 +64,9 @@ namespace Acme.Net.Api
         /// </remarks>
         /// <exception cref="Acme.Net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="petId">Pet id to delete</param>
-        /// <param name="apiKey"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> DeleteWithHttpInfo(long petId, string apiKey = default(string), int operationIndex = 0);
+        ApiResponse<Object> DeleteWithHttpInfo(long petId, int operationIndex = 0);
         /// <summary>
         /// Finds Pets by status
         /// </summary>
@@ -79,7 +77,7 @@ namespace Acme.Net.Api
         /// <param name="status">Status values that need to be considered for filter (deprecated)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>List&lt;Pet&gt;</returns>
-        List<Pet> FindPetsByStatus(List<string> status, int operationIndex = 0);
+        List<Pet> FindByStatus(List<string> status, int operationIndex = 0);
 
         /// <summary>
         /// Finds Pets by status
@@ -91,7 +89,7 @@ namespace Acme.Net.Api
         /// <param name="status">Status values that need to be considered for filter (deprecated)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;Pet&gt;</returns>
-        ApiResponse<List<Pet>> FindPetsByStatusWithHttpInfo(List<string> status, int operationIndex = 0);
+        ApiResponse<List<Pet>> FindByStatusWithHttpInfo(List<string> status, int operationIndex = 0);
         /// <summary>
         /// Finds Pets by tags
         /// </summary>
@@ -103,7 +101,7 @@ namespace Acme.Net.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>List&lt;Pet&gt;</returns>
         [Obsolete]
-        List<Pet> FindPetsByTags(List<string> tags, int operationIndex = 0);
+        List<Pet> FindByTags(List<string> tags, int operationIndex = 0);
 
         /// <summary>
         /// Finds Pets by tags
@@ -116,7 +114,7 @@ namespace Acme.Net.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;Pet&gt;</returns>
         [Obsolete]
-        ApiResponse<List<Pet>> FindPetsByTagsWithHttpInfo(List<string> tags, int operationIndex = 0);
+        ApiResponse<List<Pet>> FindByTagsWithHttpInfo(List<string> tags, int operationIndex = 0);
         /// <summary>
         /// Find pet by ID
         /// </summary>
@@ -127,7 +125,7 @@ namespace Acme.Net.Api
         /// <param name="petId">ID of pet to return</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>Pet</returns>
-        Pet GetPetById(long petId, int operationIndex = 0);
+        Pet GetById(long petId, int operationIndex = 0);
 
         /// <summary>
         /// Find pet by ID
@@ -139,7 +137,7 @@ namespace Acme.Net.Api
         /// <param name="petId">ID of pet to return</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Pet</returns>
-        ApiResponse<Pet> GetPetByIdWithHttpInfo(long petId, int operationIndex = 0);
+        ApiResponse<Pet> GetByIdWithHttpInfo(long petId, int operationIndex = 0);
         /// <summary>
         /// Update an existing pet
         /// </summary>
@@ -147,7 +145,7 @@ namespace Acme.Net.Api
         /// <param name="pet">Pet object that needs to be added to the store</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>Pet</returns>
-        Pet UpdatePet(Pet pet, int operationIndex = 0);
+        Pet Update(Pet pet, int operationIndex = 0);
 
         /// <summary>
         /// Update an existing pet
@@ -159,7 +157,7 @@ namespace Acme.Net.Api
         /// <param name="pet">Pet object that needs to be added to the store</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Pet</returns>
-        ApiResponse<Pet> UpdatePetWithHttpInfo(Pet pet, int operationIndex = 0);
+        ApiResponse<Pet> UpdateWithHttpInfo(Pet pet, int operationIndex = 0);
         /// <summary>
         /// Updates a pet in the store with form data
         /// </summary>
@@ -169,7 +167,7 @@ namespace Acme.Net.Api
         /// <param name="status">Updated status of the pet (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns></returns>
-        void UpdatePetWithForm(long petId, string name = default(string), string status = default(string), int operationIndex = 0);
+        void UpdateWithForm(long petId, string name = default(string), string status = default(string), int operationIndex = 0);
 
         /// <summary>
         /// Updates a pet in the store with form data
@@ -183,7 +181,7 @@ namespace Acme.Net.Api
         /// <param name="status">Updated status of the pet (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> UpdatePetWithFormWithHttpInfo(long petId, string name = default(string), string status = default(string), int operationIndex = 0);
+        ApiResponse<Object> UpdateWithFormWithHttpInfo(long petId, string name = default(string), string status = default(string), int operationIndex = 0);
         /// <summary>
         /// uploads an image
         /// </summary>
@@ -193,7 +191,7 @@ namespace Acme.Net.Api
         /// <param name="file">file to upload (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse</returns>
-        ApiResponse UploadFile(long petId, string additionalMetadata = default(string), System.IO.Stream file = default(System.IO.Stream), int operationIndex = 0);
+        ApiResponse UploadImage(long petId, string additionalMetadata = default(string), System.IO.Stream file = default(System.IO.Stream), int operationIndex = 0);
 
         /// <summary>
         /// uploads an image
@@ -207,7 +205,7 @@ namespace Acme.Net.Api
         /// <param name="file">file to upload (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of ApiResponse</returns>
-        ApiResponse<ApiResponse> UploadFileWithHttpInfo(long petId, string additionalMetadata = default(string), System.IO.Stream file = default(System.IO.Stream), int operationIndex = 0);
+        ApiResponse<ApiResponse> UploadImageWithHttpInfo(long petId, string additionalMetadata = default(string), System.IO.Stream file = default(System.IO.Stream), int operationIndex = 0);
         #endregion Synchronous Operations
     }
 
@@ -228,7 +226,7 @@ namespace Acme.Net.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of Pet</returns>
-        System.Threading.Tasks.Task<Pet> AddPetAsync(Pet pet, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<Pet> AddAsync(Pet pet, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// Add a new pet to the store
@@ -241,7 +239,7 @@ namespace Acme.Net.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Pet)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Pet>> AddPetWithHttpInfoAsync(Pet pet, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<Pet>> AddWithHttpInfoAsync(Pet pet, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Deletes a pet
         /// </summary>
@@ -250,11 +248,10 @@ namespace Acme.Net.Api
         /// </remarks>
         /// <exception cref="Acme.Net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="petId">Pet id to delete</param>
-        /// <param name="apiKey"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task DeleteAsync(long petId, string apiKey = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task DeleteAsync(long petId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// Deletes a pet
@@ -264,11 +261,10 @@ namespace Acme.Net.Api
         /// </remarks>
         /// <exception cref="Acme.Net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="petId">Pet id to delete</param>
-        /// <param name="apiKey"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> DeleteWithHttpInfoAsync(long petId, string apiKey = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<Object>> DeleteWithHttpInfoAsync(long petId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Finds Pets by status
         /// </summary>
@@ -280,7 +276,7 @@ namespace Acme.Net.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;Pet&gt;</returns>
-        System.Threading.Tasks.Task<List<Pet>> FindPetsByStatusAsync(List<string> status, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<List<Pet>> FindByStatusAsync(List<string> status, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// Finds Pets by status
@@ -293,7 +289,7 @@ namespace Acme.Net.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;Pet&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<Pet>>> FindPetsByStatusWithHttpInfoAsync(List<string> status, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<List<Pet>>> FindByStatusWithHttpInfoAsync(List<string> status, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Finds Pets by tags
         /// </summary>
@@ -306,7 +302,7 @@ namespace Acme.Net.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;Pet&gt;</returns>
         [Obsolete]
-        System.Threading.Tasks.Task<List<Pet>> FindPetsByTagsAsync(List<string> tags, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<List<Pet>> FindByTagsAsync(List<string> tags, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// Finds Pets by tags
@@ -320,7 +316,7 @@ namespace Acme.Net.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;Pet&gt;)</returns>
         [Obsolete]
-        System.Threading.Tasks.Task<ApiResponse<List<Pet>>> FindPetsByTagsWithHttpInfoAsync(List<string> tags, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<List<Pet>>> FindByTagsWithHttpInfoAsync(List<string> tags, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Find pet by ID
         /// </summary>
@@ -332,7 +328,7 @@ namespace Acme.Net.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of Pet</returns>
-        System.Threading.Tasks.Task<Pet> GetPetByIdAsync(long petId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<Pet> GetByIdAsync(long petId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// Find pet by ID
@@ -345,7 +341,7 @@ namespace Acme.Net.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Pet)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Pet>> GetPetByIdWithHttpInfoAsync(long petId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<Pet>> GetByIdWithHttpInfoAsync(long petId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Update an existing pet
         /// </summary>
@@ -357,7 +353,7 @@ namespace Acme.Net.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of Pet</returns>
-        System.Threading.Tasks.Task<Pet> UpdatePetAsync(Pet pet, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<Pet> UpdateAsync(Pet pet, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// Update an existing pet
@@ -370,7 +366,7 @@ namespace Acme.Net.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Pet)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Pet>> UpdatePetWithHttpInfoAsync(Pet pet, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<Pet>> UpdateWithHttpInfoAsync(Pet pet, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Updates a pet in the store with form data
         /// </summary>
@@ -384,7 +380,7 @@ namespace Acme.Net.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task UpdatePetWithFormAsync(long petId, string name = default(string), string status = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task UpdateWithFormAsync(long petId, string name = default(string), string status = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// Updates a pet in the store with form data
@@ -399,7 +395,7 @@ namespace Acme.Net.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> UpdatePetWithFormWithHttpInfoAsync(long petId, string name = default(string), string status = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<Object>> UpdateWithFormWithHttpInfoAsync(long petId, string name = default(string), string status = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// uploads an image
         /// </summary>
@@ -413,7 +409,7 @@ namespace Acme.Net.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse> UploadFileAsync(long petId, string additionalMetadata = default(string), System.IO.Stream file = default(System.IO.Stream), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse> UploadImageAsync(long petId, string additionalMetadata = default(string), System.IO.Stream file = default(System.IO.Stream), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// uploads an image
@@ -428,7 +424,7 @@ namespace Acme.Net.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ApiResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ApiResponse>> UploadFileWithHttpInfoAsync(long petId, string additionalMetadata = default(string), System.IO.Stream file = default(System.IO.Stream), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<ApiResponse>> UploadImageWithHttpInfoAsync(long petId, string additionalMetadata = default(string), System.IO.Stream file = default(System.IO.Stream), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -556,9 +552,9 @@ namespace Acme.Net.Api
         /// <param name="pet">Pet object that needs to be added to the store</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>Pet</returns>
-        public Pet AddPet(Pet pet, int operationIndex = 0)
+        public Pet Add(Pet pet, int operationIndex = 0)
         {
-            Acme.Net.Client.ApiResponse<Pet> localVarResponse = AddPetWithHttpInfo(pet);
+            Acme.Net.Client.ApiResponse<Pet> localVarResponse = AddWithHttpInfo(pet);
             return localVarResponse.Data;
         }
 
@@ -569,12 +565,12 @@ namespace Acme.Net.Api
         /// <param name="pet">Pet object that needs to be added to the store</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Pet</returns>
-        public Acme.Net.Client.ApiResponse<Pet> AddPetWithHttpInfo(Pet pet, int operationIndex = 0)
+        public Acme.Net.Client.ApiResponse<Pet> AddWithHttpInfo(Pet pet, int operationIndex = 0)
         {
             // verify the required parameter 'pet' is set
             if (pet == null)
             {
-                throw new Acme.Net.Client.ApiException(400, "Missing required parameter 'pet' when calling PetApi->AddPet");
+                throw new Acme.Net.Client.ApiException(400, "Missing required parameter 'pet' when calling PetApi->Add");
             }
 
             Acme.Net.Client.RequestOptions localVarRequestOptions = new Acme.Net.Client.RequestOptions();
@@ -604,7 +600,7 @@ namespace Acme.Net.Api
 
             localVarRequestOptions.Data = pet;
 
-            localVarRequestOptions.Operation = "PetApi.AddPet";
+            localVarRequestOptions.Operation = "PetApi.Add";
             localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (petstore_auth) required
@@ -628,7 +624,7 @@ namespace Acme.Net.Api
             var localVarResponse = this.Client.Post<Pet>("/pet", localVarRequestOptions, this.Configuration);
             if (this.ExceptionFactory != null)
             {
-                Exception _exception = this.ExceptionFactory("AddPet", localVarResponse);
+                Exception _exception = this.ExceptionFactory("Add", localVarResponse);
                 if (_exception != null)
                 {
                     throw _exception;
@@ -646,9 +642,9 @@ namespace Acme.Net.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of Pet</returns>
-        public async System.Threading.Tasks.Task<Pet> AddPetAsync(Pet pet, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Pet> AddAsync(Pet pet, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            Acme.Net.Client.ApiResponse<Pet> localVarResponse = await AddPetWithHttpInfoAsync(pet, operationIndex, cancellationToken).ConfigureAwait(false);
+            Acme.Net.Client.ApiResponse<Pet> localVarResponse = await AddWithHttpInfoAsync(pet, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -660,12 +656,12 @@ namespace Acme.Net.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Pet)</returns>
-        public async System.Threading.Tasks.Task<Acme.Net.Client.ApiResponse<Pet>> AddPetWithHttpInfoAsync(Pet pet, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Acme.Net.Client.ApiResponse<Pet>> AddWithHttpInfoAsync(Pet pet, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'pet' is set
             if (pet == null)
             {
-                throw new Acme.Net.Client.ApiException(400, "Missing required parameter 'pet' when calling PetApi->AddPet");
+                throw new Acme.Net.Client.ApiException(400, "Missing required parameter 'pet' when calling PetApi->Add");
             }
 
 
@@ -696,7 +692,7 @@ namespace Acme.Net.Api
 
             localVarRequestOptions.Data = pet;
 
-            localVarRequestOptions.Operation = "PetApi.AddPet";
+            localVarRequestOptions.Operation = "PetApi.Add";
             localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (petstore_auth) required
@@ -721,7 +717,7 @@ namespace Acme.Net.Api
 
             if (this.ExceptionFactory != null)
             {
-                Exception _exception = this.ExceptionFactory("AddPet", localVarResponse);
+                Exception _exception = this.ExceptionFactory("Add", localVarResponse);
                 if (_exception != null)
                 {
                     throw _exception;
@@ -736,12 +732,11 @@ namespace Acme.Net.Api
         /// </summary>
         /// <exception cref="Acme.Net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="petId">Pet id to delete</param>
-        /// <param name="apiKey"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns></returns>
-        public void Delete(long petId, string apiKey = default(string), int operationIndex = 0)
+        public void Delete(long petId, int operationIndex = 0)
         {
-            DeleteWithHttpInfo(petId, apiKey);
+            DeleteWithHttpInfo(petId);
         }
 
         /// <summary>
@@ -749,10 +744,9 @@ namespace Acme.Net.Api
         /// </summary>
         /// <exception cref="Acme.Net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="petId">Pet id to delete</param>
-        /// <param name="apiKey"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        public Acme.Net.Client.ApiResponse<Object> DeleteWithHttpInfo(long petId, string apiKey = default(string), int operationIndex = 0)
+        public Acme.Net.Client.ApiResponse<Object> DeleteWithHttpInfo(long petId, int operationIndex = 0)
         {
             Acme.Net.Client.RequestOptions localVarRequestOptions = new Acme.Net.Client.RequestOptions();
 
@@ -776,14 +770,15 @@ namespace Acme.Net.Api
             }
 
             localVarRequestOptions.PathParameters.Add("petId", Acme.Net.Client.ClientUtils.ParameterToString(petId)); // path parameter
-            if (apiKey != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("api_key", Acme.Net.Client.ClientUtils.ParameterToString(apiKey)); // header parameter
-            }
 
             localVarRequestOptions.Operation = "PetApi.Delete";
             localVarRequestOptions.OperationIndex = operationIndex;
 
+            // authentication (api_key) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api_key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("api_key", this.Configuration.GetApiKeyWithPrefix("api_key"));
+            }
             // authentication (petstore_auth) required
             // oauth required
             if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
@@ -820,13 +815,12 @@ namespace Acme.Net.Api
         /// </summary>
         /// <exception cref="Acme.Net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="petId">Pet id to delete</param>
-        /// <param name="apiKey"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task DeleteAsync(long petId, string apiKey = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task DeleteAsync(long petId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            await DeleteWithHttpInfoAsync(petId, apiKey, operationIndex, cancellationToken).ConfigureAwait(false);
+            await DeleteWithHttpInfoAsync(petId, operationIndex, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -834,11 +828,10 @@ namespace Acme.Net.Api
         /// </summary>
         /// <exception cref="Acme.Net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="petId">Pet id to delete</param>
-        /// <param name="apiKey"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Acme.Net.Client.ApiResponse<Object>> DeleteWithHttpInfoAsync(long petId, string apiKey = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Acme.Net.Client.ApiResponse<Object>> DeleteWithHttpInfoAsync(long petId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
 
             Acme.Net.Client.RequestOptions localVarRequestOptions = new Acme.Net.Client.RequestOptions();
@@ -863,14 +856,15 @@ namespace Acme.Net.Api
             }
 
             localVarRequestOptions.PathParameters.Add("petId", Acme.Net.Client.ClientUtils.ParameterToString(petId)); // path parameter
-            if (apiKey != null)
-            {
-                localVarRequestOptions.HeaderParameters.Add("api_key", Acme.Net.Client.ClientUtils.ParameterToString(apiKey)); // header parameter
-            }
 
             localVarRequestOptions.Operation = "PetApi.Delete";
             localVarRequestOptions.OperationIndex = operationIndex;
 
+            // authentication (api_key) required
+            if (!string.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("api_key")))
+            {
+                localVarRequestOptions.HeaderParameters.Add("api_key", this.Configuration.GetApiKeyWithPrefix("api_key"));
+            }
             // authentication (petstore_auth) required
             // oauth required
             if (!localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
@@ -910,9 +904,9 @@ namespace Acme.Net.Api
         /// <param name="status">Status values that need to be considered for filter (deprecated)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>List&lt;Pet&gt;</returns>
-        public List<Pet> FindPetsByStatus(List<string> status, int operationIndex = 0)
+        public List<Pet> FindByStatus(List<string> status, int operationIndex = 0)
         {
-            Acme.Net.Client.ApiResponse<List<Pet>> localVarResponse = FindPetsByStatusWithHttpInfo(status);
+            Acme.Net.Client.ApiResponse<List<Pet>> localVarResponse = FindByStatusWithHttpInfo(status);
             return localVarResponse.Data;
         }
 
@@ -923,12 +917,12 @@ namespace Acme.Net.Api
         /// <param name="status">Status values that need to be considered for filter (deprecated)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;Pet&gt;</returns>
-        public Acme.Net.Client.ApiResponse<List<Pet>> FindPetsByStatusWithHttpInfo(List<string> status, int operationIndex = 0)
+        public Acme.Net.Client.ApiResponse<List<Pet>> FindByStatusWithHttpInfo(List<string> status, int operationIndex = 0)
         {
             // verify the required parameter 'status' is set
             if (status == null)
             {
-                throw new Acme.Net.Client.ApiException(400, "Missing required parameter 'status' when calling PetApi->FindPetsByStatus");
+                throw new Acme.Net.Client.ApiException(400, "Missing required parameter 'status' when calling PetApi->FindByStatus");
             }
 
             Acme.Net.Client.RequestOptions localVarRequestOptions = new Acme.Net.Client.RequestOptions();
@@ -956,7 +950,7 @@ namespace Acme.Net.Api
 
             localVarRequestOptions.QueryParameters.Add(Acme.Net.Client.ClientUtils.ParameterToMultiMap("csv", "status", status));
 
-            localVarRequestOptions.Operation = "PetApi.FindPetsByStatus";
+            localVarRequestOptions.Operation = "PetApi.FindByStatus";
             localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (petstore_auth) required
@@ -980,7 +974,7 @@ namespace Acme.Net.Api
             var localVarResponse = this.Client.Get<List<Pet>>("/pet/findByStatus", localVarRequestOptions, this.Configuration);
             if (this.ExceptionFactory != null)
             {
-                Exception _exception = this.ExceptionFactory("FindPetsByStatus", localVarResponse);
+                Exception _exception = this.ExceptionFactory("FindByStatus", localVarResponse);
                 if (_exception != null)
                 {
                     throw _exception;
@@ -998,9 +992,9 @@ namespace Acme.Net.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;Pet&gt;</returns>
-        public async System.Threading.Tasks.Task<List<Pet>> FindPetsByStatusAsync(List<string> status, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<List<Pet>> FindByStatusAsync(List<string> status, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            Acme.Net.Client.ApiResponse<List<Pet>> localVarResponse = await FindPetsByStatusWithHttpInfoAsync(status, operationIndex, cancellationToken).ConfigureAwait(false);
+            Acme.Net.Client.ApiResponse<List<Pet>> localVarResponse = await FindByStatusWithHttpInfoAsync(status, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -1012,12 +1006,12 @@ namespace Acme.Net.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;Pet&gt;)</returns>
-        public async System.Threading.Tasks.Task<Acme.Net.Client.ApiResponse<List<Pet>>> FindPetsByStatusWithHttpInfoAsync(List<string> status, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Acme.Net.Client.ApiResponse<List<Pet>>> FindByStatusWithHttpInfoAsync(List<string> status, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'status' is set
             if (status == null)
             {
-                throw new Acme.Net.Client.ApiException(400, "Missing required parameter 'status' when calling PetApi->FindPetsByStatus");
+                throw new Acme.Net.Client.ApiException(400, "Missing required parameter 'status' when calling PetApi->FindByStatus");
             }
 
 
@@ -1046,7 +1040,7 @@ namespace Acme.Net.Api
 
             localVarRequestOptions.QueryParameters.Add(Acme.Net.Client.ClientUtils.ParameterToMultiMap("csv", "status", status));
 
-            localVarRequestOptions.Operation = "PetApi.FindPetsByStatus";
+            localVarRequestOptions.Operation = "PetApi.FindByStatus";
             localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (petstore_auth) required
@@ -1071,7 +1065,7 @@ namespace Acme.Net.Api
 
             if (this.ExceptionFactory != null)
             {
-                Exception _exception = this.ExceptionFactory("FindPetsByStatus", localVarResponse);
+                Exception _exception = this.ExceptionFactory("FindByStatus", localVarResponse);
                 if (_exception != null)
                 {
                     throw _exception;
@@ -1089,9 +1083,9 @@ namespace Acme.Net.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>List&lt;Pet&gt;</returns>
         [Obsolete]
-        public List<Pet> FindPetsByTags(List<string> tags, int operationIndex = 0)
+        public List<Pet> FindByTags(List<string> tags, int operationIndex = 0)
         {
-            Acme.Net.Client.ApiResponse<List<Pet>> localVarResponse = FindPetsByTagsWithHttpInfo(tags);
+            Acme.Net.Client.ApiResponse<List<Pet>> localVarResponse = FindByTagsWithHttpInfo(tags);
             return localVarResponse.Data;
         }
 
@@ -1103,12 +1097,12 @@ namespace Acme.Net.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;Pet&gt;</returns>
         [Obsolete]
-        public Acme.Net.Client.ApiResponse<List<Pet>> FindPetsByTagsWithHttpInfo(List<string> tags, int operationIndex = 0)
+        public Acme.Net.Client.ApiResponse<List<Pet>> FindByTagsWithHttpInfo(List<string> tags, int operationIndex = 0)
         {
             // verify the required parameter 'tags' is set
             if (tags == null)
             {
-                throw new Acme.Net.Client.ApiException(400, "Missing required parameter 'tags' when calling PetApi->FindPetsByTags");
+                throw new Acme.Net.Client.ApiException(400, "Missing required parameter 'tags' when calling PetApi->FindByTags");
             }
 
             Acme.Net.Client.RequestOptions localVarRequestOptions = new Acme.Net.Client.RequestOptions();
@@ -1136,7 +1130,7 @@ namespace Acme.Net.Api
 
             localVarRequestOptions.QueryParameters.Add(Acme.Net.Client.ClientUtils.ParameterToMultiMap("csv", "tags", tags));
 
-            localVarRequestOptions.Operation = "PetApi.FindPetsByTags";
+            localVarRequestOptions.Operation = "PetApi.FindByTags";
             localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (petstore_auth) required
@@ -1160,7 +1154,7 @@ namespace Acme.Net.Api
             var localVarResponse = this.Client.Get<List<Pet>>("/pet/findByTags", localVarRequestOptions, this.Configuration);
             if (this.ExceptionFactory != null)
             {
-                Exception _exception = this.ExceptionFactory("FindPetsByTags", localVarResponse);
+                Exception _exception = this.ExceptionFactory("FindByTags", localVarResponse);
                 if (_exception != null)
                 {
                     throw _exception;
@@ -1179,9 +1173,9 @@ namespace Acme.Net.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;Pet&gt;</returns>
         [Obsolete]
-        public async System.Threading.Tasks.Task<List<Pet>> FindPetsByTagsAsync(List<string> tags, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<List<Pet>> FindByTagsAsync(List<string> tags, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            Acme.Net.Client.ApiResponse<List<Pet>> localVarResponse = await FindPetsByTagsWithHttpInfoAsync(tags, operationIndex, cancellationToken).ConfigureAwait(false);
+            Acme.Net.Client.ApiResponse<List<Pet>> localVarResponse = await FindByTagsWithHttpInfoAsync(tags, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -1194,12 +1188,12 @@ namespace Acme.Net.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;Pet&gt;)</returns>
         [Obsolete]
-        public async System.Threading.Tasks.Task<Acme.Net.Client.ApiResponse<List<Pet>>> FindPetsByTagsWithHttpInfoAsync(List<string> tags, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Acme.Net.Client.ApiResponse<List<Pet>>> FindByTagsWithHttpInfoAsync(List<string> tags, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'tags' is set
             if (tags == null)
             {
-                throw new Acme.Net.Client.ApiException(400, "Missing required parameter 'tags' when calling PetApi->FindPetsByTags");
+                throw new Acme.Net.Client.ApiException(400, "Missing required parameter 'tags' when calling PetApi->FindByTags");
             }
 
 
@@ -1228,7 +1222,7 @@ namespace Acme.Net.Api
 
             localVarRequestOptions.QueryParameters.Add(Acme.Net.Client.ClientUtils.ParameterToMultiMap("csv", "tags", tags));
 
-            localVarRequestOptions.Operation = "PetApi.FindPetsByTags";
+            localVarRequestOptions.Operation = "PetApi.FindByTags";
             localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (petstore_auth) required
@@ -1253,7 +1247,7 @@ namespace Acme.Net.Api
 
             if (this.ExceptionFactory != null)
             {
-                Exception _exception = this.ExceptionFactory("FindPetsByTags", localVarResponse);
+                Exception _exception = this.ExceptionFactory("FindByTags", localVarResponse);
                 if (_exception != null)
                 {
                     throw _exception;
@@ -1270,9 +1264,9 @@ namespace Acme.Net.Api
         /// <param name="petId">ID of pet to return</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>Pet</returns>
-        public Pet GetPetById(long petId, int operationIndex = 0)
+        public Pet GetById(long petId, int operationIndex = 0)
         {
-            Acme.Net.Client.ApiResponse<Pet> localVarResponse = GetPetByIdWithHttpInfo(petId);
+            Acme.Net.Client.ApiResponse<Pet> localVarResponse = GetByIdWithHttpInfo(petId);
             return localVarResponse.Data;
         }
 
@@ -1283,7 +1277,7 @@ namespace Acme.Net.Api
         /// <param name="petId">ID of pet to return</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Pet</returns>
-        public Acme.Net.Client.ApiResponse<Pet> GetPetByIdWithHttpInfo(long petId, int operationIndex = 0)
+        public Acme.Net.Client.ApiResponse<Pet> GetByIdWithHttpInfo(long petId, int operationIndex = 0)
         {
             Acme.Net.Client.RequestOptions localVarRequestOptions = new Acme.Net.Client.RequestOptions();
 
@@ -1310,7 +1304,7 @@ namespace Acme.Net.Api
 
             localVarRequestOptions.PathParameters.Add("petId", Acme.Net.Client.ClientUtils.ParameterToString(petId)); // path parameter
 
-            localVarRequestOptions.Operation = "PetApi.GetPetById";
+            localVarRequestOptions.Operation = "PetApi.GetById";
             localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (api_key) required
@@ -1323,7 +1317,7 @@ namespace Acme.Net.Api
             var localVarResponse = this.Client.Get<Pet>("/pet/{petId}", localVarRequestOptions, this.Configuration);
             if (this.ExceptionFactory != null)
             {
-                Exception _exception = this.ExceptionFactory("GetPetById", localVarResponse);
+                Exception _exception = this.ExceptionFactory("GetById", localVarResponse);
                 if (_exception != null)
                 {
                     throw _exception;
@@ -1341,9 +1335,9 @@ namespace Acme.Net.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of Pet</returns>
-        public async System.Threading.Tasks.Task<Pet> GetPetByIdAsync(long petId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Pet> GetByIdAsync(long petId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            Acme.Net.Client.ApiResponse<Pet> localVarResponse = await GetPetByIdWithHttpInfoAsync(petId, operationIndex, cancellationToken).ConfigureAwait(false);
+            Acme.Net.Client.ApiResponse<Pet> localVarResponse = await GetByIdWithHttpInfoAsync(petId, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -1355,7 +1349,7 @@ namespace Acme.Net.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Pet)</returns>
-        public async System.Threading.Tasks.Task<Acme.Net.Client.ApiResponse<Pet>> GetPetByIdWithHttpInfoAsync(long petId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Acme.Net.Client.ApiResponse<Pet>> GetByIdWithHttpInfoAsync(long petId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
 
             Acme.Net.Client.RequestOptions localVarRequestOptions = new Acme.Net.Client.RequestOptions();
@@ -1383,7 +1377,7 @@ namespace Acme.Net.Api
 
             localVarRequestOptions.PathParameters.Add("petId", Acme.Net.Client.ClientUtils.ParameterToString(petId)); // path parameter
 
-            localVarRequestOptions.Operation = "PetApi.GetPetById";
+            localVarRequestOptions.Operation = "PetApi.GetById";
             localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (api_key) required
@@ -1397,7 +1391,7 @@ namespace Acme.Net.Api
 
             if (this.ExceptionFactory != null)
             {
-                Exception _exception = this.ExceptionFactory("GetPetById", localVarResponse);
+                Exception _exception = this.ExceptionFactory("GetById", localVarResponse);
                 if (_exception != null)
                 {
                     throw _exception;
@@ -1414,9 +1408,9 @@ namespace Acme.Net.Api
         /// <param name="pet">Pet object that needs to be added to the store</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>Pet</returns>
-        public Pet UpdatePet(Pet pet, int operationIndex = 0)
+        public Pet Update(Pet pet, int operationIndex = 0)
         {
-            Acme.Net.Client.ApiResponse<Pet> localVarResponse = UpdatePetWithHttpInfo(pet);
+            Acme.Net.Client.ApiResponse<Pet> localVarResponse = UpdateWithHttpInfo(pet);
             return localVarResponse.Data;
         }
 
@@ -1427,12 +1421,12 @@ namespace Acme.Net.Api
         /// <param name="pet">Pet object that needs to be added to the store</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Pet</returns>
-        public Acme.Net.Client.ApiResponse<Pet> UpdatePetWithHttpInfo(Pet pet, int operationIndex = 0)
+        public Acme.Net.Client.ApiResponse<Pet> UpdateWithHttpInfo(Pet pet, int operationIndex = 0)
         {
             // verify the required parameter 'pet' is set
             if (pet == null)
             {
-                throw new Acme.Net.Client.ApiException(400, "Missing required parameter 'pet' when calling PetApi->UpdatePet");
+                throw new Acme.Net.Client.ApiException(400, "Missing required parameter 'pet' when calling PetApi->Update");
             }
 
             Acme.Net.Client.RequestOptions localVarRequestOptions = new Acme.Net.Client.RequestOptions();
@@ -1462,7 +1456,7 @@ namespace Acme.Net.Api
 
             localVarRequestOptions.Data = pet;
 
-            localVarRequestOptions.Operation = "PetApi.UpdatePet";
+            localVarRequestOptions.Operation = "PetApi.Update";
             localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (petstore_auth) required
@@ -1486,7 +1480,7 @@ namespace Acme.Net.Api
             var localVarResponse = this.Client.Put<Pet>("/pet", localVarRequestOptions, this.Configuration);
             if (this.ExceptionFactory != null)
             {
-                Exception _exception = this.ExceptionFactory("UpdatePet", localVarResponse);
+                Exception _exception = this.ExceptionFactory("Update", localVarResponse);
                 if (_exception != null)
                 {
                     throw _exception;
@@ -1504,9 +1498,9 @@ namespace Acme.Net.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of Pet</returns>
-        public async System.Threading.Tasks.Task<Pet> UpdatePetAsync(Pet pet, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Pet> UpdateAsync(Pet pet, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            Acme.Net.Client.ApiResponse<Pet> localVarResponse = await UpdatePetWithHttpInfoAsync(pet, operationIndex, cancellationToken).ConfigureAwait(false);
+            Acme.Net.Client.ApiResponse<Pet> localVarResponse = await UpdateWithHttpInfoAsync(pet, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -1518,12 +1512,12 @@ namespace Acme.Net.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Pet)</returns>
-        public async System.Threading.Tasks.Task<Acme.Net.Client.ApiResponse<Pet>> UpdatePetWithHttpInfoAsync(Pet pet, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Acme.Net.Client.ApiResponse<Pet>> UpdateWithHttpInfoAsync(Pet pet, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'pet' is set
             if (pet == null)
             {
-                throw new Acme.Net.Client.ApiException(400, "Missing required parameter 'pet' when calling PetApi->UpdatePet");
+                throw new Acme.Net.Client.ApiException(400, "Missing required parameter 'pet' when calling PetApi->Update");
             }
 
 
@@ -1554,7 +1548,7 @@ namespace Acme.Net.Api
 
             localVarRequestOptions.Data = pet;
 
-            localVarRequestOptions.Operation = "PetApi.UpdatePet";
+            localVarRequestOptions.Operation = "PetApi.Update";
             localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (petstore_auth) required
@@ -1579,7 +1573,7 @@ namespace Acme.Net.Api
 
             if (this.ExceptionFactory != null)
             {
-                Exception _exception = this.ExceptionFactory("UpdatePet", localVarResponse);
+                Exception _exception = this.ExceptionFactory("Update", localVarResponse);
                 if (_exception != null)
                 {
                     throw _exception;
@@ -1598,9 +1592,9 @@ namespace Acme.Net.Api
         /// <param name="status">Updated status of the pet (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns></returns>
-        public void UpdatePetWithForm(long petId, string name = default(string), string status = default(string), int operationIndex = 0)
+        public void UpdateWithForm(long petId, string name = default(string), string status = default(string), int operationIndex = 0)
         {
-            UpdatePetWithFormWithHttpInfo(petId, name, status);
+            UpdateWithFormWithHttpInfo(petId, name, status);
         }
 
         /// <summary>
@@ -1612,7 +1606,7 @@ namespace Acme.Net.Api
         /// <param name="status">Updated status of the pet (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        public Acme.Net.Client.ApiResponse<Object> UpdatePetWithFormWithHttpInfo(long petId, string name = default(string), string status = default(string), int operationIndex = 0)
+        public Acme.Net.Client.ApiResponse<Object> UpdateWithFormWithHttpInfo(long petId, string name = default(string), string status = default(string), int operationIndex = 0)
         {
             Acme.Net.Client.RequestOptions localVarRequestOptions = new Acme.Net.Client.RequestOptions();
 
@@ -1646,7 +1640,7 @@ namespace Acme.Net.Api
                 localVarRequestOptions.FormParameters.Add("status", Acme.Net.Client.ClientUtils.ParameterToString(status)); // form parameter
             }
 
-            localVarRequestOptions.Operation = "PetApi.UpdatePetWithForm";
+            localVarRequestOptions.Operation = "PetApi.UpdateWithForm";
             localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (petstore_auth) required
@@ -1670,7 +1664,7 @@ namespace Acme.Net.Api
             var localVarResponse = this.Client.Post<Object>("/pet/{petId}", localVarRequestOptions, this.Configuration);
             if (this.ExceptionFactory != null)
             {
-                Exception _exception = this.ExceptionFactory("UpdatePetWithForm", localVarResponse);
+                Exception _exception = this.ExceptionFactory("UpdateWithForm", localVarResponse);
                 if (_exception != null)
                 {
                     throw _exception;
@@ -1690,9 +1684,9 @@ namespace Acme.Net.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task UpdatePetWithFormAsync(long petId, string name = default(string), string status = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task UpdateWithFormAsync(long petId, string name = default(string), string status = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            await UpdatePetWithFormWithHttpInfoAsync(petId, name, status, operationIndex, cancellationToken).ConfigureAwait(false);
+            await UpdateWithFormWithHttpInfoAsync(petId, name, status, operationIndex, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -1705,7 +1699,7 @@ namespace Acme.Net.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Acme.Net.Client.ApiResponse<Object>> UpdatePetWithFormWithHttpInfoAsync(long petId, string name = default(string), string status = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Acme.Net.Client.ApiResponse<Object>> UpdateWithFormWithHttpInfoAsync(long petId, string name = default(string), string status = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
 
             Acme.Net.Client.RequestOptions localVarRequestOptions = new Acme.Net.Client.RequestOptions();
@@ -1740,7 +1734,7 @@ namespace Acme.Net.Api
                 localVarRequestOptions.FormParameters.Add("status", Acme.Net.Client.ClientUtils.ParameterToString(status)); // form parameter
             }
 
-            localVarRequestOptions.Operation = "PetApi.UpdatePetWithForm";
+            localVarRequestOptions.Operation = "PetApi.UpdateWithForm";
             localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (petstore_auth) required
@@ -1765,7 +1759,7 @@ namespace Acme.Net.Api
 
             if (this.ExceptionFactory != null)
             {
-                Exception _exception = this.ExceptionFactory("UpdatePetWithForm", localVarResponse);
+                Exception _exception = this.ExceptionFactory("UpdateWithForm", localVarResponse);
                 if (_exception != null)
                 {
                     throw _exception;
@@ -1784,9 +1778,9 @@ namespace Acme.Net.Api
         /// <param name="file">file to upload (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse</returns>
-        public ApiResponse UploadFile(long petId, string additionalMetadata = default(string), System.IO.Stream file = default(System.IO.Stream), int operationIndex = 0)
+        public ApiResponse UploadImage(long petId, string additionalMetadata = default(string), System.IO.Stream file = default(System.IO.Stream), int operationIndex = 0)
         {
-            Acme.Net.Client.ApiResponse<ApiResponse> localVarResponse = UploadFileWithHttpInfo(petId, additionalMetadata, file);
+            Acme.Net.Client.ApiResponse<ApiResponse> localVarResponse = UploadImageWithHttpInfo(petId, additionalMetadata, file);
             return localVarResponse.Data;
         }
 
@@ -1799,7 +1793,7 @@ namespace Acme.Net.Api
         /// <param name="file">file to upload (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of ApiResponse</returns>
-        public Acme.Net.Client.ApiResponse<ApiResponse> UploadFileWithHttpInfo(long petId, string additionalMetadata = default(string), System.IO.Stream file = default(System.IO.Stream), int operationIndex = 0)
+        public Acme.Net.Client.ApiResponse<ApiResponse> UploadImageWithHttpInfo(long petId, string additionalMetadata = default(string), System.IO.Stream file = default(System.IO.Stream), int operationIndex = 0)
         {
             Acme.Net.Client.RequestOptions localVarRequestOptions = new Acme.Net.Client.RequestOptions();
 
@@ -1834,7 +1828,7 @@ namespace Acme.Net.Api
                 localVarRequestOptions.FileParameters.Add("file", file);
             }
 
-            localVarRequestOptions.Operation = "PetApi.UploadFile";
+            localVarRequestOptions.Operation = "PetApi.UploadImage";
             localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (petstore_auth) required
@@ -1858,7 +1852,7 @@ namespace Acme.Net.Api
             var localVarResponse = this.Client.Post<ApiResponse>("/pet/{petId}/uploadImage", localVarRequestOptions, this.Configuration);
             if (this.ExceptionFactory != null)
             {
-                Exception _exception = this.ExceptionFactory("UploadFile", localVarResponse);
+                Exception _exception = this.ExceptionFactory("UploadImage", localVarResponse);
                 if (_exception != null)
                 {
                     throw _exception;
@@ -1878,9 +1872,9 @@ namespace Acme.Net.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse> UploadFileAsync(long petId, string additionalMetadata = default(string), System.IO.Stream file = default(System.IO.Stream), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse> UploadImageAsync(long petId, string additionalMetadata = default(string), System.IO.Stream file = default(System.IO.Stream), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            Acme.Net.Client.ApiResponse<ApiResponse> localVarResponse = await UploadFileWithHttpInfoAsync(petId, additionalMetadata, file, operationIndex, cancellationToken).ConfigureAwait(false);
+            Acme.Net.Client.ApiResponse<ApiResponse> localVarResponse = await UploadImageWithHttpInfoAsync(petId, additionalMetadata, file, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -1894,7 +1888,7 @@ namespace Acme.Net.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ApiResponse)</returns>
-        public async System.Threading.Tasks.Task<Acme.Net.Client.ApiResponse<ApiResponse>> UploadFileWithHttpInfoAsync(long petId, string additionalMetadata = default(string), System.IO.Stream file = default(System.IO.Stream), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Acme.Net.Client.ApiResponse<ApiResponse>> UploadImageWithHttpInfoAsync(long petId, string additionalMetadata = default(string), System.IO.Stream file = default(System.IO.Stream), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
 
             Acme.Net.Client.RequestOptions localVarRequestOptions = new Acme.Net.Client.RequestOptions();
@@ -1930,7 +1924,7 @@ namespace Acme.Net.Api
                 localVarRequestOptions.FileParameters.Add("file", file);
             }
 
-            localVarRequestOptions.Operation = "PetApi.UploadFile";
+            localVarRequestOptions.Operation = "PetApi.UploadImage";
             localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (petstore_auth) required
@@ -1955,7 +1949,7 @@ namespace Acme.Net.Api
 
             if (this.ExceptionFactory != null)
             {
-                Exception _exception = this.ExceptionFactory("UploadFile", localVarResponse);
+                Exception _exception = this.ExceptionFactory("UploadImage", localVarResponse);
                 if (_exception != null)
                 {
                     throw _exception;

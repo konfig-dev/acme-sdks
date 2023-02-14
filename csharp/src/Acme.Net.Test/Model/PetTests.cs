@@ -57,6 +57,14 @@ namespace Acme.Net.Test.Model
 
 
         /// <summary>
+        /// Test the property 'Tags'
+        /// </summary>
+        [Fact]
+        public void TagsTest()
+        {
+            // TODO unit test for the property 'Tags'
+        }
+        /// <summary>
         /// Test the property 'Id'
         /// </summary>
         [Fact]
@@ -87,14 +95,6 @@ namespace Acme.Net.Test.Model
         public void PhotoUrlsTest()
         {
             // TODO unit test for the property 'PhotoUrls'
-        }
-        /// <summary>
-        /// Test the property 'Tags'
-        /// </summary>
-        [Fact]
-        public void TagsTest()
-        {
-            // TODO unit test for the property 'Tags'
         }
         /// <summary>
         /// Test the property 'Status'

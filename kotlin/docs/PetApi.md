@@ -4,19 +4,19 @@ All URIs are relative to *http://petstore.swagger.io/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**addPet**](PetApi.md#addPet) | **POST** /pet | Add a new pet to the store
+[**add**](PetApi.md#add) | **POST** /pet | Add a new pet to the store
 [**delete**](PetApi.md#delete) | **DELETE** /pet/{petId} | Deletes a pet
-[**findPetsByStatus**](PetApi.md#findPetsByStatus) | **GET** /pet/findByStatus | Finds Pets by status
-[**findPetsByTags**](PetApi.md#findPetsByTags) | **GET** /pet/findByTags | Finds Pets by tags
-[**getPetById**](PetApi.md#getPetById) | **GET** /pet/{petId} | Find pet by ID
-[**updatePet**](PetApi.md#updatePet) | **PUT** /pet | Update an existing pet
-[**updatePetWithForm**](PetApi.md#updatePetWithForm) | **POST** /pet/{petId} | Updates a pet in the store with form data
-[**uploadFile**](PetApi.md#uploadFile) | **POST** /pet/{petId}/uploadImage | uploads an image
+[**findByStatus**](PetApi.md#findByStatus) | **GET** /pet/findByStatus | Finds Pets by status
+[**findByTags**](PetApi.md#findByTags) | **GET** /pet/findByTags | Finds Pets by tags
+[**getById**](PetApi.md#getById) | **GET** /pet/{petId} | Find pet by ID
+[**update**](PetApi.md#update) | **PUT** /pet | Update an existing pet
+[**updateWithForm**](PetApi.md#updateWithForm) | **POST** /pet/{petId} | Updates a pet in the store with form data
+[**uploadImage**](PetApi.md#uploadImage) | **POST** /pet/{petId}/uploadImage | uploads an image
 
 
-<a name="addPet"></a>
-# **addPet**
-> Pet addPet(pet)
+<a name="add"></a>
+# **add**
+> Pet add(pet)
 
 Add a new pet to the store
 
@@ -31,13 +31,13 @@ Add a new pet to the store
 val apiInstance = PetApi()
 val pet : Pet =  // Pet | Pet object that needs to be added to the store
 try {
-    val result : Pet = apiInstance.addPet(pet)
+    val result : Pet = apiInstance.add(pet)
     println(result)
 } catch (e: ClientException) {
-    println("4xx response calling PetApi#addPet")
+    println("4xx response calling PetApi#add")
     e.printStackTrace()
 } catch (e: ServerException) {
-    println("5xx response calling PetApi#addPet")
+    println("5xx response calling PetApi#add")
     e.printStackTrace()
 }
 ```
@@ -65,7 +65,7 @@ Configure petstore_auth:
 
 <a name="delete"></a>
 # **delete**
-> delete(petId, apiKey)
+> delete(petId)
 
 Deletes a pet
 
@@ -79,9 +79,8 @@ Deletes a pet
 
 val apiInstance = PetApi()
 val petId : kotlin.Long = 789 // kotlin.Long | Pet id to delete
-val apiKey : kotlin.String = apiKey_example // kotlin.String | 
 try {
-    apiInstance.delete(petId, apiKey)
+    apiInstance.delete(petId)
 } catch (e: ClientException) {
     println("4xx response calling PetApi#delete")
     e.printStackTrace()
@@ -96,7 +95,6 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **petId** | **kotlin.Long**| Pet id to delete |
- **apiKey** | **kotlin.String**|  | [optional]
 
 ### Return type
 
@@ -105,6 +103,9 @@ null (empty response body)
 ### Authorization
 
 
+Configure api_key:
+    ApiClient.apiKey["api_key"] = ""
+    ApiClient.apiKeyPrefix["api_key"] = ""
 Configure petstore_auth:
     ApiClient.accessToken = ""
 
@@ -113,9 +114,9 @@ Configure petstore_auth:
  - **Content-Type**: Not defined
  - **Accept**: Not defined
 
-<a name="findPetsByStatus"></a>
-# **findPetsByStatus**
-> kotlin.collections.List&lt;Pet&gt; findPetsByStatus(status)
+<a name="findByStatus"></a>
+# **findByStatus**
+> kotlin.collections.List&lt;Pet&gt; findByStatus(status)
 
 Finds Pets by status
 
@@ -130,13 +131,13 @@ Multiple status values can be provided with comma separated strings
 val apiInstance = PetApi()
 val status : kotlin.collections.List<kotlin.String> =  // kotlin.collections.List<kotlin.String> | Status values that need to be considered for filter
 try {
-    val result : kotlin.collections.List<Pet> = apiInstance.findPetsByStatus(status)
+    val result : kotlin.collections.List<Pet> = apiInstance.findByStatus(status)
     println(result)
 } catch (e: ClientException) {
-    println("4xx response calling PetApi#findPetsByStatus")
+    println("4xx response calling PetApi#findByStatus")
     e.printStackTrace()
 } catch (e: ServerException) {
-    println("5xx response calling PetApi#findPetsByStatus")
+    println("5xx response calling PetApi#findByStatus")
     e.printStackTrace()
 }
 ```
@@ -162,9 +163,9 @@ Configure petstore_auth:
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="findPetsByTags"></a>
-# **findPetsByTags**
-> kotlin.collections.List&lt;Pet&gt; findPetsByTags(tags)
+<a name="findByTags"></a>
+# **findByTags**
+> kotlin.collections.List&lt;Pet&gt; findByTags(tags)
 
 Finds Pets by tags
 
@@ -179,13 +180,13 @@ Multiple tags can be provided with comma separated strings. Use tag1, tag2, tag3
 val apiInstance = PetApi()
 val tags : kotlin.collections.List<kotlin.String> =  // kotlin.collections.List<kotlin.String> | Tags to filter by
 try {
-    val result : kotlin.collections.List<Pet> = apiInstance.findPetsByTags(tags)
+    val result : kotlin.collections.List<Pet> = apiInstance.findByTags(tags)
     println(result)
 } catch (e: ClientException) {
-    println("4xx response calling PetApi#findPetsByTags")
+    println("4xx response calling PetApi#findByTags")
     e.printStackTrace()
 } catch (e: ServerException) {
-    println("5xx response calling PetApi#findPetsByTags")
+    println("5xx response calling PetApi#findByTags")
     e.printStackTrace()
 }
 ```
@@ -211,9 +212,9 @@ Configure petstore_auth:
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="getPetById"></a>
-# **getPetById**
-> Pet getPetById(petId)
+<a name="getById"></a>
+# **getById**
+> Pet getById(petId)
 
 Find pet by ID
 
@@ -228,13 +229,13 @@ Returns a single pet
 val apiInstance = PetApi()
 val petId : kotlin.Long = 789 // kotlin.Long | ID of pet to return
 try {
-    val result : Pet = apiInstance.getPetById(petId)
+    val result : Pet = apiInstance.getById(petId)
     println(result)
 } catch (e: ClientException) {
-    println("4xx response calling PetApi#getPetById")
+    println("4xx response calling PetApi#getById")
     e.printStackTrace()
 } catch (e: ServerException) {
-    println("5xx response calling PetApi#getPetById")
+    println("5xx response calling PetApi#getById")
     e.printStackTrace()
 }
 ```
@@ -261,9 +262,9 @@ Configure api_key:
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="updatePet"></a>
-# **updatePet**
-> Pet updatePet(pet)
+<a name="update"></a>
+# **update**
+> Pet update(pet)
 
 Update an existing pet
 
@@ -278,13 +279,13 @@ Update an existing pet
 val apiInstance = PetApi()
 val pet : Pet =  // Pet | Pet object that needs to be added to the store
 try {
-    val result : Pet = apiInstance.updatePet(pet)
+    val result : Pet = apiInstance.update(pet)
     println(result)
 } catch (e: ClientException) {
-    println("4xx response calling PetApi#updatePet")
+    println("4xx response calling PetApi#update")
     e.printStackTrace()
 } catch (e: ServerException) {
-    println("5xx response calling PetApi#updatePet")
+    println("5xx response calling PetApi#update")
     e.printStackTrace()
 }
 ```
@@ -310,9 +311,9 @@ Configure petstore_auth:
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-<a name="updatePetWithForm"></a>
-# **updatePetWithForm**
-> updatePetWithForm(petId, name, status)
+<a name="updateWithForm"></a>
+# **updateWithForm**
+> updateWithForm(petId, name, status)
 
 Updates a pet in the store with form data
 
@@ -329,12 +330,12 @@ val petId : kotlin.Long = 789 // kotlin.Long | ID of pet that needs to be update
 val name : kotlin.String = name_example // kotlin.String | Updated name of the pet
 val status : kotlin.String = status_example // kotlin.String | Updated status of the pet
 try {
-    apiInstance.updatePetWithForm(petId, name, status)
+    apiInstance.updateWithForm(petId, name, status)
 } catch (e: ClientException) {
-    println("4xx response calling PetApi#updatePetWithForm")
+    println("4xx response calling PetApi#updateWithForm")
     e.printStackTrace()
 } catch (e: ServerException) {
-    println("5xx response calling PetApi#updatePetWithForm")
+    println("5xx response calling PetApi#updateWithForm")
     e.printStackTrace()
 }
 ```
@@ -362,9 +363,9 @@ Configure petstore_auth:
  - **Content-Type**: application/x-www-form-urlencoded
  - **Accept**: Not defined
 
-<a name="uploadFile"></a>
-# **uploadFile**
-> ModelApiResponse uploadFile(petId, additionalMetadata, file)
+<a name="uploadImage"></a>
+# **uploadImage**
+> ModelApiResponse uploadImage(petId, additionalMetadata, file)
 
 uploads an image
 
@@ -381,13 +382,13 @@ val petId : kotlin.Long = 789 // kotlin.Long | ID of pet to update
 val additionalMetadata : kotlin.String = additionalMetadata_example // kotlin.String | Additional data to pass to server
 val file : java.io.File = BINARY_DATA_HERE // java.io.File | file to upload
 try {
-    val result : ModelApiResponse = apiInstance.uploadFile(petId, additionalMetadata, file)
+    val result : ModelApiResponse = apiInstance.uploadImage(petId, additionalMetadata, file)
     println(result)
 } catch (e: ClientException) {
-    println("4xx response calling PetApi#uploadFile")
+    println("4xx response calling PetApi#uploadImage")
     e.printStackTrace()
 } catch (e: ServerException) {
-    println("5xx response calling PetApi#uploadFile")
+    println("5xx response calling PetApi#uploadImage")
     e.printStackTrace()
 }
 ```

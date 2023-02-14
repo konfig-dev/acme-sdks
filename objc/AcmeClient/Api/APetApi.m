@@ -57,7 +57,7 @@ NSInteger kAPetApiMissingParamErrorCode = 234513;
 ///
 ///  @returns APet*
 ///
--(NSURLSessionTask*) addPetWithPet: (APet*) pet
+-(NSURLSessionTask*) addWithPet: (APet*) pet
     completionHandler: (void (^)(APet* output, NSError* error)) handler {
     // verify the required parameter 'pet' is set
     if (pet == nil) {
@@ -121,12 +121,9 @@ NSInteger kAPetApiMissingParamErrorCode = 234513;
 /// 
 ///  @param petId Pet id to delete 
 ///
-///  @param apiKey  (optional)
-///
 ///  @returns void
 ///
 -(NSURLSessionTask*) deleteWithPetId: (NSNumber*) petId
-    apiKey: (NSString*) apiKey
     completionHandler: (void (^)(NSError* error)) handler {
     // verify the required parameter 'petId' is set
     if (petId == nil) {
@@ -149,9 +146,6 @@ NSInteger kAPetApiMissingParamErrorCode = 234513;
     NSMutableDictionary* queryParams = [[NSMutableDictionary alloc] init];
     NSMutableDictionary* headerParams = [NSMutableDictionary dictionaryWithDictionary:self.apiClient.configuration.defaultHeaders];
     [headerParams addEntriesFromDictionary:self.defaultHeaders];
-    if (apiKey != nil) {
-        headerParams[@"api_key"] = apiKey;
-    }
     // HTTP header `Accept`
     NSString *acceptHeader = [self.apiClient.sanitizer selectHeaderAccept:@[]];
     if(acceptHeader.length > 0) {
@@ -165,7 +159,7 @@ NSInteger kAPetApiMissingParamErrorCode = 234513;
     NSString *requestContentType = [self.apiClient.sanitizer selectHeaderContentType:@[]];
 
     // Authentication setting
-    NSArray *authSettings = @[@"petstore_auth"];
+    NSArray *authSettings = @[@"api_key", @"petstore_auth"];
 
     id bodyParam = nil;
     NSMutableDictionary *formParams = [[NSMutableDictionary alloc] init];
@@ -197,7 +191,7 @@ NSInteger kAPetApiMissingParamErrorCode = 234513;
 ///
 ///  @returns NSArray<APet>*
 ///
--(NSURLSessionTask*) findPetsByStatusWithStatus: (NSArray<NSString*>*) status
+-(NSURLSessionTask*) findByStatusWithStatus: (NSArray<NSString*>*) status
     completionHandler: (void (^)(NSArray<APet>* output, NSError* error)) handler {
     // verify the required parameter 'status' is set
     if (status == nil) {
@@ -265,7 +259,7 @@ NSInteger kAPetApiMissingParamErrorCode = 234513;
 ///
 ///  @returns NSArray<APet>*
 ///
--(NSURLSessionTask*) findPetsByTagsWithTags: (NSArray<NSString*>*) tags
+-(NSURLSessionTask*) findByTagsWithTags: (NSArray<NSString*>*) tags
     completionHandler: (void (^)(NSArray<APet>* output, NSError* error)) handler {
     // verify the required parameter 'tags' is set
     if (tags == nil) {
@@ -333,7 +327,7 @@ NSInteger kAPetApiMissingParamErrorCode = 234513;
 ///
 ///  @returns APet*
 ///
--(NSURLSessionTask*) getPetByIdWithPetId: (NSNumber*) petId
+-(NSURLSessionTask*) getByIdWithPetId: (NSNumber*) petId
     completionHandler: (void (^)(APet* output, NSError* error)) handler {
     // verify the required parameter 'petId' is set
     if (petId == nil) {
@@ -401,7 +395,7 @@ NSInteger kAPetApiMissingParamErrorCode = 234513;
 ///
 ///  @returns APet*
 ///
--(NSURLSessionTask*) updatePetWithPet: (APet*) pet
+-(NSURLSessionTask*) updateWithPet: (APet*) pet
     completionHandler: (void (^)(APet* output, NSError* error)) handler {
     // verify the required parameter 'pet' is set
     if (pet == nil) {
@@ -471,7 +465,7 @@ NSInteger kAPetApiMissingParamErrorCode = 234513;
 ///
 ///  @returns void
 ///
--(NSURLSessionTask*) updatePetWithFormWithPetId: (NSNumber*) petId
+-(NSURLSessionTask*) updateWithFormWithPetId: (NSNumber*) petId
     name: (NSString*) name
     status: (NSString*) status
     completionHandler: (void (^)(NSError* error)) handler {
@@ -551,7 +545,7 @@ NSInteger kAPetApiMissingParamErrorCode = 234513;
 ///
 ///  @returns AApiResponse*
 ///
--(NSURLSessionTask*) uploadFileWithPetId: (NSNumber*) petId
+-(NSURLSessionTask*) uploadImageWithPetId: (NSNumber*) petId
     additionalMetadata: (NSString*) additionalMetadata
     file: (NSURL*) file
     completionHandler: (void (^)(AApiResponse* output, NSError* error)) handler {

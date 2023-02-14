@@ -58,11 +58,11 @@ class Pet implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
+        'tags' => '\OpenAPI\Client\Model\Tag[]',
         'id' => 'int',
         'category' => '\OpenAPI\Client\Model\Category',
         'name' => 'string',
         'photo_urls' => 'string[]',
-        'tags' => '\OpenAPI\Client\Model\Tag[]',
         'status' => 'string'
     ];
 
@@ -74,11 +74,11 @@ class Pet implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'tags' => null,
         'id' => 'int64',
         'category' => null,
         'name' => null,
         'photo_urls' => null,
-        'tags' => null,
         'status' => null
     ];
 
@@ -88,11 +88,11 @@ class Pet implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'id' => false,
+        'tags' => false,
+		'id' => false,
 		'category' => false,
 		'name' => false,
 		'photo_urls' => false,
-		'tags' => false,
 		'status' => false
     ];
 
@@ -182,11 +182,11 @@ class Pet implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
+        'tags' => 'tags',
         'id' => 'id',
         'category' => 'category',
         'name' => 'name',
         'photo_urls' => 'photoUrls',
-        'tags' => 'tags',
         'status' => 'status'
     ];
 
@@ -196,11 +196,11 @@ class Pet implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
+        'tags' => 'setTags',
         'id' => 'setId',
         'category' => 'setCategory',
         'name' => 'setName',
         'photo_urls' => 'setPhotoUrls',
-        'tags' => 'setTags',
         'status' => 'setStatus'
     ];
 
@@ -210,11 +210,11 @@ class Pet implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
+        'tags' => 'getTags',
         'id' => 'getId',
         'category' => 'getCategory',
         'name' => 'getName',
         'photo_urls' => 'getPhotoUrls',
-        'tags' => 'getTags',
         'status' => 'getStatus'
     ];
 
@@ -292,11 +292,11 @@ class Pet implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
+        $this->setIfExists('tags', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('category', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
         $this->setIfExists('photo_urls', $data ?? [], null);
-        $this->setIfExists('tags', $data ?? [], null);
         $this->setIfExists('status', $data ?? [], null);
     }
 
@@ -356,6 +356,35 @@ class Pet implements ModelInterface, ArrayAccess, \JsonSerializable
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets tags
+     *
+     * @return \OpenAPI\Client\Model\Tag[]|null
+     */
+    public function getTags()
+    {
+        return $this->container['tags'];
+    }
+
+    /**
+     * Sets tags
+     *
+     * @param \OpenAPI\Client\Model\Tag[]|null $tags tags
+     *
+     * @return self
+     */
+    public function setTags($tags)
+    {
+
+        if (is_null($tags)) {
+            throw new \InvalidArgumentException('non-nullable tags cannot be null');
+        }
+
+        $this->container['tags'] = $tags;
+
+        return $this;
+    }
 
     /**
      * Gets id
@@ -469,35 +498,6 @@ class Pet implements ModelInterface, ArrayAccess, \JsonSerializable
         }
 
         $this->container['photo_urls'] = $photo_urls;
-
-        return $this;
-    }
-
-    /**
-     * Gets tags
-     *
-     * @return \OpenAPI\Client\Model\Tag[]|null
-     */
-    public function getTags()
-    {
-        return $this->container['tags'];
-    }
-
-    /**
-     * Sets tags
-     *
-     * @param \OpenAPI\Client\Model\Tag[]|null $tags tags
-     *
-     * @return self
-     */
-    public function setTags($tags)
-    {
-
-        if (is_null($tags)) {
-            throw new \InvalidArgumentException('non-nullable tags cannot be null');
-        }
-
-        $this->container['tags'] = $tags;
 
         return $this;
     }

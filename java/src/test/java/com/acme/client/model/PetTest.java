@@ -43,6 +43,14 @@ public class PetTest {
     }
 
     /**
+     * Test the property 'tags'
+     */
+    @Test
+    public void tagsTest() {
+        // TODO: test tags
+    }
+
+    /**
      * Test the property 'id'
      */
     @Test
@@ -72,14 +80,6 @@ public class PetTest {
     @Test
     public void photoUrlsTest() {
         // TODO: test photoUrls
-    }
-
-    /**
-     * Test the property 'tags'
-     */
-    @Test
-    public void tagsTest() {
-        // TODO: test tags
     }
 
     /**

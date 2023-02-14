@@ -37,7 +37,7 @@ namespace Acme.Net.Api
         /// <param name="user">Created user object</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns></returns>
-        void CreateUser(User user, int operationIndex = 0);
+        void Create(User user, int operationIndex = 0);
 
         /// <summary>
         /// Create user
@@ -49,7 +49,7 @@ namespace Acme.Net.Api
         /// <param name="user">Created user object</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> CreateUserWithHttpInfo(User user, int operationIndex = 0);
+        ApiResponse<Object> CreateWithHttpInfo(User user, int operationIndex = 0);
         /// <summary>
         /// Creates list of users with given input array
         /// </summary>
@@ -57,7 +57,7 @@ namespace Acme.Net.Api
         /// <param name="user">List of user object</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns></returns>
-        void CreateUsersWithArrayInput(List<User> user, int operationIndex = 0);
+        void CreateWithArray(List<User> user, int operationIndex = 0);
 
         /// <summary>
         /// Creates list of users with given input array
@@ -69,7 +69,7 @@ namespace Acme.Net.Api
         /// <param name="user">List of user object</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> CreateUsersWithArrayInputWithHttpInfo(List<User> user, int operationIndex = 0);
+        ApiResponse<Object> CreateWithArrayWithHttpInfo(List<User> user, int operationIndex = 0);
         /// <summary>
         /// Creates list of users with given input array
         /// </summary>
@@ -77,7 +77,7 @@ namespace Acme.Net.Api
         /// <param name="user">List of user object</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns></returns>
-        void CreateUsersWithListInput(List<User> user, int operationIndex = 0);
+        void CreateWithList(List<User> user, int operationIndex = 0);
 
         /// <summary>
         /// Creates list of users with given input array
@@ -89,7 +89,7 @@ namespace Acme.Net.Api
         /// <param name="user">List of user object</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> CreateUsersWithListInputWithHttpInfo(List<User> user, int operationIndex = 0);
+        ApiResponse<Object> CreateWithListWithHttpInfo(List<User> user, int operationIndex = 0);
         /// <summary>
         /// Delete user
         /// </summary>
@@ -100,7 +100,7 @@ namespace Acme.Net.Api
         /// <param name="username">The name that needs to be deleted</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns></returns>
-        void DeleteUser(string username, int operationIndex = 0);
+        void Delete(string username, int operationIndex = 0);
 
         /// <summary>
         /// Delete user
@@ -112,7 +112,7 @@ namespace Acme.Net.Api
         /// <param name="username">The name that needs to be deleted</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> DeleteUserWithHttpInfo(string username, int operationIndex = 0);
+        ApiResponse<Object> DeleteWithHttpInfo(string username, int operationIndex = 0);
         /// <summary>
         /// Get user by user name
         /// </summary>
@@ -120,7 +120,7 @@ namespace Acme.Net.Api
         /// <param name="username">The name that needs to be fetched. Use user1 for testing.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>User</returns>
-        User GetUserByName(string username, int operationIndex = 0);
+        User GetByName(string username, int operationIndex = 0);
 
         /// <summary>
         /// Get user by user name
@@ -132,7 +132,7 @@ namespace Acme.Net.Api
         /// <param name="username">The name that needs to be fetched. Use user1 for testing.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of User</returns>
-        ApiResponse<User> GetUserByNameWithHttpInfo(string username, int operationIndex = 0);
+        ApiResponse<User> GetByNameWithHttpInfo(string username, int operationIndex = 0);
         /// <summary>
         /// Logs user into the system
         /// </summary>
@@ -141,7 +141,7 @@ namespace Acme.Net.Api
         /// <param name="password">The password for login in clear text</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>string</returns>
-        string LoginUser(string username, string password, int operationIndex = 0);
+        string Login(string username, string password, int operationIndex = 0);
 
         /// <summary>
         /// Logs user into the system
@@ -154,14 +154,14 @@ namespace Acme.Net.Api
         /// <param name="password">The password for login in clear text</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of string</returns>
-        ApiResponse<string> LoginUserWithHttpInfo(string username, string password, int operationIndex = 0);
+        ApiResponse<string> LoginWithHttpInfo(string username, string password, int operationIndex = 0);
         /// <summary>
         /// Logs out current logged in user session
         /// </summary>
         /// <exception cref="Acme.Net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns></returns>
-        void LogoutUser(int operationIndex = 0);
+        void Logout(int operationIndex = 0);
 
         /// <summary>
         /// Logs out current logged in user session
@@ -172,7 +172,7 @@ namespace Acme.Net.Api
         /// <exception cref="Acme.Net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> LogoutUserWithHttpInfo(int operationIndex = 0);
+        ApiResponse<Object> LogoutWithHttpInfo(int operationIndex = 0);
         /// <summary>
         /// Updated user
         /// </summary>
@@ -184,7 +184,7 @@ namespace Acme.Net.Api
         /// <param name="user">Updated user object</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns></returns>
-        void UpdateUser(string username, User user, int operationIndex = 0);
+        void Update(string username, User user, int operationIndex = 0);
 
         /// <summary>
         /// Updated user
@@ -197,7 +197,7 @@ namespace Acme.Net.Api
         /// <param name="user">Updated user object</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> UpdateUserWithHttpInfo(string username, User user, int operationIndex = 0);
+        ApiResponse<Object> UpdateWithHttpInfo(string username, User user, int operationIndex = 0);
         #endregion Synchronous Operations
     }
 
@@ -218,7 +218,7 @@ namespace Acme.Net.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task CreateUserAsync(User user, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task CreateAsync(User user, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// Create user
@@ -231,7 +231,7 @@ namespace Acme.Net.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> CreateUserWithHttpInfoAsync(User user, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<Object>> CreateWithHttpInfoAsync(User user, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Creates list of users with given input array
         /// </summary>
@@ -243,7 +243,7 @@ namespace Acme.Net.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task CreateUsersWithArrayInputAsync(List<User> user, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task CreateWithArrayAsync(List<User> user, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// Creates list of users with given input array
@@ -256,7 +256,7 @@ namespace Acme.Net.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> CreateUsersWithArrayInputWithHttpInfoAsync(List<User> user, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<Object>> CreateWithArrayWithHttpInfoAsync(List<User> user, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Creates list of users with given input array
         /// </summary>
@@ -268,7 +268,7 @@ namespace Acme.Net.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task CreateUsersWithListInputAsync(List<User> user, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task CreateWithListAsync(List<User> user, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// Creates list of users with given input array
@@ -281,7 +281,7 @@ namespace Acme.Net.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> CreateUsersWithListInputWithHttpInfoAsync(List<User> user, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<Object>> CreateWithListWithHttpInfoAsync(List<User> user, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Delete user
         /// </summary>
@@ -293,7 +293,7 @@ namespace Acme.Net.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task DeleteUserAsync(string username, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task DeleteAsync(string username, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// Delete user
@@ -306,7 +306,7 @@ namespace Acme.Net.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> DeleteUserWithHttpInfoAsync(string username, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<Object>> DeleteWithHttpInfoAsync(string username, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Get user by user name
         /// </summary>
@@ -318,7 +318,7 @@ namespace Acme.Net.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of User</returns>
-        System.Threading.Tasks.Task<User> GetUserByNameAsync(string username, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<User> GetByNameAsync(string username, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// Get user by user name
@@ -331,7 +331,7 @@ namespace Acme.Net.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (User)</returns>
-        System.Threading.Tasks.Task<ApiResponse<User>> GetUserByNameWithHttpInfoAsync(string username, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<User>> GetByNameWithHttpInfoAsync(string username, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Logs user into the system
         /// </summary>
@@ -344,7 +344,7 @@ namespace Acme.Net.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of string</returns>
-        System.Threading.Tasks.Task<string> LoginUserAsync(string username, string password, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<string> LoginAsync(string username, string password, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// Logs user into the system
@@ -358,7 +358,7 @@ namespace Acme.Net.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (string)</returns>
-        System.Threading.Tasks.Task<ApiResponse<string>> LoginUserWithHttpInfoAsync(string username, string password, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<string>> LoginWithHttpInfoAsync(string username, string password, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Logs out current logged in user session
         /// </summary>
@@ -369,7 +369,7 @@ namespace Acme.Net.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task LogoutUserAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task LogoutAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// Logs out current logged in user session
@@ -381,7 +381,7 @@ namespace Acme.Net.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> LogoutUserWithHttpInfoAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<Object>> LogoutWithHttpInfoAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Updated user
         /// </summary>
@@ -394,7 +394,7 @@ namespace Acme.Net.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task UpdateUserAsync(string username, User user, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task UpdateAsync(string username, User user, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// Updated user
@@ -408,7 +408,7 @@ namespace Acme.Net.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> UpdateUserWithHttpInfoAsync(string username, User user, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<Object>> UpdateWithHttpInfoAsync(string username, User user, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -536,9 +536,9 @@ namespace Acme.Net.Api
         /// <param name="user">Created user object</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns></returns>
-        public void CreateUser(User user, int operationIndex = 0)
+        public void Create(User user, int operationIndex = 0)
         {
-            CreateUserWithHttpInfo(user);
+            CreateWithHttpInfo(user);
         }
 
         /// <summary>
@@ -548,12 +548,12 @@ namespace Acme.Net.Api
         /// <param name="user">Created user object</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        public Acme.Net.Client.ApiResponse<Object> CreateUserWithHttpInfo(User user, int operationIndex = 0)
+        public Acme.Net.Client.ApiResponse<Object> CreateWithHttpInfo(User user, int operationIndex = 0)
         {
             // verify the required parameter 'user' is set
             if (user == null)
             {
-                throw new Acme.Net.Client.ApiException(400, "Missing required parameter 'user' when calling UserApi->CreateUser");
+                throw new Acme.Net.Client.ApiException(400, "Missing required parameter 'user' when calling UserApi->Create");
             }
 
             Acme.Net.Client.RequestOptions localVarRequestOptions = new Acme.Net.Client.RequestOptions();
@@ -580,7 +580,7 @@ namespace Acme.Net.Api
 
             localVarRequestOptions.Data = user;
 
-            localVarRequestOptions.Operation = "UserApi.CreateUser";
+            localVarRequestOptions.Operation = "UserApi.Create";
             localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (api_key) required
@@ -593,7 +593,7 @@ namespace Acme.Net.Api
             var localVarResponse = this.Client.Post<Object>("/user", localVarRequestOptions, this.Configuration);
             if (this.ExceptionFactory != null)
             {
-                Exception _exception = this.ExceptionFactory("CreateUser", localVarResponse);
+                Exception _exception = this.ExceptionFactory("Create", localVarResponse);
                 if (_exception != null)
                 {
                     throw _exception;
@@ -611,9 +611,9 @@ namespace Acme.Net.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task CreateUserAsync(User user, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task CreateAsync(User user, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            await CreateUserWithHttpInfoAsync(user, operationIndex, cancellationToken).ConfigureAwait(false);
+            await CreateWithHttpInfoAsync(user, operationIndex, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -624,12 +624,12 @@ namespace Acme.Net.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Acme.Net.Client.ApiResponse<Object>> CreateUserWithHttpInfoAsync(User user, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Acme.Net.Client.ApiResponse<Object>> CreateWithHttpInfoAsync(User user, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'user' is set
             if (user == null)
             {
-                throw new Acme.Net.Client.ApiException(400, "Missing required parameter 'user' when calling UserApi->CreateUser");
+                throw new Acme.Net.Client.ApiException(400, "Missing required parameter 'user' when calling UserApi->Create");
             }
 
 
@@ -657,7 +657,7 @@ namespace Acme.Net.Api
 
             localVarRequestOptions.Data = user;
 
-            localVarRequestOptions.Operation = "UserApi.CreateUser";
+            localVarRequestOptions.Operation = "UserApi.Create";
             localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (api_key) required
@@ -671,7 +671,7 @@ namespace Acme.Net.Api
 
             if (this.ExceptionFactory != null)
             {
-                Exception _exception = this.ExceptionFactory("CreateUser", localVarResponse);
+                Exception _exception = this.ExceptionFactory("Create", localVarResponse);
                 if (_exception != null)
                 {
                     throw _exception;
@@ -688,9 +688,9 @@ namespace Acme.Net.Api
         /// <param name="user">List of user object</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns></returns>
-        public void CreateUsersWithArrayInput(List<User> user, int operationIndex = 0)
+        public void CreateWithArray(List<User> user, int operationIndex = 0)
         {
-            CreateUsersWithArrayInputWithHttpInfo(user);
+            CreateWithArrayWithHttpInfo(user);
         }
 
         /// <summary>
@@ -700,12 +700,12 @@ namespace Acme.Net.Api
         /// <param name="user">List of user object</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        public Acme.Net.Client.ApiResponse<Object> CreateUsersWithArrayInputWithHttpInfo(List<User> user, int operationIndex = 0)
+        public Acme.Net.Client.ApiResponse<Object> CreateWithArrayWithHttpInfo(List<User> user, int operationIndex = 0)
         {
             // verify the required parameter 'user' is set
             if (user == null)
             {
-                throw new Acme.Net.Client.ApiException(400, "Missing required parameter 'user' when calling UserApi->CreateUsersWithArrayInput");
+                throw new Acme.Net.Client.ApiException(400, "Missing required parameter 'user' when calling UserApi->CreateWithArray");
             }
 
             Acme.Net.Client.RequestOptions localVarRequestOptions = new Acme.Net.Client.RequestOptions();
@@ -732,7 +732,7 @@ namespace Acme.Net.Api
 
             localVarRequestOptions.Data = user;
 
-            localVarRequestOptions.Operation = "UserApi.CreateUsersWithArrayInput";
+            localVarRequestOptions.Operation = "UserApi.CreateWithArray";
             localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (api_key) required
@@ -745,7 +745,7 @@ namespace Acme.Net.Api
             var localVarResponse = this.Client.Post<Object>("/user/createWithArray", localVarRequestOptions, this.Configuration);
             if (this.ExceptionFactory != null)
             {
-                Exception _exception = this.ExceptionFactory("CreateUsersWithArrayInput", localVarResponse);
+                Exception _exception = this.ExceptionFactory("CreateWithArray", localVarResponse);
                 if (_exception != null)
                 {
                     throw _exception;
@@ -763,9 +763,9 @@ namespace Acme.Net.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task CreateUsersWithArrayInputAsync(List<User> user, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task CreateWithArrayAsync(List<User> user, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            await CreateUsersWithArrayInputWithHttpInfoAsync(user, operationIndex, cancellationToken).ConfigureAwait(false);
+            await CreateWithArrayWithHttpInfoAsync(user, operationIndex, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -776,12 +776,12 @@ namespace Acme.Net.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Acme.Net.Client.ApiResponse<Object>> CreateUsersWithArrayInputWithHttpInfoAsync(List<User> user, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Acme.Net.Client.ApiResponse<Object>> CreateWithArrayWithHttpInfoAsync(List<User> user, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'user' is set
             if (user == null)
             {
-                throw new Acme.Net.Client.ApiException(400, "Missing required parameter 'user' when calling UserApi->CreateUsersWithArrayInput");
+                throw new Acme.Net.Client.ApiException(400, "Missing required parameter 'user' when calling UserApi->CreateWithArray");
             }
 
 
@@ -809,7 +809,7 @@ namespace Acme.Net.Api
 
             localVarRequestOptions.Data = user;
 
-            localVarRequestOptions.Operation = "UserApi.CreateUsersWithArrayInput";
+            localVarRequestOptions.Operation = "UserApi.CreateWithArray";
             localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (api_key) required
@@ -823,7 +823,7 @@ namespace Acme.Net.Api
 
             if (this.ExceptionFactory != null)
             {
-                Exception _exception = this.ExceptionFactory("CreateUsersWithArrayInput", localVarResponse);
+                Exception _exception = this.ExceptionFactory("CreateWithArray", localVarResponse);
                 if (_exception != null)
                 {
                     throw _exception;
@@ -840,9 +840,9 @@ namespace Acme.Net.Api
         /// <param name="user">List of user object</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns></returns>
-        public void CreateUsersWithListInput(List<User> user, int operationIndex = 0)
+        public void CreateWithList(List<User> user, int operationIndex = 0)
         {
-            CreateUsersWithListInputWithHttpInfo(user);
+            CreateWithListWithHttpInfo(user);
         }
 
         /// <summary>
@@ -852,12 +852,12 @@ namespace Acme.Net.Api
         /// <param name="user">List of user object</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        public Acme.Net.Client.ApiResponse<Object> CreateUsersWithListInputWithHttpInfo(List<User> user, int operationIndex = 0)
+        public Acme.Net.Client.ApiResponse<Object> CreateWithListWithHttpInfo(List<User> user, int operationIndex = 0)
         {
             // verify the required parameter 'user' is set
             if (user == null)
             {
-                throw new Acme.Net.Client.ApiException(400, "Missing required parameter 'user' when calling UserApi->CreateUsersWithListInput");
+                throw new Acme.Net.Client.ApiException(400, "Missing required parameter 'user' when calling UserApi->CreateWithList");
             }
 
             Acme.Net.Client.RequestOptions localVarRequestOptions = new Acme.Net.Client.RequestOptions();
@@ -884,7 +884,7 @@ namespace Acme.Net.Api
 
             localVarRequestOptions.Data = user;
 
-            localVarRequestOptions.Operation = "UserApi.CreateUsersWithListInput";
+            localVarRequestOptions.Operation = "UserApi.CreateWithList";
             localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (api_key) required
@@ -897,7 +897,7 @@ namespace Acme.Net.Api
             var localVarResponse = this.Client.Post<Object>("/user/createWithList", localVarRequestOptions, this.Configuration);
             if (this.ExceptionFactory != null)
             {
-                Exception _exception = this.ExceptionFactory("CreateUsersWithListInput", localVarResponse);
+                Exception _exception = this.ExceptionFactory("CreateWithList", localVarResponse);
                 if (_exception != null)
                 {
                     throw _exception;
@@ -915,9 +915,9 @@ namespace Acme.Net.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task CreateUsersWithListInputAsync(List<User> user, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task CreateWithListAsync(List<User> user, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            await CreateUsersWithListInputWithHttpInfoAsync(user, operationIndex, cancellationToken).ConfigureAwait(false);
+            await CreateWithListWithHttpInfoAsync(user, operationIndex, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -928,12 +928,12 @@ namespace Acme.Net.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Acme.Net.Client.ApiResponse<Object>> CreateUsersWithListInputWithHttpInfoAsync(List<User> user, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Acme.Net.Client.ApiResponse<Object>> CreateWithListWithHttpInfoAsync(List<User> user, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'user' is set
             if (user == null)
             {
-                throw new Acme.Net.Client.ApiException(400, "Missing required parameter 'user' when calling UserApi->CreateUsersWithListInput");
+                throw new Acme.Net.Client.ApiException(400, "Missing required parameter 'user' when calling UserApi->CreateWithList");
             }
 
 
@@ -961,7 +961,7 @@ namespace Acme.Net.Api
 
             localVarRequestOptions.Data = user;
 
-            localVarRequestOptions.Operation = "UserApi.CreateUsersWithListInput";
+            localVarRequestOptions.Operation = "UserApi.CreateWithList";
             localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (api_key) required
@@ -975,7 +975,7 @@ namespace Acme.Net.Api
 
             if (this.ExceptionFactory != null)
             {
-                Exception _exception = this.ExceptionFactory("CreateUsersWithListInput", localVarResponse);
+                Exception _exception = this.ExceptionFactory("CreateWithList", localVarResponse);
                 if (_exception != null)
                 {
                     throw _exception;
@@ -992,9 +992,9 @@ namespace Acme.Net.Api
         /// <param name="username">The name that needs to be deleted</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns></returns>
-        public void DeleteUser(string username, int operationIndex = 0)
+        public void Delete(string username, int operationIndex = 0)
         {
-            DeleteUserWithHttpInfo(username);
+            DeleteWithHttpInfo(username);
         }
 
         /// <summary>
@@ -1004,12 +1004,12 @@ namespace Acme.Net.Api
         /// <param name="username">The name that needs to be deleted</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        public Acme.Net.Client.ApiResponse<Object> DeleteUserWithHttpInfo(string username, int operationIndex = 0)
+        public Acme.Net.Client.ApiResponse<Object> DeleteWithHttpInfo(string username, int operationIndex = 0)
         {
             // verify the required parameter 'username' is set
             if (username == null)
             {
-                throw new Acme.Net.Client.ApiException(400, "Missing required parameter 'username' when calling UserApi->DeleteUser");
+                throw new Acme.Net.Client.ApiException(400, "Missing required parameter 'username' when calling UserApi->Delete");
             }
 
             Acme.Net.Client.RequestOptions localVarRequestOptions = new Acme.Net.Client.RequestOptions();
@@ -1035,7 +1035,7 @@ namespace Acme.Net.Api
 
             localVarRequestOptions.PathParameters.Add("username", Acme.Net.Client.ClientUtils.ParameterToString(username)); // path parameter
 
-            localVarRequestOptions.Operation = "UserApi.DeleteUser";
+            localVarRequestOptions.Operation = "UserApi.Delete";
             localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (api_key) required
@@ -1048,7 +1048,7 @@ namespace Acme.Net.Api
             var localVarResponse = this.Client.Delete<Object>("/user/{username}", localVarRequestOptions, this.Configuration);
             if (this.ExceptionFactory != null)
             {
-                Exception _exception = this.ExceptionFactory("DeleteUser", localVarResponse);
+                Exception _exception = this.ExceptionFactory("Delete", localVarResponse);
                 if (_exception != null)
                 {
                     throw _exception;
@@ -1066,9 +1066,9 @@ namespace Acme.Net.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task DeleteUserAsync(string username, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task DeleteAsync(string username, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            await DeleteUserWithHttpInfoAsync(username, operationIndex, cancellationToken).ConfigureAwait(false);
+            await DeleteWithHttpInfoAsync(username, operationIndex, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -1079,12 +1079,12 @@ namespace Acme.Net.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Acme.Net.Client.ApiResponse<Object>> DeleteUserWithHttpInfoAsync(string username, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Acme.Net.Client.ApiResponse<Object>> DeleteWithHttpInfoAsync(string username, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'username' is set
             if (username == null)
             {
-                throw new Acme.Net.Client.ApiException(400, "Missing required parameter 'username' when calling UserApi->DeleteUser");
+                throw new Acme.Net.Client.ApiException(400, "Missing required parameter 'username' when calling UserApi->Delete");
             }
 
 
@@ -1111,7 +1111,7 @@ namespace Acme.Net.Api
 
             localVarRequestOptions.PathParameters.Add("username", Acme.Net.Client.ClientUtils.ParameterToString(username)); // path parameter
 
-            localVarRequestOptions.Operation = "UserApi.DeleteUser";
+            localVarRequestOptions.Operation = "UserApi.Delete";
             localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (api_key) required
@@ -1125,7 +1125,7 @@ namespace Acme.Net.Api
 
             if (this.ExceptionFactory != null)
             {
-                Exception _exception = this.ExceptionFactory("DeleteUser", localVarResponse);
+                Exception _exception = this.ExceptionFactory("Delete", localVarResponse);
                 if (_exception != null)
                 {
                     throw _exception;
@@ -1142,9 +1142,9 @@ namespace Acme.Net.Api
         /// <param name="username">The name that needs to be fetched. Use user1 for testing.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>User</returns>
-        public User GetUserByName(string username, int operationIndex = 0)
+        public User GetByName(string username, int operationIndex = 0)
         {
-            Acme.Net.Client.ApiResponse<User> localVarResponse = GetUserByNameWithHttpInfo(username);
+            Acme.Net.Client.ApiResponse<User> localVarResponse = GetByNameWithHttpInfo(username);
             return localVarResponse.Data;
         }
 
@@ -1155,12 +1155,12 @@ namespace Acme.Net.Api
         /// <param name="username">The name that needs to be fetched. Use user1 for testing.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of User</returns>
-        public Acme.Net.Client.ApiResponse<User> GetUserByNameWithHttpInfo(string username, int operationIndex = 0)
+        public Acme.Net.Client.ApiResponse<User> GetByNameWithHttpInfo(string username, int operationIndex = 0)
         {
             // verify the required parameter 'username' is set
             if (username == null)
             {
-                throw new Acme.Net.Client.ApiException(400, "Missing required parameter 'username' when calling UserApi->GetUserByName");
+                throw new Acme.Net.Client.ApiException(400, "Missing required parameter 'username' when calling UserApi->GetByName");
             }
 
             Acme.Net.Client.RequestOptions localVarRequestOptions = new Acme.Net.Client.RequestOptions();
@@ -1188,7 +1188,7 @@ namespace Acme.Net.Api
 
             localVarRequestOptions.PathParameters.Add("username", Acme.Net.Client.ClientUtils.ParameterToString(username)); // path parameter
 
-            localVarRequestOptions.Operation = "UserApi.GetUserByName";
+            localVarRequestOptions.Operation = "UserApi.GetByName";
             localVarRequestOptions.OperationIndex = operationIndex;
 
 
@@ -1196,7 +1196,7 @@ namespace Acme.Net.Api
             var localVarResponse = this.Client.Get<User>("/user/{username}", localVarRequestOptions, this.Configuration);
             if (this.ExceptionFactory != null)
             {
-                Exception _exception = this.ExceptionFactory("GetUserByName", localVarResponse);
+                Exception _exception = this.ExceptionFactory("GetByName", localVarResponse);
                 if (_exception != null)
                 {
                     throw _exception;
@@ -1214,9 +1214,9 @@ namespace Acme.Net.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of User</returns>
-        public async System.Threading.Tasks.Task<User> GetUserByNameAsync(string username, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<User> GetByNameAsync(string username, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            Acme.Net.Client.ApiResponse<User> localVarResponse = await GetUserByNameWithHttpInfoAsync(username, operationIndex, cancellationToken).ConfigureAwait(false);
+            Acme.Net.Client.ApiResponse<User> localVarResponse = await GetByNameWithHttpInfoAsync(username, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -1228,12 +1228,12 @@ namespace Acme.Net.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (User)</returns>
-        public async System.Threading.Tasks.Task<Acme.Net.Client.ApiResponse<User>> GetUserByNameWithHttpInfoAsync(string username, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Acme.Net.Client.ApiResponse<User>> GetByNameWithHttpInfoAsync(string username, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'username' is set
             if (username == null)
             {
-                throw new Acme.Net.Client.ApiException(400, "Missing required parameter 'username' when calling UserApi->GetUserByName");
+                throw new Acme.Net.Client.ApiException(400, "Missing required parameter 'username' when calling UserApi->GetByName");
             }
 
 
@@ -1262,7 +1262,7 @@ namespace Acme.Net.Api
 
             localVarRequestOptions.PathParameters.Add("username", Acme.Net.Client.ClientUtils.ParameterToString(username)); // path parameter
 
-            localVarRequestOptions.Operation = "UserApi.GetUserByName";
+            localVarRequestOptions.Operation = "UserApi.GetByName";
             localVarRequestOptions.OperationIndex = operationIndex;
 
 
@@ -1271,7 +1271,7 @@ namespace Acme.Net.Api
 
             if (this.ExceptionFactory != null)
             {
-                Exception _exception = this.ExceptionFactory("GetUserByName", localVarResponse);
+                Exception _exception = this.ExceptionFactory("GetByName", localVarResponse);
                 if (_exception != null)
                 {
                     throw _exception;
@@ -1289,9 +1289,9 @@ namespace Acme.Net.Api
         /// <param name="password">The password for login in clear text</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>string</returns>
-        public string LoginUser(string username, string password, int operationIndex = 0)
+        public string Login(string username, string password, int operationIndex = 0)
         {
-            Acme.Net.Client.ApiResponse<string> localVarResponse = LoginUserWithHttpInfo(username, password);
+            Acme.Net.Client.ApiResponse<string> localVarResponse = LoginWithHttpInfo(username, password);
             return localVarResponse.Data;
         }
 
@@ -1303,18 +1303,18 @@ namespace Acme.Net.Api
         /// <param name="password">The password for login in clear text</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of string</returns>
-        public Acme.Net.Client.ApiResponse<string> LoginUserWithHttpInfo(string username, string password, int operationIndex = 0)
+        public Acme.Net.Client.ApiResponse<string> LoginWithHttpInfo(string username, string password, int operationIndex = 0)
         {
             // verify the required parameter 'username' is set
             if (username == null)
             {
-                throw new Acme.Net.Client.ApiException(400, "Missing required parameter 'username' when calling UserApi->LoginUser");
+                throw new Acme.Net.Client.ApiException(400, "Missing required parameter 'username' when calling UserApi->Login");
             }
 
             // verify the required parameter 'password' is set
             if (password == null)
             {
-                throw new Acme.Net.Client.ApiException(400, "Missing required parameter 'password' when calling UserApi->LoginUser");
+                throw new Acme.Net.Client.ApiException(400, "Missing required parameter 'password' when calling UserApi->Login");
             }
 
             Acme.Net.Client.RequestOptions localVarRequestOptions = new Acme.Net.Client.RequestOptions();
@@ -1343,7 +1343,7 @@ namespace Acme.Net.Api
             localVarRequestOptions.QueryParameters.Add(Acme.Net.Client.ClientUtils.ParameterToMultiMap("", "username", username));
             localVarRequestOptions.QueryParameters.Add(Acme.Net.Client.ClientUtils.ParameterToMultiMap("", "password", password));
 
-            localVarRequestOptions.Operation = "UserApi.LoginUser";
+            localVarRequestOptions.Operation = "UserApi.Login";
             localVarRequestOptions.OperationIndex = operationIndex;
 
 
@@ -1351,7 +1351,7 @@ namespace Acme.Net.Api
             var localVarResponse = this.Client.Get<string>("/user/login", localVarRequestOptions, this.Configuration);
             if (this.ExceptionFactory != null)
             {
-                Exception _exception = this.ExceptionFactory("LoginUser", localVarResponse);
+                Exception _exception = this.ExceptionFactory("Login", localVarResponse);
                 if (_exception != null)
                 {
                     throw _exception;
@@ -1370,9 +1370,9 @@ namespace Acme.Net.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of string</returns>
-        public async System.Threading.Tasks.Task<string> LoginUserAsync(string username, string password, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<string> LoginAsync(string username, string password, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            Acme.Net.Client.ApiResponse<string> localVarResponse = await LoginUserWithHttpInfoAsync(username, password, operationIndex, cancellationToken).ConfigureAwait(false);
+            Acme.Net.Client.ApiResponse<string> localVarResponse = await LoginWithHttpInfoAsync(username, password, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -1385,18 +1385,18 @@ namespace Acme.Net.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (string)</returns>
-        public async System.Threading.Tasks.Task<Acme.Net.Client.ApiResponse<string>> LoginUserWithHttpInfoAsync(string username, string password, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Acme.Net.Client.ApiResponse<string>> LoginWithHttpInfoAsync(string username, string password, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'username' is set
             if (username == null)
             {
-                throw new Acme.Net.Client.ApiException(400, "Missing required parameter 'username' when calling UserApi->LoginUser");
+                throw new Acme.Net.Client.ApiException(400, "Missing required parameter 'username' when calling UserApi->Login");
             }
 
             // verify the required parameter 'password' is set
             if (password == null)
             {
-                throw new Acme.Net.Client.ApiException(400, "Missing required parameter 'password' when calling UserApi->LoginUser");
+                throw new Acme.Net.Client.ApiException(400, "Missing required parameter 'password' when calling UserApi->Login");
             }
 
 
@@ -1426,7 +1426,7 @@ namespace Acme.Net.Api
             localVarRequestOptions.QueryParameters.Add(Acme.Net.Client.ClientUtils.ParameterToMultiMap("", "username", username));
             localVarRequestOptions.QueryParameters.Add(Acme.Net.Client.ClientUtils.ParameterToMultiMap("", "password", password));
 
-            localVarRequestOptions.Operation = "UserApi.LoginUser";
+            localVarRequestOptions.Operation = "UserApi.Login";
             localVarRequestOptions.OperationIndex = operationIndex;
 
 
@@ -1435,7 +1435,7 @@ namespace Acme.Net.Api
 
             if (this.ExceptionFactory != null)
             {
-                Exception _exception = this.ExceptionFactory("LoginUser", localVarResponse);
+                Exception _exception = this.ExceptionFactory("Login", localVarResponse);
                 if (_exception != null)
                 {
                     throw _exception;
@@ -1451,9 +1451,9 @@ namespace Acme.Net.Api
         /// <exception cref="Acme.Net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns></returns>
-        public void LogoutUser(int operationIndex = 0)
+        public void Logout(int operationIndex = 0)
         {
-            LogoutUserWithHttpInfo();
+            LogoutWithHttpInfo();
         }
 
         /// <summary>
@@ -1462,7 +1462,7 @@ namespace Acme.Net.Api
         /// <exception cref="Acme.Net.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        public Acme.Net.Client.ApiResponse<Object> LogoutUserWithHttpInfo(int operationIndex = 0)
+        public Acme.Net.Client.ApiResponse<Object> LogoutWithHttpInfo(int operationIndex = 0)
         {
             Acme.Net.Client.RequestOptions localVarRequestOptions = new Acme.Net.Client.RequestOptions();
 
@@ -1486,7 +1486,7 @@ namespace Acme.Net.Api
             }
 
 
-            localVarRequestOptions.Operation = "UserApi.LogoutUser";
+            localVarRequestOptions.Operation = "UserApi.Logout";
             localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (api_key) required
@@ -1499,7 +1499,7 @@ namespace Acme.Net.Api
             var localVarResponse = this.Client.Get<Object>("/user/logout", localVarRequestOptions, this.Configuration);
             if (this.ExceptionFactory != null)
             {
-                Exception _exception = this.ExceptionFactory("LogoutUser", localVarResponse);
+                Exception _exception = this.ExceptionFactory("Logout", localVarResponse);
                 if (_exception != null)
                 {
                     throw _exception;
@@ -1516,9 +1516,9 @@ namespace Acme.Net.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task LogoutUserAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task LogoutAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            await LogoutUserWithHttpInfoAsync(operationIndex, cancellationToken).ConfigureAwait(false);
+            await LogoutWithHttpInfoAsync(operationIndex, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -1528,7 +1528,7 @@ namespace Acme.Net.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Acme.Net.Client.ApiResponse<Object>> LogoutUserWithHttpInfoAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Acme.Net.Client.ApiResponse<Object>> LogoutWithHttpInfoAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
 
             Acme.Net.Client.RequestOptions localVarRequestOptions = new Acme.Net.Client.RequestOptions();
@@ -1553,7 +1553,7 @@ namespace Acme.Net.Api
             }
 
 
-            localVarRequestOptions.Operation = "UserApi.LogoutUser";
+            localVarRequestOptions.Operation = "UserApi.Logout";
             localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (api_key) required
@@ -1567,7 +1567,7 @@ namespace Acme.Net.Api
 
             if (this.ExceptionFactory != null)
             {
-                Exception _exception = this.ExceptionFactory("LogoutUser", localVarResponse);
+                Exception _exception = this.ExceptionFactory("Logout", localVarResponse);
                 if (_exception != null)
                 {
                     throw _exception;
@@ -1585,9 +1585,9 @@ namespace Acme.Net.Api
         /// <param name="user">Updated user object</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns></returns>
-        public void UpdateUser(string username, User user, int operationIndex = 0)
+        public void Update(string username, User user, int operationIndex = 0)
         {
-            UpdateUserWithHttpInfo(username, user);
+            UpdateWithHttpInfo(username, user);
         }
 
         /// <summary>
@@ -1598,18 +1598,18 @@ namespace Acme.Net.Api
         /// <param name="user">Updated user object</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        public Acme.Net.Client.ApiResponse<Object> UpdateUserWithHttpInfo(string username, User user, int operationIndex = 0)
+        public Acme.Net.Client.ApiResponse<Object> UpdateWithHttpInfo(string username, User user, int operationIndex = 0)
         {
             // verify the required parameter 'username' is set
             if (username == null)
             {
-                throw new Acme.Net.Client.ApiException(400, "Missing required parameter 'username' when calling UserApi->UpdateUser");
+                throw new Acme.Net.Client.ApiException(400, "Missing required parameter 'username' when calling UserApi->Update");
             }
 
             // verify the required parameter 'user' is set
             if (user == null)
             {
-                throw new Acme.Net.Client.ApiException(400, "Missing required parameter 'user' when calling UserApi->UpdateUser");
+                throw new Acme.Net.Client.ApiException(400, "Missing required parameter 'user' when calling UserApi->Update");
             }
 
             Acme.Net.Client.RequestOptions localVarRequestOptions = new Acme.Net.Client.RequestOptions();
@@ -1637,7 +1637,7 @@ namespace Acme.Net.Api
             localVarRequestOptions.PathParameters.Add("username", Acme.Net.Client.ClientUtils.ParameterToString(username)); // path parameter
             localVarRequestOptions.Data = user;
 
-            localVarRequestOptions.Operation = "UserApi.UpdateUser";
+            localVarRequestOptions.Operation = "UserApi.Update";
             localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (api_key) required
@@ -1650,7 +1650,7 @@ namespace Acme.Net.Api
             var localVarResponse = this.Client.Put<Object>("/user/{username}", localVarRequestOptions, this.Configuration);
             if (this.ExceptionFactory != null)
             {
-                Exception _exception = this.ExceptionFactory("UpdateUser", localVarResponse);
+                Exception _exception = this.ExceptionFactory("Update", localVarResponse);
                 if (_exception != null)
                 {
                     throw _exception;
@@ -1669,9 +1669,9 @@ namespace Acme.Net.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task UpdateUserAsync(string username, User user, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task UpdateAsync(string username, User user, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            await UpdateUserWithHttpInfoAsync(username, user, operationIndex, cancellationToken).ConfigureAwait(false);
+            await UpdateWithHttpInfoAsync(username, user, operationIndex, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -1683,18 +1683,18 @@ namespace Acme.Net.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Acme.Net.Client.ApiResponse<Object>> UpdateUserWithHttpInfoAsync(string username, User user, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Acme.Net.Client.ApiResponse<Object>> UpdateWithHttpInfoAsync(string username, User user, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'username' is set
             if (username == null)
             {
-                throw new Acme.Net.Client.ApiException(400, "Missing required parameter 'username' when calling UserApi->UpdateUser");
+                throw new Acme.Net.Client.ApiException(400, "Missing required parameter 'username' when calling UserApi->Update");
             }
 
             // verify the required parameter 'user' is set
             if (user == null)
             {
-                throw new Acme.Net.Client.ApiException(400, "Missing required parameter 'user' when calling UserApi->UpdateUser");
+                throw new Acme.Net.Client.ApiException(400, "Missing required parameter 'user' when calling UserApi->Update");
             }
 
 
@@ -1723,7 +1723,7 @@ namespace Acme.Net.Api
             localVarRequestOptions.PathParameters.Add("username", Acme.Net.Client.ClientUtils.ParameterToString(username)); // path parameter
             localVarRequestOptions.Data = user;
 
-            localVarRequestOptions.Operation = "UserApi.UpdateUser";
+            localVarRequestOptions.Operation = "UserApi.Update";
             localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (api_key) required
@@ -1737,7 +1737,7 @@ namespace Acme.Net.Api
 
             if (this.ExceptionFactory != null)
             {
-                Exception _exception = this.ExceptionFactory("UpdateUser", localVarResponse);
+                Exception _exception = this.ExceptionFactory("Update", localVarResponse);
                 if (_exception != null)
                 {
                     throw _exception;

@@ -16,11 +16,11 @@ import (
 
 // Pet A pet for sale in the pet store
 type Pet struct {
+	Tags []Tag `json:"tags,omitempty"`
 	Id *int64 `json:"id,omitempty"`
 	Category *Category `json:"category,omitempty"`
 	Name string `json:"name"`
 	PhotoUrls []string `json:"photoUrls"`
-	Tags []Tag `json:"tags,omitempty"`
 	// pet status in the store
 	// Deprecated
 	Status *string `json:"status,omitempty"`
@@ -43,6 +43,38 @@ func NewPet(name string, photoUrls []string) *Pet {
 func NewPetWithDefaults() *Pet {
 	this := Pet{}
 	return &this
+}
+
+// GetTags returns the Tags field value if set, zero value otherwise.
+func (o *Pet) GetTags() []Tag {
+	if o == nil || isNil(o.Tags) {
+		var ret []Tag
+		return ret
+	}
+	return o.Tags
+}
+
+// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Pet) GetTagsOk() ([]Tag, bool) {
+	if o == nil || isNil(o.Tags) {
+    return nil, false
+	}
+	return o.Tags, true
+}
+
+// HasTags returns a boolean if a field has been set.
+func (o *Pet) HasTags() bool {
+	if o != nil && !isNil(o.Tags) {
+		return true
+	}
+
+	return false
+}
+
+// SetTags gets a reference to the given []Tag and assigns it to the Tags field.
+func (o *Pet) SetTags(v []Tag) {
+	o.Tags = v
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
@@ -157,38 +189,6 @@ func (o *Pet) SetPhotoUrls(v []string) {
 	o.PhotoUrls = v
 }
 
-// GetTags returns the Tags field value if set, zero value otherwise.
-func (o *Pet) GetTags() []Tag {
-	if o == nil || isNil(o.Tags) {
-		var ret []Tag
-		return ret
-	}
-	return o.Tags
-}
-
-// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Pet) GetTagsOk() ([]Tag, bool) {
-	if o == nil || isNil(o.Tags) {
-    return nil, false
-	}
-	return o.Tags, true
-}
-
-// HasTags returns a boolean if a field has been set.
-func (o *Pet) HasTags() bool {
-	if o != nil && !isNil(o.Tags) {
-		return true
-	}
-
-	return false
-}
-
-// SetTags gets a reference to the given []Tag and assigns it to the Tags field.
-func (o *Pet) SetTags(v []Tag) {
-	o.Tags = v
-}
-
 // GetStatus returns the Status field value if set, zero value otherwise.
 // Deprecated
 func (o *Pet) GetStatus() string {
@@ -226,6 +226,9 @@ func (o *Pet) SetStatus(v string) {
 
 func (o Pet) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if !isNil(o.Tags) {
+		toSerialize["tags"] = o.Tags
+	}
 	if !isNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
@@ -237,9 +240,6 @@ func (o Pet) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["photoUrls"] = o.PhotoUrls
-	}
-	if !isNil(o.Tags) {
-		toSerialize["tags"] = o.Tags
 	}
 	if !isNil(o.Status) {
 		toSerialize["status"] = o.Status

@@ -22,6 +22,10 @@ from acme_client.model_utils import (  # noqa: F401
     validate_and_convert_types
 )
 from acme_client.model.api_response import ApiResponse
+from acme_client.model.find_by_status200_response import FindByStatus200Response
+from acme_client.model.find_by_status_response import FindByStatusResponse
+from acme_client.model.find_by_tags200_response import FindByTags200Response
+from acme_client.model.find_by_tags_response import FindByTagsResponse
 from acme_client.model.pet import Pet
 
 
@@ -36,14 +40,14 @@ class PetApi(object):
         if api_client is None:
             api_client = ApiClient()
         self.api_client = api_client
-        self.add_pet_endpoint = _Endpoint(
+        self.add_endpoint = _Endpoint(
             settings={
                 'response_type': (Pet,),
                 'auth': [
                     'petstore_auth'
                 ],
                 'endpoint_path': '/pet',
-                'operation_id': 'add_pet',
+                'operation_id': 'add',
                 'http_method': 'POST',
                 'servers': None,
             },
@@ -94,6 +98,7 @@ class PetApi(object):
             settings={
                 'response_type': None,
                 'auth': [
+                    'api_key',
                     'petstore_auth'
                 ],
                 'endpoint_path': '/pet/{petId}',
@@ -104,7 +109,6 @@ class PetApi(object):
             params_map={
                 'all': [
                     'pet_id',
-                    'api_key',
                 ],
                 'required': [
                     'pet_id',
@@ -124,16 +128,12 @@ class PetApi(object):
                 'openapi_types': {
                     'pet_id':
                         (int,),
-                    'api_key':
-                        (str,),
                 },
                 'attribute_map': {
                     'pet_id': 'petId',
-                    'api_key': 'api_key',
                 },
                 'location_map': {
                     'pet_id': 'path',
-                    'api_key': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -144,14 +144,14 @@ class PetApi(object):
             },
             api_client=api_client
         )
-        self.find_pets_by_status_endpoint = _Endpoint(
+        self.find_by_status_endpoint = _Endpoint(
             settings={
-                'response_type': ([Pet],),
+                'response_type': (FindByStatusResponse,),
                 'auth': [
                     'petstore_auth'
                 ],
                 'endpoint_path': '/pet/findByStatus',
-                'operation_id': 'find_pets_by_status',
+                'operation_id': 'find_by_status',
                 'http_method': 'GET',
                 'servers': None,
             },
@@ -204,14 +204,14 @@ class PetApi(object):
             },
             api_client=api_client
         )
-        self.find_pets_by_tags_endpoint = _Endpoint(
+        self.find_by_tags_endpoint = _Endpoint(
             settings={
-                'response_type': ([Pet],),
+                'response_type': (FindByTagsResponse,),
                 'auth': [
                     'petstore_auth'
                 ],
                 'endpoint_path': '/pet/findByTags',
-                'operation_id': 'find_pets_by_tags',
+                'operation_id': 'find_by_tags',
                 'http_method': 'GET',
                 'servers': None,
             },
@@ -257,14 +257,14 @@ class PetApi(object):
             },
             api_client=api_client
         )
-        self.get_pet_by_id_endpoint = _Endpoint(
+        self.get_by_id_endpoint = _Endpoint(
             settings={
                 'response_type': (Pet,),
                 'auth': [
                     'api_key'
                 ],
                 'endpoint_path': '/pet/{petId}',
-                'operation_id': 'get_pet_by_id',
+                'operation_id': 'get_by_id',
                 'http_method': 'GET',
                 'servers': None,
             },
@@ -309,14 +309,14 @@ class PetApi(object):
             },
             api_client=api_client
         )
-        self.update_pet_endpoint = _Endpoint(
+        self.update_endpoint = _Endpoint(
             settings={
                 'response_type': (Pet,),
                 'auth': [
                     'petstore_auth'
                 ],
                 'endpoint_path': '/pet',
-                'operation_id': 'update_pet',
+                'operation_id': 'update',
                 'http_method': 'PUT',
                 'servers': None,
             },
@@ -363,14 +363,14 @@ class PetApi(object):
             },
             api_client=api_client
         )
-        self.update_pet_with_form_endpoint = _Endpoint(
+        self.update_with_form_endpoint = _Endpoint(
             settings={
                 'response_type': None,
                 'auth': [
                     'petstore_auth'
                 ],
                 'endpoint_path': '/pet/{petId}',
-                'operation_id': 'update_pet_with_form',
+                'operation_id': 'update_with_form',
                 'http_method': 'POST',
                 'servers': None,
             },
@@ -424,14 +424,14 @@ class PetApi(object):
             },
             api_client=api_client
         )
-        self.upload_file_endpoint = _Endpoint(
+        self.upload_image_endpoint = _Endpoint(
             settings={
                 'response_type': (ApiResponse,),
                 'auth': [
                     'petstore_auth'
                 ],
                 'endpoint_path': '/pet/{petId}/uploadImage',
-                'operation_id': 'upload_file',
+                'operation_id': 'upload_image',
                 'http_method': 'POST',
                 'servers': None,
             },
@@ -488,7 +488,7 @@ class PetApi(object):
             api_client=api_client
         )
 
-    def add_pet(
+    def add(
         self,
         pet,
         **kwargs
@@ -499,7 +499,7 @@ class PetApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.add_pet(pet, async_req=True)
+        >>> thread = api.add(pet, async_req=True)
         >>> result = thread.get()
 
         Args:
@@ -569,7 +569,7 @@ class PetApi(object):
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
         kwargs['pet'] = \
             pet
-        return self.add_pet_endpoint.call_with_http_info(**kwargs)
+        return self.add_endpoint.call_with_http_info(**kwargs)
 
     def delete(
         self,
@@ -589,7 +589,6 @@ class PetApi(object):
             pet_id (int): Pet id to delete
 
         Keyword Args:
-            api_key (str): [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -655,7 +654,7 @@ class PetApi(object):
             pet_id
         return self.delete_endpoint.call_with_http_info(**kwargs)
 
-    def find_pets_by_status(
+    def find_by_status(
         self,
         status,
         **kwargs
@@ -666,7 +665,7 @@ class PetApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.find_pets_by_status(status, async_req=True)
+        >>> thread = api.find_by_status(status, async_req=True)
         >>> result = thread.get()
 
         Args:
@@ -705,7 +704,7 @@ class PetApi(object):
             async_req (bool): execute request asynchronously
 
         Returns:
-            [Pet]
+            FindByStatusResponse
                 If the method is called asynchronously, returns the request
                 thread.
         """
@@ -736,9 +735,9 @@ class PetApi(object):
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
         kwargs['status'] = \
             status
-        return self.find_pets_by_status_endpoint.call_with_http_info(**kwargs)
+        return self.find_by_status_endpoint.call_with_http_info(**kwargs)
 
-    def find_pets_by_tags(
+    def find_by_tags(
         self,
         tags,
         **kwargs
@@ -749,7 +748,7 @@ class PetApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.find_pets_by_tags(tags, async_req=True)
+        >>> thread = api.find_by_tags(tags, async_req=True)
         >>> result = thread.get()
 
         Args:
@@ -788,7 +787,7 @@ class PetApi(object):
             async_req (bool): execute request asynchronously
 
         Returns:
-            [Pet]
+            FindByTagsResponse
                 If the method is called asynchronously, returns the request
                 thread.
         """
@@ -819,9 +818,9 @@ class PetApi(object):
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
         kwargs['tags'] = \
             tags
-        return self.find_pets_by_tags_endpoint.call_with_http_info(**kwargs)
+        return self.find_by_tags_endpoint.call_with_http_info(**kwargs)
 
-    def get_pet_by_id(
+    def get_by_id(
         self,
         pet_id,
         **kwargs
@@ -832,7 +831,7 @@ class PetApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.get_pet_by_id(pet_id, async_req=True)
+        >>> thread = api.get_by_id(pet_id, async_req=True)
         >>> result = thread.get()
 
         Args:
@@ -902,9 +901,9 @@ class PetApi(object):
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
         kwargs['pet_id'] = \
             pet_id
-        return self.get_pet_by_id_endpoint.call_with_http_info(**kwargs)
+        return self.get_by_id_endpoint.call_with_http_info(**kwargs)
 
-    def update_pet(
+    def update(
         self,
         pet,
         **kwargs
@@ -915,7 +914,7 @@ class PetApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.update_pet(pet, async_req=True)
+        >>> thread = api.update(pet, async_req=True)
         >>> result = thread.get()
 
         Args:
@@ -985,9 +984,9 @@ class PetApi(object):
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
         kwargs['pet'] = \
             pet
-        return self.update_pet_endpoint.call_with_http_info(**kwargs)
+        return self.update_endpoint.call_with_http_info(**kwargs)
 
-    def update_pet_with_form(
+    def update_with_form(
         self,
         pet_id,
         **kwargs
@@ -998,7 +997,7 @@ class PetApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.update_pet_with_form(pet_id, async_req=True)
+        >>> thread = api.update_with_form(pet_id, async_req=True)
         >>> result = thread.get()
 
         Args:
@@ -1070,9 +1069,9 @@ class PetApi(object):
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
         kwargs['pet_id'] = \
             pet_id
-        return self.update_pet_with_form_endpoint.call_with_http_info(**kwargs)
+        return self.update_with_form_endpoint.call_with_http_info(**kwargs)
 
-    def upload_file(
+    def upload_image(
         self,
         pet_id,
         **kwargs
@@ -1083,7 +1082,7 @@ class PetApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.upload_file(pet_id, async_req=True)
+        >>> thread = api.upload_image(pet_id, async_req=True)
         >>> result = thread.get()
 
         Args:
@@ -1155,5 +1154,5 @@ class PetApi(object):
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
         kwargs['pet_id'] = \
             pet_id
-        return self.upload_file_endpoint.call_with_http_info(**kwargs)
+        return self.upload_image_endpoint.call_with_http_info(**kwargs)
 

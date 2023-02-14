@@ -4,18 +4,18 @@ All URIs are relative to *http://petstore.swagger.io/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**add_pet**](PetApi.md#add_pet) | **POST** /pet | Add a new pet to the store
+[**add**](PetApi.md#add) | **POST** /pet | Add a new pet to the store
 [**delete**](PetApi.md#delete) | **DELETE** /pet/{petId} | Deletes a pet
-[**find_pets_by_status**](PetApi.md#find_pets_by_status) | **GET** /pet/findByStatus | Finds Pets by status
-[**find_pets_by_tags**](PetApi.md#find_pets_by_tags) | **GET** /pet/findByTags | Finds Pets by tags
-[**get_pet_by_id**](PetApi.md#get_pet_by_id) | **GET** /pet/{petId} | Find pet by ID
-[**update_pet**](PetApi.md#update_pet) | **PUT** /pet | Update an existing pet
-[**update_pet_with_form**](PetApi.md#update_pet_with_form) | **POST** /pet/{petId} | Updates a pet in the store with form data
-[**upload_file**](PetApi.md#upload_file) | **POST** /pet/{petId}/uploadImage | uploads an image
+[**find_by_status**](PetApi.md#find_by_status) | **GET** /pet/findByStatus | Finds Pets by status
+[**find_by_tags**](PetApi.md#find_by_tags) | **GET** /pet/findByTags | Finds Pets by tags
+[**get_by_id**](PetApi.md#get_by_id) | **GET** /pet/{petId} | Find pet by ID
+[**update**](PetApi.md#update) | **PUT** /pet | Update an existing pet
+[**update_with_form**](PetApi.md#update_with_form) | **POST** /pet/{petId} | Updates a pet in the store with form data
+[**upload_image**](PetApi.md#upload_image) | **POST** /pet/{petId}/uploadImage | uploads an image
 
 
-# **add_pet**
-> Pet add_pet(pet)
+# **add**
+> Pet add(pet)
 
 Add a new pet to the store
 
@@ -39,7 +39,7 @@ from pprint import pprint
 configuration = acme_client.Configuration(
     # Defining the host is optional and defaults to http://petstore.swagger.io/v2
     # See configuration.py for a list of all supported configuration parameters.
-    host = 'http://petstore.swagger.io/v2'
+    host = 'http://petstore.swagger.io/v2',
     access_token='YOUR_ACCESS_TOKEN'
 )
 
@@ -48,6 +48,12 @@ with acme_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pet_api.PetApi(api_client)
     pet = Pet(
+        tags=[
+            Tag(
+                id=1,
+                name="name_example",
+            ),
+        ],
         id=1,
         category=Category(
             id=1,
@@ -57,22 +63,16 @@ with acme_client.ApiClient(configuration) as api_client:
         photo_urls=[
             "photo_urls_example",
         ],
-        tags=[
-            Tag(
-                id=1,
-                name="name_example",
-            ),
-        ],
         status="available",
     ) # Pet | Pet object that needs to be added to the store
 
     # example passing only required values which don't have defaults set
     try:
         # Add a new pet to the store
-        api_response = api_instance.add_pet(pet)
+        api_response = api_instance.add(pet)
         pprint(api_response)
     except acme_client.ApiException as e:
-        print("Exception when calling PetApi->add_pet: %s\n" % e)
+        print("Exception when calling PetApi->add: %s\n" % e)
 ```
 
 
@@ -114,6 +114,7 @@ Deletes a pet
 
 ### Example
 
+* Api Key Authentication (api_key):
 * OAuth Authentication (petstore_auth):
 
 ```python
@@ -125,11 +126,22 @@ from pprint import pprint
 # in accordance with the API server security policy.
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
+
+# Configure API key authorization: api_key
+configuration = acme_client.Configuration(
+    api_key={'api_key': 'YOUR_API_KEY'},
+    # Defining the host is optional and defaults to http://petstore.swagger.io/v2
+    # See configuration.py for a list of all supported configuration parameters.
+    host = 'http://petstore.swagger.io/v2'
+)
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['api_key'] = 'Bearer'
 # Configure OAuth2 access token for authorization: petstore_auth
 configuration = acme_client.Configuration(
     # Defining the host is optional and defaults to http://petstore.swagger.io/v2
     # See configuration.py for a list of all supported configuration parameters.
-    host = 'http://petstore.swagger.io/v2'
+    host = 'http://petstore.swagger.io/v2',
     access_token='YOUR_ACCESS_TOKEN'
 )
 
@@ -138,20 +150,11 @@ with acme_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pet_api.PetApi(api_client)
     pet_id = 1 # int | Pet id to delete
-    api_key = "api_key_example" # str |  (optional)
 
     # example passing only required values which don't have defaults set
     try:
         # Deletes a pet
         api_instance.delete(pet_id)
-    except acme_client.ApiException as e:
-        print("Exception when calling PetApi->delete: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
-    try:
-        # Deletes a pet
-        api_instance.delete(pet_id, api_key=api_key)
     except acme_client.ApiException as e:
         print("Exception when calling PetApi->delete: %s\n" % e)
 ```
@@ -162,7 +165,6 @@ with acme_client.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **pet_id** | **int**| Pet id to delete |
- **api_key** | **str**|  | [optional]
 
 ### Return type
 
@@ -170,7 +172,7 @@ void (empty response body)
 
 ### Authorization
 
-[petstore_auth](../README.md#petstore_auth)
+[api_key](../README.md#api_key), [petstore_auth](../README.md#petstore_auth)
 
 ### HTTP request headers
 
@@ -182,12 +184,12 @@ void (empty response body)
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**400** | Invalid pet value |  -  |
+**0** | Invalid pet value |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **find_pets_by_status**
-> [Pet] find_pets_by_status(status)
+# **find_by_status**
+> FindByStatusResponse find_by_status(status)
 
 Finds Pets by status
 
@@ -201,7 +203,8 @@ Multiple status values can be provided with comma separated strings
 import time
 import acme_client
 from acme_client.api import pet_api
-from acme_client.model.pet import Pet
+from acme_client.model.find_by_status_response import FindByStatusResponse
+from acme_client.model.find_by_status200_response import FindByStatus200Response
 from pprint import pprint
 # The client must configure the authentication and authorization parameters
 # in accordance with the API server security policy.
@@ -211,7 +214,7 @@ from pprint import pprint
 configuration = acme_client.Configuration(
     # Defining the host is optional and defaults to http://petstore.swagger.io/v2
     # See configuration.py for a list of all supported configuration parameters.
-    host = 'http://petstore.swagger.io/v2'
+    host = 'http://petstore.swagger.io/v2',
     access_token='YOUR_ACCESS_TOKEN'
 )
 
@@ -226,10 +229,10 @@ with acme_client.ApiClient(configuration) as api_client:
     # example passing only required values which don't have defaults set
     try:
         # Finds Pets by status
-        api_response = api_instance.find_pets_by_status(status)
+        api_response = api_instance.find_by_status(status)
         pprint(api_response)
     except acme_client.ApiException as e:
-        print("Exception when calling PetApi->find_pets_by_status: %s\n" % e)
+        print("Exception when calling PetApi->find_by_status: %s\n" % e)
 ```
 
 
@@ -241,7 +244,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[Pet]**](Pet.md)
+[**FindByStatusResponse**](FindByStatusResponse.md)
 
 ### Authorization
 
@@ -262,8 +265,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **find_pets_by_tags**
-> [Pet] find_pets_by_tags(tags)
+# **find_by_tags**
+> FindByTagsResponse find_by_tags(tags)
 
 Finds Pets by tags
 
@@ -277,7 +280,8 @@ Multiple tags can be provided with comma separated strings. Use tag1, tag2, tag3
 import time
 import acme_client
 from acme_client.api import pet_api
-from acme_client.model.pet import Pet
+from acme_client.model.find_by_tags200_response import FindByTags200Response
+from acme_client.model.find_by_tags_response import FindByTagsResponse
 from pprint import pprint
 # The client must configure the authentication and authorization parameters
 # in accordance with the API server security policy.
@@ -287,7 +291,7 @@ from pprint import pprint
 configuration = acme_client.Configuration(
     # Defining the host is optional and defaults to http://petstore.swagger.io/v2
     # See configuration.py for a list of all supported configuration parameters.
-    host = 'http://petstore.swagger.io/v2'
+    host = 'http://petstore.swagger.io/v2',
     access_token='YOUR_ACCESS_TOKEN'
 )
 
@@ -302,10 +306,10 @@ with acme_client.ApiClient(configuration) as api_client:
     # example passing only required values which don't have defaults set
     try:
         # Finds Pets by tags
-        api_response = api_instance.find_pets_by_tags(tags)
+        api_response = api_instance.find_by_tags(tags)
         pprint(api_response)
     except acme_client.ApiException as e:
-        print("Exception when calling PetApi->find_pets_by_tags: %s\n" % e)
+        print("Exception when calling PetApi->find_by_tags: %s\n" % e)
 ```
 
 
@@ -317,7 +321,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[Pet]**](Pet.md)
+[**FindByTagsResponse**](FindByTagsResponse.md)
 
 ### Authorization
 
@@ -338,8 +342,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_pet_by_id**
-> Pet get_pet_by_id(pet_id)
+# **get_by_id**
+> Pet get_by_id(pet_id)
 
 Find pet by ID
 
@@ -361,7 +365,12 @@ from pprint import pprint
 # satisfies your auth use case.
 
 # Configure API key authorization: api_key
-configuration = acme_client.Configuration(api_key={'api_key': 'YOUR_API_KEY'})
+configuration = acme_client.Configuration(
+    api_key={'api_key': 'YOUR_API_KEY'},
+    # Defining the host is optional and defaults to http://petstore.swagger.io/v2
+    # See configuration.py for a list of all supported configuration parameters.
+    host = 'http://petstore.swagger.io/v2'
+)
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['api_key'] = 'Bearer'
@@ -375,10 +384,10 @@ with acme_client.ApiClient(configuration) as api_client:
     # example passing only required values which don't have defaults set
     try:
         # Find pet by ID
-        api_response = api_instance.get_pet_by_id(pet_id)
+        api_response = api_instance.get_by_id(pet_id)
         pprint(api_response)
     except acme_client.ApiException as e:
-        print("Exception when calling PetApi->get_pet_by_id: %s\n" % e)
+        print("Exception when calling PetApi->get_by_id: %s\n" % e)
 ```
 
 
@@ -412,8 +421,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **update_pet**
-> Pet update_pet(pet)
+# **update**
+> Pet update(pet)
 
 Update an existing pet
 
@@ -437,7 +446,7 @@ from pprint import pprint
 configuration = acme_client.Configuration(
     # Defining the host is optional and defaults to http://petstore.swagger.io/v2
     # See configuration.py for a list of all supported configuration parameters.
-    host = 'http://petstore.swagger.io/v2'
+    host = 'http://petstore.swagger.io/v2',
     access_token='YOUR_ACCESS_TOKEN'
 )
 
@@ -446,6 +455,12 @@ with acme_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = pet_api.PetApi(api_client)
     pet = Pet(
+        tags=[
+            Tag(
+                id=1,
+                name="name_example",
+            ),
+        ],
         id=1,
         category=Category(
             id=1,
@@ -455,22 +470,16 @@ with acme_client.ApiClient(configuration) as api_client:
         photo_urls=[
             "photo_urls_example",
         ],
-        tags=[
-            Tag(
-                id=1,
-                name="name_example",
-            ),
-        ],
         status="available",
     ) # Pet | Pet object that needs to be added to the store
 
     # example passing only required values which don't have defaults set
     try:
         # Update an existing pet
-        api_response = api_instance.update_pet(pet)
+        api_response = api_instance.update(pet)
         pprint(api_response)
     except acme_client.ApiException as e:
-        print("Exception when calling PetApi->update_pet: %s\n" % e)
+        print("Exception when calling PetApi->update: %s\n" % e)
 ```
 
 
@@ -505,8 +514,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **update_pet_with_form**
-> update_pet_with_form(pet_id)
+# **update_with_form**
+> update_with_form(pet_id)
 
 Updates a pet in the store with form data
 
@@ -529,7 +538,7 @@ from pprint import pprint
 configuration = acme_client.Configuration(
     # Defining the host is optional and defaults to http://petstore.swagger.io/v2
     # See configuration.py for a list of all supported configuration parameters.
-    host = 'http://petstore.swagger.io/v2'
+    host = 'http://petstore.swagger.io/v2',
     access_token='YOUR_ACCESS_TOKEN'
 )
 
@@ -544,17 +553,17 @@ with acme_client.ApiClient(configuration) as api_client:
     # example passing only required values which don't have defaults set
     try:
         # Updates a pet in the store with form data
-        api_instance.update_pet_with_form(pet_id)
+        api_instance.update_with_form(pet_id)
     except acme_client.ApiException as e:
-        print("Exception when calling PetApi->update_pet_with_form: %s\n" % e)
+        print("Exception when calling PetApi->update_with_form: %s\n" % e)
 
     # example passing only required values which don't have defaults set
     # and optional values
     try:
         # Updates a pet in the store with form data
-        api_instance.update_pet_with_form(pet_id, name=name, status=status)
+        api_instance.update_with_form(pet_id, name=name, status=status)
     except acme_client.ApiException as e:
-        print("Exception when calling PetApi->update_pet_with_form: %s\n" % e)
+        print("Exception when calling PetApi->update_with_form: %s\n" % e)
 ```
 
 
@@ -584,12 +593,12 @@ void (empty response body)
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**405** | Invalid input |  -  |
+**0** | Invalid input |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **upload_file**
-> ApiResponse upload_file(pet_id)
+# **upload_image**
+> ApiResponse upload_image(pet_id)
 
 uploads an image
 
@@ -613,7 +622,7 @@ from pprint import pprint
 configuration = acme_client.Configuration(
     # Defining the host is optional and defaults to http://petstore.swagger.io/v2
     # See configuration.py for a list of all supported configuration parameters.
-    host = 'http://petstore.swagger.io/v2'
+    host = 'http://petstore.swagger.io/v2',
     access_token='YOUR_ACCESS_TOKEN'
 )
 
@@ -628,19 +637,19 @@ with acme_client.ApiClient(configuration) as api_client:
     # example passing only required values which don't have defaults set
     try:
         # uploads an image
-        api_response = api_instance.upload_file(pet_id)
+        api_response = api_instance.upload_image(pet_id)
         pprint(api_response)
     except acme_client.ApiException as e:
-        print("Exception when calling PetApi->upload_file: %s\n" % e)
+        print("Exception when calling PetApi->upload_image: %s\n" % e)
 
     # example passing only required values which don't have defaults set
     # and optional values
     try:
         # uploads an image
-        api_response = api_instance.upload_file(pet_id, additional_metadata=additional_metadata, file=file)
+        api_response = api_instance.upload_image(pet_id, additional_metadata=additional_metadata, file=file)
         pprint(api_response)
     except acme_client.ApiException as e:
-        print("Exception when calling PetApi->upload_file: %s\n" % e)
+        print("Exception when calling PetApi->upload_image: %s\n" % e)
 ```
 
 

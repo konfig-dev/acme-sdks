@@ -40,9 +40,9 @@ public class PetApiTest {
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void addPetTest() throws ApiException {
+    public void addTest() throws ApiException {
         Pet pet = null;
-        Pet response = api.addPet(pet);
+        Pet response = api.add(pet);
         // TODO: test validations
     }
 
@@ -56,8 +56,7 @@ public class PetApiTest {
     @Test
     public void deleteTest() throws ApiException {
         Long petId = null;
-        String apiKey = null;
-        api.delete(petId, apiKey);
+        api.delete(petId);
         // TODO: test validations
     }
 
@@ -69,9 +68,9 @@ public class PetApiTest {
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void findPetsByStatusTest() throws ApiException {
+    public void findByStatusTest() throws ApiException {
         List<String> status = null;
-        List<Pet> response = api.findPetsByStatus(status);
+        List<Pet> response = api.findByStatus(status);
         // TODO: test validations
     }
 
@@ -83,9 +82,9 @@ public class PetApiTest {
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void findPetsByTagsTest() throws ApiException {
+    public void findByTagsTest() throws ApiException {
         List<String> tags = null;
-        List<Pet> response = api.findPetsByTags(tags);
+        List<Pet> response = api.findByTags(tags);
         // TODO: test validations
     }
 
@@ -97,9 +96,9 @@ public class PetApiTest {
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getPetByIdTest() throws ApiException {
+    public void getByIdTest() throws ApiException {
         Long petId = null;
-        Pet response = api.getPetById(petId);
+        Pet response = api.getById(petId);
         // TODO: test validations
     }
 
@@ -111,9 +110,9 @@ public class PetApiTest {
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void updatePetTest() throws ApiException {
+    public void updateTest() throws ApiException {
         Pet pet = null;
-        Pet response = api.updatePet(pet);
+        Pet response = api.update(pet);
         // TODO: test validations
     }
 
@@ -125,11 +124,11 @@ public class PetApiTest {
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void updatePetWithFormTest() throws ApiException {
+    public void updateWithFormTest() throws ApiException {
         Long petId = null;
         String name = null;
         String status = null;
-        api.updatePetWithForm(petId, name, status);
+        api.updateWithForm(petId, name, status);
         // TODO: test validations
     }
 
@@ -141,11 +140,11 @@ public class PetApiTest {
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void uploadFileTest() throws ApiException {
+    public void uploadImageTest() throws ApiException {
         Long petId = null;
         String additionalMetadata = null;
         File _file = null;
-        ModelApiResponse response = api.uploadFile(petId, additionalMetadata, _file);
+        ModelApiResponse response = api.uploadImage(petId, additionalMetadata, _file);
         // TODO: test validations
     }
 

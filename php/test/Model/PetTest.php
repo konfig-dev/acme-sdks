@@ -80,6 +80,15 @@ class PetTest extends TestCase
     }
 
     /**
+     * Test attribute "tags"
+     */
+    public function testPropertyTags()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "id"
      */
     public function testPropertyId()
@@ -110,15 +119,6 @@ class PetTest extends TestCase
      * Test attribute "photo_urls"
      */
     public function testPropertyPhotoUrls()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "tags"
-     */
-    public function testPropertyTags()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

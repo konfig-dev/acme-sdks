@@ -55,14 +55,14 @@ namespace Acme.Net.Test.Api
         }
 
         /// <summary>
-        /// Test AddPet
+        /// Test Add
         /// </summary>
         [Fact]
-        public void AddPetTest()
+        public void AddTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
             //Pet pet = null;
-            //var response = instance.AddPet(pet);
+            //var response = instance.Add(pet);
             //Assert.IsType<Pet>(response);
         }
 
@@ -74,82 +74,81 @@ namespace Acme.Net.Test.Api
         {
             // TODO uncomment below to test the method and replace null with proper value
             //long petId = null;
-            //string apiKey = null;
-            //instance.Delete(petId, apiKey);
+            //instance.Delete(petId);
         }
 
         /// <summary>
-        /// Test FindPetsByStatus
+        /// Test FindByStatus
         /// </summary>
         [Fact]
-        public void FindPetsByStatusTest()
+        public void FindByStatusTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
             //List<string> status = null;
-            //var response = instance.FindPetsByStatus(status);
+            //var response = instance.FindByStatus(status);
             //Assert.IsType<List<Pet>>(response);
         }
 
         /// <summary>
-        /// Test FindPetsByTags
+        /// Test FindByTags
         /// </summary>
         [Fact]
-        public void FindPetsByTagsTest()
+        public void FindByTagsTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
             //List<string> tags = null;
-            //var response = instance.FindPetsByTags(tags);
+            //var response = instance.FindByTags(tags);
             //Assert.IsType<List<Pet>>(response);
         }
 
         /// <summary>
-        /// Test GetPetById
+        /// Test GetById
         /// </summary>
         [Fact]
-        public void GetPetByIdTest()
+        public void GetByIdTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
             //long petId = null;
-            //var response = instance.GetPetById(petId);
+            //var response = instance.GetById(petId);
             //Assert.IsType<Pet>(response);
         }
 
         /// <summary>
-        /// Test UpdatePet
+        /// Test Update
         /// </summary>
         [Fact]
-        public void UpdatePetTest()
+        public void UpdateTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
             //Pet pet = null;
-            //var response = instance.UpdatePet(pet);
+            //var response = instance.Update(pet);
             //Assert.IsType<Pet>(response);
         }
 
         /// <summary>
-        /// Test UpdatePetWithForm
+        /// Test UpdateWithForm
         /// </summary>
         [Fact]
-        public void UpdatePetWithFormTest()
+        public void UpdateWithFormTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
             //long petId = null;
             //string name = null;
             //string status = null;
-            //instance.UpdatePetWithForm(petId, name, status);
+            //instance.UpdateWithForm(petId, name, status);
         }
 
         /// <summary>
-        /// Test UploadFile
+        /// Test UploadImage
         /// </summary>
         [Fact]
-        public void UploadFileTest()
+        public void UploadImageTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
             //long petId = null;
             //string additionalMetadata = null;
             //System.IO.Stream file = null;
-            //var response = instance.UploadFile(petId, additionalMetadata, file);
+            //var response = instance.UploadImage(petId, additionalMetadata, file);
             //Assert.IsType<ApiResponse>(response);
         }
     }

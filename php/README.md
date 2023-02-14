@@ -49,23 +49,19 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-// Configure OAuth2 access token for authorization: petstore_auth
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-
-$apiInstance = new OpenAPI\Client\Api\PetApi(
+$apiInstance = new OpenAPI\Client\Api\MiscellaneousApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
-$pet = new \OpenAPI\Client\Model\Pet(); // \OpenAPI\Client\Model\Pet | Pet object that needs to be added to the store
+$paginate_request = new \OpenAPI\Client\Model\PaginateRequest(); // \OpenAPI\Client\Model\PaginateRequest
 
 try {
-    $result = $apiInstance->addPet($pet);
+    $result = $apiInstance->paginate($paginate_request);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling PetApi->addPet: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling MiscellaneousApi->paginate: ', $e->getMessage(), PHP_EOL;
 }
 
 ```
@@ -76,32 +72,38 @@ All URIs are relative to *http://petstore.swagger.io/v2*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*PetApi* | [**addPet**](docs/Api/PetApi.md#addpet) | **POST** /pet | Add a new pet to the store
+*MiscellaneousApi* | [**paginate**](docs/Api/MiscellaneousApi.md#paginate) | **GET** /pagination | Pagination sandbox
+*PetApi* | [**add**](docs/Api/PetApi.md#add) | **POST** /pet | Add a new pet to the store
 *PetApi* | [**delete**](docs/Api/PetApi.md#delete) | **DELETE** /pet/{petId} | Deletes a pet
-*PetApi* | [**findPetsByStatus**](docs/Api/PetApi.md#findpetsbystatus) | **GET** /pet/findByStatus | Finds Pets by status
-*PetApi* | [**findPetsByTags**](docs/Api/PetApi.md#findpetsbytags) | **GET** /pet/findByTags | Finds Pets by tags
-*PetApi* | [**getPetById**](docs/Api/PetApi.md#getpetbyid) | **GET** /pet/{petId} | Find pet by ID
-*PetApi* | [**updatePet**](docs/Api/PetApi.md#updatepet) | **PUT** /pet | Update an existing pet
-*PetApi* | [**updatePetWithForm**](docs/Api/PetApi.md#updatepetwithform) | **POST** /pet/{petId} | Updates a pet in the store with form data
-*PetApi* | [**uploadFile**](docs/Api/PetApi.md#uploadfile) | **POST** /pet/{petId}/uploadImage | uploads an image
+*PetApi* | [**findByStatus**](docs/Api/PetApi.md#findbystatus) | **GET** /pet/findByStatus | Finds Pets by status
+*PetApi* | [**findByTags**](docs/Api/PetApi.md#findbytags) | **GET** /pet/findByTags | Finds Pets by tags
+*PetApi* | [**getById**](docs/Api/PetApi.md#getbyid) | **GET** /pet/{petId} | Find pet by ID
+*PetApi* | [**update**](docs/Api/PetApi.md#update) | **PUT** /pet | Update an existing pet
+*PetApi* | [**updateWithForm**](docs/Api/PetApi.md#updatewithform) | **POST** /pet/{petId} | Updates a pet in the store with form data
+*PetApi* | [**uploadImage**](docs/Api/PetApi.md#uploadimage) | **POST** /pet/{petId}/uploadImage | uploads an image
 *StoreApi* | [**deleteOrder**](docs/Api/StoreApi.md#deleteorder) | **DELETE** /store/order/{orderId} | Delete purchase order by ID
 *StoreApi* | [**getInventory**](docs/Api/StoreApi.md#getinventory) | **GET** /store/inventory | Returns pet inventories by status
 *StoreApi* | [**getOrderById**](docs/Api/StoreApi.md#getorderbyid) | **GET** /store/order/{orderId} | Find purchase order by ID
 *StoreApi* | [**placeOrder**](docs/Api/StoreApi.md#placeorder) | **POST** /store/order | Place an order for a pet
-*UserApi* | [**createUser**](docs/Api/UserApi.md#createuser) | **POST** /user | Create user
-*UserApi* | [**createUsersWithArrayInput**](docs/Api/UserApi.md#createuserswitharrayinput) | **POST** /user/createWithArray | Creates list of users with given input array
-*UserApi* | [**createUsersWithListInput**](docs/Api/UserApi.md#createuserswithlistinput) | **POST** /user/createWithList | Creates list of users with given input array
-*UserApi* | [**deleteUser**](docs/Api/UserApi.md#deleteuser) | **DELETE** /user/{username} | Delete user
-*UserApi* | [**getUserByName**](docs/Api/UserApi.md#getuserbyname) | **GET** /user/{username} | Get user by user name
-*UserApi* | [**loginUser**](docs/Api/UserApi.md#loginuser) | **GET** /user/login | Logs user into the system
-*UserApi* | [**logoutUser**](docs/Api/UserApi.md#logoutuser) | **GET** /user/logout | Logs out current logged in user session
-*UserApi* | [**updateUser**](docs/Api/UserApi.md#updateuser) | **PUT** /user/{username} | Updated user
+*UserApi* | [**create**](docs/Api/UserApi.md#create) | **POST** /user | Create user
+*UserApi* | [**createWithArray**](docs/Api/UserApi.md#createwitharray) | **POST** /user/createWithArray | Creates list of users with given input array
+*UserApi* | [**createWithList**](docs/Api/UserApi.md#createwithlist) | **POST** /user/createWithList | Creates list of users with given input array
+*UserApi* | [**delete**](docs/Api/UserApi.md#delete) | **DELETE** /user/{username} | Delete user
+*UserApi* | [**getByName**](docs/Api/UserApi.md#getbyname) | **GET** /user/{username} | Get user by user name
+*UserApi* | [**login**](docs/Api/UserApi.md#login) | **GET** /user/login | Logs user into the system
+*UserApi* | [**logout**](docs/Api/UserApi.md#logout) | **GET** /user/logout | Logs out current logged in user session
+*UserApi* | [**update**](docs/Api/UserApi.md#update) | **PUT** /user/{username} | Updated user
 
 ## Models
 
 - [ApiResponse](docs/Model/ApiResponse.md)
 - [Category](docs/Model/Category.md)
 - [Order](docs/Model/Order.md)
+- [PaginateRequest](docs/Model/PaginateRequest.md)
+- [PaginateResponse](docs/Model/PaginateResponse.md)
+- [PaginateResponseEdges](docs/Model/PaginateResponseEdges.md)
+- [PaginateResponseEdgesNode](docs/Model/PaginateResponseEdgesNode.md)
+- [PaginateResponsePageInfo](docs/Model/PaginateResponsePageInfo.md)
 - [Pet](docs/Model/Pet.md)
 - [Tag](docs/Model/Tag.md)
 - [User](docs/Model/User.md)

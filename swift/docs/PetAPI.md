@@ -4,19 +4,19 @@ All URIs are relative to *http://petstore.swagger.io/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**addPet**](PetAPI.md#addpet) | **POST** /pet | Add a new pet to the store
+[**add**](PetAPI.md#add) | **POST** /pet | Add a new pet to the store
 [**delete**](PetAPI.md#delete) | **DELETE** /pet/{petId} | Deletes a pet
-[**findPetsByStatus**](PetAPI.md#findpetsbystatus) | **GET** /pet/findByStatus | Finds Pets by status
-[**findPetsByTags**](PetAPI.md#findpetsbytags) | **GET** /pet/findByTags | Finds Pets by tags
-[**getPetById**](PetAPI.md#getpetbyid) | **GET** /pet/{petId} | Find pet by ID
-[**updatePet**](PetAPI.md#updatepet) | **PUT** /pet | Update an existing pet
-[**updatePetWithForm**](PetAPI.md#updatepetwithform) | **POST** /pet/{petId} | Updates a pet in the store with form data
-[**uploadFile**](PetAPI.md#uploadfile) | **POST** /pet/{petId}/uploadImage | uploads an image
+[**findByStatus**](PetAPI.md#findbystatus) | **GET** /pet/findByStatus | Finds Pets by status
+[**findByTags**](PetAPI.md#findbytags) | **GET** /pet/findByTags | Finds Pets by tags
+[**getById**](PetAPI.md#getbyid) | **GET** /pet/{petId} | Find pet by ID
+[**update**](PetAPI.md#update) | **PUT** /pet | Update an existing pet
+[**updateWithForm**](PetAPI.md#updatewithform) | **POST** /pet/{petId} | Updates a pet in the store with form data
+[**uploadImage**](PetAPI.md#uploadimage) | **POST** /pet/{petId}/uploadImage | uploads an image
 
 
-# **addPet**
+# **add**
 ```swift
-    open class func addPet(pet: Pet, completion: @escaping (_ data: Pet?, _ error: Error?) -> Void)
+    open class func add(pet: Pet, completion: @escaping (_ data: Pet?, _ error: Error?) -> Void)
 ```
 
 Add a new pet to the store
@@ -27,10 +27,10 @@ Add a new pet to the store
 ```swift
 import Acme
 
-let pet = Pet(id: 123, category: Category(id: 123, name: "name_example"), name: "name_example", photoUrls: ["photoUrls_example"], tags: [Tag(id: 123, name: "name_example")], status: "status_example") // Pet | Pet object that needs to be added to the store
+let pet = Pet(tags: [Tag(id: 123, name: "name_example")], id: 123, category: Category(id: 123, name: "name_example"), name: "name_example", photoUrls: ["photoUrls_example"], status: "status_example") // Pet | Pet object that needs to be added to the store
 
 // Add a new pet to the store
-PetAPI.addPet(pet: pet) { (response, error) in
+PetAPI.add(pet: pet) { (response, error) in
     guard error == nil else {
         print(error!)
         return
@@ -65,7 +65,7 @@ Name | Type | Description  | Notes
 
 # **delete**
 ```swift
-    open class func delete(petId: Int64, apiKey: String? = nil, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func delete(petId: Int64, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
 ```
 
 Deletes a pet
@@ -77,10 +77,9 @@ Deletes a pet
 import Acme
 
 let petId = 987 // Int64 | Pet id to delete
-let apiKey = "apiKey_example" // String |  (optional)
 
 // Deletes a pet
-PetAPI.delete(petId: petId, apiKey: apiKey) { (response, error) in
+PetAPI.delete(petId: petId) { (response, error) in
     guard error == nil else {
         print(error!)
         return
@@ -97,7 +96,6 @@ PetAPI.delete(petId: petId, apiKey: apiKey) { (response, error) in
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **petId** | **Int64** | Pet id to delete | 
- **apiKey** | **String** |  | [optional] 
 
 ### Return type
 
@@ -105,7 +103,7 @@ Void (empty response body)
 
 ### Authorization
 
-[petstore_auth](../README.md#petstore_auth)
+[api_key](../README.md#api_key), [petstore_auth](../README.md#petstore_auth)
 
 ### HTTP request headers
 
@@ -114,9 +112,9 @@ Void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
-# **findPetsByStatus**
+# **findByStatus**
 ```swift
-    open class func findPetsByStatus(status: [Status_findPetsByStatus], completion: @escaping (_ data: [Pet]?, _ error: Error?) -> Void)
+    open class func findByStatus(status: [Status_findByStatus], completion: @escaping (_ data: [Pet]?, _ error: Error?) -> Void)
 ```
 
 Finds Pets by status
@@ -130,7 +128,7 @@ import Acme
 let status = ["status_example"] // [String] | Status values that need to be considered for filter
 
 // Finds Pets by status
-PetAPI.findPetsByStatus(status: status) { (response, error) in
+PetAPI.findByStatus(status: status) { (response, error) in
     guard error == nil else {
         print(error!)
         return
@@ -163,9 +161,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
-# **findPetsByTags**
+# **findByTags**
 ```swift
-    open class func findPetsByTags(tags: [String], completion: @escaping (_ data: [Pet]?, _ error: Error?) -> Void)
+    open class func findByTags(tags: [String], completion: @escaping (_ data: [Pet]?, _ error: Error?) -> Void)
 ```
 
 Finds Pets by tags
@@ -179,7 +177,7 @@ import Acme
 let tags = ["inner_example"] // [String] | Tags to filter by
 
 // Finds Pets by tags
-PetAPI.findPetsByTags(tags: tags) { (response, error) in
+PetAPI.findByTags(tags: tags) { (response, error) in
     guard error == nil else {
         print(error!)
         return
@@ -212,9 +210,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
-# **getPetById**
+# **getById**
 ```swift
-    open class func getPetById(petId: Int64, completion: @escaping (_ data: Pet?, _ error: Error?) -> Void)
+    open class func getById(petId: Int64, completion: @escaping (_ data: Pet?, _ error: Error?) -> Void)
 ```
 
 Find pet by ID
@@ -228,7 +226,7 @@ import Acme
 let petId = 987 // Int64 | ID of pet to return
 
 // Find pet by ID
-PetAPI.getPetById(petId: petId) { (response, error) in
+PetAPI.getById(petId: petId) { (response, error) in
     guard error == nil else {
         print(error!)
         return
@@ -261,9 +259,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
-# **updatePet**
+# **update**
 ```swift
-    open class func updatePet(pet: Pet, completion: @escaping (_ data: Pet?, _ error: Error?) -> Void)
+    open class func update(pet: Pet, completion: @escaping (_ data: Pet?, _ error: Error?) -> Void)
 ```
 
 Update an existing pet
@@ -274,10 +272,10 @@ Update an existing pet
 ```swift
 import Acme
 
-let pet = Pet(id: 123, category: Category(id: 123, name: "name_example"), name: "name_example", photoUrls: ["photoUrls_example"], tags: [Tag(id: 123, name: "name_example")], status: "status_example") // Pet | Pet object that needs to be added to the store
+let pet = Pet(tags: [Tag(id: 123, name: "name_example")], id: 123, category: Category(id: 123, name: "name_example"), name: "name_example", photoUrls: ["photoUrls_example"], status: "status_example") // Pet | Pet object that needs to be added to the store
 
 // Update an existing pet
-PetAPI.updatePet(pet: pet) { (response, error) in
+PetAPI.update(pet: pet) { (response, error) in
     guard error == nil else {
         print(error!)
         return
@@ -310,9 +308,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
-# **updatePetWithForm**
+# **updateWithForm**
 ```swift
-    open class func updatePetWithForm(petId: Int64, name: String? = nil, status: String? = nil, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func updateWithForm(petId: Int64, name: String? = nil, status: String? = nil, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
 ```
 
 Updates a pet in the store with form data
@@ -328,7 +326,7 @@ let name = "name_example" // String | Updated name of the pet (optional)
 let status = "status_example" // String | Updated status of the pet (optional)
 
 // Updates a pet in the store with form data
-PetAPI.updatePetWithForm(petId: petId, name: name, status: status) { (response, error) in
+PetAPI.updateWithForm(petId: petId, name: name, status: status) { (response, error) in
     guard error == nil else {
         print(error!)
         return
@@ -363,9 +361,9 @@ Void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
-# **uploadFile**
+# **uploadImage**
 ```swift
-    open class func uploadFile(petId: Int64, additionalMetadata: String? = nil, file: URL? = nil, completion: @escaping (_ data: ApiResponse?, _ error: Error?) -> Void)
+    open class func uploadImage(petId: Int64, additionalMetadata: String? = nil, file: URL? = nil, completion: @escaping (_ data: ApiResponse?, _ error: Error?) -> Void)
 ```
 
 uploads an image
@@ -381,7 +379,7 @@ let additionalMetadata = "additionalMetadata_example" // String | Additional dat
 let file = URL(string: "https://example.com")! // URL | file to upload (optional)
 
 // uploads an image
-PetAPI.uploadFile(petId: petId, additionalMetadata: additionalMetadata, file: file) { (response, error) in
+PetAPI.uploadImage(petId: petId, additionalMetadata: additionalMetadata, file: file) { (response, error) in
     guard error == nil else {
         print(error!)
         return

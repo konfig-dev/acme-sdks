@@ -4,18 +4,18 @@ All URIs are relative to *http://petstore.swagger.io/v2*
 
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
-| [**AddPet**](PetApi.md#addpet) | **POST** /pet | Add a new pet to the store |
+| [**Add**](PetApi.md#add) | **POST** /pet | Add a new pet to the store |
 | [**Delete**](PetApi.md#delete) | **DELETE** /pet/{petId} | Deletes a pet |
-| [**FindPetsByStatus**](PetApi.md#findpetsbystatus) | **GET** /pet/findByStatus | Finds Pets by status |
-| [**FindPetsByTags**](PetApi.md#findpetsbytags) | **GET** /pet/findByTags | Finds Pets by tags |
-| [**GetPetById**](PetApi.md#getpetbyid) | **GET** /pet/{petId} | Find pet by ID |
-| [**UpdatePet**](PetApi.md#updatepet) | **PUT** /pet | Update an existing pet |
-| [**UpdatePetWithForm**](PetApi.md#updatepetwithform) | **POST** /pet/{petId} | Updates a pet in the store with form data |
-| [**UploadFile**](PetApi.md#uploadfile) | **POST** /pet/{petId}/uploadImage | uploads an image |
+| [**FindByStatus**](PetApi.md#findbystatus) | **GET** /pet/findByStatus | Finds Pets by status |
+| [**FindByTags**](PetApi.md#findbytags) | **GET** /pet/findByTags | Finds Pets by tags |
+| [**GetById**](PetApi.md#getbyid) | **GET** /pet/{petId} | Find pet by ID |
+| [**Update**](PetApi.md#update) | **PUT** /pet | Update an existing pet |
+| [**UpdateWithForm**](PetApi.md#updatewithform) | **POST** /pet/{petId} | Updates a pet in the store with form data |
+| [**UploadImage**](PetApi.md#uploadimage) | **POST** /pet/{petId}/uploadImage | uploads an image |
 
-<a name="addpet"></a>
-# **AddPet**
-> Pet AddPet (Pet pet)
+<a name="add"></a>
+# **Add**
+> Pet Add (Pet pet)
 
 Add a new pet to the store
 
@@ -29,7 +29,7 @@ using Acme.Net.Model;
 
 namespace Example
 {
-    public class AddPetExample
+    public class AddExample
     {
         public static void Main()
         {
@@ -44,12 +44,12 @@ namespace Example
             try
             {
                 // Add a new pet to the store
-                Pet result = apiInstance.AddPet(pet);
+                Pet result = apiInstance.Add(pet);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling PetApi.AddPet: " + e.Message);
+                Debug.Print("Exception when calling PetApi.Add: " + e.Message);
                 Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
@@ -58,21 +58,21 @@ namespace Example
 }
 ```
 
-#### Using the AddPetWithHttpInfo variant
+#### Using the AddWithHttpInfo variant
 This returns an ApiResponse object which contains the response data, status code and headers.
 
 ```csharp
 try
 {
     // Add a new pet to the store
-    ApiResponse<Pet> response = apiInstance.AddPetWithHttpInfo(pet);
+    ApiResponse<Pet> response = apiInstance.AddWithHttpInfo(pet);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
 }
 catch (ApiException e)
 {
-    Debug.Print("Exception when calling PetApi.AddPetWithHttpInfo: " + e.Message);
+    Debug.Print("Exception when calling PetApi.AddWithHttpInfo: " + e.Message);
     Debug.Print("Status Code: " + e.ErrorCode);
     Debug.Print(e.StackTrace);
 }
@@ -108,7 +108,7 @@ catch (ApiException e)
 
 <a name="delete"></a>
 # **Delete**
-> void Delete (long petId, string apiKey = null)
+> void Delete (long petId)
 
 Deletes a pet
 
@@ -128,17 +128,20 @@ namespace Example
         {
             Configuration config = new Configuration();
             config.BasePath = "http://petstore.swagger.io/v2";
+            // Configure API key authorization: api_key
+            config.AddApiKey("api_key", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // config.AddApiKeyPrefix("api_key", "Bearer");
             // Configure OAuth2 access token for authorization: petstore_auth
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
             var apiInstance = new PetApi(config);
             var petId = 789L;  // long | Pet id to delete
-            var apiKey = "apiKey_example";  // string |  (optional) 
 
             try
             {
                 // Deletes a pet
-                apiInstance.Delete(petId, apiKey);
+                apiInstance.Delete(petId);
             }
             catch (ApiException  e)
             {
@@ -158,7 +161,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Deletes a pet
-    apiInstance.DeleteWithHttpInfo(petId, apiKey);
+    apiInstance.DeleteWithHttpInfo(petId);
 }
 catch (ApiException e)
 {
@@ -173,7 +176,6 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **petId** | **long** | Pet id to delete |  |
-| **apiKey** | **string** |  | [optional]  |
 
 ### Return type
 
@@ -181,7 +183,7 @@ void (empty response body)
 
 ### Authorization
 
-[petstore_auth](../README.md#petstore_auth)
+[api_key](../README.md#api_key), [petstore_auth](../README.md#petstore_auth)
 
 ### HTTP request headers
 
@@ -192,13 +194,13 @@ void (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **400** | Invalid pet value |  -  |
+| **0** | Invalid pet value |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="findpetsbystatus"></a>
-# **FindPetsByStatus**
-> List&lt;Pet&gt; FindPetsByStatus (List<string> status)
+<a name="findbystatus"></a>
+# **FindByStatus**
+> List&lt;Pet&gt; FindByStatus (List<string> status)
 
 Finds Pets by status
 
@@ -214,7 +216,7 @@ using Acme.Net.Model;
 
 namespace Example
 {
-    public class FindPetsByStatusExample
+    public class FindByStatusExample
     {
         public static void Main()
         {
@@ -229,12 +231,12 @@ namespace Example
             try
             {
                 // Finds Pets by status
-                List<Pet> result = apiInstance.FindPetsByStatus(status);
+                List<Pet> result = apiInstance.FindByStatus(status);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling PetApi.FindPetsByStatus: " + e.Message);
+                Debug.Print("Exception when calling PetApi.FindByStatus: " + e.Message);
                 Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
@@ -243,21 +245,21 @@ namespace Example
 }
 ```
 
-#### Using the FindPetsByStatusWithHttpInfo variant
+#### Using the FindByStatusWithHttpInfo variant
 This returns an ApiResponse object which contains the response data, status code and headers.
 
 ```csharp
 try
 {
     // Finds Pets by status
-    ApiResponse<List<Pet>> response = apiInstance.FindPetsByStatusWithHttpInfo(status);
+    ApiResponse<List<Pet>> response = apiInstance.FindByStatusWithHttpInfo(status);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
 }
 catch (ApiException e)
 {
-    Debug.Print("Exception when calling PetApi.FindPetsByStatusWithHttpInfo: " + e.Message);
+    Debug.Print("Exception when calling PetApi.FindByStatusWithHttpInfo: " + e.Message);
     Debug.Print("Status Code: " + e.ErrorCode);
     Debug.Print(e.StackTrace);
 }
@@ -291,9 +293,9 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="findpetsbytags"></a>
-# **FindPetsByTags**
-> List&lt;Pet&gt; FindPetsByTags (List<string> tags)
+<a name="findbytags"></a>
+# **FindByTags**
+> List&lt;Pet&gt; FindByTags (List<string> tags)
 
 Finds Pets by tags
 
@@ -309,7 +311,7 @@ using Acme.Net.Model;
 
 namespace Example
 {
-    public class FindPetsByTagsExample
+    public class FindByTagsExample
     {
         public static void Main()
         {
@@ -324,12 +326,12 @@ namespace Example
             try
             {
                 // Finds Pets by tags
-                List<Pet> result = apiInstance.FindPetsByTags(tags);
+                List<Pet> result = apiInstance.FindByTags(tags);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling PetApi.FindPetsByTags: " + e.Message);
+                Debug.Print("Exception when calling PetApi.FindByTags: " + e.Message);
                 Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
@@ -338,21 +340,21 @@ namespace Example
 }
 ```
 
-#### Using the FindPetsByTagsWithHttpInfo variant
+#### Using the FindByTagsWithHttpInfo variant
 This returns an ApiResponse object which contains the response data, status code and headers.
 
 ```csharp
 try
 {
     // Finds Pets by tags
-    ApiResponse<List<Pet>> response = apiInstance.FindPetsByTagsWithHttpInfo(tags);
+    ApiResponse<List<Pet>> response = apiInstance.FindByTagsWithHttpInfo(tags);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
 }
 catch (ApiException e)
 {
-    Debug.Print("Exception when calling PetApi.FindPetsByTagsWithHttpInfo: " + e.Message);
+    Debug.Print("Exception when calling PetApi.FindByTagsWithHttpInfo: " + e.Message);
     Debug.Print("Status Code: " + e.ErrorCode);
     Debug.Print(e.StackTrace);
 }
@@ -386,9 +388,9 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getpetbyid"></a>
-# **GetPetById**
-> Pet GetPetById (long petId)
+<a name="getbyid"></a>
+# **GetById**
+> Pet GetById (long petId)
 
 Find pet by ID
 
@@ -404,7 +406,7 @@ using Acme.Net.Model;
 
 namespace Example
 {
-    public class GetPetByIdExample
+    public class GetByIdExample
     {
         public static void Main()
         {
@@ -421,12 +423,12 @@ namespace Example
             try
             {
                 // Find pet by ID
-                Pet result = apiInstance.GetPetById(petId);
+                Pet result = apiInstance.GetById(petId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling PetApi.GetPetById: " + e.Message);
+                Debug.Print("Exception when calling PetApi.GetById: " + e.Message);
                 Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
@@ -435,21 +437,21 @@ namespace Example
 }
 ```
 
-#### Using the GetPetByIdWithHttpInfo variant
+#### Using the GetByIdWithHttpInfo variant
 This returns an ApiResponse object which contains the response data, status code and headers.
 
 ```csharp
 try
 {
     // Find pet by ID
-    ApiResponse<Pet> response = apiInstance.GetPetByIdWithHttpInfo(petId);
+    ApiResponse<Pet> response = apiInstance.GetByIdWithHttpInfo(petId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
 }
 catch (ApiException e)
 {
-    Debug.Print("Exception when calling PetApi.GetPetByIdWithHttpInfo: " + e.Message);
+    Debug.Print("Exception when calling PetApi.GetByIdWithHttpInfo: " + e.Message);
     Debug.Print("Status Code: " + e.ErrorCode);
     Debug.Print(e.StackTrace);
 }
@@ -484,9 +486,9 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="updatepet"></a>
-# **UpdatePet**
-> Pet UpdatePet (Pet pet)
+<a name="update"></a>
+# **Update**
+> Pet Update (Pet pet)
 
 Update an existing pet
 
@@ -500,7 +502,7 @@ using Acme.Net.Model;
 
 namespace Example
 {
-    public class UpdatePetExample
+    public class UpdateExample
     {
         public static void Main()
         {
@@ -515,12 +517,12 @@ namespace Example
             try
             {
                 // Update an existing pet
-                Pet result = apiInstance.UpdatePet(pet);
+                Pet result = apiInstance.Update(pet);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling PetApi.UpdatePet: " + e.Message);
+                Debug.Print("Exception when calling PetApi.Update: " + e.Message);
                 Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
@@ -529,21 +531,21 @@ namespace Example
 }
 ```
 
-#### Using the UpdatePetWithHttpInfo variant
+#### Using the UpdateWithHttpInfo variant
 This returns an ApiResponse object which contains the response data, status code and headers.
 
 ```csharp
 try
 {
     // Update an existing pet
-    ApiResponse<Pet> response = apiInstance.UpdatePetWithHttpInfo(pet);
+    ApiResponse<Pet> response = apiInstance.UpdateWithHttpInfo(pet);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
 }
 catch (ApiException e)
 {
-    Debug.Print("Exception when calling PetApi.UpdatePetWithHttpInfo: " + e.Message);
+    Debug.Print("Exception when calling PetApi.UpdateWithHttpInfo: " + e.Message);
     Debug.Print("Status Code: " + e.ErrorCode);
     Debug.Print(e.StackTrace);
 }
@@ -579,9 +581,9 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="updatepetwithform"></a>
-# **UpdatePetWithForm**
-> void UpdatePetWithForm (long petId, string name = null, string status = null)
+<a name="updatewithform"></a>
+# **UpdateWithForm**
+> void UpdateWithForm (long petId, string name = null, string status = null)
 
 Updates a pet in the store with form data
 
@@ -595,7 +597,7 @@ using Acme.Net.Model;
 
 namespace Example
 {
-    public class UpdatePetWithFormExample
+    public class UpdateWithFormExample
     {
         public static void Main()
         {
@@ -612,11 +614,11 @@ namespace Example
             try
             {
                 // Updates a pet in the store with form data
-                apiInstance.UpdatePetWithForm(petId, name, status);
+                apiInstance.UpdateWithForm(petId, name, status);
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling PetApi.UpdatePetWithForm: " + e.Message);
+                Debug.Print("Exception when calling PetApi.UpdateWithForm: " + e.Message);
                 Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
@@ -625,18 +627,18 @@ namespace Example
 }
 ```
 
-#### Using the UpdatePetWithFormWithHttpInfo variant
+#### Using the UpdateWithFormWithHttpInfo variant
 This returns an ApiResponse object which contains the response data, status code and headers.
 
 ```csharp
 try
 {
     // Updates a pet in the store with form data
-    apiInstance.UpdatePetWithFormWithHttpInfo(petId, name, status);
+    apiInstance.UpdateWithFormWithHttpInfo(petId, name, status);
 }
 catch (ApiException e)
 {
-    Debug.Print("Exception when calling PetApi.UpdatePetWithFormWithHttpInfo: " + e.Message);
+    Debug.Print("Exception when calling PetApi.UpdateWithFormWithHttpInfo: " + e.Message);
     Debug.Print("Status Code: " + e.ErrorCode);
     Debug.Print(e.StackTrace);
 }
@@ -667,13 +669,13 @@ void (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **405** | Invalid input |  -  |
+| **0** | Invalid input |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="uploadfile"></a>
-# **UploadFile**
-> ApiResponse UploadFile (long petId, string additionalMetadata = null, System.IO.Stream file = null)
+<a name="uploadimage"></a>
+# **UploadImage**
+> ApiResponse UploadImage (long petId, string additionalMetadata = null, System.IO.Stream file = null)
 
 uploads an image
 
@@ -687,7 +689,7 @@ using Acme.Net.Model;
 
 namespace Example
 {
-    public class UploadFileExample
+    public class UploadImageExample
     {
         public static void Main()
         {
@@ -704,12 +706,12 @@ namespace Example
             try
             {
                 // uploads an image
-                ApiResponse result = apiInstance.UploadFile(petId, additionalMetadata, file);
+                ApiResponse result = apiInstance.UploadImage(petId, additionalMetadata, file);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling PetApi.UploadFile: " + e.Message);
+                Debug.Print("Exception when calling PetApi.UploadImage: " + e.Message);
                 Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
@@ -718,21 +720,21 @@ namespace Example
 }
 ```
 
-#### Using the UploadFileWithHttpInfo variant
+#### Using the UploadImageWithHttpInfo variant
 This returns an ApiResponse object which contains the response data, status code and headers.
 
 ```csharp
 try
 {
     // uploads an image
-    ApiResponse<ApiResponse> response = apiInstance.UploadFileWithHttpInfo(petId, additionalMetadata, file);
+    ApiResponse<ApiResponse> response = apiInstance.UploadImageWithHttpInfo(petId, additionalMetadata, file);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
 }
 catch (ApiException e)
 {
-    Debug.Print("Exception when calling PetApi.UploadFileWithHttpInfo: " + e.Message);
+    Debug.Print("Exception when calling PetApi.UploadImageWithHttpInfo: " + e.Message);
     Debug.Print("Status Code: " + e.ErrorCode);
     Debug.Print(e.StackTrace);
 }

@@ -20,8 +20,8 @@ open class PetAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func addPet(pet: Pet, apiResponseQueue: DispatchQueue = AcmeAPI.apiResponseQueue, completion: @escaping ((_ data: Pet?, _ error: Error?) -> Void)) -> RequestTask {
-        return addPetWithRequestBuilder(pet: pet).execute(apiResponseQueue) { result in
+    open class func add(pet: Pet, apiResponseQueue: DispatchQueue = AcmeAPI.apiResponseQueue, completion: @escaping ((_ data: Pet?, _ error: Error?) -> Void)) -> RequestTask {
+        return addWithRequestBuilder(pet: pet).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -41,7 +41,7 @@ open class PetAPI {
      - parameter pet: (body) Pet object that needs to be added to the store 
      - returns: RequestBuilder<Pet> 
      */
-    open class func addPetWithRequestBuilder(pet: Pet) -> RequestBuilder<Pet> {
+    open class func addWithRequestBuilder(pet: Pet) -> RequestBuilder<Pet> {
         let localVariablePath = "/pet"
         let localVariableURLString = AcmeAPI.basePath + localVariablePath
         let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: pet)
@@ -63,13 +63,12 @@ open class PetAPI {
      Deletes a pet
      
      - parameter petId: (path) Pet id to delete 
-     - parameter apiKey: (header)  (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func delete(petId: Int64, apiKey: String? = nil, apiResponseQueue: DispatchQueue = AcmeAPI.apiResponseQueue, completion: @escaping ((_ data: Void?, _ error: Error?) -> Void)) -> RequestTask {
-        return deleteWithRequestBuilder(petId: petId, apiKey: apiKey).execute(apiResponseQueue) { result in
+    open class func delete(petId: Int64, apiResponseQueue: DispatchQueue = AcmeAPI.apiResponseQueue, completion: @escaping ((_ data: Void?, _ error: Error?) -> Void)) -> RequestTask {
+        return deleteWithRequestBuilder(petId: petId).execute(apiResponseQueue) { result in
             switch result {
             case .success:
                 completion((), nil)
@@ -83,14 +82,16 @@ open class PetAPI {
      Deletes a pet
      - DELETE /pet/{petId}
      - 
+     - API Key:
+       - type: apiKey api_key 
+       - name: api_key
      - OAuth:
        - type: oauth2
        - name: petstore_auth
      - parameter petId: (path) Pet id to delete 
-     - parameter apiKey: (header)  (optional)
      - returns: RequestBuilder<Void> 
      */
-    open class func deleteWithRequestBuilder(petId: Int64, apiKey: String? = nil) -> RequestBuilder<Void> {
+    open class func deleteWithRequestBuilder(petId: Int64) -> RequestBuilder<Void> {
         var localVariablePath = "/pet/{petId}"
         let petIdPreEscape = "\(APIHelper.mapValueToPathItem(petId))"
         let petIdPostEscape = petIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -101,7 +102,7 @@ open class PetAPI {
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: Any?] = [
-            "api_key": apiKey?.encodeToJSON(),
+            :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
@@ -114,7 +115,7 @@ open class PetAPI {
     /**
      * enum for parameter status
      */
-    public enum Status_findPetsByStatus: String, CaseIterable {
+    public enum Status_findByStatus: String, CaseIterable {
         case available = "available"
         case pending = "pending"
         case sold = "sold"
@@ -128,8 +129,8 @@ open class PetAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func findPetsByStatus(status: [Status_findPetsByStatus], apiResponseQueue: DispatchQueue = AcmeAPI.apiResponseQueue, completion: @escaping ((_ data: [Pet]?, _ error: Error?) -> Void)) -> RequestTask {
-        return findPetsByStatusWithRequestBuilder(status: status).execute(apiResponseQueue) { result in
+    open class func findByStatus(status: [Status_findByStatus], apiResponseQueue: DispatchQueue = AcmeAPI.apiResponseQueue, completion: @escaping ((_ data: [Pet]?, _ error: Error?) -> Void)) -> RequestTask {
+        return findByStatusWithRequestBuilder(status: status).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -149,7 +150,7 @@ open class PetAPI {
      - parameter status: (query) Status values that need to be considered for filter 
      - returns: RequestBuilder<[Pet]> 
      */
-    open class func findPetsByStatusWithRequestBuilder(status: [Status_findPetsByStatus]) -> RequestBuilder<[Pet]> {
+    open class func findByStatusWithRequestBuilder(status: [Status_findByStatus]) -> RequestBuilder<[Pet]> {
         let localVariablePath = "/pet/findByStatus"
         let localVariableURLString = AcmeAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
@@ -179,8 +180,8 @@ open class PetAPI {
      */
     @available(*, deprecated, message: "This operation is deprecated.")
     @discardableResult
-    open class func findPetsByTags(tags: [String], apiResponseQueue: DispatchQueue = AcmeAPI.apiResponseQueue, completion: @escaping ((_ data: [Pet]?, _ error: Error?) -> Void)) -> RequestTask {
-        return findPetsByTagsWithRequestBuilder(tags: tags).execute(apiResponseQueue) { result in
+    open class func findByTags(tags: [String], apiResponseQueue: DispatchQueue = AcmeAPI.apiResponseQueue, completion: @escaping ((_ data: [Pet]?, _ error: Error?) -> Void)) -> RequestTask {
+        return findByTagsWithRequestBuilder(tags: tags).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -201,7 +202,7 @@ open class PetAPI {
      - returns: RequestBuilder<[Pet]> 
      */
     @available(*, deprecated, message: "This operation is deprecated.")
-    open class func findPetsByTagsWithRequestBuilder(tags: [String]) -> RequestBuilder<[Pet]> {
+    open class func findByTagsWithRequestBuilder(tags: [String]) -> RequestBuilder<[Pet]> {
         let localVariablePath = "/pet/findByTags"
         let localVariableURLString = AcmeAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
@@ -230,8 +231,8 @@ open class PetAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func getPetById(petId: Int64, apiResponseQueue: DispatchQueue = AcmeAPI.apiResponseQueue, completion: @escaping ((_ data: Pet?, _ error: Error?) -> Void)) -> RequestTask {
-        return getPetByIdWithRequestBuilder(petId: petId).execute(apiResponseQueue) { result in
+    open class func getById(petId: Int64, apiResponseQueue: DispatchQueue = AcmeAPI.apiResponseQueue, completion: @escaping ((_ data: Pet?, _ error: Error?) -> Void)) -> RequestTask {
+        return getByIdWithRequestBuilder(petId: petId).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -251,7 +252,7 @@ open class PetAPI {
      - parameter petId: (path) ID of pet to return 
      - returns: RequestBuilder<Pet> 
      */
-    open class func getPetByIdWithRequestBuilder(petId: Int64) -> RequestBuilder<Pet> {
+    open class func getByIdWithRequestBuilder(petId: Int64) -> RequestBuilder<Pet> {
         var localVariablePath = "/pet/{petId}"
         let petIdPreEscape = "\(APIHelper.mapValueToPathItem(petId))"
         let petIdPostEscape = petIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -280,8 +281,8 @@ open class PetAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func updatePet(pet: Pet, apiResponseQueue: DispatchQueue = AcmeAPI.apiResponseQueue, completion: @escaping ((_ data: Pet?, _ error: Error?) -> Void)) -> RequestTask {
-        return updatePetWithRequestBuilder(pet: pet).execute(apiResponseQueue) { result in
+    open class func update(pet: Pet, apiResponseQueue: DispatchQueue = AcmeAPI.apiResponseQueue, completion: @escaping ((_ data: Pet?, _ error: Error?) -> Void)) -> RequestTask {
+        return updateWithRequestBuilder(pet: pet).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -301,7 +302,7 @@ open class PetAPI {
      - parameter pet: (body) Pet object that needs to be added to the store 
      - returns: RequestBuilder<Pet> 
      */
-    open class func updatePetWithRequestBuilder(pet: Pet) -> RequestBuilder<Pet> {
+    open class func updateWithRequestBuilder(pet: Pet) -> RequestBuilder<Pet> {
         let localVariablePath = "/pet"
         let localVariableURLString = AcmeAPI.basePath + localVariablePath
         let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: pet)
@@ -329,8 +330,8 @@ open class PetAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func updatePetWithForm(petId: Int64, name: String? = nil, status: String? = nil, apiResponseQueue: DispatchQueue = AcmeAPI.apiResponseQueue, completion: @escaping ((_ data: Void?, _ error: Error?) -> Void)) -> RequestTask {
-        return updatePetWithFormWithRequestBuilder(petId: petId, name: name, status: status).execute(apiResponseQueue) { result in
+    open class func updateWithForm(petId: Int64, name: String? = nil, status: String? = nil, apiResponseQueue: DispatchQueue = AcmeAPI.apiResponseQueue, completion: @escaping ((_ data: Void?, _ error: Error?) -> Void)) -> RequestTask {
+        return updateWithFormWithRequestBuilder(petId: petId, name: name, status: status).execute(apiResponseQueue) { result in
             switch result {
             case .success:
                 completion((), nil)
@@ -352,7 +353,7 @@ open class PetAPI {
      - parameter status: (form) Updated status of the pet (optional)
      - returns: RequestBuilder<Void> 
      */
-    open class func updatePetWithFormWithRequestBuilder(petId: Int64, name: String? = nil, status: String? = nil) -> RequestBuilder<Void> {
+    open class func updateWithFormWithRequestBuilder(petId: Int64, name: String? = nil, status: String? = nil) -> RequestBuilder<Void> {
         var localVariablePath = "/pet/{petId}"
         let petIdPreEscape = "\(APIHelper.mapValueToPathItem(petId))"
         let petIdPostEscape = petIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -389,8 +390,8 @@ open class PetAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func uploadFile(petId: Int64, additionalMetadata: String? = nil, file: URL? = nil, apiResponseQueue: DispatchQueue = AcmeAPI.apiResponseQueue, completion: @escaping ((_ data: ApiResponse?, _ error: Error?) -> Void)) -> RequestTask {
-        return uploadFileWithRequestBuilder(petId: petId, additionalMetadata: additionalMetadata, file: file).execute(apiResponseQueue) { result in
+    open class func uploadImage(petId: Int64, additionalMetadata: String? = nil, file: URL? = nil, apiResponseQueue: DispatchQueue = AcmeAPI.apiResponseQueue, completion: @escaping ((_ data: ApiResponse?, _ error: Error?) -> Void)) -> RequestTask {
+        return uploadImageWithRequestBuilder(petId: petId, additionalMetadata: additionalMetadata, file: file).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -412,7 +413,7 @@ open class PetAPI {
      - parameter file: (form) file to upload (optional)
      - returns: RequestBuilder<ApiResponse> 
      */
-    open class func uploadFileWithRequestBuilder(petId: Int64, additionalMetadata: String? = nil, file: URL? = nil) -> RequestBuilder<ApiResponse> {
+    open class func uploadImageWithRequestBuilder(petId: Int64, additionalMetadata: String? = nil, file: URL? = nil) -> RequestBuilder<ApiResponse> {
         var localVariablePath = "/pet/{petId}/uploadImage"
         let petIdPreEscape = "\(APIHelper.mapValueToPathItem(petId))"
         let petIdPostEscape = petIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""

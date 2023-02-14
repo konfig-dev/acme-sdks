@@ -15,15 +15,38 @@ servers:
 tags:
 - description: Everything about your Pets
   name: pet
-- description: Access to Petstore orders
-  name: store
 - description: Operations about user
   name: user
+- description: Access to Petstore orders
+  name: store
+- description: miscellaneous namespace
+  name: miscellaneous
 paths:
+  /pagination:
+    get:
+      description: Iterate through a bunch of items
+      operationId: misc_paginate
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaginateRequest'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginateResponse'
+          description: OK
+      summary: Pagination sandbox
+      tags:
+      - miscellaneous
+      x-content-type: application/json
+      x-accepts: application/json
   /pet:
     post:
       description: ""
-      operationId: Hellothere_add_pet
+      operationId: pet_add
       requestBody:
         $ref: '#/components/requestBodies/Pet'
       responses:
@@ -49,7 +72,7 @@ paths:
       x-accepts: application/json
     put:
       description: ""
-      operationId: updatePet
+      operationId: pet_update
       requestBody:
         $ref: '#/components/requestBodies/Pet'
       responses:
@@ -80,7 +103,7 @@ paths:
   /pet/findByStatus:
     get:
       description: Multiple status values can be provided with comma separated strings
-      operationId: findPetsByStatus
+      operationId: pet_findByStatus
       parameters:
       - deprecated: true
         description: Status values that need to be considered for filter
@@ -103,14 +126,10 @@ paths:
           content:
             application/xml:
               schema:
-                items:
-                  $ref: '#/components/schemas/Pet'
-                type: array
+                $ref: '#/components/schemas/FindByStatusResponse'
             application/json:
               schema:
-                items:
-                  $ref: '#/components/schemas/Pet'
-                type: array
+                $ref: '#/components/schemas/FindByStatus200Response'
           description: successful operation
         "400":
           description: Invalid status value
@@ -126,7 +145,7 @@ paths:
       deprecated: true
       description: "Multiple tags can be provided with comma separated strings. Use\
         \ tag1, tag2, tag3 for testing."
-      operationId: findPetsByTags
+      operationId: pet_findByTags
       parameters:
       - description: Tags to filter by
         explode: false
@@ -143,14 +162,10 @@ paths:
           content:
             application/xml:
               schema:
-                items:
-                  $ref: '#/components/schemas/Pet'
-                type: array
+                $ref: '#/components/schemas/FindByTagsResponse'
             application/json:
               schema:
-                items:
-                  $ref: '#/components/schemas/Pet'
-                type: array
+                $ref: '#/components/schemas/FindByTags200Response'
           description: successful operation
         "400":
           description: Invalid tag value
@@ -166,13 +181,6 @@ paths:
       description: ""
       operationId: Pet_delete
       parameters:
-      - explode: false
-        in: header
-        name: api_key
-        required: false
-        schema:
-          type: string
-        style: simple
       - description: Pet id to delete
         explode: false
         in: path
@@ -183,19 +191,20 @@ paths:
           type: integer
         style: simple
       responses:
-        "400":
+        default:
           description: Invalid pet value
       security:
       - petstore_auth:
         - write:pets
         - read:pets
+        api_key: []
       summary: Deletes a pet
       tags:
       - pet
       x-accepts: application/json
     get:
       description: Returns a single pet
-      operationId: getPetById
+      operationId: pet_getById
       parameters:
       - description: ID of pet to return
         explode: false
@@ -228,7 +237,7 @@ paths:
       x-accepts: application/json
     post:
       description: ""
-      operationId: updatePetWithForm
+      operationId: pet_updateWithForm
       parameters:
       - description: ID of pet that needs to be updated
         explode: false
@@ -243,9 +252,9 @@ paths:
         content:
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/updatePetWithForm_request'
+              $ref: '#/components/schemas/UpdateWithFormRequest'
       responses:
-        "405":
+        default:
           description: Invalid input
       security:
       - petstore_auth:
@@ -259,7 +268,7 @@ paths:
   /pet/{petId}/uploadImage:
     post:
       description: ""
-      operationId: uploadFile
+      operationId: pet_uploadImage
       parameters:
       - description: ID of pet to update
         explode: false
@@ -274,7 +283,7 @@ paths:
         content:
           multipart/form-data:
             schema:
-              $ref: '#/components/schemas/uploadFile_request'
+              $ref: '#/components/schemas/UploadImageRequest'
       responses:
         "200":
           content:
@@ -294,16 +303,13 @@ paths:
   /store/inventory:
     get:
       description: Returns a map of status codes to quantities
-      operationId: getInventory
+      operationId: store_getInventory
       responses:
         "200":
           content:
             application/json:
               schema:
-                additionalProperties:
-                  format: int32
-                  type: integer
-                type: object
+                $ref: '#/components/schemas/GetInventoryResponse'
           description: successful operation
       security:
       - api_key: []
@@ -314,7 +320,7 @@ paths:
   /store/order:
     post:
       description: ""
-      operationId: placeOrder
+      operationId: store_placeOrder
       requestBody:
         content:
           application/json:
@@ -343,7 +349,7 @@ paths:
     delete:
       description: For valid response try integer IDs with value < 1000. Anything
         above 1000 or nonintegers will generate API errors
-      operationId: deleteOrder
+      operationId: store_deleteOrder
       parameters:
       - description: ID of the order that needs to be deleted
         explode: false
@@ -354,6 +360,8 @@ paths:
           type: string
         style: simple
       responses:
+        "200":
+          description: OK
         "400":
           description: Invalid ID supplied
         "404":
@@ -365,7 +373,7 @@ paths:
     get:
       description: For valid response try integer IDs with value <= 5 or > 10. Other
         values will generated exceptions
-      operationId: getOrderById
+      operationId: store_getOrderById
       parameters:
       - description: ID of pet that needs to be fetched
         explode: false
@@ -399,7 +407,7 @@ paths:
   /user:
     post:
       description: This can only be done by the logged in user.
-      operationId: createUser
+      operationId: user_create
       requestBody:
         content:
           application/json:
@@ -420,7 +428,7 @@ paths:
   /user/createWithArray:
     post:
       description: ""
-      operationId: createUsersWithArrayInput
+      operationId: user_createWithArray
       requestBody:
         $ref: '#/components/requestBodies/UserArray'
       responses:
@@ -436,7 +444,7 @@ paths:
   /user/createWithList:
     post:
       description: ""
-      operationId: createUsersWithListInput
+      operationId: user_createWithList
       requestBody:
         $ref: '#/components/requestBodies/UserArray'
       responses:
@@ -452,7 +460,7 @@ paths:
   /user/login:
     get:
       description: ""
-      operationId: loginUser
+      operationId: user_login
       parameters:
       - description: The user name for login
         explode: true
@@ -476,10 +484,10 @@ paths:
           content:
             application/xml:
               schema:
-                type: string
+                $ref: '#/components/schemas/LoginResponse'
             application/json:
               schema:
-                type: string
+                $ref: '#/components/schemas/Login200Response'
           description: successful operation
           headers:
             Set-Cookie:
@@ -513,7 +521,7 @@ paths:
   /user/logout:
     get:
       description: ""
-      operationId: logoutUser
+      operationId: user_logout
       responses:
         default:
           description: successful operation
@@ -526,7 +534,7 @@ paths:
   /user/{username}:
     delete:
       description: This can only be done by the logged in user.
-      operationId: deleteUser
+      operationId: user_delete
       parameters:
       - description: The name that needs to be deleted
         explode: false
@@ -537,6 +545,8 @@ paths:
           type: string
         style: simple
       responses:
+        "200":
+          description: OK
         "400":
           description: Invalid username supplied
         "404":
@@ -549,7 +559,7 @@ paths:
       x-accepts: application/json
     get:
       description: ""
-      operationId: getUserByName
+      operationId: user_getByName
       parameters:
       - description: The name that needs to be fetched. Use user1 for testing.
         explode: false
@@ -579,7 +589,7 @@ paths:
       x-accepts: application/json
     put:
       description: This can only be done by the logged in user.
-      operationId: updateUser
+      operationId: user_update
       parameters:
       - description: name that need to be deleted
         explode: false
@@ -597,6 +607,8 @@ paths:
         description: Updated user object
         required: true
       responses:
+        "200":
+          description: OK
         "400":
           description: Invalid user supplied
         "404":
@@ -614,9 +626,7 @@ components:
       content:
         application/json:
           schema:
-            items:
-              $ref: '#/components/schemas/User'
-            type: array
+            $ref: '#/components/schemas/CreateWithArrayRequest'
       description: List of user object
       required: true
     Pet:
@@ -670,7 +680,7 @@ components:
       description: A category for a pet
       example:
         name: name
-        id: 6
+        id: 1
       properties:
         id:
           format: int64
@@ -721,7 +731,7 @@ components:
       description: A tag for a pet
       example:
         name: name
-        id: 1
+        id: 0
       properties:
         id:
           format: int64
@@ -739,17 +749,24 @@ components:
         - photoUrls
         - photoUrls
         name: doggie
-        id: 0
+        id: 6
         category:
           name: name
-          id: 6
+          id: 1
         tags:
         - name: name
-          id: 1
+          id: 0
         - name: name
-          id: 1
+          id: 0
         status: available
       properties:
+        tags:
+          items:
+            $ref: '#/components/schemas/Tag'
+          type: array
+          xml:
+            name: tag
+            wrapped: true
         id:
           format: int64
           type: integer
@@ -764,13 +781,6 @@ components:
           type: array
           xml:
             name: photoUrl
-            wrapped: true
-        tags:
-          items:
-            $ref: '#/components/schemas/Tag'
-          type: array
-          xml:
-            name: tag
             wrapped: true
         status:
           deprecated: true
@@ -803,7 +813,17 @@ components:
           type: string
       title: An uploaded response
       type: object
-    updatePetWithForm_request:
+    PaginateRequest:
+      example:
+        after: after
+        first: 0
+      properties:
+        first:
+          type: integer
+        after:
+          type: string
+      type: object
+    UpdateWithFormRequest:
       properties:
         name:
           description: Updated name of the pet
@@ -812,7 +832,7 @@ components:
           description: Updated status of the pet
           type: string
       type: object
-    uploadFile_request:
+    UploadImageRequest:
       properties:
         additionalMetadata:
           description: Additional data to pass to server
@@ -820,6 +840,82 @@ components:
         file:
           description: file to upload
           format: binary
+          type: string
+      type: object
+    CreateWithArrayRequest:
+      items:
+        $ref: '#/components/schemas/User'
+      type: array
+    PaginateResponse:
+      example:
+        edges:
+          node:
+            message: message
+        pageInfo:
+          hasNextPage: true
+          hasPreviousPage: true
+          endCursor: endCursor
+          startCursor: startCursor
+      properties:
+        edges:
+          $ref: '#/components/schemas/PaginateResponse_edges'
+        pageInfo:
+          $ref: '#/components/schemas/PaginateResponse_pageInfo'
+      type: object
+    FindByStatusResponse:
+      items:
+        $ref: '#/components/schemas/Pet'
+      type: array
+    FindByStatus200Response:
+      items:
+        $ref: '#/components/schemas/Pet'
+      type: array
+    FindByTagsResponse:
+      items:
+        $ref: '#/components/schemas/Pet'
+      type: array
+    FindByTags200Response:
+      items:
+        $ref: '#/components/schemas/Pet'
+      type: array
+    GetInventoryResponse:
+      additionalProperties:
+        format: int32
+        type: integer
+      type: object
+    LoginResponse:
+      type: string
+    Login200Response:
+      type: string
+    PaginateResponse_edges_node:
+      example:
+        message: message
+      properties:
+        message:
+          type: string
+      type: object
+    PaginateResponse_edges:
+      example:
+        node:
+          message: message
+      properties:
+        node:
+          $ref: '#/components/schemas/PaginateResponse_edges_node'
+      type: object
+    PaginateResponse_pageInfo:
+      example:
+        hasNextPage: true
+        hasPreviousPage: true
+        endCursor: endCursor
+        startCursor: startCursor
+      properties:
+        hasNextPage:
+          type: boolean
+        hasPreviousPage:
+          type: boolean
+        startCursor:
+          type: string
+        endCursor:
           type: string
       type: object
   securitySchemes:

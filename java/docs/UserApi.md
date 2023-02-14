@@ -4,19 +4,19 @@ All URIs are relative to *http://petstore.swagger.io/v2*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**createUser**](UserApi.md#createUser) | **POST** /user | Create user |
-| [**createUsersWithArrayInput**](UserApi.md#createUsersWithArrayInput) | **POST** /user/createWithArray | Creates list of users with given input array |
-| [**createUsersWithListInput**](UserApi.md#createUsersWithListInput) | **POST** /user/createWithList | Creates list of users with given input array |
-| [**deleteUser**](UserApi.md#deleteUser) | **DELETE** /user/{username} | Delete user |
-| [**getUserByName**](UserApi.md#getUserByName) | **GET** /user/{username} | Get user by user name |
-| [**loginUser**](UserApi.md#loginUser) | **GET** /user/login | Logs user into the system |
-| [**logoutUser**](UserApi.md#logoutUser) | **GET** /user/logout | Logs out current logged in user session |
-| [**updateUser**](UserApi.md#updateUser) | **PUT** /user/{username} | Updated user |
+| [**create**](UserApi.md#create) | **POST** /user | Create user |
+| [**createWithArray**](UserApi.md#createWithArray) | **POST** /user/createWithArray | Creates list of users with given input array |
+| [**createWithList**](UserApi.md#createWithList) | **POST** /user/createWithList | Creates list of users with given input array |
+| [**delete**](UserApi.md#delete) | **DELETE** /user/{username} | Delete user |
+| [**getByName**](UserApi.md#getByName) | **GET** /user/{username} | Get user by user name |
+| [**login**](UserApi.md#login) | **GET** /user/login | Logs user into the system |
+| [**logout**](UserApi.md#logout) | **GET** /user/logout | Logs out current logged in user session |
+| [**update**](UserApi.md#update) | **PUT** /user/{username} | Updated user |
 
 
-<a name="createUser"></a>
-# **createUser**
-> createUser(user)
+<a name="create"></a>
+# **create**
+> create(user)
 
 Create user
 
@@ -46,9 +46,9 @@ public class Example {
     UserApi apiInstance = new UserApi(defaultClient);
     User user = new User(); // User | Created user object
     try {
-      apiInstance.createUser(user);
+      apiInstance.create(user);
     } catch (ApiException e) {
-      System.err.println("Exception when calling UserApi#createUser");
+      System.err.println("Exception when calling UserApi#create");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -82,9 +82,9 @@ null (empty response body)
 |-------------|-------------|------------------|
 | **0** | successful operation |  -  |
 
-<a name="createUsersWithArrayInput"></a>
-# **createUsersWithArrayInput**
-> createUsersWithArrayInput(user)
+<a name="createWithArray"></a>
+# **createWithArray**
+> createWithArray(user)
 
 Creates list of users with given input array
 
@@ -114,9 +114,9 @@ public class Example {
     UserApi apiInstance = new UserApi(defaultClient);
     List<User> user = Arrays.asList(); // List<User> | List of user object
     try {
-      apiInstance.createUsersWithArrayInput(user);
+      apiInstance.createWithArray(user);
     } catch (ApiException e) {
-      System.err.println("Exception when calling UserApi#createUsersWithArrayInput");
+      System.err.println("Exception when calling UserApi#createWithArray");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -150,9 +150,9 @@ null (empty response body)
 |-------------|-------------|------------------|
 | **0** | successful operation |  -  |
 
-<a name="createUsersWithListInput"></a>
-# **createUsersWithListInput**
-> createUsersWithListInput(user)
+<a name="createWithList"></a>
+# **createWithList**
+> createWithList(user)
 
 Creates list of users with given input array
 
@@ -182,9 +182,9 @@ public class Example {
     UserApi apiInstance = new UserApi(defaultClient);
     List<User> user = Arrays.asList(); // List<User> | List of user object
     try {
-      apiInstance.createUsersWithListInput(user);
+      apiInstance.createWithList(user);
     } catch (ApiException e) {
-      System.err.println("Exception when calling UserApi#createUsersWithListInput");
+      System.err.println("Exception when calling UserApi#createWithList");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -218,9 +218,9 @@ null (empty response body)
 |-------------|-------------|------------------|
 | **0** | successful operation |  -  |
 
-<a name="deleteUser"></a>
-# **deleteUser**
-> deleteUser(username)
+<a name="delete"></a>
+# **delete**
+> delete(username)
 
 Delete user
 
@@ -250,9 +250,9 @@ public class Example {
     UserApi apiInstance = new UserApi(defaultClient);
     String username = "username_example"; // String | The name that needs to be deleted
     try {
-      apiInstance.deleteUser(username);
+      apiInstance.delete(username);
     } catch (ApiException e) {
-      System.err.println("Exception when calling UserApi#deleteUser");
+      System.err.println("Exception when calling UserApi#delete");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -284,12 +284,13 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **200** | OK |  -  |
 | **400** | Invalid username supplied |  -  |
 | **404** | User not found |  -  |
 
-<a name="getUserByName"></a>
-# **getUserByName**
-> User getUserByName(username)
+<a name="getByName"></a>
+# **getByName**
+> User getByName(username)
 
 Get user by user name
 
@@ -312,10 +313,10 @@ public class Example {
     UserApi apiInstance = new UserApi(defaultClient);
     String username = "username_example"; // String | The name that needs to be fetched. Use user1 for testing.
     try {
-      User result = apiInstance.getUserByName(username);
+      User result = apiInstance.getByName(username);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling UserApi#getUserByName");
+      System.err.println("Exception when calling UserApi#getByName");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -351,9 +352,9 @@ No authorization required
 | **400** | Invalid username supplied |  -  |
 | **404** | User not found |  -  |
 
-<a name="loginUser"></a>
-# **loginUser**
-> String loginUser(username, password)
+<a name="login"></a>
+# **login**
+> String login(username, password)
 
 Logs user into the system
 
@@ -377,10 +378,10 @@ public class Example {
     String username = "username_example"; // String | The user name for login
     String password = "password_example"; // String | The password for login in clear text
     try {
-      String result = apiInstance.loginUser(username, password);
+      String result = apiInstance.login(username, password);
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling UserApi#loginUser");
+      System.err.println("Exception when calling UserApi#login");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -416,9 +417,9 @@ No authorization required
 | **200** | successful operation |  * Set-Cookie - Cookie authentication key for use with the &#x60;api_key&#x60; apiKey authentication. <br>  * X-Rate-Limit - calls per hour allowed by the user <br>  * X-Expires-After - date in UTC when token expires <br>  |
 | **400** | Invalid username/password supplied |  -  |
 
-<a name="logoutUser"></a>
-# **logoutUser**
-> logoutUser()
+<a name="logout"></a>
+# **logout**
+> logout()
 
 Logs out current logged in user session
 
@@ -447,9 +448,9 @@ public class Example {
 
     UserApi apiInstance = new UserApi(defaultClient);
     try {
-      apiInstance.logoutUser();
+      apiInstance.logout();
     } catch (ApiException e) {
-      System.err.println("Exception when calling UserApi#logoutUser");
+      System.err.println("Exception when calling UserApi#logout");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -480,9 +481,9 @@ null (empty response body)
 |-------------|-------------|------------------|
 | **0** | successful operation |  -  |
 
-<a name="updateUser"></a>
-# **updateUser**
-> updateUser(username, user)
+<a name="update"></a>
+# **update**
+> update(username, user)
 
 Updated user
 
@@ -513,9 +514,9 @@ public class Example {
     String username = "username_example"; // String | name that need to be deleted
     User user = new User(); // User | Updated user object
     try {
-      apiInstance.updateUser(username, user);
+      apiInstance.update(username, user);
     } catch (ApiException e) {
-      System.err.println("Exception when calling UserApi#updateUser");
+      System.err.println("Exception when calling UserApi#update");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -548,6 +549,7 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **200** | OK |  -  |
 | **400** | Invalid user supplied |  -  |
 | **404** | User not found |  -  |
 

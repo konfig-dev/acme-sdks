@@ -72,12 +72,12 @@ class PetApiTest extends TestCase
     }
 
     /**
-     * Test case for addPet
+     * Test case for add
      *
      * Add a new pet to the store.
      *
      */
-    public function testAddPet()
+    public function testAdd()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
@@ -96,72 +96,72 @@ class PetApiTest extends TestCase
     }
 
     /**
-     * Test case for findPetsByStatus
+     * Test case for findByStatus
      *
      * Finds Pets by status.
      *
      */
-    public function testFindPetsByStatus()
+    public function testFindByStatus()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for findPetsByTags
+     * Test case for findByTags
      *
      * Finds Pets by tags.
      *
      */
-    public function testFindPetsByTags()
+    public function testFindByTags()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getPetById
+     * Test case for getById
      *
      * Find pet by ID.
      *
      */
-    public function testGetPetById()
+    public function testGetById()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for updatePet
+     * Test case for update
      *
      * Update an existing pet.
      *
      */
-    public function testUpdatePet()
+    public function testUpdate()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for updatePetWithForm
+     * Test case for updateWithForm
      *
      * Updates a pet in the store with form data.
      *
      */
-    public function testUpdatePetWithForm()
+    public function testUpdateWithForm()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for uploadFile
+     * Test case for uploadImage
      *
      * uploads an image.
      *
      */
-    public function testUploadFile()
+    public function testUploadImage()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

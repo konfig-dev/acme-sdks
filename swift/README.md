@@ -48,10 +48,10 @@ AcmeAPI.customHeaders = [
 
 
 
-let pet = Pet(id: 123, category: Category(id: 123, name: "name_example"), name: "name_example", photoUrls: ["photoUrls_example"], tags: [Tag(id: 123, name: "name_example")], status: "status_example") // Pet | Pet object that needs to be added to the store
+let paginateRequest = PaginateRequest(first: 123, after: "after_example") // PaginateRequest |  (optional)
 
-// Add a new pet to the store
-PetAPI.addPet(pet: pet) { (response, error) in
+// Pagination sandbox
+MiscellaneousAPI.paginate(paginateRequest: paginateRequest) { (response, error) in
     guard error == nil else {
         print(error!)
         return
@@ -70,26 +70,27 @@ All URIs are relative to *http://petstore.swagger.io/v2*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*PetAPI* | [**addPet**](docs/PetAPI.md#addpet) | **POST** /pet | Add a new pet to the store
+*MiscellaneousAPI* | [**paginate**](docs/MiscellaneousAPI.md#paginate) | **GET** /pagination | Pagination sandbox
+*PetAPI* | [**add**](docs/PetAPI.md#add) | **POST** /pet | Add a new pet to the store
 *PetAPI* | [**delete**](docs/PetAPI.md#delete) | **DELETE** /pet/{petId} | Deletes a pet
-*PetAPI* | [**findPetsByStatus**](docs/PetAPI.md#findpetsbystatus) | **GET** /pet/findByStatus | Finds Pets by status
-*PetAPI* | [**findPetsByTags**](docs/PetAPI.md#findpetsbytags) | **GET** /pet/findByTags | Finds Pets by tags
-*PetAPI* | [**getPetById**](docs/PetAPI.md#getpetbyid) | **GET** /pet/{petId} | Find pet by ID
-*PetAPI* | [**updatePet**](docs/PetAPI.md#updatepet) | **PUT** /pet | Update an existing pet
-*PetAPI* | [**updatePetWithForm**](docs/PetAPI.md#updatepetwithform) | **POST** /pet/{petId} | Updates a pet in the store with form data
-*PetAPI* | [**uploadFile**](docs/PetAPI.md#uploadfile) | **POST** /pet/{petId}/uploadImage | uploads an image
+*PetAPI* | [**findByStatus**](docs/PetAPI.md#findbystatus) | **GET** /pet/findByStatus | Finds Pets by status
+*PetAPI* | [**findByTags**](docs/PetAPI.md#findbytags) | **GET** /pet/findByTags | Finds Pets by tags
+*PetAPI* | [**getById**](docs/PetAPI.md#getbyid) | **GET** /pet/{petId} | Find pet by ID
+*PetAPI* | [**update**](docs/PetAPI.md#update) | **PUT** /pet | Update an existing pet
+*PetAPI* | [**updateWithForm**](docs/PetAPI.md#updatewithform) | **POST** /pet/{petId} | Updates a pet in the store with form data
+*PetAPI* | [**uploadImage**](docs/PetAPI.md#uploadimage) | **POST** /pet/{petId}/uploadImage | uploads an image
 *StoreAPI* | [**deleteOrder**](docs/StoreAPI.md#deleteorder) | **DELETE** /store/order/{orderId} | Delete purchase order by ID
 *StoreAPI* | [**getInventory**](docs/StoreAPI.md#getinventory) | **GET** /store/inventory | Returns pet inventories by status
 *StoreAPI* | [**getOrderById**](docs/StoreAPI.md#getorderbyid) | **GET** /store/order/{orderId} | Find purchase order by ID
 *StoreAPI* | [**placeOrder**](docs/StoreAPI.md#placeorder) | **POST** /store/order | Place an order for a pet
-*UserAPI* | [**createUser**](docs/UserAPI.md#createuser) | **POST** /user | Create user
-*UserAPI* | [**createUsersWithArrayInput**](docs/UserAPI.md#createuserswitharrayinput) | **POST** /user/createWithArray | Creates list of users with given input array
-*UserAPI* | [**createUsersWithListInput**](docs/UserAPI.md#createuserswithlistinput) | **POST** /user/createWithList | Creates list of users with given input array
-*UserAPI* | [**deleteUser**](docs/UserAPI.md#deleteuser) | **DELETE** /user/{username} | Delete user
-*UserAPI* | [**getUserByName**](docs/UserAPI.md#getuserbyname) | **GET** /user/{username} | Get user by user name
-*UserAPI* | [**loginUser**](docs/UserAPI.md#loginuser) | **GET** /user/login | Logs user into the system
-*UserAPI* | [**logoutUser**](docs/UserAPI.md#logoutuser) | **GET** /user/logout | Logs out current logged in user session
-*UserAPI* | [**updateUser**](docs/UserAPI.md#updateuser) | **PUT** /user/{username} | Updated user
+*UserAPI* | [**create**](docs/UserAPI.md#create) | **POST** /user | Create user
+*UserAPI* | [**createWithArray**](docs/UserAPI.md#createwitharray) | **POST** /user/createWithArray | Creates list of users with given input array
+*UserAPI* | [**createWithList**](docs/UserAPI.md#createwithlist) | **POST** /user/createWithList | Creates list of users with given input array
+*UserAPI* | [**delete**](docs/UserAPI.md#delete) | **DELETE** /user/{username} | Delete user
+*UserAPI* | [**getByName**](docs/UserAPI.md#getbyname) | **GET** /user/{username} | Get user by user name
+*UserAPI* | [**login**](docs/UserAPI.md#login) | **GET** /user/login | Logs user into the system
+*UserAPI* | [**logout**](docs/UserAPI.md#logout) | **GET** /user/logout | Logs out current logged in user session
+*UserAPI* | [**update**](docs/UserAPI.md#update) | **PUT** /user/{username} | Updated user
 
 
 ## Models
@@ -97,6 +98,11 @@ Class | Method | HTTP request | Description
  - [ApiResponse](docs/ApiResponse.md)
  - [Category](docs/Category.md)
  - [Order](docs/Order.md)
+ - [PaginateRequest](docs/PaginateRequest.md)
+ - [PaginateResponse](docs/PaginateResponse.md)
+ - [PaginateResponseEdges](docs/PaginateResponseEdges.md)
+ - [PaginateResponseEdgesNode](docs/PaginateResponseEdgesNode.md)
+ - [PaginateResponsePageInfo](docs/PaginateResponsePageInfo.md)
  - [Pet](docs/Pet.md)
  - [Tag](docs/Tag.md)
  - [User](docs/User.md)

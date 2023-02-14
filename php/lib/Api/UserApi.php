@@ -71,28 +71,28 @@ class UserApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
-        'createUser' => [
+        'create' => [
             'application/json',
         ],
-        'createUsersWithArrayInput' => [
+        'createWithArray' => [
             'application/json',
         ],
-        'createUsersWithListInput' => [
+        'createWithList' => [
             'application/json',
         ],
-        'deleteUser' => [
+        'delete' => [
             'application/json',
         ],
-        'getUserByName' => [
+        'getByName' => [
             'application/json',
         ],
-        'loginUser' => [
+        'login' => [
             'application/json',
         ],
-        'logoutUser' => [
+        'logout' => [
             'application/json',
         ],
-        'updateUser' => [
+        'update' => [
             'application/json',
         ],
     ];
@@ -144,37 +144,37 @@ class UserApi
     }
 
     /**
-     * Operation createUser
+     * Operation create
      *
      * Create user
      *
      * @param  \OpenAPI\Client\Model\User $user Created user object (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createUser'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['create'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function createUser($user, string $contentType = self::contentTypes['createUser'][0])
+    public function create($user, string $contentType = self::contentTypes['create'][0])
     {
-        $this->createUserWithHttpInfo($user, $contentType);
+        $this->createWithHttpInfo($user, $contentType);
     }
 
     /**
-     * Operation createUserWithHttpInfo
+     * Operation createWithHttpInfo
      *
      * Create user
      *
      * @param  \OpenAPI\Client\Model\User $user Created user object (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createUser'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['create'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createUserWithHttpInfo($user, string $contentType = self::contentTypes['createUser'][0])
+    public function createWithHttpInfo($user, string $contentType = self::contentTypes['create'][0])
     {
-        $request = $this->createUserRequest($user, $contentType);
+        $request = $this->createRequest($user, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -221,19 +221,19 @@ class UserApi
     }
 
     /**
-     * Operation createUserAsync
+     * Operation createAsync
      *
      * Create user
      *
      * @param  \OpenAPI\Client\Model\User $user Created user object (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createUser'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['create'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createUserAsync($user, string $contentType = self::contentTypes['createUser'][0])
+    public function createAsync($user, string $contentType = self::contentTypes['create'][0])
     {
-        return $this->createUserAsyncWithHttpInfo($user, $contentType)
+        return $this->createAsyncWithHttpInfo($user, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -242,20 +242,20 @@ class UserApi
     }
 
     /**
-     * Operation createUserAsyncWithHttpInfo
+     * Operation createAsyncWithHttpInfo
      *
      * Create user
      *
      * @param  \OpenAPI\Client\Model\User $user Created user object (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createUser'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['create'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createUserAsyncWithHttpInfo($user, string $contentType = self::contentTypes['createUser'][0])
+    public function createAsyncWithHttpInfo($user, string $contentType = self::contentTypes['create'][0])
     {
         $returnType = '';
-        $request = $this->createUserRequest($user, $contentType);
+        $request = $this->createRequest($user, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -281,21 +281,21 @@ class UserApi
     }
 
     /**
-     * Create request for operation 'createUser'
+     * Create request for operation 'create'
      *
      * @param  \OpenAPI\Client\Model\User $user Created user object (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createUser'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['create'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createUserRequest($user, string $contentType = self::contentTypes['createUser'][0])
+    public function createRequest($user, string $contentType = self::contentTypes['create'][0])
     {
 
         // verify the required parameter 'user' is set
         if ($user === null || (is_array($user) && count($user) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $user when calling createUser'
+                'Missing the required parameter $user when calling create'
             );
         }
 
@@ -377,37 +377,37 @@ class UserApi
     }
 
     /**
-     * Operation createUsersWithArrayInput
+     * Operation createWithArray
      *
      * Creates list of users with given input array
      *
      * @param  \OpenAPI\Client\Model\User[] $user List of user object (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createUsersWithArrayInput'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createWithArray'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function createUsersWithArrayInput($user, string $contentType = self::contentTypes['createUsersWithArrayInput'][0])
+    public function createWithArray($user, string $contentType = self::contentTypes['createWithArray'][0])
     {
-        $this->createUsersWithArrayInputWithHttpInfo($user, $contentType);
+        $this->createWithArrayWithHttpInfo($user, $contentType);
     }
 
     /**
-     * Operation createUsersWithArrayInputWithHttpInfo
+     * Operation createWithArrayWithHttpInfo
      *
      * Creates list of users with given input array
      *
      * @param  \OpenAPI\Client\Model\User[] $user List of user object (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createUsersWithArrayInput'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createWithArray'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createUsersWithArrayInputWithHttpInfo($user, string $contentType = self::contentTypes['createUsersWithArrayInput'][0])
+    public function createWithArrayWithHttpInfo($user, string $contentType = self::contentTypes['createWithArray'][0])
     {
-        $request = $this->createUsersWithArrayInputRequest($user, $contentType);
+        $request = $this->createWithArrayRequest($user, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -454,19 +454,19 @@ class UserApi
     }
 
     /**
-     * Operation createUsersWithArrayInputAsync
+     * Operation createWithArrayAsync
      *
      * Creates list of users with given input array
      *
      * @param  \OpenAPI\Client\Model\User[] $user List of user object (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createUsersWithArrayInput'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createWithArray'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createUsersWithArrayInputAsync($user, string $contentType = self::contentTypes['createUsersWithArrayInput'][0])
+    public function createWithArrayAsync($user, string $contentType = self::contentTypes['createWithArray'][0])
     {
-        return $this->createUsersWithArrayInputAsyncWithHttpInfo($user, $contentType)
+        return $this->createWithArrayAsyncWithHttpInfo($user, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -475,20 +475,20 @@ class UserApi
     }
 
     /**
-     * Operation createUsersWithArrayInputAsyncWithHttpInfo
+     * Operation createWithArrayAsyncWithHttpInfo
      *
      * Creates list of users with given input array
      *
      * @param  \OpenAPI\Client\Model\User[] $user List of user object (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createUsersWithArrayInput'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createWithArray'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createUsersWithArrayInputAsyncWithHttpInfo($user, string $contentType = self::contentTypes['createUsersWithArrayInput'][0])
+    public function createWithArrayAsyncWithHttpInfo($user, string $contentType = self::contentTypes['createWithArray'][0])
     {
         $returnType = '';
-        $request = $this->createUsersWithArrayInputRequest($user, $contentType);
+        $request = $this->createWithArrayRequest($user, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -514,21 +514,21 @@ class UserApi
     }
 
     /**
-     * Create request for operation 'createUsersWithArrayInput'
+     * Create request for operation 'createWithArray'
      *
      * @param  \OpenAPI\Client\Model\User[] $user List of user object (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createUsersWithArrayInput'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createWithArray'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createUsersWithArrayInputRequest($user, string $contentType = self::contentTypes['createUsersWithArrayInput'][0])
+    public function createWithArrayRequest($user, string $contentType = self::contentTypes['createWithArray'][0])
     {
 
         // verify the required parameter 'user' is set
         if ($user === null || (is_array($user) && count($user) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $user when calling createUsersWithArrayInput'
+                'Missing the required parameter $user when calling createWithArray'
             );
         }
 
@@ -610,37 +610,37 @@ class UserApi
     }
 
     /**
-     * Operation createUsersWithListInput
+     * Operation createWithList
      *
      * Creates list of users with given input array
      *
      * @param  \OpenAPI\Client\Model\User[] $user List of user object (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createUsersWithListInput'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createWithList'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function createUsersWithListInput($user, string $contentType = self::contentTypes['createUsersWithListInput'][0])
+    public function createWithList($user, string $contentType = self::contentTypes['createWithList'][0])
     {
-        $this->createUsersWithListInputWithHttpInfo($user, $contentType);
+        $this->createWithListWithHttpInfo($user, $contentType);
     }
 
     /**
-     * Operation createUsersWithListInputWithHttpInfo
+     * Operation createWithListWithHttpInfo
      *
      * Creates list of users with given input array
      *
      * @param  \OpenAPI\Client\Model\User[] $user List of user object (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createUsersWithListInput'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createWithList'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createUsersWithListInputWithHttpInfo($user, string $contentType = self::contentTypes['createUsersWithListInput'][0])
+    public function createWithListWithHttpInfo($user, string $contentType = self::contentTypes['createWithList'][0])
     {
-        $request = $this->createUsersWithListInputRequest($user, $contentType);
+        $request = $this->createWithListRequest($user, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -687,19 +687,19 @@ class UserApi
     }
 
     /**
-     * Operation createUsersWithListInputAsync
+     * Operation createWithListAsync
      *
      * Creates list of users with given input array
      *
      * @param  \OpenAPI\Client\Model\User[] $user List of user object (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createUsersWithListInput'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createWithList'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createUsersWithListInputAsync($user, string $contentType = self::contentTypes['createUsersWithListInput'][0])
+    public function createWithListAsync($user, string $contentType = self::contentTypes['createWithList'][0])
     {
-        return $this->createUsersWithListInputAsyncWithHttpInfo($user, $contentType)
+        return $this->createWithListAsyncWithHttpInfo($user, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -708,20 +708,20 @@ class UserApi
     }
 
     /**
-     * Operation createUsersWithListInputAsyncWithHttpInfo
+     * Operation createWithListAsyncWithHttpInfo
      *
      * Creates list of users with given input array
      *
      * @param  \OpenAPI\Client\Model\User[] $user List of user object (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createUsersWithListInput'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createWithList'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createUsersWithListInputAsyncWithHttpInfo($user, string $contentType = self::contentTypes['createUsersWithListInput'][0])
+    public function createWithListAsyncWithHttpInfo($user, string $contentType = self::contentTypes['createWithList'][0])
     {
         $returnType = '';
-        $request = $this->createUsersWithListInputRequest($user, $contentType);
+        $request = $this->createWithListRequest($user, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -747,21 +747,21 @@ class UserApi
     }
 
     /**
-     * Create request for operation 'createUsersWithListInput'
+     * Create request for operation 'createWithList'
      *
      * @param  \OpenAPI\Client\Model\User[] $user List of user object (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createUsersWithListInput'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createWithList'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function createUsersWithListInputRequest($user, string $contentType = self::contentTypes['createUsersWithListInput'][0])
+    public function createWithListRequest($user, string $contentType = self::contentTypes['createWithList'][0])
     {
 
         // verify the required parameter 'user' is set
         if ($user === null || (is_array($user) && count($user) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $user when calling createUsersWithListInput'
+                'Missing the required parameter $user when calling createWithList'
             );
         }
 
@@ -843,37 +843,37 @@ class UserApi
     }
 
     /**
-     * Operation deleteUser
+     * Operation delete
      *
      * Delete user
      *
      * @param  string $username The name that needs to be deleted (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteUser'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['delete'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function deleteUser($username, string $contentType = self::contentTypes['deleteUser'][0])
+    public function delete($username, string $contentType = self::contentTypes['delete'][0])
     {
-        $this->deleteUserWithHttpInfo($username, $contentType);
+        $this->deleteWithHttpInfo($username, $contentType);
     }
 
     /**
-     * Operation deleteUserWithHttpInfo
+     * Operation deleteWithHttpInfo
      *
      * Delete user
      *
      * @param  string $username The name that needs to be deleted (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteUser'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['delete'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deleteUserWithHttpInfo($username, string $contentType = self::contentTypes['deleteUser'][0])
+    public function deleteWithHttpInfo($username, string $contentType = self::contentTypes['delete'][0])
     {
-        $request = $this->deleteUserRequest($username, $contentType);
+        $request = $this->deleteRequest($username, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -920,19 +920,19 @@ class UserApi
     }
 
     /**
-     * Operation deleteUserAsync
+     * Operation deleteAsync
      *
      * Delete user
      *
      * @param  string $username The name that needs to be deleted (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteUser'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['delete'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteUserAsync($username, string $contentType = self::contentTypes['deleteUser'][0])
+    public function deleteAsync($username, string $contentType = self::contentTypes['delete'][0])
     {
-        return $this->deleteUserAsyncWithHttpInfo($username, $contentType)
+        return $this->deleteAsyncWithHttpInfo($username, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -941,20 +941,20 @@ class UserApi
     }
 
     /**
-     * Operation deleteUserAsyncWithHttpInfo
+     * Operation deleteAsyncWithHttpInfo
      *
      * Delete user
      *
      * @param  string $username The name that needs to be deleted (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteUser'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['delete'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteUserAsyncWithHttpInfo($username, string $contentType = self::contentTypes['deleteUser'][0])
+    public function deleteAsyncWithHttpInfo($username, string $contentType = self::contentTypes['delete'][0])
     {
         $returnType = '';
-        $request = $this->deleteUserRequest($username, $contentType);
+        $request = $this->deleteRequest($username, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -980,21 +980,21 @@ class UserApi
     }
 
     /**
-     * Create request for operation 'deleteUser'
+     * Create request for operation 'delete'
      *
      * @param  string $username The name that needs to be deleted (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteUser'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['delete'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteUserRequest($username, string $contentType = self::contentTypes['deleteUser'][0])
+    public function deleteRequest($username, string $contentType = self::contentTypes['delete'][0])
     {
 
         // verify the required parameter 'username' is set
         if ($username === null || (is_array($username) && count($username) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $username when calling deleteUser'
+                'Missing the required parameter $username when calling delete'
             );
         }
 
@@ -1077,38 +1077,38 @@ class UserApi
     }
 
     /**
-     * Operation getUserByName
+     * Operation getByName
      *
      * Get user by user name
      *
      * @param  string $username The name that needs to be fetched. Use user1 for testing. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserByName'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getByName'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\User
      */
-    public function getUserByName($username, string $contentType = self::contentTypes['getUserByName'][0])
+    public function getByName($username, string $contentType = self::contentTypes['getByName'][0])
     {
-        list($response) = $this->getUserByNameWithHttpInfo($username, $contentType);
+        list($response) = $this->getByNameWithHttpInfo($username, $contentType);
         return $response;
     }
 
     /**
-     * Operation getUserByNameWithHttpInfo
+     * Operation getByNameWithHttpInfo
      *
      * Get user by user name
      *
      * @param  string $username The name that needs to be fetched. Use user1 for testing. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserByName'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getByName'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\User, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getUserByNameWithHttpInfo($username, string $contentType = self::contentTypes['getUserByName'][0])
+    public function getByNameWithHttpInfo($username, string $contentType = self::contentTypes['getByName'][0])
     {
-        $request = $this->getUserByNameRequest($username, $contentType);
+        $request = $this->getByNameRequest($username, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1195,19 +1195,19 @@ class UserApi
     }
 
     /**
-     * Operation getUserByNameAsync
+     * Operation getByNameAsync
      *
      * Get user by user name
      *
      * @param  string $username The name that needs to be fetched. Use user1 for testing. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserByName'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getByName'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getUserByNameAsync($username, string $contentType = self::contentTypes['getUserByName'][0])
+    public function getByNameAsync($username, string $contentType = self::contentTypes['getByName'][0])
     {
-        return $this->getUserByNameAsyncWithHttpInfo($username, $contentType)
+        return $this->getByNameAsyncWithHttpInfo($username, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1216,20 +1216,20 @@ class UserApi
     }
 
     /**
-     * Operation getUserByNameAsyncWithHttpInfo
+     * Operation getByNameAsyncWithHttpInfo
      *
      * Get user by user name
      *
      * @param  string $username The name that needs to be fetched. Use user1 for testing. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserByName'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getByName'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getUserByNameAsyncWithHttpInfo($username, string $contentType = self::contentTypes['getUserByName'][0])
+    public function getByNameAsyncWithHttpInfo($username, string $contentType = self::contentTypes['getByName'][0])
     {
         $returnType = '\OpenAPI\Client\Model\User';
-        $request = $this->getUserByNameRequest($username, $contentType);
+        $request = $this->getByNameRequest($username, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1268,21 +1268,21 @@ class UserApi
     }
 
     /**
-     * Create request for operation 'getUserByName'
+     * Create request for operation 'getByName'
      *
      * @param  string $username The name that needs to be fetched. Use user1 for testing. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUserByName'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getByName'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getUserByNameRequest($username, string $contentType = self::contentTypes['getUserByName'][0])
+    public function getByNameRequest($username, string $contentType = self::contentTypes['getByName'][0])
     {
 
         // verify the required parameter 'username' is set
         if ($username === null || (is_array($username) && count($username) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $username when calling getUserByName'
+                'Missing the required parameter $username when calling getByName'
             );
         }
 
@@ -1360,40 +1360,40 @@ class UserApi
     }
 
     /**
-     * Operation loginUser
+     * Operation login
      *
      * Logs user into the system
      *
      * @param  string $username The user name for login (required)
      * @param  string $password The password for login in clear text (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['loginUser'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['login'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return string
      */
-    public function loginUser($username, $password, string $contentType = self::contentTypes['loginUser'][0])
+    public function login($username, $password, string $contentType = self::contentTypes['login'][0])
     {
-        list($response) = $this->loginUserWithHttpInfo($username, $password, $contentType);
+        list($response) = $this->loginWithHttpInfo($username, $password, $contentType);
         return $response;
     }
 
     /**
-     * Operation loginUserWithHttpInfo
+     * Operation loginWithHttpInfo
      *
      * Logs user into the system
      *
      * @param  string $username The user name for login (required)
      * @param  string $password The password for login in clear text (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['loginUser'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['login'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of string, HTTP status code, HTTP response headers (array of strings)
      */
-    public function loginUserWithHttpInfo($username, $password, string $contentType = self::contentTypes['loginUser'][0])
+    public function loginWithHttpInfo($username, $password, string $contentType = self::contentTypes['login'][0])
     {
-        $request = $this->loginUserRequest($username, $password, $contentType);
+        $request = $this->loginRequest($username, $password, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1480,20 +1480,20 @@ class UserApi
     }
 
     /**
-     * Operation loginUserAsync
+     * Operation loginAsync
      *
      * Logs user into the system
      *
      * @param  string $username The user name for login (required)
      * @param  string $password The password for login in clear text (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['loginUser'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['login'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function loginUserAsync($username, $password, string $contentType = self::contentTypes['loginUser'][0])
+    public function loginAsync($username, $password, string $contentType = self::contentTypes['login'][0])
     {
-        return $this->loginUserAsyncWithHttpInfo($username, $password, $contentType)
+        return $this->loginAsyncWithHttpInfo($username, $password, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1502,21 +1502,21 @@ class UserApi
     }
 
     /**
-     * Operation loginUserAsyncWithHttpInfo
+     * Operation loginAsyncWithHttpInfo
      *
      * Logs user into the system
      *
      * @param  string $username The user name for login (required)
      * @param  string $password The password for login in clear text (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['loginUser'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['login'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function loginUserAsyncWithHttpInfo($username, $password, string $contentType = self::contentTypes['loginUser'][0])
+    public function loginAsyncWithHttpInfo($username, $password, string $contentType = self::contentTypes['login'][0])
     {
         $returnType = 'string';
-        $request = $this->loginUserRequest($username, $password, $contentType);
+        $request = $this->loginRequest($username, $password, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1555,32 +1555,32 @@ class UserApi
     }
 
     /**
-     * Create request for operation 'loginUser'
+     * Create request for operation 'login'
      *
      * @param  string $username The user name for login (required)
      * @param  string $password The password for login in clear text (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['loginUser'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['login'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function loginUserRequest($username, $password, string $contentType = self::contentTypes['loginUser'][0])
+    public function loginRequest($username, $password, string $contentType = self::contentTypes['login'][0])
     {
 
         // verify the required parameter 'username' is set
         if ($username === null || (is_array($username) && count($username) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $username when calling loginUser'
+                'Missing the required parameter $username when calling login'
             );
         }
         if (!preg_match("/^[a-zA-Z0-9]+[a-zA-Z0-9\\.\\-_]*[a-zA-Z0-9]+$/", $username)) {
-            throw new \InvalidArgumentException("invalid value for \"username\" when calling UserApi.loginUser, must conform to the pattern /^[a-zA-Z0-9]+[a-zA-Z0-9\\.\\-_]*[a-zA-Z0-9]+$/.");
+            throw new \InvalidArgumentException("invalid value for \"username\" when calling UserApi.login, must conform to the pattern /^[a-zA-Z0-9]+[a-zA-Z0-9\\.\\-_]*[a-zA-Z0-9]+$/.");
         }
         
         // verify the required parameter 'password' is set
         if ($password === null || (is_array($password) && count($password) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $password when calling loginUser'
+                'Missing the required parameter $password when calling login'
             );
         }
 
@@ -1668,35 +1668,35 @@ class UserApi
     }
 
     /**
-     * Operation logoutUser
+     * Operation logout
      *
      * Logs out current logged in user session
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['logoutUser'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['logout'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function logoutUser(string $contentType = self::contentTypes['logoutUser'][0])
+    public function logout(string $contentType = self::contentTypes['logout'][0])
     {
-        $this->logoutUserWithHttpInfo($contentType);
+        $this->logoutWithHttpInfo($contentType);
     }
 
     /**
-     * Operation logoutUserWithHttpInfo
+     * Operation logoutWithHttpInfo
      *
      * Logs out current logged in user session
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['logoutUser'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['logout'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function logoutUserWithHttpInfo(string $contentType = self::contentTypes['logoutUser'][0])
+    public function logoutWithHttpInfo(string $contentType = self::contentTypes['logout'][0])
     {
-        $request = $this->logoutUserRequest($contentType);
+        $request = $this->logoutRequest($contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1743,18 +1743,18 @@ class UserApi
     }
 
     /**
-     * Operation logoutUserAsync
+     * Operation logoutAsync
      *
      * Logs out current logged in user session
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['logoutUser'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['logout'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function logoutUserAsync(string $contentType = self::contentTypes['logoutUser'][0])
+    public function logoutAsync(string $contentType = self::contentTypes['logout'][0])
     {
-        return $this->logoutUserAsyncWithHttpInfo($contentType)
+        return $this->logoutAsyncWithHttpInfo($contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1763,19 +1763,19 @@ class UserApi
     }
 
     /**
-     * Operation logoutUserAsyncWithHttpInfo
+     * Operation logoutAsyncWithHttpInfo
      *
      * Logs out current logged in user session
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['logoutUser'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['logout'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function logoutUserAsyncWithHttpInfo(string $contentType = self::contentTypes['logoutUser'][0])
+    public function logoutAsyncWithHttpInfo(string $contentType = self::contentTypes['logout'][0])
     {
         $returnType = '';
-        $request = $this->logoutUserRequest($contentType);
+        $request = $this->logoutRequest($contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1801,14 +1801,14 @@ class UserApi
     }
 
     /**
-     * Create request for operation 'logoutUser'
+     * Create request for operation 'logout'
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['logoutUser'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['logout'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function logoutUserRequest(string $contentType = self::contentTypes['logoutUser'][0])
+    public function logoutRequest(string $contentType = self::contentTypes['logout'][0])
     {
 
 
@@ -1882,39 +1882,39 @@ class UserApi
     }
 
     /**
-     * Operation updateUser
+     * Operation update
      *
      * Updated user
      *
      * @param  string $username name that need to be deleted (required)
      * @param  \OpenAPI\Client\Model\User $user Updated user object (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateUser'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['update'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function updateUser($username, $user, string $contentType = self::contentTypes['updateUser'][0])
+    public function update($username, $user, string $contentType = self::contentTypes['update'][0])
     {
-        $this->updateUserWithHttpInfo($username, $user, $contentType);
+        $this->updateWithHttpInfo($username, $user, $contentType);
     }
 
     /**
-     * Operation updateUserWithHttpInfo
+     * Operation updateWithHttpInfo
      *
      * Updated user
      *
      * @param  string $username name that need to be deleted (required)
      * @param  \OpenAPI\Client\Model\User $user Updated user object (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateUser'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['update'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function updateUserWithHttpInfo($username, $user, string $contentType = self::contentTypes['updateUser'][0])
+    public function updateWithHttpInfo($username, $user, string $contentType = self::contentTypes['update'][0])
     {
-        $request = $this->updateUserRequest($username, $user, $contentType);
+        $request = $this->updateRequest($username, $user, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1961,20 +1961,20 @@ class UserApi
     }
 
     /**
-     * Operation updateUserAsync
+     * Operation updateAsync
      *
      * Updated user
      *
      * @param  string $username name that need to be deleted (required)
      * @param  \OpenAPI\Client\Model\User $user Updated user object (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateUser'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['update'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateUserAsync($username, $user, string $contentType = self::contentTypes['updateUser'][0])
+    public function updateAsync($username, $user, string $contentType = self::contentTypes['update'][0])
     {
-        return $this->updateUserAsyncWithHttpInfo($username, $user, $contentType)
+        return $this->updateAsyncWithHttpInfo($username, $user, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1983,21 +1983,21 @@ class UserApi
     }
 
     /**
-     * Operation updateUserAsyncWithHttpInfo
+     * Operation updateAsyncWithHttpInfo
      *
      * Updated user
      *
      * @param  string $username name that need to be deleted (required)
      * @param  \OpenAPI\Client\Model\User $user Updated user object (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateUser'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['update'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function updateUserAsyncWithHttpInfo($username, $user, string $contentType = self::contentTypes['updateUser'][0])
+    public function updateAsyncWithHttpInfo($username, $user, string $contentType = self::contentTypes['update'][0])
     {
         $returnType = '';
-        $request = $this->updateUserRequest($username, $user, $contentType);
+        $request = $this->updateRequest($username, $user, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2023,29 +2023,29 @@ class UserApi
     }
 
     /**
-     * Create request for operation 'updateUser'
+     * Create request for operation 'update'
      *
      * @param  string $username name that need to be deleted (required)
      * @param  \OpenAPI\Client\Model\User $user Updated user object (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateUser'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['update'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function updateUserRequest($username, $user, string $contentType = self::contentTypes['updateUser'][0])
+    public function updateRequest($username, $user, string $contentType = self::contentTypes['update'][0])
     {
 
         // verify the required parameter 'username' is set
         if ($username === null || (is_array($username) && count($username) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $username when calling updateUser'
+                'Missing the required parameter $username when calling update'
             );
         }
 
         // verify the required parameter 'user' is set
         if ($user === null || (is_array($user) && count($user) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $user when calling updateUser'
+                'Missing the required parameter $user when calling update'
             );
         }
 

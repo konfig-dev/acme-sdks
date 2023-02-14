@@ -56,7 +56,7 @@ NSInteger kAUserApiMissingParamErrorCode = 234513;
 ///
 ///  @returns void
 ///
--(NSURLSessionTask*) createUserWithUser: (AUser*) user
+-(NSURLSessionTask*) createWithUser: (AUser*) user
     completionHandler: (void (^)(NSError* error)) handler {
     // verify the required parameter 'user' is set
     if (user == nil) {
@@ -122,7 +122,7 @@ NSInteger kAUserApiMissingParamErrorCode = 234513;
 ///
 ///  @returns void
 ///
--(NSURLSessionTask*) createUsersWithArrayInputWithUser: (NSArray<AUser>*) user
+-(NSURLSessionTask*) createWithArrayWithUser: (NSArray<AUser>*) user
     completionHandler: (void (^)(NSError* error)) handler {
     // verify the required parameter 'user' is set
     if (user == nil) {
@@ -188,7 +188,7 @@ NSInteger kAUserApiMissingParamErrorCode = 234513;
 ///
 ///  @returns void
 ///
--(NSURLSessionTask*) createUsersWithListInputWithUser: (NSArray<AUser>*) user
+-(NSURLSessionTask*) createWithListWithUser: (NSArray<AUser>*) user
     completionHandler: (void (^)(NSError* error)) handler {
     // verify the required parameter 'user' is set
     if (user == nil) {
@@ -254,7 +254,7 @@ NSInteger kAUserApiMissingParamErrorCode = 234513;
 ///
 ///  @returns void
 ///
--(NSURLSessionTask*) deleteUserWithUsername: (NSString*) username
+-(NSURLSessionTask*) deleteWithUsername: (NSString*) username
     completionHandler: (void (^)(NSError* error)) handler {
     // verify the required parameter 'username' is set
     if (username == nil) {
@@ -322,7 +322,7 @@ NSInteger kAUserApiMissingParamErrorCode = 234513;
 ///
 ///  @returns AUser*
 ///
--(NSURLSessionTask*) getUserByNameWithUsername: (NSString*) username
+-(NSURLSessionTask*) getByNameWithUsername: (NSString*) username
     completionHandler: (void (^)(AUser* output, NSError* error)) handler {
     // verify the required parameter 'username' is set
     if (username == nil) {
@@ -392,7 +392,7 @@ NSInteger kAUserApiMissingParamErrorCode = 234513;
 ///
 ///  @returns NSString*
 ///
--(NSURLSessionTask*) loginUserWithUsername: (NSString*) username
+-(NSURLSessionTask*) loginWithUsername: (NSString*) username
     password: (NSString*) password
     completionHandler: (void (^)(NSString* output, NSError* error)) handler {
     // verify the required parameter 'username' is set
@@ -473,7 +473,7 @@ NSInteger kAUserApiMissingParamErrorCode = 234513;
 /// 
 ///  @returns void
 ///
--(NSURLSessionTask*) logoutUserWithCompletionHandler: 
+-(NSURLSessionTask*) logoutWithCompletionHandler: 
     (void (^)(NSError* error)) handler {
     NSMutableString* resourcePath = [NSMutableString stringWithFormat:@"/user/logout"];
 
@@ -529,7 +529,7 @@ NSInteger kAUserApiMissingParamErrorCode = 234513;
 ///
 ///  @returns void
 ///
--(NSURLSessionTask*) updateUserWithUsername: (NSString*) username
+-(NSURLSessionTask*) updateWithUsername: (NSString*) username
     user: (AUser*) user
     completionHandler: (void (^)(NSError* error)) handler {
     // verify the required parameter 'username' is set

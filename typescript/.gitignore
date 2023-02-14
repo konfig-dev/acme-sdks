@@ -1,3 +1,4 @@
-dist/
-node_modules/
-test
+wwwroot/*.js
+node_modules
+typings
+dist

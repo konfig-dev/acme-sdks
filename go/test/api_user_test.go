@@ -27,11 +27,11 @@ func Test_acme_UserApiService(t *testing.T) {
     })
     apiClient := acme.NewAPIClient(configuration)
 
-    t.Run("Test UserApiService CreateUser", func(t *testing.T) {
+    t.Run("Test UserApiService Create", func(t *testing.T) {
 
         t.Skip("skip test")  // remove to run test
 
-        resp, httpRes, err := apiClient.UserApi.CreateUser().Execute()
+        resp, httpRes, err := apiClient.UserApi.Create().Execute()
 
         require.Nil(t, err)
         require.NotNil(t, resp)
@@ -39,11 +39,11 @@ func Test_acme_UserApiService(t *testing.T) {
 
     })
 
-    t.Run("Test UserApiService CreateUsersWithArrayInput", func(t *testing.T) {
+    t.Run("Test UserApiService CreateWithArray", func(t *testing.T) {
 
         t.Skip("skip test")  // remove to run test
 
-        resp, httpRes, err := apiClient.UserApi.CreateUsersWithArrayInput().Execute()
+        resp, httpRes, err := apiClient.UserApi.CreateWithArray().Execute()
 
         require.Nil(t, err)
         require.NotNil(t, resp)
@@ -51,11 +51,11 @@ func Test_acme_UserApiService(t *testing.T) {
 
     })
 
-    t.Run("Test UserApiService CreateUsersWithListInput", func(t *testing.T) {
+    t.Run("Test UserApiService CreateWithList", func(t *testing.T) {
 
         t.Skip("skip test")  // remove to run test
 
-        resp, httpRes, err := apiClient.UserApi.CreateUsersWithListInput().Execute()
+        resp, httpRes, err := apiClient.UserApi.CreateWithList().Execute()
 
         require.Nil(t, err)
         require.NotNil(t, resp)
@@ -63,13 +63,13 @@ func Test_acme_UserApiService(t *testing.T) {
 
     })
 
-    t.Run("Test UserApiService DeleteUser", func(t *testing.T) {
+    t.Run("Test UserApiService Delete", func(t *testing.T) {
 
         t.Skip("skip test")  // remove to run test
 
         var username string
 
-        resp, httpRes, err := apiClient.UserApi.DeleteUser(username).Execute()
+        resp, httpRes, err := apiClient.UserApi.Delete(username).Execute()
 
         require.Nil(t, err)
         require.NotNil(t, resp)
@@ -77,13 +77,13 @@ func Test_acme_UserApiService(t *testing.T) {
 
     })
 
-    t.Run("Test UserApiService GetUserByName", func(t *testing.T) {
+    t.Run("Test UserApiService GetByName", func(t *testing.T) {
 
         t.Skip("skip test")  // remove to run test
 
         var username string
 
-        resp, httpRes, err := apiClient.UserApi.GetUserByName(username).Execute()
+        resp, httpRes, err := apiClient.UserApi.GetByName(username).Execute()
 
         require.Nil(t, err)
         require.NotNil(t, resp)
@@ -91,11 +91,11 @@ func Test_acme_UserApiService(t *testing.T) {
 
     })
 
-    t.Run("Test UserApiService LoginUser", func(t *testing.T) {
+    t.Run("Test UserApiService Login", func(t *testing.T) {
 
         t.Skip("skip test")  // remove to run test
 
-        resp, httpRes, err := apiClient.UserApi.LoginUser().Execute()
+        resp, httpRes, err := apiClient.UserApi.Login().Execute()
 
         require.Nil(t, err)
         require.NotNil(t, resp)
@@ -103,11 +103,11 @@ func Test_acme_UserApiService(t *testing.T) {
 
     })
 
-    t.Run("Test UserApiService LogoutUser", func(t *testing.T) {
+    t.Run("Test UserApiService Logout", func(t *testing.T) {
 
         t.Skip("skip test")  // remove to run test
 
-        resp, httpRes, err := apiClient.UserApi.LogoutUser().Execute()
+        resp, httpRes, err := apiClient.UserApi.Logout().Execute()
 
         require.Nil(t, err)
         require.NotNil(t, resp)
@@ -115,13 +115,13 @@ func Test_acme_UserApiService(t *testing.T) {
 
     })
 
-    t.Run("Test UserApiService UpdateUser", func(t *testing.T) {
+    t.Run("Test UserApiService Update", func(t *testing.T) {
 
         t.Skip("skip test")  // remove to run test
 
         var username string
 
-        resp, httpRes, err := apiClient.UserApi.UpdateUser(username).Execute()
+        resp, httpRes, err := apiClient.UserApi.Update(username).Execute()
 
         require.Nil(t, err)
         require.NotNil(t, resp)

@@ -20,8 +20,8 @@ open class UserAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func createUser(user: User, apiResponseQueue: DispatchQueue = AcmeAPI.apiResponseQueue, completion: @escaping ((_ data: Void?, _ error: Error?) -> Void)) -> RequestTask {
-        return createUserWithRequestBuilder(user: user).execute(apiResponseQueue) { result in
+    open class func create(user: User, apiResponseQueue: DispatchQueue = AcmeAPI.apiResponseQueue, completion: @escaping ((_ data: Void?, _ error: Error?) -> Void)) -> RequestTask {
+        return createWithRequestBuilder(user: user).execute(apiResponseQueue) { result in
             switch result {
             case .success:
                 completion((), nil)
@@ -41,7 +41,7 @@ open class UserAPI {
      - parameter user: (body) Created user object 
      - returns: RequestBuilder<Void> 
      */
-    open class func createUserWithRequestBuilder(user: User) -> RequestBuilder<Void> {
+    open class func createWithRequestBuilder(user: User) -> RequestBuilder<Void> {
         let localVariablePath = "/user"
         let localVariableURLString = AcmeAPI.basePath + localVariablePath
         let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: user)
@@ -67,8 +67,8 @@ open class UserAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func createUsersWithArrayInput(user: [User], apiResponseQueue: DispatchQueue = AcmeAPI.apiResponseQueue, completion: @escaping ((_ data: Void?, _ error: Error?) -> Void)) -> RequestTask {
-        return createUsersWithArrayInputWithRequestBuilder(user: user).execute(apiResponseQueue) { result in
+    open class func createWithArray(user: [User], apiResponseQueue: DispatchQueue = AcmeAPI.apiResponseQueue, completion: @escaping ((_ data: Void?, _ error: Error?) -> Void)) -> RequestTask {
+        return createWithArrayWithRequestBuilder(user: user).execute(apiResponseQueue) { result in
             switch result {
             case .success:
                 completion((), nil)
@@ -88,7 +88,7 @@ open class UserAPI {
      - parameter user: (body) List of user object 
      - returns: RequestBuilder<Void> 
      */
-    open class func createUsersWithArrayInputWithRequestBuilder(user: [User]) -> RequestBuilder<Void> {
+    open class func createWithArrayWithRequestBuilder(user: [User]) -> RequestBuilder<Void> {
         let localVariablePath = "/user/createWithArray"
         let localVariableURLString = AcmeAPI.basePath + localVariablePath
         let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: user)
@@ -114,8 +114,8 @@ open class UserAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func createUsersWithListInput(user: [User], apiResponseQueue: DispatchQueue = AcmeAPI.apiResponseQueue, completion: @escaping ((_ data: Void?, _ error: Error?) -> Void)) -> RequestTask {
-        return createUsersWithListInputWithRequestBuilder(user: user).execute(apiResponseQueue) { result in
+    open class func createWithList(user: [User], apiResponseQueue: DispatchQueue = AcmeAPI.apiResponseQueue, completion: @escaping ((_ data: Void?, _ error: Error?) -> Void)) -> RequestTask {
+        return createWithListWithRequestBuilder(user: user).execute(apiResponseQueue) { result in
             switch result {
             case .success:
                 completion((), nil)
@@ -135,7 +135,7 @@ open class UserAPI {
      - parameter user: (body) List of user object 
      - returns: RequestBuilder<Void> 
      */
-    open class func createUsersWithListInputWithRequestBuilder(user: [User]) -> RequestBuilder<Void> {
+    open class func createWithListWithRequestBuilder(user: [User]) -> RequestBuilder<Void> {
         let localVariablePath = "/user/createWithList"
         let localVariableURLString = AcmeAPI.basePath + localVariablePath
         let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: user)
@@ -161,8 +161,8 @@ open class UserAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func deleteUser(username: String, apiResponseQueue: DispatchQueue = AcmeAPI.apiResponseQueue, completion: @escaping ((_ data: Void?, _ error: Error?) -> Void)) -> RequestTask {
-        return deleteUserWithRequestBuilder(username: username).execute(apiResponseQueue) { result in
+    open class func delete(username: String, apiResponseQueue: DispatchQueue = AcmeAPI.apiResponseQueue, completion: @escaping ((_ data: Void?, _ error: Error?) -> Void)) -> RequestTask {
+        return deleteWithRequestBuilder(username: username).execute(apiResponseQueue) { result in
             switch result {
             case .success:
                 completion((), nil)
@@ -182,7 +182,7 @@ open class UserAPI {
      - parameter username: (path) The name that needs to be deleted 
      - returns: RequestBuilder<Void> 
      */
-    open class func deleteUserWithRequestBuilder(username: String) -> RequestBuilder<Void> {
+    open class func deleteWithRequestBuilder(username: String) -> RequestBuilder<Void> {
         var localVariablePath = "/user/{username}"
         let usernamePreEscape = "\(APIHelper.mapValueToPathItem(username))"
         let usernamePostEscape = usernamePreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -211,8 +211,8 @@ open class UserAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func getUserByName(username: String, apiResponseQueue: DispatchQueue = AcmeAPI.apiResponseQueue, completion: @escaping ((_ data: User?, _ error: Error?) -> Void)) -> RequestTask {
-        return getUserByNameWithRequestBuilder(username: username).execute(apiResponseQueue) { result in
+    open class func getByName(username: String, apiResponseQueue: DispatchQueue = AcmeAPI.apiResponseQueue, completion: @escaping ((_ data: User?, _ error: Error?) -> Void)) -> RequestTask {
+        return getByNameWithRequestBuilder(username: username).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -229,7 +229,7 @@ open class UserAPI {
      - parameter username: (path) The name that needs to be fetched. Use user1 for testing. 
      - returns: RequestBuilder<User> 
      */
-    open class func getUserByNameWithRequestBuilder(username: String) -> RequestBuilder<User> {
+    open class func getByNameWithRequestBuilder(username: String) -> RequestBuilder<User> {
         var localVariablePath = "/user/{username}"
         let usernamePreEscape = "\(APIHelper.mapValueToPathItem(username))"
         let usernamePostEscape = usernamePreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -259,8 +259,8 @@ open class UserAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func loginUser(username: String, password: String, apiResponseQueue: DispatchQueue = AcmeAPI.apiResponseQueue, completion: @escaping ((_ data: String?, _ error: Error?) -> Void)) -> RequestTask {
-        return loginUserWithRequestBuilder(username: username, password: password).execute(apiResponseQueue) { result in
+    open class func login(username: String, password: String, apiResponseQueue: DispatchQueue = AcmeAPI.apiResponseQueue, completion: @escaping ((_ data: String?, _ error: Error?) -> Void)) -> RequestTask {
+        return loginWithRequestBuilder(username: username, password: password).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -279,7 +279,7 @@ open class UserAPI {
      - parameter password: (query) The password for login in clear text 
      - returns: RequestBuilder<String> 
      */
-    open class func loginUserWithRequestBuilder(username: String, password: String) -> RequestBuilder<String> {
+    open class func loginWithRequestBuilder(username: String, password: String) -> RequestBuilder<String> {
         let localVariablePath = "/user/login"
         let localVariableURLString = AcmeAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
@@ -308,8 +308,8 @@ open class UserAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func logoutUser(apiResponseQueue: DispatchQueue = AcmeAPI.apiResponseQueue, completion: @escaping ((_ data: Void?, _ error: Error?) -> Void)) -> RequestTask {
-        return logoutUserWithRequestBuilder().execute(apiResponseQueue) { result in
+    open class func logout(apiResponseQueue: DispatchQueue = AcmeAPI.apiResponseQueue, completion: @escaping ((_ data: Void?, _ error: Error?) -> Void)) -> RequestTask {
+        return logoutWithRequestBuilder().execute(apiResponseQueue) { result in
             switch result {
             case .success:
                 completion((), nil)
@@ -328,7 +328,7 @@ open class UserAPI {
        - name: api_key
      - returns: RequestBuilder<Void> 
      */
-    open class func logoutUserWithRequestBuilder() -> RequestBuilder<Void> {
+    open class func logoutWithRequestBuilder() -> RequestBuilder<Void> {
         let localVariablePath = "/user/logout"
         let localVariableURLString = AcmeAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
@@ -355,8 +355,8 @@ open class UserAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func updateUser(username: String, user: User, apiResponseQueue: DispatchQueue = AcmeAPI.apiResponseQueue, completion: @escaping ((_ data: Void?, _ error: Error?) -> Void)) -> RequestTask {
-        return updateUserWithRequestBuilder(username: username, user: user).execute(apiResponseQueue) { result in
+    open class func update(username: String, user: User, apiResponseQueue: DispatchQueue = AcmeAPI.apiResponseQueue, completion: @escaping ((_ data: Void?, _ error: Error?) -> Void)) -> RequestTask {
+        return updateWithRequestBuilder(username: username, user: user).execute(apiResponseQueue) { result in
             switch result {
             case .success:
                 completion((), nil)
@@ -377,7 +377,7 @@ open class UserAPI {
      - parameter user: (body) Updated user object 
      - returns: RequestBuilder<Void> 
      */
-    open class func updateUserWithRequestBuilder(username: String, user: User) -> RequestBuilder<Void> {
+    open class func updateWithRequestBuilder(username: String, user: User) -> RequestBuilder<Void> {
         var localVariablePath = "/user/{username}"
         let usernamePreEscape = "\(APIHelper.mapValueToPathItem(username))"
         let usernamePostEscape = usernamePreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""

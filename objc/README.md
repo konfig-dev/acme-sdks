@@ -44,10 +44,16 @@ Import the following:
 #import <AcmeClient/AApiResponse.h>
 #import <AcmeClient/ACategory.h>
 #import <AcmeClient/AOrder.h>
+#import <AcmeClient/APaginateRequest.h>
+#import <AcmeClient/APaginateResponse.h>
+#import <AcmeClient/APaginateResponseEdges.h>
+#import <AcmeClient/APaginateResponseEdgesNode.h>
+#import <AcmeClient/APaginateResponsePageInfo.h>
 #import <AcmeClient/APet.h>
 #import <AcmeClient/ATag.h>
 #import <AcmeClient/AUser.h>
 // load API classes for accessing endpoints
+#import <AcmeClient/AMiscellaneousApi.h>
 #import <AcmeClient/APetApi.h>
 #import <AcmeClient/AStoreApi.h>
 #import <AcmeClient/AUserApi.h>
@@ -64,19 +70,14 @@ Please follow the [installation procedure](#installation--usage) and then run th
 
 ```objc
 
-ADefaultConfiguration *apiConfig = [ADefaultConfiguration sharedConfig];
 
-// Configure OAuth2 access token for authorization: (authentication scheme: petstore_auth)
-[apiConfig setAccessToken:@"YOUR_ACCESS_TOKEN"];
+APaginateRequest* *paginateRequest = [[APaginateRequest alloc] init]; //  (optional)
 
+AMiscellaneousApi *apiInstance = [[AMiscellaneousApi alloc] init];
 
-APet* *pet = [[APet alloc] init]; // Pet object that needs to be added to the store
-
-APetApi *apiInstance = [[APetApi alloc] init];
-
-// Add a new pet to the store
-[apiInstance addPetWithPet:pet
-              completionHandler: ^(APet* output, NSError* error) {
+// Pagination sandbox
+[apiInstance paginateWithPaginateRequest:paginateRequest
+              completionHandler: ^(APaginateResponse* output, NSError* error) {
                             if (output) {
                                 NSLog(@"%@", output);
                             }
@@ -93,26 +94,27 @@ All URIs are relative to *http://petstore.swagger.io/v2*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*APetApi* | [**addPet**](docs/APetApi.md#addpet) | **POST** /pet | Add a new pet to the store
+*AMiscellaneousApi* | [**paginate**](docs/AMiscellaneousApi.md#paginate) | **GET** /pagination | Pagination sandbox
+*APetApi* | [**add**](docs/APetApi.md#add) | **POST** /pet | Add a new pet to the store
 *APetApi* | [**delete**](docs/APetApi.md#delete) | **DELETE** /pet/{petId} | Deletes a pet
-*APetApi* | [**findPetsByStatus**](docs/APetApi.md#findpetsbystatus) | **GET** /pet/findByStatus | Finds Pets by status
-*APetApi* | [**findPetsByTags**](docs/APetApi.md#findpetsbytags) | **GET** /pet/findByTags | Finds Pets by tags
-*APetApi* | [**getPetById**](docs/APetApi.md#getpetbyid) | **GET** /pet/{petId} | Find pet by ID
-*APetApi* | [**updatePet**](docs/APetApi.md#updatepet) | **PUT** /pet | Update an existing pet
-*APetApi* | [**updatePetWithForm**](docs/APetApi.md#updatepetwithform) | **POST** /pet/{petId} | Updates a pet in the store with form data
-*APetApi* | [**uploadFile**](docs/APetApi.md#uploadfile) | **POST** /pet/{petId}/uploadImage | uploads an image
+*APetApi* | [**findByStatus**](docs/APetApi.md#findbystatus) | **GET** /pet/findByStatus | Finds Pets by status
+*APetApi* | [**findByTags**](docs/APetApi.md#findbytags) | **GET** /pet/findByTags | Finds Pets by tags
+*APetApi* | [**getById**](docs/APetApi.md#getbyid) | **GET** /pet/{petId} | Find pet by ID
+*APetApi* | [**update**](docs/APetApi.md#update) | **PUT** /pet | Update an existing pet
+*APetApi* | [**updateWithForm**](docs/APetApi.md#updatewithform) | **POST** /pet/{petId} | Updates a pet in the store with form data
+*APetApi* | [**uploadImage**](docs/APetApi.md#uploadimage) | **POST** /pet/{petId}/uploadImage | uploads an image
 *AStoreApi* | [**deleteOrder**](docs/AStoreApi.md#deleteorder) | **DELETE** /store/order/{orderId} | Delete purchase order by ID
 *AStoreApi* | [**getInventory**](docs/AStoreApi.md#getinventory) | **GET** /store/inventory | Returns pet inventories by status
 *AStoreApi* | [**getOrderById**](docs/AStoreApi.md#getorderbyid) | **GET** /store/order/{orderId} | Find purchase order by ID
 *AStoreApi* | [**placeOrder**](docs/AStoreApi.md#placeorder) | **POST** /store/order | Place an order for a pet
-*AUserApi* | [**createUser**](docs/AUserApi.md#createuser) | **POST** /user | Create user
-*AUserApi* | [**createUsersWithArrayInput**](docs/AUserApi.md#createuserswitharrayinput) | **POST** /user/createWithArray | Creates list of users with given input array
-*AUserApi* | [**createUsersWithListInput**](docs/AUserApi.md#createuserswithlistinput) | **POST** /user/createWithList | Creates list of users with given input array
-*AUserApi* | [**deleteUser**](docs/AUserApi.md#deleteuser) | **DELETE** /user/{username} | Delete user
-*AUserApi* | [**getUserByName**](docs/AUserApi.md#getuserbyname) | **GET** /user/{username} | Get user by user name
-*AUserApi* | [**loginUser**](docs/AUserApi.md#loginuser) | **GET** /user/login | Logs user into the system
-*AUserApi* | [**logoutUser**](docs/AUserApi.md#logoutuser) | **GET** /user/logout | Logs out current logged in user session
-*AUserApi* | [**updateUser**](docs/AUserApi.md#updateuser) | **PUT** /user/{username} | Updated user
+*AUserApi* | [**create**](docs/AUserApi.md#create) | **POST** /user | Create user
+*AUserApi* | [**createWithArray**](docs/AUserApi.md#createwitharray) | **POST** /user/createWithArray | Creates list of users with given input array
+*AUserApi* | [**createWithList**](docs/AUserApi.md#createwithlist) | **POST** /user/createWithList | Creates list of users with given input array
+*AUserApi* | [**delete**](docs/AUserApi.md#delete) | **DELETE** /user/{username} | Delete user
+*AUserApi* | [**getByName**](docs/AUserApi.md#getbyname) | **GET** /user/{username} | Get user by user name
+*AUserApi* | [**login**](docs/AUserApi.md#login) | **GET** /user/login | Logs user into the system
+*AUserApi* | [**logout**](docs/AUserApi.md#logout) | **GET** /user/logout | Logs out current logged in user session
+*AUserApi* | [**update**](docs/AUserApi.md#update) | **PUT** /user/{username} | Updated user
 
 
 ## Documentation For Models
@@ -120,6 +122,11 @@ Class | Method | HTTP request | Description
  - [AApiResponse](docs/AApiResponse.md)
  - [ACategory](docs/ACategory.md)
  - [AOrder](docs/AOrder.md)
+ - [APaginateRequest](docs/APaginateRequest.md)
+ - [APaginateResponse](docs/APaginateResponse.md)
+ - [APaginateResponseEdges](docs/APaginateResponseEdges.md)
+ - [APaginateResponseEdgesNode](docs/APaginateResponseEdgesNode.md)
+ - [APaginateResponsePageInfo](docs/APaginateResponsePageInfo.md)
  - [APet](docs/APet.md)
  - [ATag](docs/ATag.md)
  - [AUser](docs/AUser.md)

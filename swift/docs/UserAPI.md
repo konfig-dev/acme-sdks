@@ -4,19 +4,19 @@ All URIs are relative to *http://petstore.swagger.io/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createUser**](UserAPI.md#createuser) | **POST** /user | Create user
-[**createUsersWithArrayInput**](UserAPI.md#createuserswitharrayinput) | **POST** /user/createWithArray | Creates list of users with given input array
-[**createUsersWithListInput**](UserAPI.md#createuserswithlistinput) | **POST** /user/createWithList | Creates list of users with given input array
-[**deleteUser**](UserAPI.md#deleteuser) | **DELETE** /user/{username} | Delete user
-[**getUserByName**](UserAPI.md#getuserbyname) | **GET** /user/{username} | Get user by user name
-[**loginUser**](UserAPI.md#loginuser) | **GET** /user/login | Logs user into the system
-[**logoutUser**](UserAPI.md#logoutuser) | **GET** /user/logout | Logs out current logged in user session
-[**updateUser**](UserAPI.md#updateuser) | **PUT** /user/{username} | Updated user
+[**create**](UserAPI.md#create) | **POST** /user | Create user
+[**createWithArray**](UserAPI.md#createwitharray) | **POST** /user/createWithArray | Creates list of users with given input array
+[**createWithList**](UserAPI.md#createwithlist) | **POST** /user/createWithList | Creates list of users with given input array
+[**delete**](UserAPI.md#delete) | **DELETE** /user/{username} | Delete user
+[**getByName**](UserAPI.md#getbyname) | **GET** /user/{username} | Get user by user name
+[**login**](UserAPI.md#login) | **GET** /user/login | Logs user into the system
+[**logout**](UserAPI.md#logout) | **GET** /user/logout | Logs out current logged in user session
+[**update**](UserAPI.md#update) | **PUT** /user/{username} | Updated user
 
 
-# **createUser**
+# **create**
 ```swift
-    open class func createUser(user: User, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func create(user: User, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
 ```
 
 Create user
@@ -30,7 +30,7 @@ import Acme
 let user = User(id: 123, username: "username_example", firstName: "firstName_example", lastName: "lastName_example", email: "email_example", password: "password_example", phone: "phone_example", userStatus: 123) // User | Created user object
 
 // Create user
-UserAPI.createUser(user: user) { (response, error) in
+UserAPI.create(user: user) { (response, error) in
     guard error == nil else {
         print(error!)
         return
@@ -63,9 +63,9 @@ Void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
-# **createUsersWithArrayInput**
+# **createWithArray**
 ```swift
-    open class func createUsersWithArrayInput(user: [User], completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func createWithArray(user: [User], completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
 ```
 
 Creates list of users with given input array
@@ -79,7 +79,7 @@ import Acme
 let user = [User(id: 123, username: "username_example", firstName: "firstName_example", lastName: "lastName_example", email: "email_example", password: "password_example", phone: "phone_example", userStatus: 123)] // [User] | List of user object
 
 // Creates list of users with given input array
-UserAPI.createUsersWithArrayInput(user: user) { (response, error) in
+UserAPI.createWithArray(user: user) { (response, error) in
     guard error == nil else {
         print(error!)
         return
@@ -112,9 +112,9 @@ Void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
-# **createUsersWithListInput**
+# **createWithList**
 ```swift
-    open class func createUsersWithListInput(user: [User], completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func createWithList(user: [User], completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
 ```
 
 Creates list of users with given input array
@@ -128,7 +128,7 @@ import Acme
 let user = [User(id: 123, username: "username_example", firstName: "firstName_example", lastName: "lastName_example", email: "email_example", password: "password_example", phone: "phone_example", userStatus: 123)] // [User] | List of user object
 
 // Creates list of users with given input array
-UserAPI.createUsersWithListInput(user: user) { (response, error) in
+UserAPI.createWithList(user: user) { (response, error) in
     guard error == nil else {
         print(error!)
         return
@@ -161,9 +161,9 @@ Void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
-# **deleteUser**
+# **delete**
 ```swift
-    open class func deleteUser(username: String, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func delete(username: String, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
 ```
 
 Delete user
@@ -177,7 +177,7 @@ import Acme
 let username = "username_example" // String | The name that needs to be deleted
 
 // Delete user
-UserAPI.deleteUser(username: username) { (response, error) in
+UserAPI.delete(username: username) { (response, error) in
     guard error == nil else {
         print(error!)
         return
@@ -210,9 +210,9 @@ Void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
-# **getUserByName**
+# **getByName**
 ```swift
-    open class func getUserByName(username: String, completion: @escaping (_ data: User?, _ error: Error?) -> Void)
+    open class func getByName(username: String, completion: @escaping (_ data: User?, _ error: Error?) -> Void)
 ```
 
 Get user by user name
@@ -226,7 +226,7 @@ import Acme
 let username = "username_example" // String | The name that needs to be fetched. Use user1 for testing.
 
 // Get user by user name
-UserAPI.getUserByName(username: username) { (response, error) in
+UserAPI.getByName(username: username) { (response, error) in
     guard error == nil else {
         print(error!)
         return
@@ -259,9 +259,9 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
-# **loginUser**
+# **login**
 ```swift
-    open class func loginUser(username: String, password: String, completion: @escaping (_ data: String?, _ error: Error?) -> Void)
+    open class func login(username: String, password: String, completion: @escaping (_ data: String?, _ error: Error?) -> Void)
 ```
 
 Logs user into the system
@@ -276,7 +276,7 @@ let username = "username_example" // String | The user name for login
 let password = "password_example" // String | The password for login in clear text
 
 // Logs user into the system
-UserAPI.loginUser(username: username, password: password) { (response, error) in
+UserAPI.login(username: username, password: password) { (response, error) in
     guard error == nil else {
         print(error!)
         return
@@ -310,9 +310,9 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
-# **logoutUser**
+# **logout**
 ```swift
-    open class func logoutUser(completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func logout(completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
 ```
 
 Logs out current logged in user session
@@ -325,7 +325,7 @@ import Acme
 
 
 // Logs out current logged in user session
-UserAPI.logoutUser() { (response, error) in
+UserAPI.logout() { (response, error) in
     guard error == nil else {
         print(error!)
         return
@@ -355,9 +355,9 @@ Void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
-# **updateUser**
+# **update**
 ```swift
-    open class func updateUser(username: String, user: User, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func update(username: String, user: User, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
 ```
 
 Updated user
@@ -372,7 +372,7 @@ let username = "username_example" // String | name that need to be deleted
 let user = User(id: 123, username: "username_example", firstName: "firstName_example", lastName: "lastName_example", email: "email_example", password: "password_example", phone: "phone_example", userStatus: 123) // User | Updated user object
 
 // Updated user
-UserAPI.updateUser(username: username, user: user) { (response, error) in
+UserAPI.update(username: username, user: user) { (response, error) in
     guard error == nil else {
         print(error!)
         return

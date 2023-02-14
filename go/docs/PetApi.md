@@ -4,20 +4,20 @@ All URIs are relative to *http://petstore.swagger.io/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**AddPet**](PetApi.md#AddPet) | **Post** /pet | Add a new pet to the store
+[**Add**](PetApi.md#Add) | **Post** /pet | Add a new pet to the store
 [**Delete**](PetApi.md#Delete) | **Delete** /pet/{petId} | Deletes a pet
-[**FindPetsByStatus**](PetApi.md#FindPetsByStatus) | **Get** /pet/findByStatus | Finds Pets by status
-[**FindPetsByTags**](PetApi.md#FindPetsByTags) | **Get** /pet/findByTags | Finds Pets by tags
-[**GetPetById**](PetApi.md#GetPetById) | **Get** /pet/{petId} | Find pet by ID
-[**UpdatePet**](PetApi.md#UpdatePet) | **Put** /pet | Update an existing pet
-[**UpdatePetWithForm**](PetApi.md#UpdatePetWithForm) | **Post** /pet/{petId} | Updates a pet in the store with form data
-[**UploadFile**](PetApi.md#UploadFile) | **Post** /pet/{petId}/uploadImage | uploads an image
+[**FindByStatus**](PetApi.md#FindByStatus) | **Get** /pet/findByStatus | Finds Pets by status
+[**FindByTags**](PetApi.md#FindByTags) | **Get** /pet/findByTags | Finds Pets by tags
+[**GetById**](PetApi.md#GetById) | **Get** /pet/{petId} | Find pet by ID
+[**Update**](PetApi.md#Update) | **Put** /pet | Update an existing pet
+[**UpdateWithForm**](PetApi.md#UpdateWithForm) | **Post** /pet/{petId} | Updates a pet in the store with form data
+[**UploadImage**](PetApi.md#UploadImage) | **Post** /pet/{petId}/uploadImage | uploads an image
 
 
 
-## AddPet
+## Add
 
-> Pet AddPet(ctx).Pet(pet).Execute()
+> Pet Add(ctx).Pet(pet).Execute()
 
 Add a new pet to the store
 
@@ -40,13 +40,13 @@ func main() {
 
     configuration := acme.NewConfiguration()
     apiClient := acme.NewAPIClient(configuration)
-    resp, r, err := apiClient.PetApi.AddPet(context.Background()).Pet(pet).Execute()
+    resp, r, err := apiClient.PetApi.Add(context.Background()).Pet(pet).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PetApi.AddPet``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `PetApi.Add``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `AddPet`: Pet
-    fmt.Fprintf(os.Stdout, "Response from `PetApi.AddPet`: %v\n", resp)
+    // response from `Add`: Pet
+    fmt.Fprintf(os.Stdout, "Response from `PetApi.Add`: %v\n", resp)
 }
 ```
 
@@ -56,7 +56,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiAddPetRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiAddRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -83,7 +83,7 @@ Name | Type | Description  | Notes
 
 ## Delete
 
-> Delete(ctx, petId).ApiKey(apiKey).Execute()
+> Delete(ctx, petId).Execute()
 
 Deletes a pet
 
@@ -103,11 +103,10 @@ import (
 
 func main() {
     petId := int64(789) // int64 | Pet id to delete
-    apiKey := "apiKey_example" // string |  (optional)
 
     configuration := acme.NewConfiguration()
     apiClient := acme.NewAPIClient(configuration)
-    resp, r, err := apiClient.PetApi.Delete(context.Background(), petId).ApiKey(apiKey).Execute()
+    resp, r, err := apiClient.PetApi.Delete(context.Background(), petId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PetApi.Delete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -131,7 +130,6 @@ Other parameters are passed through a pointer to a apiDeleteRequest struct via t
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **apiKey** | **string** |  | 
 
 ### Return type
 
@@ -139,7 +137,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[petstore_auth](../README.md#petstore_auth)
+[api_key](../README.md#api_key), [petstore_auth](../README.md#petstore_auth)
 
 ### HTTP request headers
 
@@ -151,9 +149,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## FindPetsByStatus
+## FindByStatus
 
-> []Pet FindPetsByStatus(ctx).Status(status).Execute()
+> []Pet FindByStatus(ctx).Status(status).Execute()
 
 Finds Pets by status
 
@@ -176,13 +174,13 @@ func main() {
 
     configuration := acme.NewConfiguration()
     apiClient := acme.NewAPIClient(configuration)
-    resp, r, err := apiClient.PetApi.FindPetsByStatus(context.Background()).Status(status).Execute()
+    resp, r, err := apiClient.PetApi.FindByStatus(context.Background()).Status(status).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PetApi.FindPetsByStatus``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `PetApi.FindByStatus``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindPetsByStatus`: []Pet
-    fmt.Fprintf(os.Stdout, "Response from `PetApi.FindPetsByStatus`: %v\n", resp)
+    // response from `FindByStatus`: []Pet
+    fmt.Fprintf(os.Stdout, "Response from `PetApi.FindByStatus`: %v\n", resp)
 }
 ```
 
@@ -192,7 +190,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiFindPetsByStatusRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiFindByStatusRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -217,9 +215,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## FindPetsByTags
+## FindByTags
 
-> []Pet FindPetsByTags(ctx).Tags(tags).Execute()
+> []Pet FindByTags(ctx).Tags(tags).Execute()
 
 Finds Pets by tags
 
@@ -242,13 +240,13 @@ func main() {
 
     configuration := acme.NewConfiguration()
     apiClient := acme.NewAPIClient(configuration)
-    resp, r, err := apiClient.PetApi.FindPetsByTags(context.Background()).Tags(tags).Execute()
+    resp, r, err := apiClient.PetApi.FindByTags(context.Background()).Tags(tags).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PetApi.FindPetsByTags``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `PetApi.FindByTags``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `FindPetsByTags`: []Pet
-    fmt.Fprintf(os.Stdout, "Response from `PetApi.FindPetsByTags`: %v\n", resp)
+    // response from `FindByTags`: []Pet
+    fmt.Fprintf(os.Stdout, "Response from `PetApi.FindByTags`: %v\n", resp)
 }
 ```
 
@@ -258,7 +256,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiFindPetsByTagsRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiFindByTagsRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -283,9 +281,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## GetPetById
+## GetById
 
-> Pet GetPetById(ctx, petId).Execute()
+> Pet GetById(ctx, petId).Execute()
 
 Find pet by ID
 
@@ -308,13 +306,13 @@ func main() {
 
     configuration := acme.NewConfiguration()
     apiClient := acme.NewAPIClient(configuration)
-    resp, r, err := apiClient.PetApi.GetPetById(context.Background(), petId).Execute()
+    resp, r, err := apiClient.PetApi.GetById(context.Background(), petId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PetApi.GetPetById``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `PetApi.GetById``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetPetById`: Pet
-    fmt.Fprintf(os.Stdout, "Response from `PetApi.GetPetById`: %v\n", resp)
+    // response from `GetById`: Pet
+    fmt.Fprintf(os.Stdout, "Response from `PetApi.GetById`: %v\n", resp)
 }
 ```
 
@@ -328,7 +326,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetPetByIdRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiGetByIdRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -353,9 +351,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## UpdatePet
+## Update
 
-> Pet UpdatePet(ctx).Pet(pet).Execute()
+> Pet Update(ctx).Pet(pet).Execute()
 
 Update an existing pet
 
@@ -378,13 +376,13 @@ func main() {
 
     configuration := acme.NewConfiguration()
     apiClient := acme.NewAPIClient(configuration)
-    resp, r, err := apiClient.PetApi.UpdatePet(context.Background()).Pet(pet).Execute()
+    resp, r, err := apiClient.PetApi.Update(context.Background()).Pet(pet).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PetApi.UpdatePet``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `PetApi.Update``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdatePet`: Pet
-    fmt.Fprintf(os.Stdout, "Response from `PetApi.UpdatePet`: %v\n", resp)
+    // response from `Update`: Pet
+    fmt.Fprintf(os.Stdout, "Response from `PetApi.Update`: %v\n", resp)
 }
 ```
 
@@ -394,7 +392,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiUpdatePetRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiUpdateRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -419,9 +417,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## UpdatePetWithForm
+## UpdateWithForm
 
-> UpdatePetWithForm(ctx, petId).Name(name).Status(status).Execute()
+> UpdateWithForm(ctx, petId).Name(name).Status(status).Execute()
 
 Updates a pet in the store with form data
 
@@ -446,9 +444,9 @@ func main() {
 
     configuration := acme.NewConfiguration()
     apiClient := acme.NewAPIClient(configuration)
-    resp, r, err := apiClient.PetApi.UpdatePetWithForm(context.Background(), petId).Name(name).Status(status).Execute()
+    resp, r, err := apiClient.PetApi.UpdateWithForm(context.Background(), petId).Name(name).Status(status).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PetApi.UpdatePetWithForm``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `PetApi.UpdateWithForm``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -464,7 +462,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiUpdatePetWithFormRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiUpdateWithFormRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -491,9 +489,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## UploadFile
+## UploadImage
 
-> ApiResponse UploadFile(ctx, petId).AdditionalMetadata(additionalMetadata).File(file).Execute()
+> ApiResponse UploadImage(ctx, petId).AdditionalMetadata(additionalMetadata).File(file).Execute()
 
 uploads an image
 
@@ -518,13 +516,13 @@ func main() {
 
     configuration := acme.NewConfiguration()
     apiClient := acme.NewAPIClient(configuration)
-    resp, r, err := apiClient.PetApi.UploadFile(context.Background(), petId).AdditionalMetadata(additionalMetadata).File(file).Execute()
+    resp, r, err := apiClient.PetApi.UploadImage(context.Background(), petId).AdditionalMetadata(additionalMetadata).File(file).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PetApi.UploadFile``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `PetApi.UploadImage``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UploadFile`: ApiResponse
-    fmt.Fprintf(os.Stdout, "Response from `PetApi.UploadFile`: %v\n", resp)
+    // response from `UploadImage`: ApiResponse
+    fmt.Fprintf(os.Stdout, "Response from `PetApi.UploadImage`: %v\n", resp)
 }
 ```
 
@@ -538,7 +536,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiUploadFileRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiUploadImageRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes

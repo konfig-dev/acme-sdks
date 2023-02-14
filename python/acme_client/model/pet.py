@@ -96,9 +96,9 @@ class Pet(ModelNormal):
         return {
             'name': (str,),  # noqa: E501
             'photo_urls': ([str],),  # noqa: E501
+            'tags': ([Tag],),  # noqa: E501
             'id': (int,),  # noqa: E501
             'category': (Category,),  # noqa: E501
-            'tags': ([Tag],),  # noqa: E501
             'status': (str,),  # noqa: E501
         }
 
@@ -110,9 +110,9 @@ class Pet(ModelNormal):
     attribute_map = {
         'name': 'name',  # noqa: E501
         'photo_urls': 'photoUrls',  # noqa: E501
+        'tags': 'tags',  # noqa: E501
         'id': 'id',  # noqa: E501
         'category': 'category',  # noqa: E501
-        'tags': 'tags',  # noqa: E501
         'status': 'status',  # noqa: E501
     }
 
@@ -161,9 +161,9 @@ class Pet(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            tags ([Tag]): [optional]  # noqa: E501
             id (int): [optional]  # noqa: E501
             category (Category): [optional]  # noqa: E501
-            tags ([Tag]): [optional]  # noqa: E501
             status (str): pet status in the store. [optional]  # noqa: E501
         """
 
@@ -256,9 +256,9 @@ class Pet(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            tags ([Tag]): [optional]  # noqa: E501
             id (int): [optional]  # noqa: E501
             category (Category): [optional]  # noqa: E501
-            tags ([Tag]): [optional]  # noqa: E501
             status (str): pet status in the store. [optional]  # noqa: E501
         """
 

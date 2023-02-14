@@ -39,9 +39,9 @@ public class UserApiTest {
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void createUserTest() throws ApiException {
+    public void createTest() throws ApiException {
         User user = null;
-        api.createUser(user);
+        api.create(user);
         // TODO: test validations
     }
 
@@ -53,9 +53,9 @@ public class UserApiTest {
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void createUsersWithArrayInputTest() throws ApiException {
+    public void createWithArrayTest() throws ApiException {
         List<User> user = null;
-        api.createUsersWithArrayInput(user);
+        api.createWithArray(user);
         // TODO: test validations
     }
 
@@ -67,9 +67,9 @@ public class UserApiTest {
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void createUsersWithListInputTest() throws ApiException {
+    public void createWithListTest() throws ApiException {
         List<User> user = null;
-        api.createUsersWithListInput(user);
+        api.createWithList(user);
         // TODO: test validations
     }
 
@@ -81,9 +81,9 @@ public class UserApiTest {
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void deleteUserTest() throws ApiException {
+    public void deleteTest() throws ApiException {
         String username = null;
-        api.deleteUser(username);
+        api.delete(username);
         // TODO: test validations
     }
 
@@ -95,9 +95,9 @@ public class UserApiTest {
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getUserByNameTest() throws ApiException {
+    public void getByNameTest() throws ApiException {
         String username = null;
-        User response = api.getUserByName(username);
+        User response = api.getByName(username);
         // TODO: test validations
     }
 
@@ -109,10 +109,10 @@ public class UserApiTest {
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void loginUserTest() throws ApiException {
+    public void loginTest() throws ApiException {
         String username = null;
         String password = null;
-        String response = api.loginUser(username, password);
+        String response = api.login(username, password);
         // TODO: test validations
     }
 
@@ -124,8 +124,8 @@ public class UserApiTest {
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void logoutUserTest() throws ApiException {
-        api.logoutUser();
+    public void logoutTest() throws ApiException {
+        api.logout();
         // TODO: test validations
     }
 
@@ -137,10 +137,10 @@ public class UserApiTest {
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void updateUserTest() throws ApiException {
+    public void updateTest() throws ApiException {
         String username = null;
         User user = null;
-        api.updateUser(username, user);
+        api.update(username, user);
         // TODO: test validations
     }
 

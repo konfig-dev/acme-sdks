@@ -55,94 +55,94 @@ namespace Acme.Net.Test.Api
         }
 
         /// <summary>
-        /// Test CreateUser
+        /// Test Create
         /// </summary>
         [Fact]
-        public void CreateUserTest()
+        public void CreateTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
             //User user = null;
-            //instance.CreateUser(user);
+            //instance.Create(user);
         }
 
         /// <summary>
-        /// Test CreateUsersWithArrayInput
+        /// Test CreateWithArray
         /// </summary>
         [Fact]
-        public void CreateUsersWithArrayInputTest()
+        public void CreateWithArrayTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
             //List<User> user = null;
-            //instance.CreateUsersWithArrayInput(user);
+            //instance.CreateWithArray(user);
         }
 
         /// <summary>
-        /// Test CreateUsersWithListInput
+        /// Test CreateWithList
         /// </summary>
         [Fact]
-        public void CreateUsersWithListInputTest()
+        public void CreateWithListTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
             //List<User> user = null;
-            //instance.CreateUsersWithListInput(user);
+            //instance.CreateWithList(user);
         }
 
         /// <summary>
-        /// Test DeleteUser
+        /// Test Delete
         /// </summary>
         [Fact]
-        public void DeleteUserTest()
+        public void DeleteTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
             //string username = null;
-            //instance.DeleteUser(username);
+            //instance.Delete(username);
         }
 
         /// <summary>
-        /// Test GetUserByName
+        /// Test GetByName
         /// </summary>
         [Fact]
-        public void GetUserByNameTest()
+        public void GetByNameTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
             //string username = null;
-            //var response = instance.GetUserByName(username);
+            //var response = instance.GetByName(username);
             //Assert.IsType<User>(response);
         }
 
         /// <summary>
-        /// Test LoginUser
+        /// Test Login
         /// </summary>
         [Fact]
-        public void LoginUserTest()
+        public void LoginTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
             //string username = null;
             //string password = null;
-            //var response = instance.LoginUser(username, password);
+            //var response = instance.Login(username, password);
             //Assert.IsType<string>(response);
         }
 
         /// <summary>
-        /// Test LogoutUser
+        /// Test Logout
         /// </summary>
         [Fact]
-        public void LogoutUserTest()
+        public void LogoutTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
-            //instance.LogoutUser();
+            //instance.Logout();
         }
 
         /// <summary>
-        /// Test UpdateUser
+        /// Test Update
         /// </summary>
         [Fact]
-        public void UpdateUserTest()
+        public void UpdateTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
             //string username = null;
             //User user = null;
-            //instance.UpdateUser(username, user);
+            //instance.Update(username, user);
         }
     }
 }

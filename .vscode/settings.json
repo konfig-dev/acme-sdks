@@ -8,6 +8,14 @@
   ],
   "python.testing.unittestEnabled": false,
   "python.testing.pytestEnabled": true,
+  "python.testing.unittestArgs": [
+    "-v",
+    "-s",
+    "./python",
+    "-p",
+    "test_*.py"
+  ],
+  "java.compile.nullAnalysis.mode": "automatic",
   "python.analysis.extraPaths": [
     "./out/sdks/python"
   ]

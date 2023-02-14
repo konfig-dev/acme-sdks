@@ -29,6 +29,8 @@
 @interface APet : AObject
 
 
+@property(nonatomic) NSArray<ATag>* tags;
+
 @property(nonatomic) NSNumber* _id;
 
 @property(nonatomic) ACategory* category;
@@ -36,8 +38,6 @@
 @property(nonatomic) NSString* name;
 
 @property(nonatomic) NSArray<NSString*>* photoUrls;
-
-@property(nonatomic) NSArray<ATag>* tags;
 /* pet status in the store [optional]
  */
 @property(nonatomic) NSString* status;

@@ -27,11 +27,11 @@ func Test_acme_PetApiService(t *testing.T) {
     })
     apiClient := acme.NewAPIClient(configuration)
 
-    t.Run("Test PetApiService AddPet", func(t *testing.T) {
+    t.Run("Test PetApiService Add", func(t *testing.T) {
 
         t.Skip("skip test")  // remove to run test
 
-        resp, httpRes, err := apiClient.PetApi.AddPet().Execute()
+        resp, httpRes, err := apiClient.PetApi.Add().Execute()
 
         require.Nil(t, err)
         require.NotNil(t, resp)
@@ -53,11 +53,11 @@ func Test_acme_PetApiService(t *testing.T) {
 
     })
 
-    t.Run("Test PetApiService FindPetsByStatus", func(t *testing.T) {
+    t.Run("Test PetApiService FindByStatus", func(t *testing.T) {
 
         t.Skip("skip test")  // remove to run test
 
-        resp, httpRes, err := apiClient.PetApi.FindPetsByStatus().Execute()
+        resp, httpRes, err := apiClient.PetApi.FindByStatus().Execute()
 
         require.Nil(t, err)
         require.NotNil(t, resp)
@@ -65,11 +65,11 @@ func Test_acme_PetApiService(t *testing.T) {
 
     })
 
-    t.Run("Test PetApiService FindPetsByTags", func(t *testing.T) {
+    t.Run("Test PetApiService FindByTags", func(t *testing.T) {
 
         t.Skip("skip test")  // remove to run test
 
-        resp, httpRes, err := apiClient.PetApi.FindPetsByTags().Execute()
+        resp, httpRes, err := apiClient.PetApi.FindByTags().Execute()
 
         require.Nil(t, err)
         require.NotNil(t, resp)
@@ -77,13 +77,13 @@ func Test_acme_PetApiService(t *testing.T) {
 
     })
 
-    t.Run("Test PetApiService GetPetById", func(t *testing.T) {
+    t.Run("Test PetApiService GetById", func(t *testing.T) {
 
         t.Skip("skip test")  // remove to run test
 
         var petId int64
 
-        resp, httpRes, err := apiClient.PetApi.GetPetById(petId).Execute()
+        resp, httpRes, err := apiClient.PetApi.GetById(petId).Execute()
 
         require.Nil(t, err)
         require.NotNil(t, resp)
@@ -91,11 +91,11 @@ func Test_acme_PetApiService(t *testing.T) {
 
     })
 
-    t.Run("Test PetApiService UpdatePet", func(t *testing.T) {
+    t.Run("Test PetApiService Update", func(t *testing.T) {
 
         t.Skip("skip test")  // remove to run test
 
-        resp, httpRes, err := apiClient.PetApi.UpdatePet().Execute()
+        resp, httpRes, err := apiClient.PetApi.Update().Execute()
 
         require.Nil(t, err)
         require.NotNil(t, resp)
@@ -103,27 +103,27 @@ func Test_acme_PetApiService(t *testing.T) {
 
     })
 
-    t.Run("Test PetApiService UpdatePetWithForm", func(t *testing.T) {
-
-        t.Skip("skip test")  // remove to run test
-
-        var petId int64
-
-        resp, httpRes, err := apiClient.PetApi.UpdatePetWithForm(petId).Execute()
-
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
-
-    })
-
-    t.Run("Test PetApiService UploadFile", func(t *testing.T) {
+    t.Run("Test PetApiService UpdateWithForm", func(t *testing.T) {
 
         t.Skip("skip test")  // remove to run test
 
         var petId int64
 
-        resp, httpRes, err := apiClient.PetApi.UploadFile(petId).Execute()
+        resp, httpRes, err := apiClient.PetApi.UpdateWithForm(petId).Execute()
+
+        require.Nil(t, err)
+        require.NotNil(t, resp)
+        assert.Equal(t, 200, httpRes.StatusCode)
+
+    })
+
+    t.Run("Test PetApiService UploadImage", func(t *testing.T) {
+
+        t.Skip("skip test")  // remove to run test
+
+        var petId int64
+
+        resp, httpRes, err := apiClient.PetApi.UploadImage(petId).Execute()
 
         require.Nil(t, err)
         require.NotNil(t, resp)

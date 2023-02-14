@@ -33,7 +33,7 @@ extern NSInteger kAPetApiMissingParamErrorCode;
 ///  code:405 message:"Invalid input"
 ///
 /// @return APet*
--(NSURLSessionTask*) addPetWithPet: (APet*) pet
+-(NSURLSessionTask*) addWithPet: (APet*) pet
     completionHandler: (void (^)(APet* output, NSError* error)) handler;
 
 
@@ -41,13 +41,11 @@ extern NSInteger kAPetApiMissingParamErrorCode;
 /// 
 ///
 /// @param petId Pet id to delete
-/// @param apiKey  (optional)
 /// 
-///  code:400 message:"Invalid pet value"
+///  code:0 message:"Invalid pet value"
 ///
 /// @return void
 -(NSURLSessionTask*) deleteWithPetId: (NSNumber*) petId
-    apiKey: (NSString*) apiKey
     completionHandler: (void (^)(NSError* error)) handler;
 
 
@@ -60,7 +58,7 @@ extern NSInteger kAPetApiMissingParamErrorCode;
 ///  code:400 message:"Invalid status value"
 ///
 /// @return NSArray<APet>*
--(NSURLSessionTask*) findPetsByStatusWithStatus: (NSArray<NSString*>*) status
+-(NSURLSessionTask*) findByStatusWithStatus: (NSArray<NSString*>*) status
     completionHandler: (void (^)(NSArray<APet>* output, NSError* error)) handler;
 
 
@@ -73,7 +71,7 @@ extern NSInteger kAPetApiMissingParamErrorCode;
 ///  code:400 message:"Invalid tag value"
 ///
 /// @return NSArray<APet>*
--(NSURLSessionTask*) findPetsByTagsWithTags: (NSArray<NSString*>*) tags
+-(NSURLSessionTask*) findByTagsWithTags: (NSArray<NSString*>*) tags
     completionHandler: (void (^)(NSArray<APet>* output, NSError* error)) handler;
 
 
@@ -87,7 +85,7 @@ extern NSInteger kAPetApiMissingParamErrorCode;
 ///  code:404 message:"Pet not found"
 ///
 /// @return APet*
--(NSURLSessionTask*) getPetByIdWithPetId: (NSNumber*) petId
+-(NSURLSessionTask*) getByIdWithPetId: (NSNumber*) petId
     completionHandler: (void (^)(APet* output, NSError* error)) handler;
 
 
@@ -102,7 +100,7 @@ extern NSInteger kAPetApiMissingParamErrorCode;
 ///  code:405 message:"Validation exception"
 ///
 /// @return APet*
--(NSURLSessionTask*) updatePetWithPet: (APet*) pet
+-(NSURLSessionTask*) updateWithPet: (APet*) pet
     completionHandler: (void (^)(APet* output, NSError* error)) handler;
 
 
@@ -113,10 +111,10 @@ extern NSInteger kAPetApiMissingParamErrorCode;
 /// @param name Updated name of the pet (optional)
 /// @param status Updated status of the pet (optional)
 /// 
-///  code:405 message:"Invalid input"
+///  code:0 message:"Invalid input"
 ///
 /// @return void
--(NSURLSessionTask*) updatePetWithFormWithPetId: (NSNumber*) petId
+-(NSURLSessionTask*) updateWithFormWithPetId: (NSNumber*) petId
     name: (NSString*) name
     status: (NSString*) status
     completionHandler: (void (^)(NSError* error)) handler;
@@ -132,7 +130,7 @@ extern NSInteger kAPetApiMissingParamErrorCode;
 ///  code:200 message:"successful operation"
 ///
 /// @return AApiResponse*
--(NSURLSessionTask*) uploadFileWithPetId: (NSNumber*) petId
+-(NSURLSessionTask*) uploadImageWithPetId: (NSNumber*) petId
     additionalMetadata: (NSString*) additionalMetadata
     file: (NSURL*) file
     completionHandler: (void (^)(AApiResponse* output, NSError* error)) handler;

@@ -74,13 +74,13 @@ namespace Acme.Net.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Pet" /> class.
         /// </summary>
+        /// <param name="tags">tags.</param>
         /// <param name="id">id.</param>
         /// <param name="category">category.</param>
         /// <param name="name">name (required).</param>
         /// <param name="photoUrls">photoUrls (required).</param>
-        /// <param name="tags">tags.</param>
         /// <param name="status">pet status in the store.</param>
-        public Pet(long id = default(long), Category category = default(Category), string name = default(string), List<string> photoUrls = default(List<string>), List<Tag> tags = default(List<Tag>), StatusEnum? status = default(StatusEnum?))
+        public Pet(List<Tag> tags = default(List<Tag>), long id = default(long), Category category = default(Category), string name = default(string), List<string> photoUrls = default(List<string>), StatusEnum? status = default(StatusEnum?))
         {
             // to ensure "name" is required (not null)
             if (name == null)
@@ -94,11 +94,17 @@ namespace Acme.Net.Model
                 throw new ArgumentNullException("photoUrls is a required property for Pet and cannot be null");
             }
             this.PhotoUrls = photoUrls;
+            this.Tags = tags;
             this.Id = id;
             this.Category = category;
-            this.Tags = tags;
             this.Status = status;
         }
+
+        /// <summary>
+        /// Gets or Sets Tags
+        /// </summary>
+        [DataMember(Name = "tags", EmitDefaultValue = false)]
+        public List<Tag> Tags { get; set; }
 
         /// <summary>
         /// Gets or Sets Id
@@ -125,12 +131,6 @@ namespace Acme.Net.Model
         public List<string> PhotoUrls { get; set; }
 
         /// <summary>
-        /// Gets or Sets Tags
-        /// </summary>
-        [DataMember(Name = "tags", EmitDefaultValue = false)]
-        public List<Tag> Tags { get; set; }
-
-        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -138,11 +138,11 @@ namespace Acme.Net.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class Pet {\n");
+            sb.Append("  Tags: ").Append(Tags).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Category: ").Append(Category).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  PhotoUrls: ").Append(PhotoUrls).Append("\n");
-            sb.Append("  Tags: ").Append(Tags).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -180,6 +180,12 @@ namespace Acme.Net.Model
             }
             return 
                 (
+                    this.Tags == input.Tags ||
+                    this.Tags != null &&
+                    input.Tags != null &&
+                    this.Tags.SequenceEqual(input.Tags)
+                ) && 
+                (
                     this.Id == input.Id ||
                     this.Id.Equals(input.Id)
                 ) && 
@@ -200,12 +206,6 @@ namespace Acme.Net.Model
                     this.PhotoUrls.SequenceEqual(input.PhotoUrls)
                 ) && 
                 (
-                    this.Tags == input.Tags ||
-                    this.Tags != null &&
-                    input.Tags != null &&
-                    this.Tags.SequenceEqual(input.Tags)
-                ) && 
-                (
                     this.Status == input.Status ||
                     this.Status.Equals(input.Status)
                 );
@@ -220,6 +220,10 @@ namespace Acme.Net.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                if (this.Tags != null)
+                {
+                    hashCode = (hashCode * 59) + this.Tags.GetHashCode();
+                }
                 hashCode = (hashCode * 59) + this.Id.GetHashCode();
                 if (this.Category != null)
                 {
@@ -232,10 +236,6 @@ namespace Acme.Net.Model
                 if (this.PhotoUrls != null)
                 {
                     hashCode = (hashCode * 59) + this.PhotoUrls.GetHashCode();
-                }
-                if (this.Tags != null)
-                {
-                    hashCode = (hashCode * 59) + this.Tags.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.Status.GetHashCode();
                 return hashCode;

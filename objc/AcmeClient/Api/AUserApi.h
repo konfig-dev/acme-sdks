@@ -31,7 +31,7 @@ extern NSInteger kAUserApiMissingParamErrorCode;
 ///  code:0 message:"successful operation"
 ///
 /// @return void
--(NSURLSessionTask*) createUserWithUser: (AUser*) user
+-(NSURLSessionTask*) createWithUser: (AUser*) user
     completionHandler: (void (^)(NSError* error)) handler;
 
 
@@ -43,7 +43,7 @@ extern NSInteger kAUserApiMissingParamErrorCode;
 ///  code:0 message:"successful operation"
 ///
 /// @return void
--(NSURLSessionTask*) createUsersWithArrayInputWithUser: (NSArray<AUser>*) user
+-(NSURLSessionTask*) createWithArrayWithUser: (NSArray<AUser>*) user
     completionHandler: (void (^)(NSError* error)) handler;
 
 
@@ -55,7 +55,7 @@ extern NSInteger kAUserApiMissingParamErrorCode;
 ///  code:0 message:"successful operation"
 ///
 /// @return void
--(NSURLSessionTask*) createUsersWithListInputWithUser: (NSArray<AUser>*) user
+-(NSURLSessionTask*) createWithListWithUser: (NSArray<AUser>*) user
     completionHandler: (void (^)(NSError* error)) handler;
 
 
@@ -64,11 +64,12 @@ extern NSInteger kAUserApiMissingParamErrorCode;
 ///
 /// @param username The name that needs to be deleted
 /// 
+///  code:200 message:"OK",
 ///  code:400 message:"Invalid username supplied",
 ///  code:404 message:"User not found"
 ///
 /// @return void
--(NSURLSessionTask*) deleteUserWithUsername: (NSString*) username
+-(NSURLSessionTask*) deleteWithUsername: (NSString*) username
     completionHandler: (void (^)(NSError* error)) handler;
 
 
@@ -82,7 +83,7 @@ extern NSInteger kAUserApiMissingParamErrorCode;
 ///  code:404 message:"User not found"
 ///
 /// @return AUser*
--(NSURLSessionTask*) getUserByNameWithUsername: (NSString*) username
+-(NSURLSessionTask*) getByNameWithUsername: (NSString*) username
     completionHandler: (void (^)(AUser* output, NSError* error)) handler;
 
 
@@ -96,7 +97,7 @@ extern NSInteger kAUserApiMissingParamErrorCode;
 ///  code:400 message:"Invalid username/password supplied"
 ///
 /// @return NSString*
--(NSURLSessionTask*) loginUserWithUsername: (NSString*) username
+-(NSURLSessionTask*) loginWithUsername: (NSString*) username
     password: (NSString*) password
     completionHandler: (void (^)(NSString* output, NSError* error)) handler;
 
@@ -108,7 +109,7 @@ extern NSInteger kAUserApiMissingParamErrorCode;
 ///  code:0 message:"successful operation"
 ///
 /// @return void
--(NSURLSessionTask*) logoutUserWithCompletionHandler: 
+-(NSURLSessionTask*) logoutWithCompletionHandler: 
     (void (^)(NSError* error)) handler;
 
 
@@ -118,11 +119,12 @@ extern NSInteger kAUserApiMissingParamErrorCode;
 /// @param username name that need to be deleted
 /// @param user Updated user object
 /// 
+///  code:200 message:"OK",
 ///  code:400 message:"Invalid user supplied",
 ///  code:404 message:"User not found"
 ///
 /// @return void
--(NSURLSessionTask*) updateUserWithUsername: (NSString*) username
+-(NSURLSessionTask*) updateWithUsername: (NSString*) username
     user: (AUser*) user
     completionHandler: (void (^)(NSError* error)) handler;
 

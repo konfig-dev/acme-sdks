@@ -4,18 +4,18 @@ All URIs are relative to *http://petstore.swagger.io/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create_user**](UserApi.md#create_user) | **POST** /user | Create user
-[**create_users_with_array_input**](UserApi.md#create_users_with_array_input) | **POST** /user/createWithArray | Creates list of users with given input array
-[**create_users_with_list_input**](UserApi.md#create_users_with_list_input) | **POST** /user/createWithList | Creates list of users with given input array
-[**delete_user**](UserApi.md#delete_user) | **DELETE** /user/{username} | Delete user
-[**get_user_by_name**](UserApi.md#get_user_by_name) | **GET** /user/{username} | Get user by user name
-[**login_user**](UserApi.md#login_user) | **GET** /user/login | Logs user into the system
-[**logout_user**](UserApi.md#logout_user) | **GET** /user/logout | Logs out current logged in user session
-[**update_user**](UserApi.md#update_user) | **PUT** /user/{username} | Updated user
+[**create**](UserApi.md#create) | **POST** /user | Create user
+[**create_with_array**](UserApi.md#create_with_array) | **POST** /user/createWithArray | Creates list of users with given input array
+[**create_with_list**](UserApi.md#create_with_list) | **POST** /user/createWithList | Creates list of users with given input array
+[**delete**](UserApi.md#delete) | **DELETE** /user/{username} | Delete user
+[**get_by_name**](UserApi.md#get_by_name) | **GET** /user/{username} | Get user by user name
+[**login**](UserApi.md#login) | **GET** /user/login | Logs user into the system
+[**logout**](UserApi.md#logout) | **GET** /user/logout | Logs out current logged in user session
+[**update**](UserApi.md#update) | **PUT** /user/{username} | Updated user
 
 
-# **create_user**
-> create_user(user)
+# **create**
+> create(user)
 
 Create user
 
@@ -37,7 +37,12 @@ from pprint import pprint
 # satisfies your auth use case.
 
 # Configure API key authorization: api_key
-configuration = acme_client.Configuration(api_key={'api_key': 'YOUR_API_KEY'})
+configuration = acme_client.Configuration(
+    api_key={'api_key': 'YOUR_API_KEY'},
+    # Defining the host is optional and defaults to http://petstore.swagger.io/v2
+    # See configuration.py for a list of all supported configuration parameters.
+    host = 'http://petstore.swagger.io/v2'
+)
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['api_key'] = 'Bearer'
@@ -60,9 +65,9 @@ with acme_client.ApiClient(configuration) as api_client:
     # example passing only required values which don't have defaults set
     try:
         # Create user
-        api_instance.create_user(user)
+        api_instance.create(user)
     except acme_client.ApiException as e:
-        print("Exception when calling UserApi->create_user: %s\n" % e)
+        print("Exception when calling UserApi->create: %s\n" % e)
 ```
 
 
@@ -94,8 +99,8 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **create_users_with_array_input**
-> create_users_with_array_input(user)
+# **create_with_array**
+> create_with_array(create_with_array_request)
 
 Creates list of users with given input array
 
@@ -109,7 +114,7 @@ Creates list of users with given input array
 import time
 import acme_client
 from acme_client.api import user_api
-from acme_client.model.user import User
+from acme_client.model.create_with_array_request import CreateWithArrayRequest
 from pprint import pprint
 # The client must configure the authentication and authorization parameters
 # in accordance with the API server security policy.
@@ -117,7 +122,12 @@ from pprint import pprint
 # satisfies your auth use case.
 
 # Configure API key authorization: api_key
-configuration = acme_client.Configuration(api_key={'api_key': 'YOUR_API_KEY'})
+configuration = acme_client.Configuration(
+    api_key={'api_key': 'YOUR_API_KEY'},
+    # Defining the host is optional and defaults to http://petstore.swagger.io/v2
+    # See configuration.py for a list of all supported configuration parameters.
+    host = 'http://petstore.swagger.io/v2'
+)
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['api_key'] = 'Bearer'
@@ -126,7 +136,7 @@ configuration = acme_client.Configuration(api_key={'api_key': 'YOUR_API_KEY'})
 with acme_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = user_api.UserApi(api_client)
-    user = [
+    create_with_array_request = CreateWithArrayRequest([
         User(
             id=1,
             username="username_example",
@@ -137,14 +147,14 @@ with acme_client.ApiClient(configuration) as api_client:
             phone="phone_example",
             user_status=1,
         ),
-    ] # [User] | List of user object
+    ]) # CreateWithArrayRequest | List of user object
 
     # example passing only required values which don't have defaults set
     try:
         # Creates list of users with given input array
-        api_instance.create_users_with_array_input(user)
+        api_instance.create_with_array(create_with_array_request)
     except acme_client.ApiException as e:
-        print("Exception when calling UserApi->create_users_with_array_input: %s\n" % e)
+        print("Exception when calling UserApi->create_with_array: %s\n" % e)
 ```
 
 
@@ -152,7 +162,7 @@ with acme_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user** | [**[User]**](User.md)| List of user object |
+ **create_with_array_request** | [**CreateWithArrayRequest**](CreateWithArrayRequest.md)| List of user object |
 
 ### Return type
 
@@ -176,8 +186,8 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **create_users_with_list_input**
-> create_users_with_list_input(user)
+# **create_with_list**
+> create_with_list(create_with_array_request)
 
 Creates list of users with given input array
 
@@ -191,7 +201,7 @@ Creates list of users with given input array
 import time
 import acme_client
 from acme_client.api import user_api
-from acme_client.model.user import User
+from acme_client.model.create_with_array_request import CreateWithArrayRequest
 from pprint import pprint
 # The client must configure the authentication and authorization parameters
 # in accordance with the API server security policy.
@@ -199,7 +209,12 @@ from pprint import pprint
 # satisfies your auth use case.
 
 # Configure API key authorization: api_key
-configuration = acme_client.Configuration(api_key={'api_key': 'YOUR_API_KEY'})
+configuration = acme_client.Configuration(
+    api_key={'api_key': 'YOUR_API_KEY'},
+    # Defining the host is optional and defaults to http://petstore.swagger.io/v2
+    # See configuration.py for a list of all supported configuration parameters.
+    host = 'http://petstore.swagger.io/v2'
+)
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['api_key'] = 'Bearer'
@@ -208,7 +223,7 @@ configuration = acme_client.Configuration(api_key={'api_key': 'YOUR_API_KEY'})
 with acme_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = user_api.UserApi(api_client)
-    user = [
+    create_with_array_request = CreateWithArrayRequest([
         User(
             id=1,
             username="username_example",
@@ -219,14 +234,14 @@ with acme_client.ApiClient(configuration) as api_client:
             phone="phone_example",
             user_status=1,
         ),
-    ] # [User] | List of user object
+    ]) # CreateWithArrayRequest | List of user object
 
     # example passing only required values which don't have defaults set
     try:
         # Creates list of users with given input array
-        api_instance.create_users_with_list_input(user)
+        api_instance.create_with_list(create_with_array_request)
     except acme_client.ApiException as e:
-        print("Exception when calling UserApi->create_users_with_list_input: %s\n" % e)
+        print("Exception when calling UserApi->create_with_list: %s\n" % e)
 ```
 
 
@@ -234,7 +249,7 @@ with acme_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user** | [**[User]**](User.md)| List of user object |
+ **create_with_array_request** | [**CreateWithArrayRequest**](CreateWithArrayRequest.md)| List of user object |
 
 ### Return type
 
@@ -258,8 +273,8 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **delete_user**
-> delete_user(username)
+# **delete**
+> delete(username)
 
 Delete user
 
@@ -280,7 +295,12 @@ from pprint import pprint
 # satisfies your auth use case.
 
 # Configure API key authorization: api_key
-configuration = acme_client.Configuration(api_key={'api_key': 'YOUR_API_KEY'})
+configuration = acme_client.Configuration(
+    api_key={'api_key': 'YOUR_API_KEY'},
+    # Defining the host is optional and defaults to http://petstore.swagger.io/v2
+    # See configuration.py for a list of all supported configuration parameters.
+    host = 'http://petstore.swagger.io/v2'
+)
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['api_key'] = 'Bearer'
@@ -294,9 +314,9 @@ with acme_client.ApiClient(configuration) as api_client:
     # example passing only required values which don't have defaults set
     try:
         # Delete user
-        api_instance.delete_user(username)
+        api_instance.delete(username)
     except acme_client.ApiException as e:
-        print("Exception when calling UserApi->delete_user: %s\n" % e)
+        print("Exception when calling UserApi->delete: %s\n" % e)
 ```
 
 
@@ -324,13 +344,14 @@ void (empty response body)
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+**200** | OK |  -  |
 **400** | Invalid username supplied |  -  |
 **404** | User not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_user_by_name**
-> User get_user_by_name(username)
+# **get_by_name**
+> User get_by_name(username)
 
 Get user by user name
 
@@ -355,10 +376,10 @@ with acme_client.ApiClient() as api_client:
     # example passing only required values which don't have defaults set
     try:
         # Get user by user name
-        api_response = api_instance.get_user_by_name(username)
+        api_response = api_instance.get_by_name(username)
         pprint(api_response)
     except acme_client.ApiException as e:
-        print("Exception when calling UserApi->get_user_by_name: %s\n" % e)
+        print("Exception when calling UserApi->get_by_name: %s\n" % e)
 ```
 
 
@@ -392,8 +413,8 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **login_user**
-> str login_user(username, password)
+# **login**
+> str login(username, password)
 
 Logs user into the system
 
@@ -418,10 +439,10 @@ with acme_client.ApiClient() as api_client:
     # example passing only required values which don't have defaults set
     try:
         # Logs user into the system
-        api_response = api_instance.login_user(username, password)
+        api_response = api_instance.login(username, password)
         pprint(api_response)
     except acme_client.ApiException as e:
-        print("Exception when calling UserApi->login_user: %s\n" % e)
+        print("Exception when calling UserApi->login: %s\n" % e)
 ```
 
 
@@ -455,8 +476,8 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **logout_user**
-> logout_user()
+# **logout**
+> logout()
 
 Logs out current logged in user session
 
@@ -477,7 +498,12 @@ from pprint import pprint
 # satisfies your auth use case.
 
 # Configure API key authorization: api_key
-configuration = acme_client.Configuration(api_key={'api_key': 'YOUR_API_KEY'})
+configuration = acme_client.Configuration(
+    api_key={'api_key': 'YOUR_API_KEY'},
+    # Defining the host is optional and defaults to http://petstore.swagger.io/v2
+    # See configuration.py for a list of all supported configuration parameters.
+    host = 'http://petstore.swagger.io/v2'
+)
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['api_key'] = 'Bearer'
@@ -490,9 +516,9 @@ with acme_client.ApiClient(configuration) as api_client:
     # example, this endpoint has no required or optional parameters
     try:
         # Logs out current logged in user session
-        api_instance.logout_user()
+        api_instance.logout()
     except acme_client.ApiException as e:
-        print("Exception when calling UserApi->logout_user: %s\n" % e)
+        print("Exception when calling UserApi->logout: %s\n" % e)
 ```
 
 
@@ -521,8 +547,8 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **update_user**
-> update_user(username, user)
+# **update**
+> update(username, user)
 
 Updated user
 
@@ -544,7 +570,12 @@ from pprint import pprint
 # satisfies your auth use case.
 
 # Configure API key authorization: api_key
-configuration = acme_client.Configuration(api_key={'api_key': 'YOUR_API_KEY'})
+configuration = acme_client.Configuration(
+    api_key={'api_key': 'YOUR_API_KEY'},
+    # Defining the host is optional and defaults to http://petstore.swagger.io/v2
+    # See configuration.py for a list of all supported configuration parameters.
+    host = 'http://petstore.swagger.io/v2'
+)
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['api_key'] = 'Bearer'
@@ -568,9 +599,9 @@ with acme_client.ApiClient(configuration) as api_client:
     # example passing only required values which don't have defaults set
     try:
         # Updated user
-        api_instance.update_user(username, user)
+        api_instance.update(username, user)
     except acme_client.ApiException as e:
-        print("Exception when calling UserApi->update_user: %s\n" % e)
+        print("Exception when calling UserApi->update: %s\n" % e)
 ```
 
 
@@ -599,6 +630,7 @@ void (empty response body)
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+**200** | OK |  -  |
 **400** | Invalid user supplied |  -  |
 **404** | User not found |  -  |
 

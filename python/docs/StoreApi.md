@@ -65,13 +65,14 @@ No authorization required
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+**200** | OK |  -  |
 **400** | Invalid ID supplied |  -  |
 **404** | Order not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_inventory**
-> {str: (int,)} get_inventory()
+> GetInventoryResponse get_inventory()
 
 Returns pet inventories by status
 
@@ -85,6 +86,7 @@ Returns a map of status codes to quantities
 import time
 import acme_client
 from acme_client.api import store_api
+from acme_client.model.get_inventory_response import GetInventoryResponse
 from pprint import pprint
 # The client must configure the authentication and authorization parameters
 # in accordance with the API server security policy.
@@ -92,7 +94,12 @@ from pprint import pprint
 # satisfies your auth use case.
 
 # Configure API key authorization: api_key
-configuration = acme_client.Configuration(api_key={'api_key': 'YOUR_API_KEY'})
+configuration = acme_client.Configuration(
+    api_key={'api_key': 'YOUR_API_KEY'},
+    # Defining the host is optional and defaults to http://petstore.swagger.io/v2
+    # See configuration.py for a list of all supported configuration parameters.
+    host = 'http://petstore.swagger.io/v2'
+)
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['api_key'] = 'Bearer'
@@ -117,7 +124,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-**{str: (int,)}**
+[**GetInventoryResponse**](GetInventoryResponse.md)
 
 ### Authorization
 

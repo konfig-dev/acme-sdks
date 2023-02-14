@@ -4,20 +4,20 @@ All URIs are relative to http://petstore.swagger.io/v2, except if the operation 
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**createUser()**](UserApi.md#createUser) | **POST** /user | Create user |
-| [**createUsersWithArrayInput()**](UserApi.md#createUsersWithArrayInput) | **POST** /user/createWithArray | Creates list of users with given input array |
-| [**createUsersWithListInput()**](UserApi.md#createUsersWithListInput) | **POST** /user/createWithList | Creates list of users with given input array |
-| [**deleteUser()**](UserApi.md#deleteUser) | **DELETE** /user/{username} | Delete user |
-| [**getUserByName()**](UserApi.md#getUserByName) | **GET** /user/{username} | Get user by user name |
-| [**loginUser()**](UserApi.md#loginUser) | **GET** /user/login | Logs user into the system |
-| [**logoutUser()**](UserApi.md#logoutUser) | **GET** /user/logout | Logs out current logged in user session |
-| [**updateUser()**](UserApi.md#updateUser) | **PUT** /user/{username} | Updated user |
+| [**create()**](UserApi.md#create) | **POST** /user | Create user |
+| [**createWithArray()**](UserApi.md#createWithArray) | **POST** /user/createWithArray | Creates list of users with given input array |
+| [**createWithList()**](UserApi.md#createWithList) | **POST** /user/createWithList | Creates list of users with given input array |
+| [**delete()**](UserApi.md#delete) | **DELETE** /user/{username} | Delete user |
+| [**getByName()**](UserApi.md#getByName) | **GET** /user/{username} | Get user by user name |
+| [**login()**](UserApi.md#login) | **GET** /user/login | Logs user into the system |
+| [**logout()**](UserApi.md#logout) | **GET** /user/logout | Logs out current logged in user session |
+| [**update()**](UserApi.md#update) | **PUT** /user/{username} | Updated user |
 
 
-## `createUser()`
+## `create()`
 
 ```php
-createUser($user)
+create($user)
 ```
 
 Create user
@@ -46,9 +46,9 @@ $apiInstance = new OpenAPI\Client\Api\UserApi(
 $user = new \OpenAPI\Client\Model\User(); // \OpenAPI\Client\Model\User | Created user object
 
 try {
-    $apiInstance->createUser($user);
+    $apiInstance->create($user);
 } catch (Exception $e) {
-    echo 'Exception when calling UserApi->createUser: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling UserApi->create: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -75,10 +75,10 @@ void (empty response body)
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `createUsersWithArrayInput()`
+## `createWithArray()`
 
 ```php
-createUsersWithArrayInput($user)
+createWithArray($user)
 ```
 
 Creates list of users with given input array
@@ -107,9 +107,9 @@ $apiInstance = new OpenAPI\Client\Api\UserApi(
 $user = array(new \OpenAPI\Client\Model\User()); // \OpenAPI\Client\Model\User[] | List of user object
 
 try {
-    $apiInstance->createUsersWithArrayInput($user);
+    $apiInstance->createWithArray($user);
 } catch (Exception $e) {
-    echo 'Exception when calling UserApi->createUsersWithArrayInput: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling UserApi->createWithArray: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -136,10 +136,10 @@ void (empty response body)
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `createUsersWithListInput()`
+## `createWithList()`
 
 ```php
-createUsersWithListInput($user)
+createWithList($user)
 ```
 
 Creates list of users with given input array
@@ -168,9 +168,9 @@ $apiInstance = new OpenAPI\Client\Api\UserApi(
 $user = array(new \OpenAPI\Client\Model\User()); // \OpenAPI\Client\Model\User[] | List of user object
 
 try {
-    $apiInstance->createUsersWithListInput($user);
+    $apiInstance->createWithList($user);
 } catch (Exception $e) {
-    echo 'Exception when calling UserApi->createUsersWithListInput: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling UserApi->createWithList: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -197,10 +197,10 @@ void (empty response body)
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `deleteUser()`
+## `delete()`
 
 ```php
-deleteUser($username)
+delete($username)
 ```
 
 Delete user
@@ -229,9 +229,9 @@ $apiInstance = new OpenAPI\Client\Api\UserApi(
 $username = 'username_example'; // string | The name that needs to be deleted
 
 try {
-    $apiInstance->deleteUser($username);
+    $apiInstance->delete($username);
 } catch (Exception $e) {
-    echo 'Exception when calling UserApi->deleteUser: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling UserApi->delete: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -258,10 +258,10 @@ void (empty response body)
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `getUserByName()`
+## `getByName()`
 
 ```php
-getUserByName($username): \OpenAPI\Client\Model\User
+getByName($username): \OpenAPI\Client\Model\User
 ```
 
 Get user by user name
@@ -284,10 +284,10 @@ $apiInstance = new OpenAPI\Client\Api\UserApi(
 $username = 'username_example'; // string | The name that needs to be fetched. Use user1 for testing.
 
 try {
-    $result = $apiInstance->getUserByName($username);
+    $result = $apiInstance->getByName($username);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling UserApi->getUserByName: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling UserApi->getByName: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -314,10 +314,10 @@ No authorization required
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `loginUser()`
+## `login()`
 
 ```php
-loginUser($username, $password): string
+login($username, $password): string
 ```
 
 Logs user into the system
@@ -341,10 +341,10 @@ $username = 'username_example'; // string | The user name for login
 $password = 'password_example'; // string | The password for login in clear text
 
 try {
-    $result = $apiInstance->loginUser($username, $password);
+    $result = $apiInstance->login($username, $password);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling UserApi->loginUser: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling UserApi->login: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -372,10 +372,10 @@ No authorization required
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `logoutUser()`
+## `logout()`
 
 ```php
-logoutUser()
+logout()
 ```
 
 Logs out current logged in user session
@@ -403,9 +403,9 @@ $apiInstance = new OpenAPI\Client\Api\UserApi(
 );
 
 try {
-    $apiInstance->logoutUser();
+    $apiInstance->logout();
 } catch (Exception $e) {
-    echo 'Exception when calling UserApi->logoutUser: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling UserApi->logout: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -430,10 +430,10 @@ void (empty response body)
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `updateUser()`
+## `update()`
 
 ```php
-updateUser($username, $user)
+update($username, $user)
 ```
 
 Updated user
@@ -463,9 +463,9 @@ $username = 'username_example'; // string | name that need to be deleted
 $user = new \OpenAPI\Client\Model\User(); // \OpenAPI\Client\Model\User | Updated user object
 
 try {
-    $apiInstance->updateUser($username, $user);
+    $apiInstance->update($username, $user);
 } catch (Exception $e) {
-    echo 'Exception when calling UserApi->updateUser: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling UserApi->update: ', $e->getMessage(), PHP_EOL;
 }
 ```
 

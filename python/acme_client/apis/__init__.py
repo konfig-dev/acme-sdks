@@ -6,7 +6,7 @@
 # raise a `RecursionError`.
 # In order to avoid this, import only the API that you directly need like:
 #
-#   from acme_client.api.pet_api import PetApi
+#   from acme_client.api.miscellaneous_api import MiscellaneousApi
 #
 # or import this package, but before doing it, use:
 #
@@ -14,6 +14,7 @@
 #   sys.setrecursionlimit(n)
 
 # Import APIs into API package:
+from acme_client.api.miscellaneous_api import MiscellaneousApi
 from acme_client.api.pet_api import PetApi
 from acme_client.api.store_api import StoreApi
 from acme_client.api.user_api import UserApi

@@ -4,18 +4,18 @@ All URIs are relative to *http://petstore.swagger.io/v2*
 
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
-| [**CreateUser**](UserApi.md#createuser) | **POST** /user | Create user |
-| [**CreateUsersWithArrayInput**](UserApi.md#createuserswitharrayinput) | **POST** /user/createWithArray | Creates list of users with given input array |
-| [**CreateUsersWithListInput**](UserApi.md#createuserswithlistinput) | **POST** /user/createWithList | Creates list of users with given input array |
-| [**DeleteUser**](UserApi.md#deleteuser) | **DELETE** /user/{username} | Delete user |
-| [**GetUserByName**](UserApi.md#getuserbyname) | **GET** /user/{username} | Get user by user name |
-| [**LoginUser**](UserApi.md#loginuser) | **GET** /user/login | Logs user into the system |
-| [**LogoutUser**](UserApi.md#logoutuser) | **GET** /user/logout | Logs out current logged in user session |
-| [**UpdateUser**](UserApi.md#updateuser) | **PUT** /user/{username} | Updated user |
+| [**Create**](UserApi.md#create) | **POST** /user | Create user |
+| [**CreateWithArray**](UserApi.md#createwitharray) | **POST** /user/createWithArray | Creates list of users with given input array |
+| [**CreateWithList**](UserApi.md#createwithlist) | **POST** /user/createWithList | Creates list of users with given input array |
+| [**Delete**](UserApi.md#delete) | **DELETE** /user/{username} | Delete user |
+| [**GetByName**](UserApi.md#getbyname) | **GET** /user/{username} | Get user by user name |
+| [**Login**](UserApi.md#login) | **GET** /user/login | Logs user into the system |
+| [**Logout**](UserApi.md#logout) | **GET** /user/logout | Logs out current logged in user session |
+| [**Update**](UserApi.md#update) | **PUT** /user/{username} | Updated user |
 
-<a name="createuser"></a>
-# **CreateUser**
-> void CreateUser (User user)
+<a name="create"></a>
+# **Create**
+> void Create (User user)
 
 Create user
 
@@ -31,7 +31,7 @@ using Acme.Net.Model;
 
 namespace Example
 {
-    public class CreateUserExample
+    public class CreateExample
     {
         public static void Main()
         {
@@ -48,11 +48,11 @@ namespace Example
             try
             {
                 // Create user
-                apiInstance.CreateUser(user);
+                apiInstance.Create(user);
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling UserApi.CreateUser: " + e.Message);
+                Debug.Print("Exception when calling UserApi.Create: " + e.Message);
                 Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
@@ -61,18 +61,18 @@ namespace Example
 }
 ```
 
-#### Using the CreateUserWithHttpInfo variant
+#### Using the CreateWithHttpInfo variant
 This returns an ApiResponse object which contains the response data, status code and headers.
 
 ```csharp
 try
 {
     // Create user
-    apiInstance.CreateUserWithHttpInfo(user);
+    apiInstance.CreateWithHttpInfo(user);
 }
 catch (ApiException e)
 {
-    Debug.Print("Exception when calling UserApi.CreateUserWithHttpInfo: " + e.Message);
+    Debug.Print("Exception when calling UserApi.CreateWithHttpInfo: " + e.Message);
     Debug.Print("Status Code: " + e.ErrorCode);
     Debug.Print(e.StackTrace);
 }
@@ -105,9 +105,9 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="createuserswitharrayinput"></a>
-# **CreateUsersWithArrayInput**
-> void CreateUsersWithArrayInput (List<User> user)
+<a name="createwitharray"></a>
+# **CreateWithArray**
+> void CreateWithArray (List<User> user)
 
 Creates list of users with given input array
 
@@ -121,7 +121,7 @@ using Acme.Net.Model;
 
 namespace Example
 {
-    public class CreateUsersWithArrayInputExample
+    public class CreateWithArrayExample
     {
         public static void Main()
         {
@@ -138,11 +138,11 @@ namespace Example
             try
             {
                 // Creates list of users with given input array
-                apiInstance.CreateUsersWithArrayInput(user);
+                apiInstance.CreateWithArray(user);
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling UserApi.CreateUsersWithArrayInput: " + e.Message);
+                Debug.Print("Exception when calling UserApi.CreateWithArray: " + e.Message);
                 Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
@@ -151,18 +151,18 @@ namespace Example
 }
 ```
 
-#### Using the CreateUsersWithArrayInputWithHttpInfo variant
+#### Using the CreateWithArrayWithHttpInfo variant
 This returns an ApiResponse object which contains the response data, status code and headers.
 
 ```csharp
 try
 {
     // Creates list of users with given input array
-    apiInstance.CreateUsersWithArrayInputWithHttpInfo(user);
+    apiInstance.CreateWithArrayWithHttpInfo(user);
 }
 catch (ApiException e)
 {
-    Debug.Print("Exception when calling UserApi.CreateUsersWithArrayInputWithHttpInfo: " + e.Message);
+    Debug.Print("Exception when calling UserApi.CreateWithArrayWithHttpInfo: " + e.Message);
     Debug.Print("Status Code: " + e.ErrorCode);
     Debug.Print(e.StackTrace);
 }
@@ -195,9 +195,9 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="createuserswithlistinput"></a>
-# **CreateUsersWithListInput**
-> void CreateUsersWithListInput (List<User> user)
+<a name="createwithlist"></a>
+# **CreateWithList**
+> void CreateWithList (List<User> user)
 
 Creates list of users with given input array
 
@@ -211,7 +211,7 @@ using Acme.Net.Model;
 
 namespace Example
 {
-    public class CreateUsersWithListInputExample
+    public class CreateWithListExample
     {
         public static void Main()
         {
@@ -228,11 +228,11 @@ namespace Example
             try
             {
                 // Creates list of users with given input array
-                apiInstance.CreateUsersWithListInput(user);
+                apiInstance.CreateWithList(user);
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling UserApi.CreateUsersWithListInput: " + e.Message);
+                Debug.Print("Exception when calling UserApi.CreateWithList: " + e.Message);
                 Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
@@ -241,18 +241,18 @@ namespace Example
 }
 ```
 
-#### Using the CreateUsersWithListInputWithHttpInfo variant
+#### Using the CreateWithListWithHttpInfo variant
 This returns an ApiResponse object which contains the response data, status code and headers.
 
 ```csharp
 try
 {
     // Creates list of users with given input array
-    apiInstance.CreateUsersWithListInputWithHttpInfo(user);
+    apiInstance.CreateWithListWithHttpInfo(user);
 }
 catch (ApiException e)
 {
-    Debug.Print("Exception when calling UserApi.CreateUsersWithListInputWithHttpInfo: " + e.Message);
+    Debug.Print("Exception when calling UserApi.CreateWithListWithHttpInfo: " + e.Message);
     Debug.Print("Status Code: " + e.ErrorCode);
     Debug.Print(e.StackTrace);
 }
@@ -285,9 +285,9 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="deleteuser"></a>
-# **DeleteUser**
-> void DeleteUser (string username)
+<a name="delete"></a>
+# **Delete**
+> void Delete (string username)
 
 Delete user
 
@@ -303,7 +303,7 @@ using Acme.Net.Model;
 
 namespace Example
 {
-    public class DeleteUserExample
+    public class DeleteExample
     {
         public static void Main()
         {
@@ -320,11 +320,11 @@ namespace Example
             try
             {
                 // Delete user
-                apiInstance.DeleteUser(username);
+                apiInstance.Delete(username);
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling UserApi.DeleteUser: " + e.Message);
+                Debug.Print("Exception when calling UserApi.Delete: " + e.Message);
                 Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
@@ -333,18 +333,18 @@ namespace Example
 }
 ```
 
-#### Using the DeleteUserWithHttpInfo variant
+#### Using the DeleteWithHttpInfo variant
 This returns an ApiResponse object which contains the response data, status code and headers.
 
 ```csharp
 try
 {
     // Delete user
-    apiInstance.DeleteUserWithHttpInfo(username);
+    apiInstance.DeleteWithHttpInfo(username);
 }
 catch (ApiException e)
 {
-    Debug.Print("Exception when calling UserApi.DeleteUserWithHttpInfo: " + e.Message);
+    Debug.Print("Exception when calling UserApi.DeleteWithHttpInfo: " + e.Message);
     Debug.Print("Status Code: " + e.ErrorCode);
     Debug.Print(e.StackTrace);
 }
@@ -373,14 +373,15 @@ void (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **200** | OK |  -  |
 | **400** | Invalid username supplied |  -  |
 | **404** | User not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getuserbyname"></a>
-# **GetUserByName**
-> User GetUserByName (string username)
+<a name="getbyname"></a>
+# **GetByName**
+> User GetByName (string username)
 
 Get user by user name
 
@@ -394,7 +395,7 @@ using Acme.Net.Model;
 
 namespace Example
 {
-    public class GetUserByNameExample
+    public class GetByNameExample
     {
         public static void Main()
         {
@@ -406,12 +407,12 @@ namespace Example
             try
             {
                 // Get user by user name
-                User result = apiInstance.GetUserByName(username);
+                User result = apiInstance.GetByName(username);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling UserApi.GetUserByName: " + e.Message);
+                Debug.Print("Exception when calling UserApi.GetByName: " + e.Message);
                 Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
@@ -420,21 +421,21 @@ namespace Example
 }
 ```
 
-#### Using the GetUserByNameWithHttpInfo variant
+#### Using the GetByNameWithHttpInfo variant
 This returns an ApiResponse object which contains the response data, status code and headers.
 
 ```csharp
 try
 {
     // Get user by user name
-    ApiResponse<User> response = apiInstance.GetUserByNameWithHttpInfo(username);
+    ApiResponse<User> response = apiInstance.GetByNameWithHttpInfo(username);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
 }
 catch (ApiException e)
 {
-    Debug.Print("Exception when calling UserApi.GetUserByNameWithHttpInfo: " + e.Message);
+    Debug.Print("Exception when calling UserApi.GetByNameWithHttpInfo: " + e.Message);
     Debug.Print("Status Code: " + e.ErrorCode);
     Debug.Print(e.StackTrace);
 }
@@ -469,9 +470,9 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="loginuser"></a>
-# **LoginUser**
-> string LoginUser (string username, string password)
+<a name="login"></a>
+# **Login**
+> string Login (string username, string password)
 
 Logs user into the system
 
@@ -485,7 +486,7 @@ using Acme.Net.Model;
 
 namespace Example
 {
-    public class LoginUserExample
+    public class LoginExample
     {
         public static void Main()
         {
@@ -498,12 +499,12 @@ namespace Example
             try
             {
                 // Logs user into the system
-                string result = apiInstance.LoginUser(username, password);
+                string result = apiInstance.Login(username, password);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling UserApi.LoginUser: " + e.Message);
+                Debug.Print("Exception when calling UserApi.Login: " + e.Message);
                 Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
@@ -512,21 +513,21 @@ namespace Example
 }
 ```
 
-#### Using the LoginUserWithHttpInfo variant
+#### Using the LoginWithHttpInfo variant
 This returns an ApiResponse object which contains the response data, status code and headers.
 
 ```csharp
 try
 {
     // Logs user into the system
-    ApiResponse<string> response = apiInstance.LoginUserWithHttpInfo(username, password);
+    ApiResponse<string> response = apiInstance.LoginWithHttpInfo(username, password);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
 }
 catch (ApiException e)
 {
-    Debug.Print("Exception when calling UserApi.LoginUserWithHttpInfo: " + e.Message);
+    Debug.Print("Exception when calling UserApi.LoginWithHttpInfo: " + e.Message);
     Debug.Print("Status Code: " + e.ErrorCode);
     Debug.Print(e.StackTrace);
 }
@@ -561,9 +562,9 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="logoutuser"></a>
-# **LogoutUser**
-> void LogoutUser ()
+<a name="logout"></a>
+# **Logout**
+> void Logout ()
 
 Logs out current logged in user session
 
@@ -577,7 +578,7 @@ using Acme.Net.Model;
 
 namespace Example
 {
-    public class LogoutUserExample
+    public class LogoutExample
     {
         public static void Main()
         {
@@ -593,11 +594,11 @@ namespace Example
             try
             {
                 // Logs out current logged in user session
-                apiInstance.LogoutUser();
+                apiInstance.Logout();
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling UserApi.LogoutUser: " + e.Message);
+                Debug.Print("Exception when calling UserApi.Logout: " + e.Message);
                 Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
@@ -606,18 +607,18 @@ namespace Example
 }
 ```
 
-#### Using the LogoutUserWithHttpInfo variant
+#### Using the LogoutWithHttpInfo variant
 This returns an ApiResponse object which contains the response data, status code and headers.
 
 ```csharp
 try
 {
     // Logs out current logged in user session
-    apiInstance.LogoutUserWithHttpInfo();
+    apiInstance.LogoutWithHttpInfo();
 }
 catch (ApiException e)
 {
-    Debug.Print("Exception when calling UserApi.LogoutUserWithHttpInfo: " + e.Message);
+    Debug.Print("Exception when calling UserApi.LogoutWithHttpInfo: " + e.Message);
     Debug.Print("Status Code: " + e.ErrorCode);
     Debug.Print(e.StackTrace);
 }
@@ -646,9 +647,9 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="updateuser"></a>
-# **UpdateUser**
-> void UpdateUser (string username, User user)
+<a name="update"></a>
+# **Update**
+> void Update (string username, User user)
 
 Updated user
 
@@ -664,7 +665,7 @@ using Acme.Net.Model;
 
 namespace Example
 {
-    public class UpdateUserExample
+    public class UpdateExample
     {
         public static void Main()
         {
@@ -682,11 +683,11 @@ namespace Example
             try
             {
                 // Updated user
-                apiInstance.UpdateUser(username, user);
+                apiInstance.Update(username, user);
             }
             catch (ApiException  e)
             {
-                Debug.Print("Exception when calling UserApi.UpdateUser: " + e.Message);
+                Debug.Print("Exception when calling UserApi.Update: " + e.Message);
                 Debug.Print("Status Code: " + e.ErrorCode);
                 Debug.Print(e.StackTrace);
             }
@@ -695,18 +696,18 @@ namespace Example
 }
 ```
 
-#### Using the UpdateUserWithHttpInfo variant
+#### Using the UpdateWithHttpInfo variant
 This returns an ApiResponse object which contains the response data, status code and headers.
 
 ```csharp
 try
 {
     // Updated user
-    apiInstance.UpdateUserWithHttpInfo(username, user);
+    apiInstance.UpdateWithHttpInfo(username, user);
 }
 catch (ApiException e)
 {
-    Debug.Print("Exception when calling UserApi.UpdateUserWithHttpInfo: " + e.Message);
+    Debug.Print("Exception when calling UserApi.UpdateWithHttpInfo: " + e.Message);
     Debug.Print("Status Code: " + e.ErrorCode);
     Debug.Print(e.StackTrace);
 }
@@ -736,6 +737,7 @@ void (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **200** | OK |  -  |
 | **400** | Invalid user supplied |  -  |
 | **404** | User not found |  -  |
 

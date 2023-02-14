@@ -28,6 +28,7 @@ extern NSInteger kAStoreApiMissingParamErrorCode;
 ///
 /// @param orderId ID of the order that needs to be deleted
 /// 
+///  code:200 message:"OK",
 ///  code:400 message:"Invalid ID supplied",
 ///  code:404 message:"Order not found"
 ///

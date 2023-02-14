@@ -21,6 +21,7 @@ from acme_client.model_utils import (  # noqa: F401
     none_type,
     validate_and_convert_types
 )
+from acme_client.model.create_with_array_request import CreateWithArrayRequest
 from acme_client.model.user import User
 
 
@@ -35,14 +36,14 @@ class UserApi(object):
         if api_client is None:
             api_client = ApiClient()
         self.api_client = api_client
-        self.create_user_endpoint = _Endpoint(
+        self.create_endpoint = _Endpoint(
             settings={
                 'response_type': None,
                 'auth': [
                     'api_key'
                 ],
                 'endpoint_path': '/user',
-                'operation_id': 'create_user',
+                'operation_id': 'create',
                 'http_method': 'POST',
                 'servers': None,
             },
@@ -85,23 +86,23 @@ class UserApi(object):
             },
             api_client=api_client
         )
-        self.create_users_with_array_input_endpoint = _Endpoint(
+        self.create_with_array_endpoint = _Endpoint(
             settings={
                 'response_type': None,
                 'auth': [
                     'api_key'
                 ],
                 'endpoint_path': '/user/createWithArray',
-                'operation_id': 'create_users_with_array_input',
+                'operation_id': 'create_with_array',
                 'http_method': 'POST',
                 'servers': None,
             },
             params_map={
                 'all': [
-                    'user',
+                    'create_with_array_request',
                 ],
                 'required': [
-                    'user',
+                    'create_with_array_request',
                 ],
                 'nullable': [
                 ],
@@ -116,13 +117,13 @@ class UserApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'user':
-                        ([User],),
+                    'create_with_array_request':
+                        (CreateWithArrayRequest,),
                 },
                 'attribute_map': {
                 },
                 'location_map': {
-                    'user': 'body',
+                    'create_with_array_request': 'body',
                 },
                 'collection_format_map': {
                 }
@@ -135,23 +136,23 @@ class UserApi(object):
             },
             api_client=api_client
         )
-        self.create_users_with_list_input_endpoint = _Endpoint(
+        self.create_with_list_endpoint = _Endpoint(
             settings={
                 'response_type': None,
                 'auth': [
                     'api_key'
                 ],
                 'endpoint_path': '/user/createWithList',
-                'operation_id': 'create_users_with_list_input',
+                'operation_id': 'create_with_list',
                 'http_method': 'POST',
                 'servers': None,
             },
             params_map={
                 'all': [
-                    'user',
+                    'create_with_array_request',
                 ],
                 'required': [
-                    'user',
+                    'create_with_array_request',
                 ],
                 'nullable': [
                 ],
@@ -166,13 +167,13 @@ class UserApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'user':
-                        ([User],),
+                    'create_with_array_request':
+                        (CreateWithArrayRequest,),
                 },
                 'attribute_map': {
                 },
                 'location_map': {
-                    'user': 'body',
+                    'create_with_array_request': 'body',
                 },
                 'collection_format_map': {
                 }
@@ -185,14 +186,14 @@ class UserApi(object):
             },
             api_client=api_client
         )
-        self.delete_user_endpoint = _Endpoint(
+        self.delete_endpoint = _Endpoint(
             settings={
                 'response_type': None,
                 'auth': [
                     'api_key'
                 ],
                 'endpoint_path': '/user/{username}',
-                'operation_id': 'delete_user',
+                'operation_id': 'delete',
                 'http_method': 'DELETE',
                 'servers': None,
             },
@@ -234,12 +235,12 @@ class UserApi(object):
             },
             api_client=api_client
         )
-        self.get_user_by_name_endpoint = _Endpoint(
+        self.get_by_name_endpoint = _Endpoint(
             settings={
                 'response_type': (User,),
                 'auth': [],
                 'endpoint_path': '/user/{username}',
-                'operation_id': 'get_user_by_name',
+                'operation_id': 'get_by_name',
                 'http_method': 'GET',
                 'servers': None,
             },
@@ -284,12 +285,12 @@ class UserApi(object):
             },
             api_client=api_client
         )
-        self.login_user_endpoint = _Endpoint(
+        self.login_endpoint = _Endpoint(
             settings={
                 'response_type': (str,),
                 'auth': [],
                 'endpoint_path': '/user/login',
-                'operation_id': 'login_user',
+                'operation_id': 'login',
                 'http_method': 'GET',
                 'servers': None,
             },
@@ -347,14 +348,14 @@ class UserApi(object):
             },
             api_client=api_client
         )
-        self.logout_user_endpoint = _Endpoint(
+        self.logout_endpoint = _Endpoint(
             settings={
                 'response_type': None,
                 'auth': [
                     'api_key'
                 ],
                 'endpoint_path': '/user/logout',
-                'operation_id': 'logout_user',
+                'operation_id': 'logout',
                 'http_method': 'GET',
                 'servers': None,
             },
@@ -389,14 +390,14 @@ class UserApi(object):
             },
             api_client=api_client
         )
-        self.update_user_endpoint = _Endpoint(
+        self.update_endpoint = _Endpoint(
             settings={
                 'response_type': None,
                 'auth': [
                     'api_key'
                 ],
                 'endpoint_path': '/user/{username}',
-                'operation_id': 'update_user',
+                'operation_id': 'update',
                 'http_method': 'PUT',
                 'servers': None,
             },
@@ -446,7 +447,7 @@ class UserApi(object):
             api_client=api_client
         )
 
-    def create_user(
+    def create(
         self,
         user,
         **kwargs
@@ -457,7 +458,7 @@ class UserApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.create_user(user, async_req=True)
+        >>> thread = api.create(user, async_req=True)
         >>> result = thread.get()
 
         Args:
@@ -527,11 +528,11 @@ class UserApi(object):
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
         kwargs['user'] = \
             user
-        return self.create_user_endpoint.call_with_http_info(**kwargs)
+        return self.create_endpoint.call_with_http_info(**kwargs)
 
-    def create_users_with_array_input(
+    def create_with_array(
         self,
-        user,
+        create_with_array_request,
         **kwargs
     ):
         """Creates list of users with given input array  # noqa: E501
@@ -540,11 +541,11 @@ class UserApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.create_users_with_array_input(user, async_req=True)
+        >>> thread = api.create_with_array(create_with_array_request, async_req=True)
         >>> result = thread.get()
 
         Args:
-            user ([User]): List of user object
+            create_with_array_request (CreateWithArrayRequest): List of user object
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status
@@ -608,13 +609,13 @@ class UserApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['user'] = \
-            user
-        return self.create_users_with_array_input_endpoint.call_with_http_info(**kwargs)
+        kwargs['create_with_array_request'] = \
+            create_with_array_request
+        return self.create_with_array_endpoint.call_with_http_info(**kwargs)
 
-    def create_users_with_list_input(
+    def create_with_list(
         self,
-        user,
+        create_with_array_request,
         **kwargs
     ):
         """Creates list of users with given input array  # noqa: E501
@@ -623,11 +624,11 @@ class UserApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.create_users_with_list_input(user, async_req=True)
+        >>> thread = api.create_with_list(create_with_array_request, async_req=True)
         >>> result = thread.get()
 
         Args:
-            user ([User]): List of user object
+            create_with_array_request (CreateWithArrayRequest): List of user object
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status
@@ -691,11 +692,11 @@ class UserApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        kwargs['user'] = \
-            user
-        return self.create_users_with_list_input_endpoint.call_with_http_info(**kwargs)
+        kwargs['create_with_array_request'] = \
+            create_with_array_request
+        return self.create_with_list_endpoint.call_with_http_info(**kwargs)
 
-    def delete_user(
+    def delete(
         self,
         username,
         **kwargs
@@ -706,7 +707,7 @@ class UserApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.delete_user(username, async_req=True)
+        >>> thread = api.delete(username, async_req=True)
         >>> result = thread.get()
 
         Args:
@@ -776,9 +777,9 @@ class UserApi(object):
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
         kwargs['username'] = \
             username
-        return self.delete_user_endpoint.call_with_http_info(**kwargs)
+        return self.delete_endpoint.call_with_http_info(**kwargs)
 
-    def get_user_by_name(
+    def get_by_name(
         self,
         username,
         **kwargs
@@ -789,7 +790,7 @@ class UserApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.get_user_by_name(username, async_req=True)
+        >>> thread = api.get_by_name(username, async_req=True)
         >>> result = thread.get()
 
         Args:
@@ -859,9 +860,9 @@ class UserApi(object):
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
         kwargs['username'] = \
             username
-        return self.get_user_by_name_endpoint.call_with_http_info(**kwargs)
+        return self.get_by_name_endpoint.call_with_http_info(**kwargs)
 
-    def login_user(
+    def login(
         self,
         username,
         password,
@@ -873,7 +874,7 @@ class UserApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.login_user(username, password, async_req=True)
+        >>> thread = api.login(username, password, async_req=True)
         >>> result = thread.get()
 
         Args:
@@ -946,9 +947,9 @@ class UserApi(object):
             username
         kwargs['password'] = \
             password
-        return self.login_user_endpoint.call_with_http_info(**kwargs)
+        return self.login_endpoint.call_with_http_info(**kwargs)
 
-    def logout_user(
+    def logout(
         self,
         **kwargs
     ):
@@ -958,7 +959,7 @@ class UserApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.logout_user(async_req=True)
+        >>> thread = api.logout(async_req=True)
         >>> result = thread.get()
 
 
@@ -1024,9 +1025,9 @@ class UserApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
-        return self.logout_user_endpoint.call_with_http_info(**kwargs)
+        return self.logout_endpoint.call_with_http_info(**kwargs)
 
-    def update_user(
+    def update(
         self,
         username,
         user,
@@ -1038,7 +1039,7 @@ class UserApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.update_user(username, user, async_req=True)
+        >>> thread = api.update(username, user, async_req=True)
         >>> result = thread.get()
 
         Args:
@@ -1111,5 +1112,5 @@ class UserApi(object):
             username
         kwargs['user'] = \
             user
-        return self.update_user_endpoint.call_with_http_info(**kwargs)
+        return self.update_endpoint.call_with_http_info(**kwargs)
 

@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Tags** | Pointer to [**[]Tag**](Tag.md) |  | [optional] 
 **Id** | Pointer to **int64** |  | [optional] 
 **Category** | Pointer to [**Category**](Category.md) |  | [optional] 
 **Name** | **string** |  | 
 **PhotoUrls** | **[]string** |  | 
-**Tags** | Pointer to [**[]Tag**](Tag.md) |  | [optional] 
 **Status** | Pointer to **string** | pet status in the store | [optional] 
 
 ## Methods
@@ -29,6 +29,31 @@ will change when the set of required properties is changed
 NewPetWithDefaults instantiates a new Pet object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetTags
+
+`func (o *Pet) GetTags() []Tag`
+
+GetTags returns the Tags field if non-nil, zero value otherwise.
+
+### GetTagsOk
+
+`func (o *Pet) GetTagsOk() (*[]Tag, bool)`
+
+GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTags
+
+`func (o *Pet) SetTags(v []Tag)`
+
+SetTags sets Tags field to given value.
+
+### HasTags
+
+`func (o *Pet) HasTags() bool`
+
+HasTags returns a boolean if a field has been set.
 
 ### GetId
 
@@ -119,31 +144,6 @@ and a boolean to check if the value has been set.
 
 SetPhotoUrls sets PhotoUrls field to given value.
 
-
-### GetTags
-
-`func (o *Pet) GetTags() []Tag`
-
-GetTags returns the Tags field if non-nil, zero value otherwise.
-
-### GetTagsOk
-
-`func (o *Pet) GetTagsOk() (*[]Tag, bool)`
-
-GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTags
-
-`func (o *Pet) SetTags(v []Tag)`
-
-SetTags sets Tags field to given value.
-
-### HasTags
-
-`func (o *Pet) HasTags() bool`
-
-HasTags returns a boolean if a field has been set.
 
 ### GetStatus
 

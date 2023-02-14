@@ -4,20 +4,20 @@ All URIs are relative to *http://petstore.swagger.io/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateUser**](UserApi.md#CreateUser) | **Post** /user | Create user
-[**CreateUsersWithArrayInput**](UserApi.md#CreateUsersWithArrayInput) | **Post** /user/createWithArray | Creates list of users with given input array
-[**CreateUsersWithListInput**](UserApi.md#CreateUsersWithListInput) | **Post** /user/createWithList | Creates list of users with given input array
-[**DeleteUser**](UserApi.md#DeleteUser) | **Delete** /user/{username} | Delete user
-[**GetUserByName**](UserApi.md#GetUserByName) | **Get** /user/{username} | Get user by user name
-[**LoginUser**](UserApi.md#LoginUser) | **Get** /user/login | Logs user into the system
-[**LogoutUser**](UserApi.md#LogoutUser) | **Get** /user/logout | Logs out current logged in user session
-[**UpdateUser**](UserApi.md#UpdateUser) | **Put** /user/{username} | Updated user
+[**Create**](UserApi.md#Create) | **Post** /user | Create user
+[**CreateWithArray**](UserApi.md#CreateWithArray) | **Post** /user/createWithArray | Creates list of users with given input array
+[**CreateWithList**](UserApi.md#CreateWithList) | **Post** /user/createWithList | Creates list of users with given input array
+[**Delete**](UserApi.md#Delete) | **Delete** /user/{username} | Delete user
+[**GetByName**](UserApi.md#GetByName) | **Get** /user/{username} | Get user by user name
+[**Login**](UserApi.md#Login) | **Get** /user/login | Logs user into the system
+[**Logout**](UserApi.md#Logout) | **Get** /user/logout | Logs out current logged in user session
+[**Update**](UserApi.md#Update) | **Put** /user/{username} | Updated user
 
 
 
-## CreateUser
+## Create
 
-> CreateUser(ctx).User(user).Execute()
+> Create(ctx).User(user).Execute()
 
 Create user
 
@@ -40,9 +40,9 @@ func main() {
 
     configuration := acme.NewConfiguration()
     apiClient := acme.NewAPIClient(configuration)
-    resp, r, err := apiClient.UserApi.CreateUser(context.Background()).User(user).Execute()
+    resp, r, err := apiClient.UserApi.Create(context.Background()).User(user).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UserApi.CreateUser``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `UserApi.Create``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -54,7 +54,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiCreateUserRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiCreateRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -79,9 +79,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## CreateUsersWithArrayInput
+## CreateWithArray
 
-> CreateUsersWithArrayInput(ctx).User(user).Execute()
+> CreateWithArray(ctx).User(user).Execute()
 
 Creates list of users with given input array
 
@@ -104,9 +104,9 @@ func main() {
 
     configuration := acme.NewConfiguration()
     apiClient := acme.NewAPIClient(configuration)
-    resp, r, err := apiClient.UserApi.CreateUsersWithArrayInput(context.Background()).User(user).Execute()
+    resp, r, err := apiClient.UserApi.CreateWithArray(context.Background()).User(user).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UserApi.CreateUsersWithArrayInput``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `UserApi.CreateWithArray``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -118,7 +118,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiCreateUsersWithArrayInputRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiCreateWithArrayRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -143,9 +143,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## CreateUsersWithListInput
+## CreateWithList
 
-> CreateUsersWithListInput(ctx).User(user).Execute()
+> CreateWithList(ctx).User(user).Execute()
 
 Creates list of users with given input array
 
@@ -168,9 +168,9 @@ func main() {
 
     configuration := acme.NewConfiguration()
     apiClient := acme.NewAPIClient(configuration)
-    resp, r, err := apiClient.UserApi.CreateUsersWithListInput(context.Background()).User(user).Execute()
+    resp, r, err := apiClient.UserApi.CreateWithList(context.Background()).User(user).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UserApi.CreateUsersWithListInput``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `UserApi.CreateWithList``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -182,7 +182,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiCreateUsersWithListInputRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiCreateWithListRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -207,9 +207,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## DeleteUser
+## Delete
 
-> DeleteUser(ctx, username).Execute()
+> Delete(ctx, username).Execute()
 
 Delete user
 
@@ -232,9 +232,9 @@ func main() {
 
     configuration := acme.NewConfiguration()
     apiClient := acme.NewAPIClient(configuration)
-    resp, r, err := apiClient.UserApi.DeleteUser(context.Background(), username).Execute()
+    resp, r, err := apiClient.UserApi.Delete(context.Background(), username).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UserApi.DeleteUser``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `UserApi.Delete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -250,7 +250,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiDeleteUserRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiDeleteRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -275,9 +275,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## GetUserByName
+## GetByName
 
-> User GetUserByName(ctx, username).Execute()
+> User GetByName(ctx, username).Execute()
 
 Get user by user name
 
@@ -300,13 +300,13 @@ func main() {
 
     configuration := acme.NewConfiguration()
     apiClient := acme.NewAPIClient(configuration)
-    resp, r, err := apiClient.UserApi.GetUserByName(context.Background(), username).Execute()
+    resp, r, err := apiClient.UserApi.GetByName(context.Background(), username).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UserApi.GetUserByName``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `UserApi.GetByName``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetUserByName`: User
-    fmt.Fprintf(os.Stdout, "Response from `UserApi.GetUserByName`: %v\n", resp)
+    // response from `GetByName`: User
+    fmt.Fprintf(os.Stdout, "Response from `UserApi.GetByName`: %v\n", resp)
 }
 ```
 
@@ -320,7 +320,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetUserByNameRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiGetByNameRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -345,9 +345,9 @@ No authorization required
 [[Back to README]](../README.md)
 
 
-## LoginUser
+## Login
 
-> string LoginUser(ctx).Username(username).Password(password).Execute()
+> string Login(ctx).Username(username).Password(password).Execute()
 
 Logs user into the system
 
@@ -371,13 +371,13 @@ func main() {
 
     configuration := acme.NewConfiguration()
     apiClient := acme.NewAPIClient(configuration)
-    resp, r, err := apiClient.UserApi.LoginUser(context.Background()).Username(username).Password(password).Execute()
+    resp, r, err := apiClient.UserApi.Login(context.Background()).Username(username).Password(password).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UserApi.LoginUser``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `UserApi.Login``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `LoginUser`: string
-    fmt.Fprintf(os.Stdout, "Response from `UserApi.LoginUser`: %v\n", resp)
+    // response from `Login`: string
+    fmt.Fprintf(os.Stdout, "Response from `UserApi.Login`: %v\n", resp)
 }
 ```
 
@@ -387,7 +387,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiLoginUserRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiLoginRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -413,9 +413,9 @@ No authorization required
 [[Back to README]](../README.md)
 
 
-## LogoutUser
+## Logout
 
-> LogoutUser(ctx).Execute()
+> Logout(ctx).Execute()
 
 Logs out current logged in user session
 
@@ -437,9 +437,9 @@ func main() {
 
     configuration := acme.NewConfiguration()
     apiClient := acme.NewAPIClient(configuration)
-    resp, r, err := apiClient.UserApi.LogoutUser(context.Background()).Execute()
+    resp, r, err := apiClient.UserApi.Logout(context.Background()).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UserApi.LogoutUser``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `UserApi.Logout``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -451,7 +451,7 @@ This endpoint does not need any parameter.
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiLogoutUserRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiLogoutRequest struct via the builder pattern
 
 
 ### Return type
@@ -472,9 +472,9 @@ Other parameters are passed through a pointer to a apiLogoutUserRequest struct v
 [[Back to README]](../README.md)
 
 
-## UpdateUser
+## Update
 
-> UpdateUser(ctx, username).User(user).Execute()
+> Update(ctx, username).User(user).Execute()
 
 Updated user
 
@@ -498,9 +498,9 @@ func main() {
 
     configuration := acme.NewConfiguration()
     apiClient := acme.NewAPIClient(configuration)
-    resp, r, err := apiClient.UserApi.UpdateUser(context.Background(), username).User(user).Execute()
+    resp, r, err := apiClient.UserApi.Update(context.Background(), username).User(user).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UserApi.UpdateUser``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `UserApi.Update``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -516,7 +516,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiUpdateUserRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiUpdateRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
