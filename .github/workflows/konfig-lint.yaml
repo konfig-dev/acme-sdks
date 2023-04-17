@@ -24,3 +24,5 @@ jobs:
         run: konfig init -s
       - name: Lint OpenAPI Spec
         run: konfig lint api.yaml
+      - name: Detect breaking changej
+        run: konfig detect-breaking-change -m main
