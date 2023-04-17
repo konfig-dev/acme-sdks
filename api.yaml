@@ -777,7 +777,7 @@ components:
             hasPreviousPage:
               type: boolean
             startCursor:
-              type: string
+              type: number
             endCursor:
               type: string
     FindByStatusResponse:
