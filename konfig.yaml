@@ -14,6 +14,7 @@ generators:
     packageName: acme_client
     projectName: acme-python-sdk
     outputDirectory: python
+    clientName: Acme
     git:
       userId: konfig-dev
       repoId: acme-sdks/tree/main/python
@@ -21,6 +22,7 @@ generators:
     version: 1.0.0
     npmName: acme-typescript-sdk
     outputDirectory: typescript
+    clientName: Acme
     git:
       userId: konfig-dev
       repoId: acme-sdks/tree/main/typescript
@@ -69,6 +71,7 @@ generators:
     version: 1.0.0
     packageName: acme-php
     outputDirectory: php
+    invokerPackage: Acme
     git:
       userId: konfig-dev
       repoId: acme-sdks/tree/main/php
