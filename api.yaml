@@ -17,7 +17,28 @@ tags:
     description: Access to Petstore orders
   - name: user
     description: Operations about user
+  - description: miscellaneous namespace
+    name: miscellaneous
 paths:
+  /pagination:
+    get:
+      tags:
+        - miscellaneous
+      summary: Pagination sandbox
+      operationId: misc_paginate
+      description: Iterate through a bunch of items
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaginateRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginateResponse'
   /pet:
     post:
       tags:
@@ -736,3 +757,32 @@ components:
           type: string
         message:
           type: string
+    PaginateRequest:
+      type: object
+      properties:
+        first:
+          type: integer
+        after:
+          type: string
+    PaginateResponse:
+      type: object
+      properties:
+        edges:
+          type: object
+          properties:
+            node:
+              type: object
+              properties:
+                message:
+                  type: string
+        pageInfo:
+          type: object
+          properties:
+            hasNextPage:
+              type: boolean
+            hasPreviousPage:
+              type: boolean
+            startCursor:
+              type: string
+            endCursor:
+              type: string
