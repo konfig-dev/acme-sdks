@@ -1,5 +1,6 @@
 outputDirectory: /tmp/acme-sdks-out
-specPath: api.yaml
+specInputPath: api.yaml
+specPath: api-fixed.yaml
 generators:
   java:
     version: 1.0.0
