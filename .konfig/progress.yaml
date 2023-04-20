@@ -1,3 +1,5 @@
+examples: {}
+examples_2: {}
 operationIds:
   /pet:
     post: pet_add
@@ -7,6 +9,7 @@ operationIds:
   /pet/findByTags:
     get: pet_findByTags
   /pet/{petId}:
+    delete: pet_delete
     get: pet_getById
     post: pet_updateWithForm
   /pet/{petId}/uploadImage:
@@ -32,19 +35,8 @@ operationIds:
     delete: user_delete
     get: user_getByName
     put: user_update
-renameTags: {}
 operationTags: {}
-examples: {}
-securityParameters:
-  status:
-    query: false
-  tags:
-    query: false
-  username:
-    query: false
-  password:
-    query: false
-examples_2: {}
+renameTags: {}
 requestSchemaNames:
   /pagination:
     get:
@@ -58,6 +50,7 @@ requestSchemaNames:
   /user/createWithArray:
     post:
       application/json: CreateWithArrayRequest
+responseDescriptions: {}
 responseSchemaNames:
   /pagination:
     get:
@@ -66,13 +59,13 @@ responseSchemaNames:
   /pet/findByStatus:
     get:
       '200':
-        application/xml: FindByStatusResponse
         application/json: FindByStatus200Response
+        application/xml: FindByStatusResponse
   /pet/findByTags:
     get:
       '200':
-        application/xml: FindByTagsResponse
         application/json: FindByTags200Response
+        application/xml: FindByTagsResponse
   /store/inventory:
     get:
       '200':
@@ -80,6 +73,14 @@ responseSchemaNames:
   /user/login:
     get:
       '200':
-        application/xml: LoginResponse
         application/json: Login200Response
-responseDescriptions: {}
+        application/xml: LoginResponse
+securityParameters:
+  password:
+    query: false
+  status:
+    query: false
+  tags:
+    query: false
+  username:
+    query: false

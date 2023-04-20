@@ -228,7 +228,7 @@ paths:
       tags:
         - pet
       summary: Deletes a pet
-      operationId: Pet_delete
+      operationId: pet_delete
       security:
         - petstore_auth:
             - write:pets
@@ -735,6 +735,28 @@ components:
           type: integer
         after:
           type: string
+    PaginateResponse:
+      type: object
+      properties:
+        edges:
+          type: object
+          properties:
+            node:
+              type: object
+              properties:
+                message:
+                  type: string
+        pageInfo:
+          type: object
+          properties:
+            hasNextPage:
+              type: boolean
+            hasPreviousPage:
+              type: boolean
+            startCursor:
+              type: string
+            endCursor:
+              type: string
     UpdateWithFormRequest:
       type: object
       properties:
@@ -758,28 +780,6 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/User'
-    PaginateResponse:
-      type: object
-      properties:
-        edges:
-          type: object
-          properties:
-            node:
-              type: object
-              properties:
-                message:
-                  type: string
-        pageInfo:
-          type: object
-          properties:
-            hasNextPage:
-              type: boolean
-            hasPreviousPage:
-              type: boolean
-            startCursor:
-              type: string
-            endCursor:
-              type: string
     FindByStatusResponse:
       type: array
       items:
