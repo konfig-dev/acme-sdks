@@ -23,4 +23,4 @@ jobs:
       - name: Initialize Linting Rules
         run: konfig init -s
       - name: Lint OpenAPI Spec
-        run: konfig lint api.yaml
+        run: konfig lint
