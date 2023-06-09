@@ -1,23 +1,13 @@
 {
-  "spectral.enable": true,
-  "files.associations": {
-    ".konfigignore": "ignore"
+  "python.formatting.provider": "none",
+  "githubPullRequests.ignoredPullRequestBranches": ["integrations"],
+  "search.exclude": {
+    "**/.git": true,
+    "**/node_modules": true
   },
-  "python.testing.pytestArgs": [
-    "python"
-  ],
-  "python.testing.unittestEnabled": false,
-  "python.testing.pytestEnabled": true,
-  "dotnet-test-explorer.testProjectPath": "**/*.sln",
-  "python.testing.unittestArgs": [
-    "-v",
-    "-s",
-    "./python",
-    "-p",
-    "test_*.py"
-  ],
-  "java.compile.nullAnalysis.mode": "automatic",
-  "python.analysis.extraPaths": [
-    "./out/sdks/python"
-  ]
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter"
+  },
+  "python.analysis.typeCheckingMode": "basic",
+  "mypy.configFile": "backend/mypy.ini"
 }
