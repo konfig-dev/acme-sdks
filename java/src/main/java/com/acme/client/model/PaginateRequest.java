@@ -33,6 +33,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
+import org.apache.commons.lang3.StringUtils;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
@@ -61,6 +62,10 @@ public class PaginateRequest {
   }
 
   public PaginateRequest first(Integer first) {
+
+    
+    
+    
     
     this.first = first;
     return this;
@@ -79,11 +84,19 @@ public class PaginateRequest {
 
 
   public void setFirst(Integer first) {
+
+    
+    
+    
     this.first = first;
   }
 
 
   public PaginateRequest after(String after) {
+
+    
+    
+    
     
     this.after = after;
     return this;
@@ -102,6 +115,10 @@ public class PaginateRequest {
 
 
   public void setAfter(String after) {
+
+    
+    
+    
     this.after = after;
   }
 

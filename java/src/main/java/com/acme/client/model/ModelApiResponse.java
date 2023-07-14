@@ -33,6 +33,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
+import org.apache.commons.lang3.StringUtils;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
@@ -66,6 +67,10 @@ public class ModelApiResponse {
   }
 
   public ModelApiResponse code(Integer code) {
+
+    
+    
+    
     
     this.code = code;
     return this;
@@ -84,11 +89,19 @@ public class ModelApiResponse {
 
 
   public void setCode(Integer code) {
+
+    
+    
+    
     this.code = code;
   }
 
 
   public ModelApiResponse type(String type) {
+
+    
+    
+    
     
     this.type = type;
     return this;
@@ -107,11 +120,19 @@ public class ModelApiResponse {
 
 
   public void setType(String type) {
+
+    
+    
+    
     this.type = type;
   }
 
 
   public ModelApiResponse message(String message) {
+
+    
+    
+    
     
     this.message = message;
     return this;
@@ -130,6 +151,10 @@ public class ModelApiResponse {
 
 
   public void setMessage(String message) {
+
+    
+    
+    
     this.message = message;
   }
 

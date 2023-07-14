@@ -13,10 +13,15 @@
 package com.acme.client.api;
 
 import com.acme.client.ApiException;
+import com.acme.client.ApiClient;
+import com.acme.client.ApiException;
+import com.acme.client.Configuration;
 import java.time.OffsetDateTime;
 import com.acme.client.model.User;
+import com.acme.client.model.UserCreateRequest;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeAll;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,7 +34,14 @@ import java.util.Map;
 @Disabled
 public class UserApiTest {
 
-    private final UserApi api = new UserApi();
+    private static UserApi api;
+
+    
+    @BeforeAll
+    public static void beforeClass() {
+        ApiClient apiClient = Configuration.getDefaultApiClient();
+        api = new UserApi(apiClient);
+    }
 
     /**
      * Create user
@@ -40,8 +52,24 @@ public class UserApiTest {
      */
     @Test
     public void createTest() throws ApiException {
-        User user = null;
-        api.create(user);
+        Long id = null;
+        String username = null;
+        String firstName = null;
+        String lastName = null;
+        String email = null;
+        String password = null;
+        String phone = null;
+        Integer userStatus = null;
+        api.create()
+                .id(id)
+                .username(username)
+                .firstName(firstName)
+                .lastName(lastName)
+                .email(email)
+                .password(password)
+                .phone(phone)
+                .userStatus(userStatus)
+                .execute();
         // TODO: test validations
     }
 
@@ -54,8 +82,8 @@ public class UserApiTest {
      */
     @Test
     public void createWithArrayTest() throws ApiException {
-        List<User> user = null;
-        api.createWithArray(user);
+        api.createWithArray()
+                .execute();
         // TODO: test validations
     }
 
@@ -68,8 +96,8 @@ public class UserApiTest {
      */
     @Test
     public void createWithListTest() throws ApiException {
-        List<User> user = null;
-        api.createWithList(user);
+        api.createWithList()
+                .execute();
         // TODO: test validations
     }
 
@@ -83,7 +111,8 @@ public class UserApiTest {
     @Test
     public void deleteTest() throws ApiException {
         String username = null;
-        api.delete(username);
+        api.delete(username)
+                .execute();
         // TODO: test validations
     }
 
@@ -97,7 +126,8 @@ public class UserApiTest {
     @Test
     public void getByNameTest() throws ApiException {
         String username = null;
-        User response = api.getByName(username);
+        User response = api.getByName(username)
+                .execute();
         // TODO: test validations
     }
 
@@ -112,7 +142,8 @@ public class UserApiTest {
     public void loginTest() throws ApiException {
         String username = null;
         String password = null;
-        String response = api.login(username, password);
+        String response = api.login(username, password)
+                .execute();
         // TODO: test validations
     }
 
@@ -125,7 +156,8 @@ public class UserApiTest {
      */
     @Test
     public void logoutTest() throws ApiException {
-        api.logout();
+        api.logout()
+                .execute();
         // TODO: test validations
     }
 
@@ -139,8 +171,22 @@ public class UserApiTest {
     @Test
     public void updateTest() throws ApiException {
         String username = null;
-        User user = null;
-        api.update(username, user);
+        Long id = null;
+        String firstName = null;
+        String lastName = null;
+        String email = null;
+        String password = null;
+        String phone = null;
+        Integer userStatus = null;
+        api.update(username)
+                .id(id)
+                .firstName(firstName)
+                .lastName(lastName)
+                .email(email)
+                .password(password)
+                .phone(phone)
+                .userStatus(userStatus)
+                .execute();
         // TODO: test validations
     }
 

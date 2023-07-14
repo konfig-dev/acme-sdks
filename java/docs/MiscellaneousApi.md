@@ -9,7 +9,7 @@ All URIs are relative to *http://petstore.swagger.io/v2*
 
 <a name="paginate"></a>
 # **paginate**
-> PaginateResponse paginate(paginateRequest)
+> PaginateResponse paginate().paginateRequest(paginateRequest).execute();
 
 Pagination sandbox
 
@@ -17,32 +17,69 @@ Iterate through a bunch of items
 
 ### Example
 ```java
-// Import classes:
 import com.acme.client.ApiClient;
 import com.acme.client.ApiException;
+import com.acme.client.ApiResponse;
+import com.acme.client.Java;
 import com.acme.client.Configuration;
 import com.acme.client.model.*;
 import com.acme.client.api.MiscellaneousApi;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 public class Example {
   public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://petstore.swagger.io/v2");
+    Configuration configuration = new Configuration();
+    configuration.host = "http://petstore.swagger.io/v2";
 
-    MiscellaneousApi apiInstance = new MiscellaneousApi(defaultClient);
-    PaginateRequest paginateRequest = new PaginateRequest(); // PaginateRequest | 
+    Java client = new Java(configuration);
+    Integer first = 56;
+    String after = "after_example";
     try {
-      PaginateResponse result = apiInstance.paginate(paginateRequest);
+      PaginateResponse result = client
+              .miscellaneous
+              .paginate()
+              .first(first)
+              .after(after)
+              .execute();
       System.out.println(result);
+
+      System.out.println(result.getEdges());
+
+      System.out.println(result.getPageInfo());
+
     } catch (ApiException e) {
       System.err.println("Exception when calling MiscellaneousApi#paginate");
-      System.err.println("Status code: " + e.getCode());
+      System.err.println("Status code: " + e.getStatusCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+
+    // Use .executeWithHttpInfo() to retrieve HTTP Status Code, Headers and Request
+    try {
+      ApiResponse<PaginateResponse> response = client
+              .miscellaneous
+              .paginate()
+              .first(first)
+              .after(after)
+              .executeWithHttpInfo();
+      System.out.println(response.getResponseBody());
+      System.out.println(response.getResponseHeaders());
+      System.out.println(response.getStatusCode());
+      System.out.println(response.getRoundTripTime());
+      System.out.println(response.getRequest());
+    } catch (ApiException e) {
+      System.err.println("Exception when calling MiscellaneousApi#paginate");
+      System.err.println("Status code: " + e.getStatusCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
       e.printStackTrace();
     }
   }
 }
+
 ```
 
 ### Parameters

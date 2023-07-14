@@ -13,11 +13,17 @@
 package com.acme.client.api;
 
 import com.acme.client.ApiException;
+import com.acme.client.ApiClient;
+import com.acme.client.ApiException;
+import com.acme.client.Configuration;
+import com.acme.client.model.Category;
 import java.io.File;
 import com.acme.client.model.ModelApiResponse;
 import com.acme.client.model.Pet;
+import com.acme.client.model.Tag;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeAll;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,7 +36,14 @@ import java.util.Map;
 @Disabled
 public class PetApiTest {
 
-    private final PetApi api = new PetApi();
+    private static PetApi api;
+
+    
+    @BeforeAll
+    public static void beforeClass() {
+        ApiClient apiClient = Configuration.getDefaultApiClient();
+        api = new PetApi(apiClient);
+    }
 
     /**
      * Add a new pet to the store
@@ -41,8 +54,18 @@ public class PetApiTest {
      */
     @Test
     public void addTest() throws ApiException {
-        Pet pet = null;
-        Pet response = api.add(pet);
+        String name = null;
+        List<String> photoUrls = null;
+        List<Tag> tags = null;
+        Long id = null;
+        Category category = null;
+        String status = null;
+        Pet response = api.add(name, photoUrls)
+                .tags(tags)
+                .id(id)
+                .category(category)
+                .status(status)
+                .execute();
         // TODO: test validations
     }
 
@@ -56,7 +79,8 @@ public class PetApiTest {
     @Test
     public void deleteTest() throws ApiException {
         Long petId = null;
-        api.delete(petId);
+        api.delete(petId)
+                .execute();
         // TODO: test validations
     }
 
@@ -70,7 +94,8 @@ public class PetApiTest {
     @Test
     public void findByStatusTest() throws ApiException {
         List<String> status = null;
-        List<Pet> response = api.findByStatus(status);
+        List<Pet> response = api.findByStatus(status)
+                .execute();
         // TODO: test validations
     }
 
@@ -84,7 +109,8 @@ public class PetApiTest {
     @Test
     public void findByTagsTest() throws ApiException {
         List<String> tags = null;
-        List<Pet> response = api.findByTags(tags);
+        List<Pet> response = api.findByTags(tags)
+                .execute();
         // TODO: test validations
     }
 
@@ -98,7 +124,8 @@ public class PetApiTest {
     @Test
     public void getByIdTest() throws ApiException {
         Long petId = null;
-        Pet response = api.getById(petId);
+        Pet response = api.getById(petId)
+                .execute();
         // TODO: test validations
     }
 
@@ -111,8 +138,18 @@ public class PetApiTest {
      */
     @Test
     public void updateTest() throws ApiException {
-        Pet pet = null;
-        Pet response = api.update(pet);
+        String name = null;
+        List<String> photoUrls = null;
+        List<Tag> tags = null;
+        Long id = null;
+        Category category = null;
+        String status = null;
+        Pet response = api.update(name, photoUrls)
+                .tags(tags)
+                .id(id)
+                .category(category)
+                .status(status)
+                .execute();
         // TODO: test validations
     }
 
@@ -128,7 +165,10 @@ public class PetApiTest {
         Long petId = null;
         String name = null;
         String status = null;
-        api.updateWithForm(petId, name, status);
+        api.updateWithForm(petId)
+                .name(name)
+                .status(status)
+                .execute();
         // TODO: test validations
     }
 
@@ -144,7 +184,10 @@ public class PetApiTest {
         Long petId = null;
         String additionalMetadata = null;
         File _file = null;
-        ModelApiResponse response = api.uploadImage(petId, additionalMetadata, _file);
+        ModelApiResponse response = api.uploadImage(petId)
+                .additionalMetadata(additionalMetadata)
+                ._file(_file)
+                .execute();
         // TODO: test validations
     }
 

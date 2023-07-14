@@ -13,10 +13,14 @@
 package com.acme.client.api;
 
 import com.acme.client.ApiException;
+import com.acme.client.ApiClient;
+import com.acme.client.ApiException;
+import com.acme.client.Configuration;
 import com.acme.client.model.PaginateRequest;
 import com.acme.client.model.PaginateResponse;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeAll;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,7 +33,14 @@ import java.util.Map;
 @Disabled
 public class MiscellaneousApiTest {
 
-    private final MiscellaneousApi api = new MiscellaneousApi();
+    private static MiscellaneousApi api;
+
+    
+    @BeforeAll
+    public static void beforeClass() {
+        ApiClient apiClient = Configuration.getDefaultApiClient();
+        api = new MiscellaneousApi(apiClient);
+    }
 
     /**
      * Pagination sandbox
@@ -40,8 +51,12 @@ public class MiscellaneousApiTest {
      */
     @Test
     public void paginateTest() throws ApiException {
-        PaginateRequest paginateRequest = null;
-        PaginateResponse response = api.paginate(paginateRequest);
+        Integer first = null;
+        String after = null;
+        PaginateResponse response = api.paginate()
+                .first(first)
+                .after(after)
+                .execute();
         // TODO: test validations
     }
 

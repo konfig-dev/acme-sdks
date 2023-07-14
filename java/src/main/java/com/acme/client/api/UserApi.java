@@ -28,6 +28,7 @@ import java.io.IOException;
 
 import java.time.OffsetDateTime;
 import com.acme.client.model.User;
+import com.acme.client.model.UserCreateRequest;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -41,11 +42,11 @@ public class UserApi {
     private int localHostIndex;
     private String localCustomBaseUrl;
 
-    public UserApi() {
+    public UserApi() throws IllegalArgumentException {
         this(Configuration.getDefaultApiClient());
     }
 
-    public UserApi(ApiClient apiClient) {
+    public UserApi(ApiClient apiClient) throws IllegalArgumentException {
         this.localVarApiClient = apiClient;
     }
 
@@ -73,19 +74,7 @@ public class UserApi {
         this.localCustomBaseUrl = customBaseUrl;
     }
 
-    /**
-     * Build call for create
-     * @param user Created user object (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 0 </td><td> successful operation </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call createCall(User user, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call createCall(User user, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -140,70 +129,202 @@ public class UserApi {
 
     }
 
-    /**
-     * Create user
-     * This can only be done by the logged in user.
-     * @param user Created user object (required)
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 0 </td><td> successful operation </td><td>  -  </td></tr>
-     </table>
-     */
-    public void create(User user) throws ApiException {
-        createWithHttpInfo(user);
-    }
 
-    /**
-     * Create user
-     * This can only be done by the logged in user.
-     * @param user Created user object (required)
-     * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 0 </td><td> successful operation </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<Void> createWithHttpInfo(User user) throws ApiException {
+    private ApiResponse<Void> createWithHttpInfo(User user) throws ApiException {
         okhttp3.Call localVarCall = createValidateBeforeCall(user, null);
         return localVarApiClient.execute(localVarCall);
     }
 
-    /**
-     * Create user (asynchronously)
-     * This can only be done by the logged in user.
-     * @param user Created user object (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 0 </td><td> successful operation </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call createAsync(User user, final ApiCallback<Void> _callback) throws ApiException {
+    private okhttp3.Call createAsync(User user, final ApiCallback<Void> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = createValidateBeforeCall(user, _callback);
         localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
+
+    public class CreateRequestBuilder {
+        private Long id;
+        private String username;
+        private String firstName;
+        private String lastName;
+        private String email;
+        private String password;
+        private String phone;
+        private Integer userStatus;
+
+        private CreateRequestBuilder() {
+        }
+
+        /**
+         * Set id
+         * @param id  (optional)
+         * @return CreateRequestBuilder
+         */
+        public CreateRequestBuilder id(Long id) {
+            this.id = id;
+            return this;
+        }
+        
+        /**
+         * Set username
+         * @param username  (optional)
+         * @return CreateRequestBuilder
+         */
+        public CreateRequestBuilder username(String username) {
+            this.username = username;
+            return this;
+        }
+        
+        /**
+         * Set firstName
+         * @param firstName  (optional)
+         * @return CreateRequestBuilder
+         */
+        public CreateRequestBuilder firstName(String firstName) {
+            this.firstName = firstName;
+            return this;
+        }
+        
+        /**
+         * Set lastName
+         * @param lastName  (optional)
+         * @return CreateRequestBuilder
+         */
+        public CreateRequestBuilder lastName(String lastName) {
+            this.lastName = lastName;
+            return this;
+        }
+        
+        /**
+         * Set email
+         * @param email  (optional)
+         * @return CreateRequestBuilder
+         */
+        public CreateRequestBuilder email(String email) {
+            this.email = email;
+            return this;
+        }
+        
+        /**
+         * Set password
+         * @param password  (optional)
+         * @return CreateRequestBuilder
+         */
+        public CreateRequestBuilder password(String password) {
+            this.password = password;
+            return this;
+        }
+        
+        /**
+         * Set phone
+         * @param phone  (optional)
+         * @return CreateRequestBuilder
+         */
+        public CreateRequestBuilder phone(String phone) {
+            this.phone = phone;
+            return this;
+        }
+        
+        /**
+         * Set userStatus
+         * @param userStatus User Status (optional)
+         * @return CreateRequestBuilder
+         */
+        public CreateRequestBuilder userStatus(Integer userStatus) {
+            this.userStatus = userStatus;
+            return this;
+        }
+        
+        /**
+         * Build call for create
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 0 </td><td> successful operation </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            User user = buildBodyParams();
+            return createCall(user, _callback);
+        }
+
+        private User buildBodyParams() {
+            User user = new User();
+            user.id(this.id);
+            user.username(this.username);
+            user.firstName(this.firstName);
+            user.lastName(this.lastName);
+            user.email(this.email);
+            user.password(this.password);
+            user.phone(this.phone);
+            user.userStatus(this.userStatus);
+            return user;
+        }
+
+        /**
+         * Execute create request
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 0 </td><td> successful operation </td><td>  -  </td></tr>
+         </table>
+         */
+        public void execute() throws ApiException {
+            User user = buildBodyParams();
+            createWithHttpInfo(user);
+        }
+
+        /**
+         * Execute create request with HTTP info returned
+         * @return ApiResponse&lt;Void&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 0 </td><td> successful operation </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<Void> executeWithHttpInfo() throws ApiException {
+            User user = buildBodyParams();
+            return createWithHttpInfo(user);
+        }
+
+        /**
+         * Execute create request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 0 </td><td> successful operation </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<Void> _callback) throws ApiException {
+            User user = buildBodyParams();
+            return createAsync(user, _callback);
+        }
+    }
+
     /**
-     * Build call for createWithArray
-     * @param user List of user object (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
+     * Create user
+     * This can only be done by the logged in user.
+     * @param user Created user object (required)
+     * @return CreateRequestBuilder
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 0 </td><td> successful operation </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call createWithArrayCall(List<User> user, final ApiCallback _callback) throws ApiException {
+    public CreateRequestBuilder create() throws IllegalArgumentException {
+        return new CreateRequestBuilder();
+    }
+    private okhttp3.Call createWithArrayCall(List<User> user, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -258,70 +379,116 @@ public class UserApi {
 
     }
 
-    /**
-     * Creates list of users with given input array
-     * 
-     * @param user List of user object (required)
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 0 </td><td> successful operation </td><td>  -  </td></tr>
-     </table>
-     */
-    public void createWithArray(List<User> user) throws ApiException {
-        createWithArrayWithHttpInfo(user);
-    }
 
-    /**
-     * Creates list of users with given input array
-     * 
-     * @param user List of user object (required)
-     * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 0 </td><td> successful operation </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<Void> createWithArrayWithHttpInfo(List<User> user) throws ApiException {
+    private ApiResponse<Void> createWithArrayWithHttpInfo(List<User> user) throws ApiException {
         okhttp3.Call localVarCall = createWithArrayValidateBeforeCall(user, null);
         return localVarApiClient.execute(localVarCall);
     }
 
-    /**
-     * Creates list of users with given input array (asynchronously)
-     * 
-     * @param user List of user object (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 0 </td><td> successful operation </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call createWithArrayAsync(List<User> user, final ApiCallback<Void> _callback) throws ApiException {
+    private okhttp3.Call createWithArrayAsync(List<User> user, final ApiCallback<Void> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = createWithArrayValidateBeforeCall(user, _callback);
         localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
+
+    public class CreateWithArrayRequestBuilder {
+        private List<User> user;
+
+        private CreateWithArrayRequestBuilder() {
+        }
+
+        /**
+         * Set user
+         * @param user List of user object (optional)
+         * @return CreateWithArrayRequestBuilder
+         */
+        public CreateWithArrayRequestBuilder user(List<User> user) {
+            this.user = user;
+            return this;
+        }
+
+        /**
+         * Build call for createWithArray
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 0 </td><td> successful operation </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            List<User> user = buildBodyParams();
+            return createWithArrayCall(user, _callback);
+        }
+
+        private List<User> buildBodyParams() {
+            return this.user;
+        }
+
+        /**
+         * Execute createWithArray request
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 0 </td><td> successful operation </td><td>  -  </td></tr>
+         </table>
+         */
+        public void execute() throws ApiException {
+            List<User> user = buildBodyParams();
+            createWithArrayWithHttpInfo(user);
+        }
+
+        /**
+         * Execute createWithArray request with HTTP info returned
+         * @return ApiResponse&lt;Void&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 0 </td><td> successful operation </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<Void> executeWithHttpInfo() throws ApiException {
+            List<User> user = buildBodyParams();
+            return createWithArrayWithHttpInfo(user);
+        }
+
+        /**
+         * Execute createWithArray request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 0 </td><td> successful operation </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<Void> _callback) throws ApiException {
+            List<User> user = buildBodyParams();
+            return createWithArrayAsync(user, _callback);
+        }
+    }
+
     /**
-     * Build call for createWithList
+     * Creates list of users with given input array
+     * 
      * @param user List of user object (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
+     * @return CreateWithArrayRequestBuilder
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 0 </td><td> successful operation </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call createWithListCall(List<User> user, final ApiCallback _callback) throws ApiException {
+    public CreateWithArrayRequestBuilder createWithArray() throws IllegalArgumentException {
+        return new CreateWithArrayRequestBuilder();
+    }
+    private okhttp3.Call createWithListCall(List<User> user, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -376,72 +543,116 @@ public class UserApi {
 
     }
 
-    /**
-     * Creates list of users with given input array
-     * 
-     * @param user List of user object (required)
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 0 </td><td> successful operation </td><td>  -  </td></tr>
-     </table>
-     */
-    public void createWithList(List<User> user) throws ApiException {
-        createWithListWithHttpInfo(user);
-    }
 
-    /**
-     * Creates list of users with given input array
-     * 
-     * @param user List of user object (required)
-     * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 0 </td><td> successful operation </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<Void> createWithListWithHttpInfo(List<User> user) throws ApiException {
+    private ApiResponse<Void> createWithListWithHttpInfo(List<User> user) throws ApiException {
         okhttp3.Call localVarCall = createWithListValidateBeforeCall(user, null);
         return localVarApiClient.execute(localVarCall);
     }
 
-    /**
-     * Creates list of users with given input array (asynchronously)
-     * 
-     * @param user List of user object (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 0 </td><td> successful operation </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call createWithListAsync(List<User> user, final ApiCallback<Void> _callback) throws ApiException {
+    private okhttp3.Call createWithListAsync(List<User> user, final ApiCallback<Void> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = createWithListValidateBeforeCall(user, _callback);
         localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
+
+    public class CreateWithListRequestBuilder {
+        private List<User> user;
+
+        private CreateWithListRequestBuilder() {
+        }
+
+        /**
+         * Set user
+         * @param user List of user object (optional)
+         * @return CreateWithListRequestBuilder
+         */
+        public CreateWithListRequestBuilder user(List<User> user) {
+            this.user = user;
+            return this;
+        }
+
+        /**
+         * Build call for createWithList
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 0 </td><td> successful operation </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            List<User> user = buildBodyParams();
+            return createWithListCall(user, _callback);
+        }
+
+        private List<User> buildBodyParams() {
+            return this.user;
+        }
+
+        /**
+         * Execute createWithList request
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 0 </td><td> successful operation </td><td>  -  </td></tr>
+         </table>
+         */
+        public void execute() throws ApiException {
+            List<User> user = buildBodyParams();
+            createWithListWithHttpInfo(user);
+        }
+
+        /**
+         * Execute createWithList request with HTTP info returned
+         * @return ApiResponse&lt;Void&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 0 </td><td> successful operation </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<Void> executeWithHttpInfo() throws ApiException {
+            List<User> user = buildBodyParams();
+            return createWithListWithHttpInfo(user);
+        }
+
+        /**
+         * Execute createWithList request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 0 </td><td> successful operation </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<Void> _callback) throws ApiException {
+            List<User> user = buildBodyParams();
+            return createWithListAsync(user, _callback);
+        }
+    }
+
     /**
-     * Build call for delete
-     * @param username The name that needs to be deleted (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
+     * Creates list of users with given input array
+     * 
+     * @param user List of user object (required)
+     * @return CreateWithListRequestBuilder
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Invalid username supplied </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> User not found </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> successful operation </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call deleteCall(String username, final ApiCallback _callback) throws ApiException {
+    public CreateWithListRequestBuilder createWithList() throws IllegalArgumentException {
+        return new CreateWithListRequestBuilder();
+    }
+    private okhttp3.Call deleteCall(String username, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -496,78 +707,113 @@ public class UserApi {
 
     }
 
-    /**
-     * Delete user
-     * This can only be done by the logged in user.
-     * @param username The name that needs to be deleted (required)
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Invalid username supplied </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> User not found </td><td>  -  </td></tr>
-     </table>
-     */
-    public void delete(String username) throws ApiException {
-        deleteWithHttpInfo(username);
-    }
 
-    /**
-     * Delete user
-     * This can only be done by the logged in user.
-     * @param username The name that needs to be deleted (required)
-     * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Invalid username supplied </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> User not found </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<Void> deleteWithHttpInfo(String username) throws ApiException {
+    private ApiResponse<Void> deleteWithHttpInfo(String username) throws ApiException {
         okhttp3.Call localVarCall = deleteValidateBeforeCall(username, null);
         return localVarApiClient.execute(localVarCall);
     }
 
-    /**
-     * Delete user (asynchronously)
-     * This can only be done by the logged in user.
-     * @param username The name that needs to be deleted (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Invalid username supplied </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> User not found </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call deleteAsync(String username, final ApiCallback<Void> _callback) throws ApiException {
+    private okhttp3.Call deleteAsync(String username, final ApiCallback<Void> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = deleteValidateBeforeCall(username, _callback);
         localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
+
+    public class DeleteRequestBuilder {
+        private final String username;
+
+        private DeleteRequestBuilder(String username) {
+            this.username = username;
+        }
+
+        /**
+         * Build call for delete
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Invalid username supplied </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> User not found </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return deleteCall(username, _callback);
+        }
+
+
+        /**
+         * Execute delete request
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Invalid username supplied </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> User not found </td><td>  -  </td></tr>
+         </table>
+         */
+        public void execute() throws ApiException {
+            deleteWithHttpInfo(username);
+        }
+
+        /**
+         * Execute delete request with HTTP info returned
+         * @return ApiResponse&lt;Void&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Invalid username supplied </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> User not found </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<Void> executeWithHttpInfo() throws ApiException {
+            return deleteWithHttpInfo(username);
+        }
+
+        /**
+         * Execute delete request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Invalid username supplied </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> User not found </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<Void> _callback) throws ApiException {
+            return deleteAsync(username, _callback);
+        }
+    }
+
     /**
-     * Build call for getByName
-     * @param username The name that needs to be fetched. Use user1 for testing. (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
+     * Delete user
+     * This can only be done by the logged in user.
+     * @param username The name that needs to be deleted (required)
+     * @return DeleteRequestBuilder
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Invalid username supplied </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> User not found </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getByNameCall(String username, final ApiCallback _callback) throws ApiException {
+    public DeleteRequestBuilder delete(String username) throws IllegalArgumentException {
+        if (username == null) throw new IllegalArgumentException("\"username\" is required but got null");
+            
+
+        return new DeleteRequestBuilder(username);
+    }
+    private okhttp3.Call getByNameCall(String username, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -624,82 +870,117 @@ public class UserApi {
 
     }
 
-    /**
-     * Get user by user name
-     * 
-     * @param username The name that needs to be fetched. Use user1 for testing. (required)
-     * @return User
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Invalid username supplied </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> User not found </td><td>  -  </td></tr>
-     </table>
-     */
-    public User getByName(String username) throws ApiException {
-        ApiResponse<User> localVarResp = getByNameWithHttpInfo(username);
-        return localVarResp.getData();
-    }
 
-    /**
-     * Get user by user name
-     * 
-     * @param username The name that needs to be fetched. Use user1 for testing. (required)
-     * @return ApiResponse&lt;User&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Invalid username supplied </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> User not found </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<User> getByNameWithHttpInfo(String username) throws ApiException {
+    private ApiResponse<User> getByNameWithHttpInfo(String username) throws ApiException {
         okhttp3.Call localVarCall = getByNameValidateBeforeCall(username, null);
         Type localVarReturnType = new TypeToken<User>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    /**
-     * Get user by user name (asynchronously)
-     * 
-     * @param username The name that needs to be fetched. Use user1 for testing. (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Invalid username supplied </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> User not found </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call getByNameAsync(String username, final ApiCallback<User> _callback) throws ApiException {
+    private okhttp3.Call getByNameAsync(String username, final ApiCallback<User> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = getByNameValidateBeforeCall(username, _callback);
         Type localVarReturnType = new TypeToken<User>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
+
+    public class GetByNameRequestBuilder {
+        private final String username;
+
+        private GetByNameRequestBuilder(String username) {
+            this.username = username;
+        }
+
+        /**
+         * Build call for getByName
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Invalid username supplied </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> User not found </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return getByNameCall(username, _callback);
+        }
+
+
+        /**
+         * Execute getByName request
+         * @return User
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Invalid username supplied </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> User not found </td><td>  -  </td></tr>
+         </table>
+         */
+        public User execute() throws ApiException {
+            ApiResponse<User> localVarResp = getByNameWithHttpInfo(username);
+            return localVarResp.getResponseBody();
+        }
+
+        /**
+         * Execute getByName request with HTTP info returned
+         * @return ApiResponse&lt;User&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Invalid username supplied </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> User not found </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<User> executeWithHttpInfo() throws ApiException {
+            return getByNameWithHttpInfo(username);
+        }
+
+        /**
+         * Execute getByName request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Invalid username supplied </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> User not found </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<User> _callback) throws ApiException {
+            return getByNameAsync(username, _callback);
+        }
+    }
+
     /**
-     * Build call for login
-     * @param username The user name for login (required)
-     * @param password The password for login in clear text (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
+     * Get user by user name
+     * 
+     * @param username The name that needs to be fetched. Use user1 for testing. (required)
+     * @return GetByNameRequestBuilder
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> successful operation </td><td>  * Set-Cookie - Cookie authentication key for use with the &#x60;api_key&#x60; apiKey authentication. <br>  * X-Rate-Limit - calls per hour allowed by the user <br>  * X-Expires-After - date in UTC when token expires <br>  </td></tr>
-        <tr><td> 400 </td><td> Invalid username/password supplied </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Invalid username supplied </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> User not found </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call loginCall(String username, String password, final ApiCallback _callback) throws ApiException {
+    public GetByNameRequestBuilder getByName(String username) throws IllegalArgumentException {
+        if (username == null) throw new IllegalArgumentException("\"username\" is required but got null");
+            
+
+        return new GetByNameRequestBuilder(username);
+    }
+    private okhttp3.Call loginCall(String username, String password, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -768,79 +1049,118 @@ public class UserApi {
 
     }
 
-    /**
-     * Logs user into the system
-     * 
-     * @param username The user name for login (required)
-     * @param password The password for login in clear text (required)
-     * @return String
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> successful operation </td><td>  * Set-Cookie - Cookie authentication key for use with the &#x60;api_key&#x60; apiKey authentication. <br>  * X-Rate-Limit - calls per hour allowed by the user <br>  * X-Expires-After - date in UTC when token expires <br>  </td></tr>
-        <tr><td> 400 </td><td> Invalid username/password supplied </td><td>  -  </td></tr>
-     </table>
-     */
-    public String login(String username, String password) throws ApiException {
-        ApiResponse<String> localVarResp = loginWithHttpInfo(username, password);
-        return localVarResp.getData();
-    }
 
-    /**
-     * Logs user into the system
-     * 
-     * @param username The user name for login (required)
-     * @param password The password for login in clear text (required)
-     * @return ApiResponse&lt;String&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> successful operation </td><td>  * Set-Cookie - Cookie authentication key for use with the &#x60;api_key&#x60; apiKey authentication. <br>  * X-Rate-Limit - calls per hour allowed by the user <br>  * X-Expires-After - date in UTC when token expires <br>  </td></tr>
-        <tr><td> 400 </td><td> Invalid username/password supplied </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<String> loginWithHttpInfo(String username, String password) throws ApiException {
+    private ApiResponse<String> loginWithHttpInfo(String username, String password) throws ApiException {
         okhttp3.Call localVarCall = loginValidateBeforeCall(username, password, null);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    /**
-     * Logs user into the system (asynchronously)
-     * 
-     * @param username The user name for login (required)
-     * @param password The password for login in clear text (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> successful operation </td><td>  * Set-Cookie - Cookie authentication key for use with the &#x60;api_key&#x60; apiKey authentication. <br>  * X-Rate-Limit - calls per hour allowed by the user <br>  * X-Expires-After - date in UTC when token expires <br>  </td></tr>
-        <tr><td> 400 </td><td> Invalid username/password supplied </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call loginAsync(String username, String password, final ApiCallback<String> _callback) throws ApiException {
+    private okhttp3.Call loginAsync(String username, String password, final ApiCallback<String> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = loginValidateBeforeCall(username, password, _callback);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
+
+    public class LoginRequestBuilder {
+        private final String username;
+        private final String password;
+
+        private LoginRequestBuilder(String username, String password) {
+            this.username = username;
+            this.password = password;
+        }
+
+        /**
+         * Build call for login
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> successful operation </td><td>  * Set-Cookie - Cookie authentication key for use with the &#x60;api_key&#x60; apiKey authentication. <br>  * X-Rate-Limit - calls per hour allowed by the user <br>  * X-Expires-After - date in UTC when token expires <br>  </td></tr>
+            <tr><td> 400 </td><td> Invalid username/password supplied </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return loginCall(username, password, _callback);
+        }
+
+
+        /**
+         * Execute login request
+         * @return String
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> successful operation </td><td>  * Set-Cookie - Cookie authentication key for use with the &#x60;api_key&#x60; apiKey authentication. <br>  * X-Rate-Limit - calls per hour allowed by the user <br>  * X-Expires-After - date in UTC when token expires <br>  </td></tr>
+            <tr><td> 400 </td><td> Invalid username/password supplied </td><td>  -  </td></tr>
+         </table>
+         */
+        public String execute() throws ApiException {
+            ApiResponse<String> localVarResp = loginWithHttpInfo(username, password);
+            return localVarResp.getResponseBody();
+        }
+
+        /**
+         * Execute login request with HTTP info returned
+         * @return ApiResponse&lt;String&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> successful operation </td><td>  * Set-Cookie - Cookie authentication key for use with the &#x60;api_key&#x60; apiKey authentication. <br>  * X-Rate-Limit - calls per hour allowed by the user <br>  * X-Expires-After - date in UTC when token expires <br>  </td></tr>
+            <tr><td> 400 </td><td> Invalid username/password supplied </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<String> executeWithHttpInfo() throws ApiException {
+            return loginWithHttpInfo(username, password);
+        }
+
+        /**
+         * Execute login request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> successful operation </td><td>  * Set-Cookie - Cookie authentication key for use with the &#x60;api_key&#x60; apiKey authentication. <br>  * X-Rate-Limit - calls per hour allowed by the user <br>  * X-Expires-After - date in UTC when token expires <br>  </td></tr>
+            <tr><td> 400 </td><td> Invalid username/password supplied </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<String> _callback) throws ApiException {
+            return loginAsync(username, password, _callback);
+        }
+    }
+
     /**
-     * Build call for logout
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
+     * Logs user into the system
+     * 
+     * @param username The user name for login (required)
+     * @param password The password for login in clear text (required)
+     * @return LoginRequestBuilder
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 0 </td><td> successful operation </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> successful operation </td><td>  * Set-Cookie - Cookie authentication key for use with the &#x60;api_key&#x60; apiKey authentication. <br>  * X-Rate-Limit - calls per hour allowed by the user <br>  * X-Expires-After - date in UTC when token expires <br>  </td></tr>
+        <tr><td> 400 </td><td> Invalid username/password supplied </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call logoutCall(final ApiCallback _callback) throws ApiException {
+    public LoginRequestBuilder login(String username, String password) throws IllegalArgumentException {
+        if (username == null) throw new IllegalArgumentException("\"username\" is required but got null");
+            
+
+        if (password == null) throw new IllegalArgumentException("\"password\" is required but got null");
+            
+
+        return new LoginRequestBuilder(username, password);
+    }
+    private okhttp3.Call logoutCall(final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -889,70 +1209,97 @@ public class UserApi {
 
     }
 
-    /**
-     * Logs out current logged in user session
-     * 
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 0 </td><td> successful operation </td><td>  -  </td></tr>
-     </table>
-     */
-    public void logout() throws ApiException {
-        logoutWithHttpInfo();
-    }
 
-    /**
-     * Logs out current logged in user session
-     * 
-     * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 0 </td><td> successful operation </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<Void> logoutWithHttpInfo() throws ApiException {
+    private ApiResponse<Void> logoutWithHttpInfo() throws ApiException {
         okhttp3.Call localVarCall = logoutValidateBeforeCall(null);
         return localVarApiClient.execute(localVarCall);
     }
 
-    /**
-     * Logs out current logged in user session (asynchronously)
-     * 
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 0 </td><td> successful operation </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call logoutAsync(final ApiCallback<Void> _callback) throws ApiException {
+    private okhttp3.Call logoutAsync(final ApiCallback<Void> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = logoutValidateBeforeCall(_callback);
         localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
+
+    public class LogoutRequestBuilder {
+
+        private LogoutRequestBuilder() {
+        }
+
+        /**
+         * Build call for logout
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 0 </td><td> successful operation </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return logoutCall(_callback);
+        }
+
+
+        /**
+         * Execute logout request
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 0 </td><td> successful operation </td><td>  -  </td></tr>
+         </table>
+         */
+        public void execute() throws ApiException {
+            logoutWithHttpInfo();
+        }
+
+        /**
+         * Execute logout request with HTTP info returned
+         * @return ApiResponse&lt;Void&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 0 </td><td> successful operation </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<Void> executeWithHttpInfo() throws ApiException {
+            return logoutWithHttpInfo();
+        }
+
+        /**
+         * Execute logout request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 0 </td><td> successful operation </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<Void> _callback) throws ApiException {
+            return logoutAsync(_callback);
+        }
+    }
+
     /**
-     * Build call for update
-     * @param username name that need to be deleted (required)
-     * @param user Updated user object (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
+     * Logs out current logged in user session
+     * 
+     * @return LogoutRequestBuilder
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Invalid user supplied </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> User not found </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> successful operation </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateCall(String username, User user, final ApiCallback _callback) throws ApiException {
+    public LogoutRequestBuilder logout() throws IllegalArgumentException {
+        return new LogoutRequestBuilder();
+    }
+    private okhttp3.Call updateCall(String username, UserCreateRequest userCreateRequest, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -966,7 +1313,7 @@ public class UserApi {
             basePath = null;
         }
 
-        Object localVarPostBody = user;
+        Object localVarPostBody = userCreateRequest;
 
         // create path and map variables
         String localVarPath = "/user/{username}"
@@ -998,67 +1345,206 @@ public class UserApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call updateValidateBeforeCall(String username, User user, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call updateValidateBeforeCall(String username, UserCreateRequest userCreateRequest, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'username' is set
         if (username == null) {
             throw new ApiException("Missing the required parameter 'username' when calling update(Async)");
         }
 
-        // verify the required parameter 'user' is set
-        if (user == null) {
-            throw new ApiException("Missing the required parameter 'user' when calling update(Async)");
+        // verify the required parameter 'userCreateRequest' is set
+        if (userCreateRequest == null) {
+            throw new ApiException("Missing the required parameter 'userCreateRequest' when calling update(Async)");
         }
 
-        return updateCall(username, user, _callback);
+        return updateCall(username, userCreateRequest, _callback);
 
     }
 
-    /**
-     * Updated user
-     * This can only be done by the logged in user.
-     * @param username name that need to be deleted (required)
-     * @param user Updated user object (required)
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Invalid user supplied </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> User not found </td><td>  -  </td></tr>
-     </table>
-     */
-    public void update(String username, User user) throws ApiException {
-        updateWithHttpInfo(username, user);
-    }
 
-    /**
-     * Updated user
-     * This can only be done by the logged in user.
-     * @param username name that need to be deleted (required)
-     * @param user Updated user object (required)
-     * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Invalid user supplied </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> User not found </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<Void> updateWithHttpInfo(String username, User user) throws ApiException {
-        okhttp3.Call localVarCall = updateValidateBeforeCall(username, user, null);
+    private ApiResponse<Void> updateWithHttpInfo(String username, UserCreateRequest userCreateRequest) throws ApiException {
+        okhttp3.Call localVarCall = updateValidateBeforeCall(username, userCreateRequest, null);
         return localVarApiClient.execute(localVarCall);
     }
 
+    private okhttp3.Call updateAsync(String username, UserCreateRequest userCreateRequest, final ApiCallback<Void> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = updateValidateBeforeCall(username, userCreateRequest, _callback);
+        localVarApiClient.executeAsync(localVarCall, _callback);
+        return localVarCall;
+    }
+
+    public class UpdateRequestBuilder {
+        private final String username;
+        private Long id;
+        private String firstName;
+        private String lastName;
+        private String email;
+        private String password;
+        private String phone;
+        private Integer userStatus;
+
+        private UpdateRequestBuilder(String username) {
+            this.username = username;
+        }
+
+        /**
+         * Set id
+         * @param id  (optional)
+         * @return UpdateRequestBuilder
+         */
+        public UpdateRequestBuilder id(Long id) {
+            this.id = id;
+            return this;
+        }
+        
+        /**
+         * Set firstName
+         * @param firstName  (optional)
+         * @return UpdateRequestBuilder
+         */
+        public UpdateRequestBuilder firstName(String firstName) {
+            this.firstName = firstName;
+            return this;
+        }
+        
+        /**
+         * Set lastName
+         * @param lastName  (optional)
+         * @return UpdateRequestBuilder
+         */
+        public UpdateRequestBuilder lastName(String lastName) {
+            this.lastName = lastName;
+            return this;
+        }
+        
+        /**
+         * Set email
+         * @param email  (optional)
+         * @return UpdateRequestBuilder
+         */
+        public UpdateRequestBuilder email(String email) {
+            this.email = email;
+            return this;
+        }
+        
+        /**
+         * Set password
+         * @param password  (optional)
+         * @return UpdateRequestBuilder
+         */
+        public UpdateRequestBuilder password(String password) {
+            this.password = password;
+            return this;
+        }
+        
+        /**
+         * Set phone
+         * @param phone  (optional)
+         * @return UpdateRequestBuilder
+         */
+        public UpdateRequestBuilder phone(String phone) {
+            this.phone = phone;
+            return this;
+        }
+        
+        /**
+         * Set userStatus
+         * @param userStatus User Status (optional)
+         * @return UpdateRequestBuilder
+         */
+        public UpdateRequestBuilder userStatus(Integer userStatus) {
+            this.userStatus = userStatus;
+            return this;
+        }
+        
+        /**
+         * Build call for update
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Invalid user supplied </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> User not found </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            UserCreateRequest userCreateRequest = buildBodyParams();
+            return updateCall(username, userCreateRequest, _callback);
+        }
+
+        private UserCreateRequest buildBodyParams() {
+            UserCreateRequest userCreateRequest = new UserCreateRequest();
+            userCreateRequest.id(this.id);
+            userCreateRequest.firstName(this.firstName);
+            userCreateRequest.lastName(this.lastName);
+            userCreateRequest.email(this.email);
+            userCreateRequest.password(this.password);
+            userCreateRequest.phone(this.phone);
+            userCreateRequest.userStatus(this.userStatus);
+            return userCreateRequest;
+        }
+
+        /**
+         * Execute update request
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Invalid user supplied </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> User not found </td><td>  -  </td></tr>
+         </table>
+         */
+        public void execute() throws ApiException {
+            UserCreateRequest userCreateRequest = buildBodyParams();
+            updateWithHttpInfo(username, userCreateRequest);
+        }
+
+        /**
+         * Execute update request with HTTP info returned
+         * @return ApiResponse&lt;Void&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Invalid user supplied </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> User not found </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<Void> executeWithHttpInfo() throws ApiException {
+            UserCreateRequest userCreateRequest = buildBodyParams();
+            return updateWithHttpInfo(username, userCreateRequest);
+        }
+
+        /**
+         * Execute update request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Invalid user supplied </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> User not found </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<Void> _callback) throws ApiException {
+            UserCreateRequest userCreateRequest = buildBodyParams();
+            return updateAsync(username, userCreateRequest, _callback);
+        }
+    }
+
     /**
-     * Updated user (asynchronously)
+     * Updated user
      * This can only be done by the logged in user.
      * @param username name that need to be deleted (required)
-     * @param user Updated user object (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @param userCreateRequest Updated user object (required)
+     * @return UpdateRequestBuilder
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
@@ -1067,10 +1553,10 @@ public class UserApi {
         <tr><td> 404 </td><td> User not found </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateAsync(String username, User user, final ApiCallback<Void> _callback) throws ApiException {
+    public UpdateRequestBuilder update(String username) throws IllegalArgumentException {
+        if (username == null) throw new IllegalArgumentException("\"username\" is required but got null");
+            
 
-        okhttp3.Call localVarCall = updateValidateBeforeCall(username, user, _callback);
-        localVarApiClient.executeAsync(localVarCall, _callback);
-        return localVarCall;
+        return new UpdateRequestBuilder(username);
     }
 }

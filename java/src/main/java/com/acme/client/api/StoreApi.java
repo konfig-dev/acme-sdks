@@ -26,6 +26,7 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
+import java.time.OffsetDateTime;
 import com.acme.client.model.Order;
 
 import java.lang.reflect.Type;
@@ -40,11 +41,11 @@ public class StoreApi {
     private int localHostIndex;
     private String localCustomBaseUrl;
 
-    public StoreApi() {
+    public StoreApi() throws IllegalArgumentException {
         this(Configuration.getDefaultApiClient());
     }
 
-    public StoreApi(ApiClient apiClient) {
+    public StoreApi(ApiClient apiClient) throws IllegalArgumentException {
         this.localVarApiClient = apiClient;
     }
 
@@ -72,21 +73,7 @@ public class StoreApi {
         this.localCustomBaseUrl = customBaseUrl;
     }
 
-    /**
-     * Build call for deleteOrder
-     * @param orderId ID of the order that needs to be deleted (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Invalid ID supplied </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Order not found </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call deleteOrderCall(String orderId, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call deleteOrderCall(String orderId, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -141,75 +128,113 @@ public class StoreApi {
 
     }
 
-    /**
-     * Delete purchase order by ID
-     * For valid response try integer IDs with value &lt; 1000. Anything above 1000 or nonintegers will generate API errors
-     * @param orderId ID of the order that needs to be deleted (required)
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Invalid ID supplied </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Order not found </td><td>  -  </td></tr>
-     </table>
-     */
-    public void deleteOrder(String orderId) throws ApiException {
-        deleteOrderWithHttpInfo(orderId);
-    }
 
-    /**
-     * Delete purchase order by ID
-     * For valid response try integer IDs with value &lt; 1000. Anything above 1000 or nonintegers will generate API errors
-     * @param orderId ID of the order that needs to be deleted (required)
-     * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Invalid ID supplied </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Order not found </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<Void> deleteOrderWithHttpInfo(String orderId) throws ApiException {
+    private ApiResponse<Void> deleteOrderWithHttpInfo(String orderId) throws ApiException {
         okhttp3.Call localVarCall = deleteOrderValidateBeforeCall(orderId, null);
         return localVarApiClient.execute(localVarCall);
     }
 
-    /**
-     * Delete purchase order by ID (asynchronously)
-     * For valid response try integer IDs with value &lt; 1000. Anything above 1000 or nonintegers will generate API errors
-     * @param orderId ID of the order that needs to be deleted (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Invalid ID supplied </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Order not found </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call deleteOrderAsync(String orderId, final ApiCallback<Void> _callback) throws ApiException {
+    private okhttp3.Call deleteOrderAsync(String orderId, final ApiCallback<Void> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = deleteOrderValidateBeforeCall(orderId, _callback);
         localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
+
+    public class DeleteOrderRequestBuilder {
+        private final String orderId;
+
+        private DeleteOrderRequestBuilder(String orderId) {
+            this.orderId = orderId;
+        }
+
+        /**
+         * Build call for deleteOrder
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Invalid ID supplied </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> Order not found </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return deleteOrderCall(orderId, _callback);
+        }
+
+
+        /**
+         * Execute deleteOrder request
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Invalid ID supplied </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> Order not found </td><td>  -  </td></tr>
+         </table>
+         */
+        public void execute() throws ApiException {
+            deleteOrderWithHttpInfo(orderId);
+        }
+
+        /**
+         * Execute deleteOrder request with HTTP info returned
+         * @return ApiResponse&lt;Void&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Invalid ID supplied </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> Order not found </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<Void> executeWithHttpInfo() throws ApiException {
+            return deleteOrderWithHttpInfo(orderId);
+        }
+
+        /**
+         * Execute deleteOrder request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Invalid ID supplied </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> Order not found </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<Void> _callback) throws ApiException {
+            return deleteOrderAsync(orderId, _callback);
+        }
+    }
+
     /**
-     * Build call for getInventory
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
+     * Delete purchase order by ID
+     * For valid response try integer IDs with value &lt; 1000. Anything above 1000 or nonintegers will generate API errors
+     * @param orderId ID of the order that needs to be deleted (required)
+     * @return DeleteOrderRequestBuilder
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Invalid ID supplied </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Order not found </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getInventoryCall(final ApiCallback _callback) throws ApiException {
+    public DeleteOrderRequestBuilder deleteOrder(String orderId) throws IllegalArgumentException {
+        if (orderId == null) throw new IllegalArgumentException("\"orderId\" is required but got null");
+            
+
+        return new DeleteOrderRequestBuilder(orderId);
+    }
+    private okhttp3.Call getInventoryCall(final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -259,73 +284,101 @@ public class StoreApi {
 
     }
 
-    /**
-     * Returns pet inventories by status
-     * Returns a map of status codes to quantities
-     * @return Map&lt;String, Integer&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-     </table>
-     */
-    public Map<String, Integer> getInventory() throws ApiException {
-        ApiResponse<Map<String, Integer>> localVarResp = getInventoryWithHttpInfo();
-        return localVarResp.getData();
-    }
 
-    /**
-     * Returns pet inventories by status
-     * Returns a map of status codes to quantities
-     * @return ApiResponse&lt;Map&lt;String, Integer&gt;&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<Map<String, Integer>> getInventoryWithHttpInfo() throws ApiException {
+    private ApiResponse<Map<String, Integer>> getInventoryWithHttpInfo() throws ApiException {
         okhttp3.Call localVarCall = getInventoryValidateBeforeCall(null);
         Type localVarReturnType = new TypeToken<Map<String, Integer>>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    /**
-     * Returns pet inventories by status (asynchronously)
-     * Returns a map of status codes to quantities
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call getInventoryAsync(final ApiCallback<Map<String, Integer>> _callback) throws ApiException {
+    private okhttp3.Call getInventoryAsync(final ApiCallback<Map<String, Integer>> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = getInventoryValidateBeforeCall(_callback);
         Type localVarReturnType = new TypeToken<Map<String, Integer>>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
+
+    public class GetInventoryRequestBuilder {
+
+        private GetInventoryRequestBuilder() {
+        }
+
+        /**
+         * Build call for getInventory
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return getInventoryCall(_callback);
+        }
+
+
+        /**
+         * Execute getInventory request
+         * @return Map&lt;String, Integer&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
+         </table>
+         */
+        public Map<String, Integer> execute() throws ApiException {
+            ApiResponse<Map<String, Integer>> localVarResp = getInventoryWithHttpInfo();
+            return localVarResp.getResponseBody();
+        }
+
+        /**
+         * Execute getInventory request with HTTP info returned
+         * @return ApiResponse&lt;Map&lt;String, Integer&gt;&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<Map<String, Integer>> executeWithHttpInfo() throws ApiException {
+            return getInventoryWithHttpInfo();
+        }
+
+        /**
+         * Execute getInventory request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<Map<String, Integer>> _callback) throws ApiException {
+            return getInventoryAsync(_callback);
+        }
+    }
+
     /**
-     * Build call for getOrderById
-     * @param orderId ID of pet that needs to be fetched (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
+     * Returns pet inventories by status
+     * Returns a map of status codes to quantities
+     * @return GetInventoryRequestBuilder
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Invalid ID supplied </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Order not found </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getOrderByIdCall(Long orderId, final ApiCallback _callback) throws ApiException {
+    public GetInventoryRequestBuilder getInventory() throws IllegalArgumentException {
+        return new GetInventoryRequestBuilder();
+    }
+    private okhttp3.Call getOrderByIdCall(Long orderId, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -382,81 +435,115 @@ public class StoreApi {
 
     }
 
-    /**
-     * Find purchase order by ID
-     * For valid response try integer IDs with value &lt;&#x3D; 5 or &gt; 10. Other values will generated exceptions
-     * @param orderId ID of pet that needs to be fetched (required)
-     * @return Order
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Invalid ID supplied </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Order not found </td><td>  -  </td></tr>
-     </table>
-     */
-    public Order getOrderById(Long orderId) throws ApiException {
-        ApiResponse<Order> localVarResp = getOrderByIdWithHttpInfo(orderId);
-        return localVarResp.getData();
-    }
 
-    /**
-     * Find purchase order by ID
-     * For valid response try integer IDs with value &lt;&#x3D; 5 or &gt; 10. Other values will generated exceptions
-     * @param orderId ID of pet that needs to be fetched (required)
-     * @return ApiResponse&lt;Order&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Invalid ID supplied </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Order not found </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<Order> getOrderByIdWithHttpInfo(Long orderId) throws ApiException {
+    private ApiResponse<Order> getOrderByIdWithHttpInfo(Long orderId) throws ApiException {
         okhttp3.Call localVarCall = getOrderByIdValidateBeforeCall(orderId, null);
         Type localVarReturnType = new TypeToken<Order>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    /**
-     * Find purchase order by ID (asynchronously)
-     * For valid response try integer IDs with value &lt;&#x3D; 5 or &gt; 10. Other values will generated exceptions
-     * @param orderId ID of pet that needs to be fetched (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Invalid ID supplied </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Order not found </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call getOrderByIdAsync(Long orderId, final ApiCallback<Order> _callback) throws ApiException {
+    private okhttp3.Call getOrderByIdAsync(Long orderId, final ApiCallback<Order> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = getOrderByIdValidateBeforeCall(orderId, _callback);
         Type localVarReturnType = new TypeToken<Order>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
+
+    public class GetOrderByIdRequestBuilder {
+        private final Long orderId;
+
+        private GetOrderByIdRequestBuilder(Long orderId) {
+            this.orderId = orderId;
+        }
+
+        /**
+         * Build call for getOrderById
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Invalid ID supplied </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> Order not found </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return getOrderByIdCall(orderId, _callback);
+        }
+
+
+        /**
+         * Execute getOrderById request
+         * @return Order
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Invalid ID supplied </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> Order not found </td><td>  -  </td></tr>
+         </table>
+         */
+        public Order execute() throws ApiException {
+            ApiResponse<Order> localVarResp = getOrderByIdWithHttpInfo(orderId);
+            return localVarResp.getResponseBody();
+        }
+
+        /**
+         * Execute getOrderById request with HTTP info returned
+         * @return ApiResponse&lt;Order&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Invalid ID supplied </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> Order not found </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<Order> executeWithHttpInfo() throws ApiException {
+            return getOrderByIdWithHttpInfo(orderId);
+        }
+
+        /**
+         * Execute getOrderById request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Invalid ID supplied </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> Order not found </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<Order> _callback) throws ApiException {
+            return getOrderByIdAsync(orderId, _callback);
+        }
+    }
+
     /**
-     * Build call for placeOrder
-     * @param order order placed for purchasing the pet (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
+     * Find purchase order by ID
+     * For valid response try integer IDs with value &lt;&#x3D; 5 or &gt; 10. Other values will generated exceptions
+     * @param orderId ID of pet that needs to be fetched (required)
+     * @return GetOrderByIdRequestBuilder
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Invalid Order </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Invalid ID supplied </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Order not found </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call placeOrderCall(Order order, final ApiCallback _callback) throws ApiException {
+    public GetOrderByIdRequestBuilder getOrderById(Long orderId) throws IllegalArgumentException {
+        if (orderId == null) throw new IllegalArgumentException("\"orderId\" is required but got null");
+        return new GetOrderByIdRequestBuilder(orderId);
+    }
+    private okhttp3.Call placeOrderCall(Order order, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -513,50 +600,177 @@ public class StoreApi {
 
     }
 
-    /**
-     * Place an order for a pet
-     * 
-     * @param order order placed for purchasing the pet (required)
-     * @return Order
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Invalid Order </td><td>  -  </td></tr>
-     </table>
-     */
-    public Order placeOrder(Order order) throws ApiException {
-        ApiResponse<Order> localVarResp = placeOrderWithHttpInfo(order);
-        return localVarResp.getData();
-    }
 
-    /**
-     * Place an order for a pet
-     * 
-     * @param order order placed for purchasing the pet (required)
-     * @return ApiResponse&lt;Order&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Invalid Order </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<Order> placeOrderWithHttpInfo(Order order) throws ApiException {
+    private ApiResponse<Order> placeOrderWithHttpInfo(Order order) throws ApiException {
         okhttp3.Call localVarCall = placeOrderValidateBeforeCall(order, null);
         Type localVarReturnType = new TypeToken<Order>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
+    private okhttp3.Call placeOrderAsync(Order order, final ApiCallback<Order> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = placeOrderValidateBeforeCall(order, _callback);
+        Type localVarReturnType = new TypeToken<Order>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    public class PlaceOrderRequestBuilder {
+        private Long id;
+        private Long petId;
+        private Integer quantity;
+        private OffsetDateTime shipDate;
+        private String status;
+        private Boolean complete;
+
+        private PlaceOrderRequestBuilder() {
+        }
+
+        /**
+         * Set id
+         * @param id  (optional)
+         * @return PlaceOrderRequestBuilder
+         */
+        public PlaceOrderRequestBuilder id(Long id) {
+            this.id = id;
+            return this;
+        }
+        
+        /**
+         * Set petId
+         * @param petId  (optional)
+         * @return PlaceOrderRequestBuilder
+         */
+        public PlaceOrderRequestBuilder petId(Long petId) {
+            this.petId = petId;
+            return this;
+        }
+        
+        /**
+         * Set quantity
+         * @param quantity  (optional)
+         * @return PlaceOrderRequestBuilder
+         */
+        public PlaceOrderRequestBuilder quantity(Integer quantity) {
+            this.quantity = quantity;
+            return this;
+        }
+        
+        /**
+         * Set shipDate
+         * @param shipDate  (optional)
+         * @return PlaceOrderRequestBuilder
+         */
+        public PlaceOrderRequestBuilder shipDate(OffsetDateTime shipDate) {
+            this.shipDate = shipDate;
+            return this;
+        }
+        
+        /**
+         * Set status
+         * @param status Order Status (optional)
+         * @return PlaceOrderRequestBuilder
+         */
+        public PlaceOrderRequestBuilder status(String status) {
+            this.status = status;
+            return this;
+        }
+        
+        /**
+         * Set complete
+         * @param complete  (optional, default to false)
+         * @return PlaceOrderRequestBuilder
+         */
+        public PlaceOrderRequestBuilder complete(Boolean complete) {
+            this.complete = complete;
+            return this;
+        }
+        
+        /**
+         * Build call for placeOrder
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Invalid Order </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            Order order = buildBodyParams();
+            return placeOrderCall(order, _callback);
+        }
+
+        private Order buildBodyParams() {
+            Order order = new Order();
+            order.id(this.id);
+            order.petId(this.petId);
+            order.quantity(this.quantity);
+            order.shipDate(this.shipDate);
+            if (this.status != null)
+            order.status(Order.StatusEnum.fromValue(this.status));
+            order.complete(this.complete);
+            return order;
+        }
+
+        /**
+         * Execute placeOrder request
+         * @return Order
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Invalid Order </td><td>  -  </td></tr>
+         </table>
+         */
+        public Order execute() throws ApiException {
+            Order order = buildBodyParams();
+            ApiResponse<Order> localVarResp = placeOrderWithHttpInfo(order);
+            return localVarResp.getResponseBody();
+        }
+
+        /**
+         * Execute placeOrder request with HTTP info returned
+         * @return ApiResponse&lt;Order&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Invalid Order </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<Order> executeWithHttpInfo() throws ApiException {
+            Order order = buildBodyParams();
+            return placeOrderWithHttpInfo(order);
+        }
+
+        /**
+         * Execute placeOrder request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Invalid Order </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<Order> _callback) throws ApiException {
+            Order order = buildBodyParams();
+            return placeOrderAsync(order, _callback);
+        }
+    }
+
     /**
-     * Place an order for a pet (asynchronously)
+     * Place an order for a pet
      * 
      * @param order order placed for purchasing the pet (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @return PlaceOrderRequestBuilder
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
@@ -564,11 +778,7 @@ public class StoreApi {
         <tr><td> 400 </td><td> Invalid Order </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call placeOrderAsync(Order order, final ApiCallback<Order> _callback) throws ApiException {
-
-        okhttp3.Call localVarCall = placeOrderValidateBeforeCall(order, _callback);
-        Type localVarReturnType = new TypeToken<Order>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-        return localVarCall;
+    public PlaceOrderRequestBuilder placeOrder() throws IllegalArgumentException {
+        return new PlaceOrderRequestBuilder();
     }
 }

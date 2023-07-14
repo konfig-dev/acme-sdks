@@ -26,9 +26,11 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
+import com.acme.client.model.Category;
 import java.io.File;
 import com.acme.client.model.ModelApiResponse;
 import com.acme.client.model.Pet;
+import com.acme.client.model.Tag;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -42,11 +44,11 @@ public class PetApi {
     private int localHostIndex;
     private String localCustomBaseUrl;
 
-    public PetApi() {
+    public PetApi() throws IllegalArgumentException {
         this(Configuration.getDefaultApiClient());
     }
 
-    public PetApi(ApiClient apiClient) {
+    public PetApi(ApiClient apiClient) throws IllegalArgumentException {
         this.localVarApiClient = apiClient;
     }
 
@@ -74,20 +76,7 @@ public class PetApi {
         this.localCustomBaseUrl = customBaseUrl;
     }
 
-    /**
-     * Build call for add
-     * @param pet Pet object that needs to be added to the store (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-        <tr><td> 405 </td><td> Invalid input </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call addCall(Pet pet, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call addCall(Pet pet, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -145,77 +134,174 @@ public class PetApi {
 
     }
 
-    /**
-     * Add a new pet to the store
-     * 
-     * @param pet Pet object that needs to be added to the store (required)
-     * @return Pet
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-        <tr><td> 405 </td><td> Invalid input </td><td>  -  </td></tr>
-     </table>
-     */
-    public Pet add(Pet pet) throws ApiException {
-        ApiResponse<Pet> localVarResp = addWithHttpInfo(pet);
-        return localVarResp.getData();
-    }
 
-    /**
-     * Add a new pet to the store
-     * 
-     * @param pet Pet object that needs to be added to the store (required)
-     * @return ApiResponse&lt;Pet&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-        <tr><td> 405 </td><td> Invalid input </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<Pet> addWithHttpInfo(Pet pet) throws ApiException {
+    private ApiResponse<Pet> addWithHttpInfo(Pet pet) throws ApiException {
         okhttp3.Call localVarCall = addValidateBeforeCall(pet, null);
         Type localVarReturnType = new TypeToken<Pet>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    /**
-     * Add a new pet to the store (asynchronously)
-     * 
-     * @param pet Pet object that needs to be added to the store (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-        <tr><td> 405 </td><td> Invalid input </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call addAsync(Pet pet, final ApiCallback<Pet> _callback) throws ApiException {
+    private okhttp3.Call addAsync(Pet pet, final ApiCallback<Pet> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = addValidateBeforeCall(pet, _callback);
         Type localVarReturnType = new TypeToken<Pet>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
+
+    public class AddRequestBuilder {
+        private final String name;
+        private final List<String> photoUrls;
+        private List<Tag> tags;
+        private Long id;
+        private Category category;
+        private String status;
+
+        private AddRequestBuilder(String name, List<String> photoUrls) {
+            this.name = name;
+            this.photoUrls = photoUrls;
+        }
+
+        /**
+         * Set tags
+         * @param tags  (optional)
+         * @return AddRequestBuilder
+         */
+        public AddRequestBuilder tags(List<Tag> tags) {
+            this.tags = tags;
+            return this;
+        }
+        
+        /**
+         * Set id
+         * @param id  (optional)
+         * @return AddRequestBuilder
+         */
+        public AddRequestBuilder id(Long id) {
+            this.id = id;
+            return this;
+        }
+        
+        /**
+         * Set category
+         * @param category  (optional)
+         * @return AddRequestBuilder
+         */
+        public AddRequestBuilder category(Category category) {
+            this.category = category;
+            return this;
+        }
+        
+        /**
+         * Set status
+         * @param status pet status in the store (optional)
+         * @return AddRequestBuilder
+         */
+        public AddRequestBuilder status(String status) {
+            this.status = status;
+            return this;
+        }
+        
+        /**
+         * Build call for add
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
+            <tr><td> 405 </td><td> Invalid input </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            Pet pet = buildBodyParams();
+            return addCall(pet, _callback);
+        }
+
+        private Pet buildBodyParams() {
+            Pet pet = new Pet();
+            pet.tags(this.tags);
+            pet.id(this.id);
+            pet.category(this.category);
+            pet.name(this.name);
+            pet.photoUrls(this.photoUrls);
+            if (this.status != null)
+            pet.status(Pet.StatusEnum.fromValue(this.status));
+            return pet;
+        }
+
+        /**
+         * Execute add request
+         * @return Pet
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
+            <tr><td> 405 </td><td> Invalid input </td><td>  -  </td></tr>
+         </table>
+         */
+        public Pet execute() throws ApiException {
+            Pet pet = buildBodyParams();
+            ApiResponse<Pet> localVarResp = addWithHttpInfo(pet);
+            return localVarResp.getResponseBody();
+        }
+
+        /**
+         * Execute add request with HTTP info returned
+         * @return ApiResponse&lt;Pet&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
+            <tr><td> 405 </td><td> Invalid input </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<Pet> executeWithHttpInfo() throws ApiException {
+            Pet pet = buildBodyParams();
+            return addWithHttpInfo(pet);
+        }
+
+        /**
+         * Execute add request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
+            <tr><td> 405 </td><td> Invalid input </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<Pet> _callback) throws ApiException {
+            Pet pet = buildBodyParams();
+            return addAsync(pet, _callback);
+        }
+    }
+
     /**
-     * Build call for delete
-     * @param petId Pet id to delete (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
+     * Add a new pet to the store
+     * 
+     * @param pet Pet object that needs to be added to the store (required)
+     * @return AddRequestBuilder
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 0 </td><td> Invalid pet value </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
+        <tr><td> 405 </td><td> Invalid input </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call deleteCall(Long petId, final ApiCallback _callback) throws ApiException {
+    public AddRequestBuilder add(String name, List<String> photoUrls) throws IllegalArgumentException {
+        if (name == null) throw new IllegalArgumentException("\"name\" is required but got null");
+            
+
+        if (photoUrls == null) throw new IllegalArgumentException("\"photoUrls\" is required but got null");
+        return new AddRequestBuilder(name, photoUrls);
+    }
+    private okhttp3.Call deleteCall(Long petId, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -270,71 +356,101 @@ public class PetApi {
 
     }
 
-    /**
-     * Deletes a pet
-     * 
-     * @param petId Pet id to delete (required)
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 0 </td><td> Invalid pet value </td><td>  -  </td></tr>
-     </table>
-     */
-    public void delete(Long petId) throws ApiException {
-        deleteWithHttpInfo(petId);
-    }
 
-    /**
-     * Deletes a pet
-     * 
-     * @param petId Pet id to delete (required)
-     * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 0 </td><td> Invalid pet value </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<Void> deleteWithHttpInfo(Long petId) throws ApiException {
+    private ApiResponse<Void> deleteWithHttpInfo(Long petId) throws ApiException {
         okhttp3.Call localVarCall = deleteValidateBeforeCall(petId, null);
         return localVarApiClient.execute(localVarCall);
     }
 
-    /**
-     * Deletes a pet (asynchronously)
-     * 
-     * @param petId Pet id to delete (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 0 </td><td> Invalid pet value </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call deleteAsync(Long petId, final ApiCallback<Void> _callback) throws ApiException {
+    private okhttp3.Call deleteAsync(Long petId, final ApiCallback<Void> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = deleteValidateBeforeCall(petId, _callback);
         localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
+
+    public class DeleteRequestBuilder {
+        private final Long petId;
+
+        private DeleteRequestBuilder(Long petId) {
+            this.petId = petId;
+        }
+
+        /**
+         * Build call for delete
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 0 </td><td> Invalid pet value </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return deleteCall(petId, _callback);
+        }
+
+
+        /**
+         * Execute delete request
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 0 </td><td> Invalid pet value </td><td>  -  </td></tr>
+         </table>
+         */
+        public void execute() throws ApiException {
+            deleteWithHttpInfo(petId);
+        }
+
+        /**
+         * Execute delete request with HTTP info returned
+         * @return ApiResponse&lt;Void&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 0 </td><td> Invalid pet value </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<Void> executeWithHttpInfo() throws ApiException {
+            return deleteWithHttpInfo(petId);
+        }
+
+        /**
+         * Execute delete request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 0 </td><td> Invalid pet value </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<Void> _callback) throws ApiException {
+            return deleteAsync(petId, _callback);
+        }
+    }
+
     /**
-     * Build call for findByStatus
-     * @param status Status values that need to be considered for filter (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
+     * Deletes a pet
+     * 
+     * @param petId Pet id to delete (required)
+     * @return DeleteRequestBuilder
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Invalid status value </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Invalid pet value </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call findByStatusCall(List<String> status, final ApiCallback _callback) throws ApiException {
+    public DeleteRequestBuilder delete(Long petId) throws IllegalArgumentException {
+        if (petId == null) throw new IllegalArgumentException("\"petId\" is required but got null");
+        return new DeleteRequestBuilder(petId);
+    }
+    private okhttp3.Call findByStatusCall(List<String> status, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -394,80 +510,110 @@ public class PetApi {
 
     }
 
-    /**
-     * Finds Pets by status
-     * Multiple status values can be provided with comma separated strings
-     * @param status Status values that need to be considered for filter (required)
-     * @return List&lt;Pet&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Invalid status value </td><td>  -  </td></tr>
-     </table>
-     */
-    public List<Pet> findByStatus(List<String> status) throws ApiException {
-        ApiResponse<List<Pet>> localVarResp = findByStatusWithHttpInfo(status);
-        return localVarResp.getData();
-    }
 
-    /**
-     * Finds Pets by status
-     * Multiple status values can be provided with comma separated strings
-     * @param status Status values that need to be considered for filter (required)
-     * @return ApiResponse&lt;List&lt;Pet&gt;&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Invalid status value </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<List<Pet>> findByStatusWithHttpInfo(List<String> status) throws ApiException {
+    private ApiResponse<List<Pet>> findByStatusWithHttpInfo(List<String> status) throws ApiException {
         okhttp3.Call localVarCall = findByStatusValidateBeforeCall(status, null);
         Type localVarReturnType = new TypeToken<List<Pet>>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    /**
-     * Finds Pets by status (asynchronously)
-     * Multiple status values can be provided with comma separated strings
-     * @param status Status values that need to be considered for filter (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Invalid status value </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call findByStatusAsync(List<String> status, final ApiCallback<List<Pet>> _callback) throws ApiException {
+    private okhttp3.Call findByStatusAsync(List<String> status, final ApiCallback<List<Pet>> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = findByStatusValidateBeforeCall(status, _callback);
         Type localVarReturnType = new TypeToken<List<Pet>>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
+
+    public class FindByStatusRequestBuilder {
+        private final List<String> status;
+
+        private FindByStatusRequestBuilder(List<String> status) {
+            this.status = status;
+        }
+
+        /**
+         * Build call for findByStatus
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Invalid status value </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return findByStatusCall(status, _callback);
+        }
+
+
+        /**
+         * Execute findByStatus request
+         * @return List&lt;Pet&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Invalid status value </td><td>  -  </td></tr>
+         </table>
+         */
+        public List<Pet> execute() throws ApiException {
+            ApiResponse<List<Pet>> localVarResp = findByStatusWithHttpInfo(status);
+            return localVarResp.getResponseBody();
+        }
+
+        /**
+         * Execute findByStatus request with HTTP info returned
+         * @return ApiResponse&lt;List&lt;Pet&gt;&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Invalid status value </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<List<Pet>> executeWithHttpInfo() throws ApiException {
+            return findByStatusWithHttpInfo(status);
+        }
+
+        /**
+         * Execute findByStatus request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Invalid status value </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<List<Pet>> _callback) throws ApiException {
+            return findByStatusAsync(status, _callback);
+        }
+    }
+
     /**
-     * Build call for findByTags
-     * @param tags Tags to filter by (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
+     * Finds Pets by status
+     * Multiple status values can be provided with comma separated strings
+     * @param status Status values that need to be considered for filter (required)
+     * @return FindByStatusRequestBuilder
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Invalid tag value </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Invalid status value </td><td>  -  </td></tr>
      </table>
-     * @deprecated
      */
-    @Deprecated
-    public okhttp3.Call findByTagsCall(List<String> tags, final ApiCallback _callback) throws ApiException {
+    public FindByStatusRequestBuilder findByStatus(List<String> status) throws IllegalArgumentException {
+        if (status == null) throw new IllegalArgumentException("\"status\" is required but got null");
+        return new FindByStatusRequestBuilder(status);
+    }
+    private okhttp3.Call findByTagsCall(List<String> tags, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -528,85 +674,120 @@ public class PetApi {
 
     }
 
-    /**
-     * Finds Pets by tags
-     * Multiple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
-     * @param tags Tags to filter by (required)
-     * @return List&lt;Pet&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Invalid tag value </td><td>  -  </td></tr>
-     </table>
-     * @deprecated
-     */
-    @Deprecated
-    public List<Pet> findByTags(List<String> tags) throws ApiException {
-        ApiResponse<List<Pet>> localVarResp = findByTagsWithHttpInfo(tags);
-        return localVarResp.getData();
-    }
 
-    /**
-     * Finds Pets by tags
-     * Multiple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
-     * @param tags Tags to filter by (required)
-     * @return ApiResponse&lt;List&lt;Pet&gt;&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Invalid tag value </td><td>  -  </td></tr>
-     </table>
-     * @deprecated
-     */
-    @Deprecated
-    public ApiResponse<List<Pet>> findByTagsWithHttpInfo(List<String> tags) throws ApiException {
+    private ApiResponse<List<Pet>> findByTagsWithHttpInfo(List<String> tags) throws ApiException {
         okhttp3.Call localVarCall = findByTagsValidateBeforeCall(tags, null);
         Type localVarReturnType = new TypeToken<List<Pet>>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    /**
-     * Finds Pets by tags (asynchronously)
-     * Multiple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
-     * @param tags Tags to filter by (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Invalid tag value </td><td>  -  </td></tr>
-     </table>
-     * @deprecated
-     */
-    @Deprecated
-    public okhttp3.Call findByTagsAsync(List<String> tags, final ApiCallback<List<Pet>> _callback) throws ApiException {
+    private okhttp3.Call findByTagsAsync(List<String> tags, final ApiCallback<List<Pet>> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = findByTagsValidateBeforeCall(tags, _callback);
         Type localVarReturnType = new TypeToken<List<Pet>>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
+
+    public class FindByTagsRequestBuilder {
+        private final List<String> tags;
+
+        private FindByTagsRequestBuilder(List<String> tags) {
+            this.tags = tags;
+        }
+
+        /**
+         * Build call for findByTags
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Invalid tag value </td><td>  -  </td></tr>
+         </table>
+         * @deprecated
+         */
+        @Deprecated
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return findByTagsCall(tags, _callback);
+        }
+
+
+        /**
+         * Execute findByTags request
+         * @return List&lt;Pet&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Invalid tag value </td><td>  -  </td></tr>
+         </table>
+         * @deprecated
+         */
+        @Deprecated
+        public List<Pet> execute() throws ApiException {
+            ApiResponse<List<Pet>> localVarResp = findByTagsWithHttpInfo(tags);
+            return localVarResp.getResponseBody();
+        }
+
+        /**
+         * Execute findByTags request with HTTP info returned
+         * @return ApiResponse&lt;List&lt;Pet&gt;&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Invalid tag value </td><td>  -  </td></tr>
+         </table>
+         * @deprecated
+         */
+        @Deprecated
+        public ApiResponse<List<Pet>> executeWithHttpInfo() throws ApiException {
+            return findByTagsWithHttpInfo(tags);
+        }
+
+        /**
+         * Execute findByTags request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Invalid tag value </td><td>  -  </td></tr>
+         </table>
+         * @deprecated
+         */
+        @Deprecated
+        public okhttp3.Call executeAsync(final ApiCallback<List<Pet>> _callback) throws ApiException {
+            return findByTagsAsync(tags, _callback);
+        }
+    }
+
     /**
-     * Build call for getById
-     * @param petId ID of pet to return (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
+     * Finds Pets by tags
+     * Multiple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
+     * @param tags Tags to filter by (required)
+     * @return FindByTagsRequestBuilder
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Invalid ID supplied </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Pet not found </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Invalid tag value </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
-    public okhttp3.Call getByIdCall(Long petId, final ApiCallback _callback) throws ApiException {
+    @Deprecated
+    public FindByTagsRequestBuilder findByTags(List<String> tags) throws IllegalArgumentException {
+        if (tags == null) throw new IllegalArgumentException("\"tags\" is required but got null");
+        return new FindByTagsRequestBuilder(tags);
+    }
+    private okhttp3.Call getByIdCall(Long petId, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -663,83 +844,115 @@ public class PetApi {
 
     }
 
-    /**
-     * Find pet by ID
-     * Returns a single pet
-     * @param petId ID of pet to return (required)
-     * @return Pet
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Invalid ID supplied </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Pet not found </td><td>  -  </td></tr>
-     </table>
-     */
-    public Pet getById(Long petId) throws ApiException {
-        ApiResponse<Pet> localVarResp = getByIdWithHttpInfo(petId);
-        return localVarResp.getData();
-    }
 
-    /**
-     * Find pet by ID
-     * Returns a single pet
-     * @param petId ID of pet to return (required)
-     * @return ApiResponse&lt;Pet&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Invalid ID supplied </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Pet not found </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<Pet> getByIdWithHttpInfo(Long petId) throws ApiException {
+    private ApiResponse<Pet> getByIdWithHttpInfo(Long petId) throws ApiException {
         okhttp3.Call localVarCall = getByIdValidateBeforeCall(petId, null);
         Type localVarReturnType = new TypeToken<Pet>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    /**
-     * Find pet by ID (asynchronously)
-     * Returns a single pet
-     * @param petId ID of pet to return (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Invalid ID supplied </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Pet not found </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call getByIdAsync(Long petId, final ApiCallback<Pet> _callback) throws ApiException {
+    private okhttp3.Call getByIdAsync(Long petId, final ApiCallback<Pet> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = getByIdValidateBeforeCall(petId, _callback);
         Type localVarReturnType = new TypeToken<Pet>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
+
+    public class GetByIdRequestBuilder {
+        private final Long petId;
+
+        private GetByIdRequestBuilder(Long petId) {
+            this.petId = petId;
+        }
+
+        /**
+         * Build call for getById
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Invalid ID supplied </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> Pet not found </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return getByIdCall(petId, _callback);
+        }
+
+
+        /**
+         * Execute getById request
+         * @return Pet
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Invalid ID supplied </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> Pet not found </td><td>  -  </td></tr>
+         </table>
+         */
+        public Pet execute() throws ApiException {
+            ApiResponse<Pet> localVarResp = getByIdWithHttpInfo(petId);
+            return localVarResp.getResponseBody();
+        }
+
+        /**
+         * Execute getById request with HTTP info returned
+         * @return ApiResponse&lt;Pet&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Invalid ID supplied </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> Pet not found </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<Pet> executeWithHttpInfo() throws ApiException {
+            return getByIdWithHttpInfo(petId);
+        }
+
+        /**
+         * Execute getById request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Invalid ID supplied </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> Pet not found </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<Pet> _callback) throws ApiException {
+            return getByIdAsync(petId, _callback);
+        }
+    }
+
     /**
-     * Build call for update
-     * @param pet Pet object that needs to be added to the store (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
+     * Find pet by ID
+     * Returns a single pet
+     * @param petId ID of pet to return (required)
+     * @return GetByIdRequestBuilder
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> Invalid ID supplied </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> Pet not found </td><td>  -  </td></tr>
-        <tr><td> 405 </td><td> Validation exception </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateCall(Pet pet, final ApiCallback _callback) throws ApiException {
+    public GetByIdRequestBuilder getById(Long petId) throws IllegalArgumentException {
+        if (petId == null) throw new IllegalArgumentException("\"petId\" is required but got null");
+        return new GetByIdRequestBuilder(petId);
+    }
+    private okhttp3.Call updateCall(Pet pet, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -797,85 +1010,184 @@ public class PetApi {
 
     }
 
-    /**
-     * Update an existing pet
-     * 
-     * @param pet Pet object that needs to be added to the store (required)
-     * @return Pet
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Invalid ID supplied </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Pet not found </td><td>  -  </td></tr>
-        <tr><td> 405 </td><td> Validation exception </td><td>  -  </td></tr>
-     </table>
-     */
-    public Pet update(Pet pet) throws ApiException {
-        ApiResponse<Pet> localVarResp = updateWithHttpInfo(pet);
-        return localVarResp.getData();
-    }
 
-    /**
-     * Update an existing pet
-     * 
-     * @param pet Pet object that needs to be added to the store (required)
-     * @return ApiResponse&lt;Pet&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Invalid ID supplied </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Pet not found </td><td>  -  </td></tr>
-        <tr><td> 405 </td><td> Validation exception </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<Pet> updateWithHttpInfo(Pet pet) throws ApiException {
+    private ApiResponse<Pet> updateWithHttpInfo(Pet pet) throws ApiException {
         okhttp3.Call localVarCall = updateValidateBeforeCall(pet, null);
         Type localVarReturnType = new TypeToken<Pet>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    /**
-     * Update an existing pet (asynchronously)
-     * 
-     * @param pet Pet object that needs to be added to the store (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Invalid ID supplied </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> Pet not found </td><td>  -  </td></tr>
-        <tr><td> 405 </td><td> Validation exception </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call updateAsync(Pet pet, final ApiCallback<Pet> _callback) throws ApiException {
+    private okhttp3.Call updateAsync(Pet pet, final ApiCallback<Pet> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = updateValidateBeforeCall(pet, _callback);
         Type localVarReturnType = new TypeToken<Pet>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
+
+    public class UpdateRequestBuilder {
+        private final String name;
+        private final List<String> photoUrls;
+        private List<Tag> tags;
+        private Long id;
+        private Category category;
+        private String status;
+
+        private UpdateRequestBuilder(String name, List<String> photoUrls) {
+            this.name = name;
+            this.photoUrls = photoUrls;
+        }
+
+        /**
+         * Set tags
+         * @param tags  (optional)
+         * @return UpdateRequestBuilder
+         */
+        public UpdateRequestBuilder tags(List<Tag> tags) {
+            this.tags = tags;
+            return this;
+        }
+        
+        /**
+         * Set id
+         * @param id  (optional)
+         * @return UpdateRequestBuilder
+         */
+        public UpdateRequestBuilder id(Long id) {
+            this.id = id;
+            return this;
+        }
+        
+        /**
+         * Set category
+         * @param category  (optional)
+         * @return UpdateRequestBuilder
+         */
+        public UpdateRequestBuilder category(Category category) {
+            this.category = category;
+            return this;
+        }
+        
+        /**
+         * Set status
+         * @param status pet status in the store (optional)
+         * @return UpdateRequestBuilder
+         */
+        public UpdateRequestBuilder status(String status) {
+            this.status = status;
+            return this;
+        }
+        
+        /**
+         * Build call for update
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Invalid ID supplied </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> Pet not found </td><td>  -  </td></tr>
+            <tr><td> 405 </td><td> Validation exception </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            Pet pet = buildBodyParams();
+            return updateCall(pet, _callback);
+        }
+
+        private Pet buildBodyParams() {
+            Pet pet = new Pet();
+            pet.tags(this.tags);
+            pet.id(this.id);
+            pet.category(this.category);
+            pet.name(this.name);
+            pet.photoUrls(this.photoUrls);
+            if (this.status != null)
+            pet.status(Pet.StatusEnum.fromValue(this.status));
+            return pet;
+        }
+
+        /**
+         * Execute update request
+         * @return Pet
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Invalid ID supplied </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> Pet not found </td><td>  -  </td></tr>
+            <tr><td> 405 </td><td> Validation exception </td><td>  -  </td></tr>
+         </table>
+         */
+        public Pet execute() throws ApiException {
+            Pet pet = buildBodyParams();
+            ApiResponse<Pet> localVarResp = updateWithHttpInfo(pet);
+            return localVarResp.getResponseBody();
+        }
+
+        /**
+         * Execute update request with HTTP info returned
+         * @return ApiResponse&lt;Pet&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Invalid ID supplied </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> Pet not found </td><td>  -  </td></tr>
+            <tr><td> 405 </td><td> Validation exception </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<Pet> executeWithHttpInfo() throws ApiException {
+            Pet pet = buildBodyParams();
+            return updateWithHttpInfo(pet);
+        }
+
+        /**
+         * Execute update request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Invalid ID supplied </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> Pet not found </td><td>  -  </td></tr>
+            <tr><td> 405 </td><td> Validation exception </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<Pet> _callback) throws ApiException {
+            Pet pet = buildBodyParams();
+            return updateAsync(pet, _callback);
+        }
+    }
+
     /**
-     * Build call for updateWithForm
-     * @param petId ID of pet that needs to be updated (required)
-     * @param name Updated name of the pet (optional)
-     * @param status Updated status of the pet (optional)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
+     * Update an existing pet
+     * 
+     * @param pet Pet object that needs to be added to the store (required)
+     * @return UpdateRequestBuilder
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 0 </td><td> Invalid input </td><td>  -  </td></tr>
+        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Invalid ID supplied </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Pet not found </td><td>  -  </td></tr>
+        <tr><td> 405 </td><td> Validation exception </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call updateWithFormCall(Long petId, String name, String status, final ApiCallback _callback) throws ApiException {
+    public UpdateRequestBuilder update(String name, List<String> photoUrls) throws IllegalArgumentException {
+        if (name == null) throw new IllegalArgumentException("\"name\" is required but got null");
+            
+
+        if (photoUrls == null) throw new IllegalArgumentException("\"photoUrls\" is required but got null");
+        return new UpdateRequestBuilder(name, photoUrls);
+    }
+    private okhttp3.Call updateWithFormCall(Long petId, String name, String status, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -939,78 +1251,123 @@ public class PetApi {
 
     }
 
-    /**
-     * Updates a pet in the store with form data
-     * 
-     * @param petId ID of pet that needs to be updated (required)
-     * @param name Updated name of the pet (optional)
-     * @param status Updated status of the pet (optional)
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 0 </td><td> Invalid input </td><td>  -  </td></tr>
-     </table>
-     */
-    public void updateWithForm(Long petId, String name, String status) throws ApiException {
-        updateWithFormWithHttpInfo(petId, name, status);
-    }
 
-    /**
-     * Updates a pet in the store with form data
-     * 
-     * @param petId ID of pet that needs to be updated (required)
-     * @param name Updated name of the pet (optional)
-     * @param status Updated status of the pet (optional)
-     * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 0 </td><td> Invalid input </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<Void> updateWithFormWithHttpInfo(Long petId, String name, String status) throws ApiException {
+    private ApiResponse<Void> updateWithFormWithHttpInfo(Long petId, String name, String status) throws ApiException {
         okhttp3.Call localVarCall = updateWithFormValidateBeforeCall(petId, name, status, null);
         return localVarApiClient.execute(localVarCall);
     }
 
-    /**
-     * Updates a pet in the store with form data (asynchronously)
-     * 
-     * @param petId ID of pet that needs to be updated (required)
-     * @param name Updated name of the pet (optional)
-     * @param status Updated status of the pet (optional)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 0 </td><td> Invalid input </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call updateWithFormAsync(Long petId, String name, String status, final ApiCallback<Void> _callback) throws ApiException {
+    private okhttp3.Call updateWithFormAsync(Long petId, String name, String status, final ApiCallback<Void> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = updateWithFormValidateBeforeCall(petId, name, status, _callback);
         localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
+
+    public class UpdateWithFormRequestBuilder {
+        private final Long petId;
+        private String name;
+        private String status;
+
+        private UpdateWithFormRequestBuilder(Long petId) {
+            this.petId = petId;
+        }
+
+        /**
+         * Set name
+         * @param name Updated name of the pet (optional)
+         * @return UpdateWithFormRequestBuilder
+         */
+        public UpdateWithFormRequestBuilder name(String name) {
+            this.name = name;
+            return this;
+        }
+        
+        /**
+         * Set status
+         * @param status Updated status of the pet (optional)
+         * @return UpdateWithFormRequestBuilder
+         */
+        public UpdateWithFormRequestBuilder status(String status) {
+            this.status = status;
+            return this;
+        }
+        
+        /**
+         * Build call for updateWithForm
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 0 </td><td> Invalid input </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return updateWithFormCall(petId, name, status, _callback);
+        }
+
+
+        /**
+         * Execute updateWithForm request
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 0 </td><td> Invalid input </td><td>  -  </td></tr>
+         </table>
+         */
+        public void execute() throws ApiException {
+            updateWithFormWithHttpInfo(petId, name, status);
+        }
+
+        /**
+         * Execute updateWithForm request with HTTP info returned
+         * @return ApiResponse&lt;Void&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 0 </td><td> Invalid input </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<Void> executeWithHttpInfo() throws ApiException {
+            return updateWithFormWithHttpInfo(petId, name, status);
+        }
+
+        /**
+         * Execute updateWithForm request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 0 </td><td> Invalid input </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<Void> _callback) throws ApiException {
+            return updateWithFormAsync(petId, name, status, _callback);
+        }
+    }
+
     /**
-     * Build call for uploadImage
-     * @param petId ID of pet to update (required)
-     * @param additionalMetadata Additional data to pass to server (optional)
-     * @param _file file to upload (optional)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
+     * Updates a pet in the store with form data
+     * 
+     * @param petId ID of pet that needs to be updated (required)
+     * @return UpdateWithFormRequestBuilder
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
+        <tr><td> 0 </td><td> Invalid input </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call uploadImageCall(Long petId, String additionalMetadata, File _file, final ApiCallback _callback) throws ApiException {
+    public UpdateWithFormRequestBuilder updateWithForm(Long petId) throws IllegalArgumentException {
+        if (petId == null) throw new IllegalArgumentException("\"petId\" is required but got null");
+        return new UpdateWithFormRequestBuilder(petId);
+    }
+    private okhttp3.Call uploadImageCall(Long petId, String additionalMetadata, File _file, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1075,65 +1432,124 @@ public class PetApi {
 
     }
 
-    /**
-     * uploads an image
-     * 
-     * @param petId ID of pet to update (required)
-     * @param additionalMetadata Additional data to pass to server (optional)
-     * @param _file file to upload (optional)
-     * @return ModelApiResponse
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-     </table>
-     */
-    public ModelApiResponse uploadImage(Long petId, String additionalMetadata, File _file) throws ApiException {
-        ApiResponse<ModelApiResponse> localVarResp = uploadImageWithHttpInfo(petId, additionalMetadata, _file);
-        return localVarResp.getData();
-    }
 
-    /**
-     * uploads an image
-     * 
-     * @param petId ID of pet to update (required)
-     * @param additionalMetadata Additional data to pass to server (optional)
-     * @param _file file to upload (optional)
-     * @return ApiResponse&lt;ModelApiResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<ModelApiResponse> uploadImageWithHttpInfo(Long petId, String additionalMetadata, File _file) throws ApiException {
+    private ApiResponse<ModelApiResponse> uploadImageWithHttpInfo(Long petId, String additionalMetadata, File _file) throws ApiException {
         okhttp3.Call localVarCall = uploadImageValidateBeforeCall(petId, additionalMetadata, _file, null);
         Type localVarReturnType = new TypeToken<ModelApiResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
+    private okhttp3.Call uploadImageAsync(Long petId, String additionalMetadata, File _file, final ApiCallback<ModelApiResponse> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = uploadImageValidateBeforeCall(petId, additionalMetadata, _file, _callback);
+        Type localVarReturnType = new TypeToken<ModelApiResponse>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    public class UploadImageRequestBuilder {
+        private final Long petId;
+        private String additionalMetadata;
+        private File _file;
+
+        private UploadImageRequestBuilder(Long petId) {
+            this.petId = petId;
+        }
+
+        /**
+         * Set additionalMetadata
+         * @param additionalMetadata Additional data to pass to server (optional)
+         * @return UploadImageRequestBuilder
+         */
+        public UploadImageRequestBuilder additionalMetadata(String additionalMetadata) {
+            this.additionalMetadata = additionalMetadata;
+            return this;
+        }
+        
+        /**
+         * Set _file
+         * @param _file file to upload (optional)
+         * @return UploadImageRequestBuilder
+         */
+        public UploadImageRequestBuilder _file(File _file) {
+            this._file = _file;
+            return this;
+        }
+        
+        /**
+         * Build call for uploadImage
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return uploadImageCall(petId, additionalMetadata, _file, _callback);
+        }
+
+
+        /**
+         * Execute uploadImage request
+         * @return ModelApiResponse
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
+         </table>
+         */
+        public ModelApiResponse execute() throws ApiException {
+            ApiResponse<ModelApiResponse> localVarResp = uploadImageWithHttpInfo(petId, additionalMetadata, _file);
+            return localVarResp.getResponseBody();
+        }
+
+        /**
+         * Execute uploadImage request with HTTP info returned
+         * @return ApiResponse&lt;ModelApiResponse&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<ModelApiResponse> executeWithHttpInfo() throws ApiException {
+            return uploadImageWithHttpInfo(petId, additionalMetadata, _file);
+        }
+
+        /**
+         * Execute uploadImage request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<ModelApiResponse> _callback) throws ApiException {
+            return uploadImageAsync(petId, additionalMetadata, _file, _callback);
+        }
+    }
+
     /**
-     * uploads an image (asynchronously)
+     * uploads an image
      * 
      * @param petId ID of pet to update (required)
-     * @param additionalMetadata Additional data to pass to server (optional)
-     * @param _file file to upload (optional)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @return UploadImageRequestBuilder
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> successful operation </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call uploadImageAsync(Long petId, String additionalMetadata, File _file, final ApiCallback<ModelApiResponse> _callback) throws ApiException {
-
-        okhttp3.Call localVarCall = uploadImageValidateBeforeCall(petId, additionalMetadata, _file, _callback);
-        Type localVarReturnType = new TypeToken<ModelApiResponse>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-        return localVarCall;
+    public UploadImageRequestBuilder uploadImage(Long petId) throws IllegalArgumentException {
+        if (petId == null) throw new IllegalArgumentException("\"petId\" is required but got null");
+        return new UploadImageRequestBuilder(petId);
     }
 }

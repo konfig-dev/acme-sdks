@@ -62,7 +62,7 @@ import com.acme.client.auth.OAuthFlow;
 /**
  * <p>ApiClient class.</p>
  */
-public class ApiClient {
+public class ApiClient extends ApiClientCustom {
 
     private String basePath = "http://petstore.swagger.io/v2";
     private boolean debugging = false;
@@ -86,18 +86,12 @@ public class ApiClient {
 
     private HttpLoggingInterceptor loggingInterceptor;
 
+
     /**
      * Basic constructor for ApiClient
      */
     public ApiClient() {
-        init();
-        initHttpClient();
-
-        // Setup authentications (key: authentication name, value: authentication).
-        authentications.put("api_key", new ApiKeyAuth("header", "api_key"));
-        authentications.put("petstore_auth", new OAuth());
-        // Prevent the authentications from being modified.
-        authentications = Collections.unmodifiableMap(authentications);
+        this(null, null);
     }
 
     /**
@@ -106,17 +100,31 @@ public class ApiClient {
      * @param client a {@link okhttp3.OkHttpClient} object
      */
     public ApiClient(OkHttpClient client) {
-        init();
+        this(client, null);
+    }
 
-        httpClient = client;
+    public ApiClient(OkHttpClient client, Configuration configuration) {
+        init();
+        if (client == null) {
+            initHttpClient();
+        } else {
+            this.httpClient = client;
+        }
 
         // Setup authentications (key: authentication name, value: authentication).
         authentications.put("api_key", new ApiKeyAuth("header", "api_key"));
         authentications.put("petstore_auth", new OAuth());
         // Prevent the authentications from being modified.
         authentications = Collections.unmodifiableMap(authentications);
-    }
 
+        if (configuration != null) {
+            if (configuration.api_key != null) {
+                this.setApiKey(configuration.api_key);
+            }
+            setVerifyingSsl(configuration.verifyingSsl);
+            setBasePath(configuration.host);
+        }
+    }
     /**
      * Constructor for ApiClient to support access token retry on 401/403 configured with client ID
      *
@@ -184,6 +192,19 @@ public class ApiClient {
         authentications = Collections.unmodifiableMap(authentications);
     }
 
+
+    public String getApiKey() {
+        return ((ApiKeyAuth) this.getAuthentication("api_key")).getApiKey();
+    }
+
+    public void setApiKey(String apiKey) {
+        ((ApiKeyAuth) this.getAuthentication("api_key")).setApiKey(apiKey);
+    }
+
+    public void setApiKeyPrefix(String prefix) {
+        ((ApiKeyAuth) this.getAuthentication("api_key")).setApiKeyPrefix(prefix);
+    }
+
     private void initHttpClient() {
         initHttpClient(Collections.<Interceptor>emptyList());
     }
@@ -194,6 +215,7 @@ public class ApiClient {
         for (Interceptor interceptor: interceptors) {
             builder.addInterceptor(interceptor);
         }
+        builder.readTimeout(0, TimeUnit.MILLISECONDS);
 
         httpClient = builder.build();
     }
@@ -225,6 +247,10 @@ public class ApiClient {
      * @return An instance of OkHttpClient
      */
     public ApiClient setBasePath(String basePath) {
+        // strip trailing slash from basePath
+        if (basePath != null && basePath.endsWith("/")) {
+            basePath = basePath.substring(0, basePath.length() - 1);
+        }
         this.basePath = basePath;
         return this;
     }
@@ -946,7 +972,7 @@ public class ApiClient {
                     "Content type \"" + contentType + "\" is not supported for type: " + returnType,
                     response.code(),
                     response.headers().toMultimap(),
-                    respBody);
+                    respBody, response.receivedResponseAtMillis() - response.sentRequestAtMillis());
         }
     }
 
@@ -1072,7 +1098,13 @@ public class ApiClient {
         try {
             Response response = call.execute();
             T data = handleResponse(response, returnType);
-            return new ApiResponse<T>(response.code(), response.headers().toMultimap(), data);
+            return new ApiResponse<T>(
+                    call.request(),
+                    response.code(),
+                    response.headers().toMultimap(),
+                    data,
+                    response.receivedResponseAtMillis() -
+                            response.sentRequestAtMillis());
         } catch (IOException e) {
             throw new ApiException(e);
         }
@@ -1142,7 +1174,7 @@ public class ApiClient {
                     try {
                         response.body().close();
                     } catch (Exception e) {
-                        throw new ApiException(response.message(), e, response.code(), response.headers().toMultimap());
+                        throw new ApiException(response.message(), e, response.code(), response.headers().toMultimap(), response.receivedResponseAtMillis() - response.sentRequestAtMillis());
                     }
                 }
                 return null;
@@ -1155,10 +1187,10 @@ public class ApiClient {
                 try {
                     respBody = response.body().string();
                 } catch (IOException e) {
-                    throw new ApiException(response.message(), e, response.code(), response.headers().toMultimap());
+                    throw new ApiException(response.message(), e, response.code(), response.headers().toMultimap(), response.receivedResponseAtMillis() - response.sentRequestAtMillis());
                 }
             }
-            throw new ApiException(response.message(), response.code(), response.headers().toMultimap(), respBody);
+            throw new ApiException(response.message(), response.code(), response.headers().toMultimap(), respBody, response.receivedResponseAtMillis() - response.sentRequestAtMillis());
         }
     }
 
@@ -1203,11 +1235,7 @@ public class ApiClient {
      * @throws com.acme.client.ApiException If fail to serialize the request body object
      */
     public Request buildRequest(String baseUrl, String path, String method, List<Pair> queryParams, List<Pair> collectionQueryParams, Object body, Map<String, String> headerParams, Map<String, String> cookieParams, Map<String, Object> formParams, String[] authNames, ApiCallback callback) throws ApiException {
-        // aggregate queryParams (non-collection) and collectionQueryParams into allQueryParams
-        List<Pair> allQueryParams = new ArrayList<Pair>(queryParams);
-        allQueryParams.addAll(collectionQueryParams);
-
-        final String url = buildUrl(baseUrl, path, queryParams, collectionQueryParams);
+        requestBeforeHook(baseUrl, path, method, queryParams, collectionQueryParams, body, headerParams, cookieParams, formParams, authNames, this);
 
         // prepare HTTP request body
         RequestBody reqBody;
@@ -1231,8 +1259,14 @@ public class ApiClient {
             reqBody = serialize(body, contentType);
         }
 
+        String payload = requestBodyToString(reqBody);
+
         // update parameters with authentication settings
-        updateParamsForAuth(authNames, allQueryParams, headerParams, cookieParams, requestBodyToString(reqBody), method, URI.create(url));
+        updateParamsForAuth(authNames, queryParams, headerParams, cookieParams, payload, method);
+
+        final String url = buildUrl(baseUrl, path, queryParams, collectionQueryParams);
+
+        requestAfterHook(url, path, method, queryParams, collectionQueryParams, body, headerParams, cookieParams, formParams, authNames, payload, this);
 
         final Request.Builder reqBuilder = new Request.Builder().url(url);
         processHeaderParams(headerParams, reqBuilder);
@@ -1351,17 +1385,16 @@ public class ApiClient {
      * @param cookieParams Map of cookie parameters
      * @param payload HTTP request body
      * @param method HTTP method
-     * @param uri URI
      * @throws com.acme.client.ApiException If fails to update the parameters
      */
     public void updateParamsForAuth(String[] authNames, List<Pair> queryParams, Map<String, String> headerParams,
-                                    Map<String, String> cookieParams, String payload, String method, URI uri) throws ApiException {
+                                    Map<String, String> cookieParams, String payload, String method) throws ApiException {
         for (String authName : authNames) {
             Authentication auth = authentications.get(authName);
             if (auth == null) {
                 throw new RuntimeException("Authentication undefined: " + authName);
             }
-            auth.applyToParams(queryParams, headerParams, cookieParams, payload, method, uri);
+            auth.applyToParams(queryParams, headerParams, cookieParams, payload, method);
         }
     }
 
@@ -1426,10 +1459,10 @@ public class ApiClient {
     /**
      * Add a Content-Disposition Header for the given key and file to the MultipartBody Builder.
      *
-     * @param mpBuilder MultipartBody.Builder 
+     * @param mpBuilder MultipartBody.Builder
      * @param key The key of the Header element
      * @param file The file to add to the Header
-     */ 
+     */
     private void addPartToMultiPartBuilder(MultipartBody.Builder mpBuilder, String key, File file) {
         Headers partHeaders = Headers.of("Content-Disposition", "form-data; name=\"" + key + "\"; filename=\"" + file.getName() + "\"");
         MediaType mediaType = MediaType.parse(guessContentTypeFromFile(file));

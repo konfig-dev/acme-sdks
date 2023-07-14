@@ -41,11 +41,11 @@ public class MiscellaneousApi {
     private int localHostIndex;
     private String localCustomBaseUrl;
 
-    public MiscellaneousApi() {
+    public MiscellaneousApi() throws IllegalArgumentException {
         this(Configuration.getDefaultApiClient());
     }
 
-    public MiscellaneousApi(ApiClient apiClient) {
+    public MiscellaneousApi(ApiClient apiClient) throws IllegalArgumentException {
         this.localVarApiClient = apiClient;
     }
 
@@ -73,19 +73,7 @@ public class MiscellaneousApi {
         this.localCustomBaseUrl = customBaseUrl;
     }
 
-    /**
-     * Build call for paginate
-     * @param paginateRequest  (optional)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call paginateCall(PaginateRequest paginateRequest, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call paginateCall(PaginateRequest paginateRequest, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -136,59 +124,130 @@ public class MiscellaneousApi {
 
     }
 
-    /**
-     * Pagination sandbox
-     * Iterate through a bunch of items
-     * @param paginateRequest  (optional)
-     * @return PaginateResponse
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
-     </table>
-     */
-    public PaginateResponse paginate(PaginateRequest paginateRequest) throws ApiException {
-        ApiResponse<PaginateResponse> localVarResp = paginateWithHttpInfo(paginateRequest);
-        return localVarResp.getData();
-    }
 
-    /**
-     * Pagination sandbox
-     * Iterate through a bunch of items
-     * @param paginateRequest  (optional)
-     * @return ApiResponse&lt;PaginateResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<PaginateResponse> paginateWithHttpInfo(PaginateRequest paginateRequest) throws ApiException {
+    private ApiResponse<PaginateResponse> paginateWithHttpInfo(PaginateRequest paginateRequest) throws ApiException {
         okhttp3.Call localVarCall = paginateValidateBeforeCall(paginateRequest, null);
         Type localVarReturnType = new TypeToken<PaginateResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
+    private okhttp3.Call paginateAsync(PaginateRequest paginateRequest, final ApiCallback<PaginateResponse> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = paginateValidateBeforeCall(paginateRequest, _callback);
+        Type localVarReturnType = new TypeToken<PaginateResponse>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    public class PaginateRequestBuilder {
+        private Integer first;
+        private String after;
+
+        private PaginateRequestBuilder() {
+        }
+
+        /**
+         * Set first
+         * @param first  (optional)
+         * @return PaginateRequestBuilder
+         */
+        public PaginateRequestBuilder first(Integer first) {
+            this.first = first;
+            return this;
+        }
+        
+        /**
+         * Set after
+         * @param after  (optional)
+         * @return PaginateRequestBuilder
+         */
+        public PaginateRequestBuilder after(String after) {
+            this.after = after;
+            return this;
+        }
+        
+        /**
+         * Build call for paginate
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            PaginateRequest paginateRequest = buildBodyParams();
+            return paginateCall(paginateRequest, _callback);
+        }
+
+        private PaginateRequest buildBodyParams() {
+            PaginateRequest paginateRequest = new PaginateRequest();
+            paginateRequest.first(this.first);
+            paginateRequest.after(this.after);
+            return paginateRequest;
+        }
+
+        /**
+         * Execute paginate request
+         * @return PaginateResponse
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+         </table>
+         */
+        public PaginateResponse execute() throws ApiException {
+            PaginateRequest paginateRequest = buildBodyParams();
+            ApiResponse<PaginateResponse> localVarResp = paginateWithHttpInfo(paginateRequest);
+            return localVarResp.getResponseBody();
+        }
+
+        /**
+         * Execute paginate request with HTTP info returned
+         * @return ApiResponse&lt;PaginateResponse&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<PaginateResponse> executeWithHttpInfo() throws ApiException {
+            PaginateRequest paginateRequest = buildBodyParams();
+            return paginateWithHttpInfo(paginateRequest);
+        }
+
+        /**
+         * Execute paginate request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<PaginateResponse> _callback) throws ApiException {
+            PaginateRequest paginateRequest = buildBodyParams();
+            return paginateAsync(paginateRequest, _callback);
+        }
+    }
+
     /**
-     * Pagination sandbox (asynchronously)
+     * Pagination sandbox
      * Iterate through a bunch of items
-     * @param paginateRequest  (optional)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @return PaginateRequestBuilder
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call paginateAsync(PaginateRequest paginateRequest, final ApiCallback<PaginateResponse> _callback) throws ApiException {
-
-        okhttp3.Call localVarCall = paginateValidateBeforeCall(paginateRequest, _callback);
-        Type localVarReturnType = new TypeToken<PaginateResponse>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-        return localVarCall;
+    public PaginateRequestBuilder paginate() throws IllegalArgumentException {
+        return new PaginateRequestBuilder();
     }
 }
