@@ -1,0 +1,52 @@
+name: Generate and Test on OAS change
+
+on:
+  pull_request:
+    paths:
+      - 'openapi.json'
+      - 'api.yaml'
+    types:
+      - opened
+
+jobs:
+  generate_and_test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+      
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+
+    - name: Install dependencies
+      run: npm install -g konfig-cli
+
+    - name: Regenerate SDKs
+      run: konfig generate
+
+    - name: Create changeset file
+      run: konfig changeset -a -m "Regenerate SDKs"
+
+    - name: Commit changes
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git commit -am "Regenerate SDKs"
+      
+    - name: Run tests
+      run: konfig test
+
+    - name: Get PR Number
+      id: get_pr_number
+      run: |
+        PR_JSON=$(curl -s -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/repos/${{ github.repository }}/pulls?head=${{ github.ref }}")
+        echo "::set-output name=PR_NUMBER::$(echo "$PR_JSON" | python3 -c "import sys, json; print(json.load(sys.stdin)[0]['number'])")"
+
+    - name: Merge PR if tests pass
+      if: success()
+      run: |
+        PR_NUMBER=${{ steps.get_pr_number.outputs.PR_NUMBER }}
+        curl -X PUT -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/repos/${{ github.repository }}/pulls/$PR_NUMBER/merge"
