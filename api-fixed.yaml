@@ -297,7 +297,7 @@ paths:
     post:
       tags:
         - store
-      summary: Place order for a pet
+      summary: Place an order for a pet
       operationId: store_placeOrder
       description: ''
       requestBody:
