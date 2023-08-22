@@ -1,0 +1,94 @@
+name: Generate and Test on OAS change
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+
+jobs:
+  # Reads OAS filepath from konfig.yaml and determines if OAS was changed in this PR
+  check_if_oas_modified:
+    runs-on: ubuntu-latest
+    outputs:
+      oas_modified: ${{ steps.check_oas_modified.outputs.any_changed }}
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    # Read and output key/value pairs from konfig.yaml
+    - name: Read OAS path from konfig.yaml
+      id: read_oas_path
+      uses: pietrobolcato/action-read-yaml@1.1.0
+      with:
+        config: './konfig.yaml'
+
+    # Determine final OAS path from specPath and specInputPath
+    - name: Determine final OAS input path
+      id: get_oas_input_path
+      run: |
+        if [ -z "${{ steps.read_oas_path.outputs['specInputPath'] }}" ]; then
+          echo "oas=${{ steps.read_oas_path.outputs['specPath'] }}" >> $GITHUB_OUTPUT
+        else
+          echo "oas=${{ steps.read_oas_path.outputs['specInputPath'] }}" >> $GITHUB_OUTPUT
+        fi
+    
+    # Determine if OAS was modified
+    - name: Determine if OAS was modified
+      id: check_oas_modified
+      uses: tj-actions/changed-files@v37.6.1
+      with:
+        since_last_remote_commit: true
+        files: ./${{ steps.get_oas_input_path.outputs.oas }}
+
+  # If OAS was changed, runs konfig generate, konfig changeset, and commits the result
+  # Then runs konfig test and merges the PR if tests pass
+  generate_and_test:
+    runs-on: ubuntu-latest
+    needs: check_if_oas_modified # Runs serially after check_if_oas_modified
+    # Only run if oas was modified
+    if: needs.check_if_oas_modified.outputs.oas_modified == 'true' 
+
+    steps:
+      - name: Sanity check
+        run: echo "OAS was modified, running konfig generate and test"
+
+    # steps:
+    # - name: Checkout code
+    #   uses: actions/checkout@v3
+      
+    # - name: Set up Node.js
+    #   uses: actions/setup-node@v3
+    #   with:
+    #     node-version: '14'
+
+    # - name: Install konfig
+    #   run: npm install -g konfig-cli
+
+    # - name: Regenerate SDKs
+    #   run: konfig generate
+
+    # - name: Create changeset file
+    #   run: konfig changeset -a -m "Regenerate SDKs"
+
+    # - name: Commit changes
+    #   run: git commit -am "Regenerate SDKs"
+      
+    # - name: Run tests
+    #   run: konfig test
+
+    # - name: Get PR Number
+    #   id: get_pr_number
+    #   uses: juliangruber/find-pull-request-action@v1
+    #   with:
+    #     branch: ${{ github.ref_name }}
+    
+    # - name: Merge PR if tests pass
+    #   if: success()
+    #   uses: juliangruber/merge-pull-request-action@v1
+    #   with:
+    #     token: ${{ secrets.GITHUB_TOKEN }}
+    #     number: ${{ steps.get_pr_number.outputs.number }}
+    #     method: squash
+    #     repo: ${{ github.repository }}
