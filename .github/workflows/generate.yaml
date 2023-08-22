@@ -77,14 +77,14 @@ jobs:
         git commit -am "Regenerate SDKs"
         git push origin HEAD:${{ github.head_ref }}
       
-    # - name: Run tests
-    #   run: konfig test
+    - name: Run tests
+      run: konfig test
     
-    # - name: Merge PR if tests pass
-    #   if: success()
-    #   uses: juliangruber/merge-pull-request-action@v1
-    #   with:
-    #     token: ${{ secrets.GITHUB_TOKEN }}
-    #     number: ${{ github.event.pull_request.number }}
-    #     method: squash
-    #     repo: ${{ github.repository }}
+    - name: Merge PR if tests pass
+      if: success()
+      uses: juliangruber/merge-pull-request-action@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        number: ${{ github.event.pull_request.number }}
+        method: squash
+        repo: ${{ github.repository }}
