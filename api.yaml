@@ -12,7 +12,7 @@ info:
     url: "https://www.apache.org/licenses/LICENSE-2.0.html"
 tags:
   - name: pet
-    description: Everything about your Pets
+    description: Everything about your Pets!!
   - name: store
     description: Access to Petstore orders
   - name: user
