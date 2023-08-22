@@ -73,7 +73,7 @@ jobs:
         git config --global user.email "publisher@konfigthis.com"
         git config --global user.name "Konfig Github Action"
         git commit -am "Regenerate SDKs"
-        git push
+        git push origin HEAD:${{ github.ref_name }}
       
     # - name: Run tests
     #   run: konfig test
