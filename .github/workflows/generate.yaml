@@ -53,6 +53,8 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
+      with:
+        ref: ${{ github.head_ref }}
       
     - name: Set up Node.js
       uses: actions/setup-node@v3
@@ -77,18 +79,12 @@ jobs:
       
     # - name: Run tests
     #   run: konfig test
-
-    # - name: Get PR Number
-    #   id: get_pr_number
-    #   uses: juliangruber/find-pull-request-action@v1
-    #   with:
-    #     branch: ${{ github.ref_name }}
     
     # - name: Merge PR if tests pass
     #   if: success()
     #   uses: juliangruber/merge-pull-request-action@v1
     #   with:
     #     token: ${{ secrets.GITHUB_TOKEN }}
-    #     number: ${{ steps.get_pr_number.outputs.number }}
+    #     number: ${{ github.event.pull_request.number }}
     #     method: squash
     #     repo: ${{ github.repository }}
