@@ -21,7 +21,7 @@ consumer_key=SNAPTRADE_CONSUMER_KEY,
 client_id=SNAPTRADE_CLIENT_ID,
 )
 
-print("Successfully initiated client - test")
+print("Successfully initiated client")
 ```
 
 ::button[Initialize SDK Client]
