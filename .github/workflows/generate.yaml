@@ -69,7 +69,10 @@ jobs:
       run: konfig changeset -a -m "Regenerate SDKs"
 
     - name: Commit changes
-      run: git commit -am "Regenerate SDKs"
+      run: |
+        git config --global user.email "publisher@konfigthis.com"
+        git config --global user.name "Konfig Github Action"
+        git commit -am "Regenerate SDKs"
       
     # - name: Run tests
     #   run: konfig test
