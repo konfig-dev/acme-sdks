@@ -68,11 +68,12 @@ jobs:
     - name: Create changeset file
       run: konfig changeset -a -m "Regenerate SDKs"
 
-    - name: Commit changes
+    - name: Commit changes and push
       run: |
         git config --global user.email "publisher@konfigthis.com"
         git config --global user.name "Konfig Github Action"
         git commit -am "Regenerate SDKs"
+        git push origin HEAD
       
     # - name: Run tests
     #   run: konfig test
