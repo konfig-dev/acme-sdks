@@ -84,7 +84,7 @@ jobs:
       if: success()
       uses: juliangruber/merge-pull-request-action@v1.2.0
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
+        github-token: ${{ secrets.GITHUB_TOKEN }}
         number: ${{ github.event.pull_request.number }}
         method: squash
         repo: ${{ github.repository }}
