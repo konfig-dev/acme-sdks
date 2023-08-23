@@ -7,6 +7,7 @@ generators:
     groupId: com.acme
     artifactId: acme-java-sdk
     outputDirectory: java
+    clientName: Acme
     git:
       userId: konfig-dev
       repoId: acme-sdks/tree/main/java
@@ -32,6 +33,7 @@ generators:
     packageName: Acme.Net
     logoPath: logo.png
     outputDirectory: csharp
+    clientName: AcmeClient
     git:
       userId: konfig-dev
       repoId: acme-sdks/tree/main/csharp
