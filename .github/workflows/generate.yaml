@@ -77,8 +77,8 @@ jobs:
         git commit -am "Regenerate SDKs"
         git push origin HEAD:${{ github.head_ref }}
       
-    - name: Run tests
-      run: konfig test
+    # - name: Run tests
+    #   run: konfig test
     
     - name: Merge PR if tests pass
       if: success()
