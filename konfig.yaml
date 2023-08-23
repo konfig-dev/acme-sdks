@@ -52,6 +52,7 @@ generators:
     podName: AcmeClient
     authorName: acme.com
     authorEmail: engineering@acme.com
+    disabled: true
     classPrefix: A
     outputDirectory: objc
     git:
@@ -61,6 +62,7 @@ generators:
     version: 1.0.0
     groupId: com.acme
     artifactId: acme-kotlin-sdk
+    disabled: true
     outputDirectory: kotlin
     git:
       userId: konfig-dev
