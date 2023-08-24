@@ -42,9 +42,8 @@ jobs:
         since_last_remote_commit: true
         files: ./${{ steps.get_oas_input_path.outputs.oas }}
 
-  # If OAS was changed, runs konfig generate, konfig changeset, and commits the result
-  # Then runs konfig test and merges the PR if tests pass
-  generate_and_test:
+  # If OAS was changed, runs konfig generate, konfig changeset, and commits + pushes the result
+  generate_and_push:
     runs-on: ubuntu-latest
     needs: check_if_oas_modified # Runs serially after check_if_oas_modified
     # Only run if oas was modified
@@ -76,12 +75,31 @@ jobs:
         git config --global user.name "Konfig Github Action"
         git commit -am "Regenerate SDKs"
         git push origin HEAD:${{ github.head_ref }}
+  
+  # Runs konfig test in docker container
+  test:
+    runs-on: ubuntu-latest
+    needs: generate_and_push
+    container:
+      image: node:14
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Install konfig
+      run: npm install -g konfig-cli
       
     - name: Run tests
-      run: konfig test
-    
-    - name: Merge PR if tests pass
-      if: success()
+      run: konfig test -g typescript
+
+  # Merges PR if tests pass
+  merge:
+    runs-on: ubuntu-latest
+    needs: test
+
+    steps:
+    - name: Merge PR
       uses: juliangruber/merge-pull-request-action@v1.2.0
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
