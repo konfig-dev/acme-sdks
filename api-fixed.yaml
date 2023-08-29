@@ -11,11 +11,11 @@ info:
 servers:
   - url: http://petstore.swagger.io/v2
 tags:
-  - description: Everything about your Pets
+  - description: Everything about your Pets!!
     name: pet
   - description: Operations about user
     name: user
-  - description: Access to Petstore orders
+  - description: Access to Petstore orders!!
     name: store
   - description: miscellaneous namespace
     name: miscellaneous

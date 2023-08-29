@@ -1,51 +1,65 @@
-## acme-typescript-sdk@1.0.0
+# acme-typescript-sdk@1.0.0
 
-This generator creates TypeScript/JavaScript client that utilizes [axios](https://github.com/axios/axios). The generated Node module can be used in the following environments:
+This is a sample server Petstore server. For this sample, you can use the api key `special-key` to test the authorization filters.
+## Installing
 
-Environment
-* Node.js
-* Webpack
-* Browserify
-
-Language level
-* ES5 - you must have a Promises/A+ library installed
-* ES6
-
-Module system
-* CommonJS
-* ES6 module system
-
-It can be used in both TypeScript and JavaScript. In TypeScript, the definition should be automatically resolved via `package.json`. ([Reference](http://www.typescriptlang.org/docs/handbook/typings-for-npm-packages.html))
-
-### Building
-
-To build and compile the typescript sources to javascript use:
+### npm
 ```
-npm install
-npm run build
+npm install acme-typescript-sdk --save
 ```
 
-### Consuming
-
-navigate to the folder of your consuming project and run the following command.
-
+### yarn
 ```
-npm install acme-typescript-sdk@1.0.0 --save
+yarn add acme-typescript-sdk
 ```
 
-### Getting Started
+**Important note: this library can be used in both the client-side or server-side, but using it
+in client-side browser code is not recommended as you would expose security credentials.**
+
+
+
+## Getting Started
 
 ```typescript
+import { Acme } from "acme-typescript-sdk";
 
-import { Configuration, MiscellaneousApi, PaginateRequest, PaginateResponse } from "acme-typescript-sdk";
+const acme = new Acme({
+  // Defining the base path is optional and defaults to http://petstore.swagger.io/v2
+  // basePath: "http://petstore.swagger.io/v2",
+  apiKey: "API_KEY",
+  accessToken: "ACCESS_TOKEN",
+});
 
-const api = new MiscellaneousApi(config);
+const paginateResponse = await acme.miscellaneous.paginate({});
 
-const paginateRequest: PaginateRequest = ;
-
-const request = api.paginate(paginateRequest);
-request.then(result => {
-    console.log(result)
-})
-
+console.log(paginateResponse);
 ```
+
+## Documentation for API Endpoints
+
+All URIs are relative to *http://petstore.swagger.io/v2*
+
+Tag | Method | HTTP request | Description
+------------ | ------------- | ------------- | -------------
+*miscellaneous* | [**paginate**](docs/MiscellaneousApi.md#paginate) | **GET** /pagination | Pagination sandbox
+*pet* | [**add**](docs/PetApi.md#add) | **POST** /pet | Add a new pet to the store
+*pet* | [**delete**](docs/PetApi.md#delete) | **DELETE** /pet/{petId} | Deletes a pet
+*pet* | [**findByStatus**](docs/PetApi.md#findByStatus) | **GET** /pet/findByStatus | Finds Pets by status
+*pet* | [**findByTags**](docs/PetApi.md#findByTags) | **GET** /pet/findByTags | Finds Pets by tags
+*pet* | [**getById**](docs/PetApi.md#getById) | **GET** /pet/{petId} | Find pet by ID
+*pet* | [**update**](docs/PetApi.md#update) | **PUT** /pet | Update an existing pet
+*pet* | [**updateWithForm**](docs/PetApi.md#updateWithForm) | **POST** /pet/{petId} | Updates a pet in the store with form data
+*pet* | [**uploadImage**](docs/PetApi.md#uploadImage) | **POST** /pet/{petId}/uploadImage | uploads an image
+*store* | [**deleteOrder**](docs/StoreApi.md#deleteOrder) | **DELETE** /store/order/{orderId} | Delete purchase order by ID
+*store* | [**getInventory**](docs/StoreApi.md#getInventory) | **GET** /store/inventory | Returns pet inventories by status
+*store* | [**getOrderById**](docs/StoreApi.md#getOrderById) | **GET** /store/order/{orderId} | Find purchase order by ID
+*store* | [**placeOrder**](docs/StoreApi.md#placeOrder) | **POST** /store/order | Place an order for a pet
+*user* | [**create**](docs/UserApi.md#create) | **POST** /user | Create user
+*user* | [**createWithArray**](docs/UserApi.md#createWithArray) | **POST** /user/createWithArray | Creates list of users with given input array
+*user* | [**createWithList**](docs/UserApi.md#createWithList) | **POST** /user/createWithList | Creates list of users with given input array
+*user* | [**delete**](docs/UserApi.md#delete) | **DELETE** /user/{username} | Delete user
+*user* | [**getByName**](docs/UserApi.md#getByName) | **GET** /user/{username} | Get user by user name
+*user* | [**login**](docs/UserApi.md#login) | **GET** /user/login | Logs user into the system
+*user* | [**logout**](docs/UserApi.md#logout) | **GET** /user/logout | Logs out current logged in user session
+*user* | [**update**](docs/UserApi.md#update) | **PUT** /user/{username} | Updated user
+

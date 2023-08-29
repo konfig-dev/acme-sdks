@@ -7,17 +7,18 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   title: OpenAPI Petstore
   version: 1.0.0
+  x-konfig-uses-multipart-form-data: true
 externalDocs:
   description: Find out more about Swagger
   url: http://swagger.io
 servers:
 - url: http://petstore.swagger.io/v2
 tags:
-- description: Everything about your Pets
+- description: Everything about your Pets!!
   name: pet
 - description: Operations about user
   name: user
-- description: Access to Petstore orders
+- description: Access to Petstore orders!!
   name: store
 - description: miscellaneous namespace
   name: miscellaneous
@@ -41,6 +42,8 @@ paths:
       summary: Pagination sandbox
       tags:
       - miscellaneous
+      x-konfig-operation-can-have-single-parameter: true
+      x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-get--pagination
   /pet:
     post:
       description: ""
@@ -66,6 +69,8 @@ paths:
       summary: Add a new pet to the store
       tags:
       - pet
+      x-konfig-operation-can-have-single-parameter: true
+      x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-post--pet
     put:
       description: ""
       operationId: pet_update
@@ -94,6 +99,8 @@ paths:
       summary: Update an existing pet
       tags:
       - pet
+      x-konfig-operation-can-have-single-parameter: true
+      x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-put--pet
   /pet/findByStatus:
     get:
       description: Multiple status values can be provided with comma separated strings
@@ -133,6 +140,8 @@ paths:
       summary: Finds Pets by status
       tags:
       - pet
+      x-konfig-operation-can-have-single-parameter: true
+      x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-get--pet-findByStatus
   /pet/findByTags:
     get:
       deprecated: true
@@ -168,10 +177,12 @@ paths:
       summary: Finds Pets by tags
       tags:
       - pet
+      x-konfig-operation-can-have-single-parameter: true
+      x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-get--pet-findByTags
   /pet/{petId}:
     delete:
       description: ""
-      operationId: Pet_delete
+      operationId: pet_delete
       parameters:
       - description: Pet id to delete
         explode: false
@@ -193,6 +204,8 @@ paths:
       summary: Deletes a pet
       tags:
       - pet
+      x-konfig-operation-can-have-single-parameter: true
+      x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-delete--pet-petId
     get:
       description: Returns a single pet
       operationId: pet_getById
@@ -225,6 +238,8 @@ paths:
       summary: Find pet by ID
       tags:
       - pet
+      x-konfig-operation-can-have-single-parameter: true
+      x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-get--pet-petId
     post:
       description: ""
       operationId: pet_updateWithForm
@@ -253,6 +268,8 @@ paths:
       summary: Updates a pet in the store with form data
       tags:
       - pet
+      x-konfig-operation-can-have-single-parameter: true
+      x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-post--pet-petId
   /pet/{petId}/uploadImage:
     post:
       description: ""
@@ -286,6 +303,8 @@ paths:
       summary: uploads an image
       tags:
       - pet
+      x-konfig-operation-can-have-single-parameter: true
+      x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-post--pet-petId-uploadImage
   /store/inventory:
     get:
       description: Returns a map of status codes to quantities
@@ -302,6 +321,8 @@ paths:
       summary: Returns pet inventories by status
       tags:
       - store
+      x-konfig-operation-can-have-single-parameter: true
+      x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-get--store-inventory
   /store/order:
     post:
       description: ""
@@ -328,6 +349,8 @@ paths:
       summary: Place an order for a pet
       tags:
       - store
+      x-konfig-operation-can-have-single-parameter: true
+      x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-post--store-order
   /store/order/{orderId}:
     delete:
       description: For valid response try integer IDs with value < 1000. Anything
@@ -352,6 +375,8 @@ paths:
       summary: Delete purchase order by ID
       tags:
       - store
+      x-konfig-operation-can-have-single-parameter: true
+      x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-delete--store-order-orderId
     get:
       description: For valid response try integer IDs with value <= 5 or > 10. Other
         values will generated exceptions
@@ -385,6 +410,8 @@ paths:
       summary: Find purchase order by ID
       tags:
       - store
+      x-konfig-operation-can-have-single-parameter: true
+      x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-get--store-order-orderId
   /user:
     post:
       description: This can only be done by the logged in user.
@@ -404,6 +431,8 @@ paths:
       summary: Create user
       tags:
       - user
+      x-konfig-operation-can-have-single-parameter: true
+      x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-post--user
   /user/createWithArray:
     post:
       description: ""
@@ -418,6 +447,8 @@ paths:
       summary: Creates list of users with given input array
       tags:
       - user
+      x-konfig-operation-can-have-single-parameter: true
+      x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-post--user-createWithArray
   /user/createWithList:
     post:
       description: ""
@@ -432,6 +463,8 @@ paths:
       summary: Creates list of users with given input array
       tags:
       - user
+      x-konfig-operation-can-have-single-parameter: true
+      x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-post--user-createWithList
   /user/login:
     get:
       description: ""
@@ -472,6 +505,8 @@ paths:
               schema:
                 example: AUTH_KEY=abcde12345; Path=/; HttpOnly
                 type: string
+                x-konfig-original-example: AUTH_KEY=abcde12345; Path=/; HttpOnly
+                x-konfig-generated-schema: konfig-generated-schema-paths--user-login-get-responses-200-headers-Set-Cookie-schema
               style: simple
             X-Rate-Limit:
               description: calls per hour allowed by the user
@@ -492,6 +527,8 @@ paths:
       summary: Logs user into the system
       tags:
       - user
+      x-konfig-operation-can-have-single-parameter: true
+      x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-get--user-login
   /user/logout:
     get:
       description: ""
@@ -504,6 +541,8 @@ paths:
       summary: Logs out current logged in user session
       tags:
       - user
+      x-konfig-operation-can-have-single-parameter: true
+      x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-get--user-logout
   /user/{username}:
     delete:
       description: This can only be done by the logged in user.
@@ -529,6 +568,8 @@ paths:
       summary: Delete user
       tags:
       - user
+      x-konfig-operation-can-have-single-parameter: true
+      x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-delete--user-username
     get:
       description: ""
       operationId: user_getByName
@@ -558,6 +599,8 @@ paths:
       summary: Get user by user name
       tags:
       - user
+      x-konfig-operation-can-have-single-parameter: true
+      x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-get--user-username
     put:
       description: This can only be done by the logged in user.
       operationId: user_update
@@ -589,6 +632,7 @@ paths:
       summary: Updated user
       tags:
       - user
+      x-konfig-operation-can-have-single-parameter: false
 components:
   requestBodies:
     UserArray:
@@ -744,6 +788,8 @@ components:
         name:
           example: doggie
           type: string
+          x-konfig-original-example: doggie
+          x-konfig-generated-schema: konfig-generated-schema-components-schemas-Pet-properties-name
         photoUrls:
           items:
             type: string
@@ -792,6 +838,22 @@ components:
         after:
           type: string
       type: object
+    PaginateResponse:
+      example:
+        edges:
+          node:
+            message: message
+        pageInfo:
+          hasNextPage: true
+          hasPreviousPage: true
+          endCursor: endCursor
+          startCursor: startCursor
+      properties:
+        edges:
+          $ref: '#/components/schemas/PaginateResponse_edges'
+        pageInfo:
+          $ref: '#/components/schemas/PaginateResponse_pageInfo'
+      type: object
     UpdateWithFormRequest:
       properties:
         name:
@@ -815,22 +877,6 @@ components:
       items:
         $ref: '#/components/schemas/User'
       type: array
-    PaginateResponse:
-      example:
-        edges:
-          node:
-            message: message
-        pageInfo:
-          hasNextPage: true
-          hasPreviousPage: true
-          endCursor: endCursor
-          startCursor: startCursor
-      properties:
-        edges:
-          $ref: '#/components/schemas/PaginateResponse_edges'
-        pageInfo:
-          $ref: '#/components/schemas/PaginateResponse_pageInfo'
-      type: object
     FindByStatusResponse:
       items:
         $ref: '#/components/schemas/Pet'
@@ -856,6 +902,318 @@ components:
       type: string
     Login200Response:
       type: string
+    konfig-generated-schema-paths--user-login-get-responses-200-headers-Set-Cookie-schema:
+      example: AUTH_KEY=abcde12345; Path=/; HttpOnly
+      type: string
+      x-do-not-generate: true
+    konfig-generated-schema-components-schemas-Pet-properties-name:
+      example: doggie
+      type: string
+      x-do-not-generate: true
+    konfig-generated-schema-single-parameter-schema-get--pagination:
+      properties:
+        first:
+          type: integer
+        after:
+          type: string
+      type: object
+      x-do-not-generate: true
+      x-konfig-is-parameter: []
+    konfig-generated-schema-single-parameter-schema-post--pet:
+      properties:
+        tags:
+          items:
+            $ref: '#/components/schemas/Tag'
+          type: array
+          xml:
+            name: tag
+            wrapped: true
+        id:
+          format: int64
+          type: integer
+        category:
+          $ref: '#/components/schemas/Category'
+        name:
+          example: doggie
+          type: string
+          x-konfig-original-example: doggie
+          x-konfig-generated-schema: konfig-generated-schema-components-schemas-Pet-properties-name
+        photoUrls:
+          items:
+            type: string
+          type: array
+          xml:
+            name: photoUrl
+            wrapped: true
+        status:
+          deprecated: true
+          description: pet status in the store
+          enum:
+          - available
+          - pending
+          - sold
+          type: string
+      required:
+      - name
+      - photoUrls
+      type: object
+      x-do-not-generate: true
+      x-konfig-is-parameter: []
+    konfig-generated-schema-single-parameter-schema-put--pet:
+      properties:
+        tags:
+          items:
+            $ref: '#/components/schemas/Tag'
+          type: array
+          xml:
+            name: tag
+            wrapped: true
+        id:
+          format: int64
+          type: integer
+        category:
+          $ref: '#/components/schemas/Category'
+        name:
+          example: doggie
+          type: string
+          x-konfig-original-example: doggie
+          x-konfig-generated-schema: konfig-generated-schema-components-schemas-Pet-properties-name
+        photoUrls:
+          items:
+            type: string
+          type: array
+          xml:
+            name: photoUrl
+            wrapped: true
+        status:
+          deprecated: true
+          description: pet status in the store
+          enum:
+          - available
+          - pending
+          - sold
+          type: string
+      required:
+      - name
+      - photoUrls
+      type: object
+      x-do-not-generate: true
+      x-konfig-is-parameter: []
+    konfig-generated-schema-single-parameter-schema-get--pet-findByStatus:
+      properties:
+        status:
+          items:
+            default: available
+            enum:
+            - available
+            - pending
+            - sold
+            type: string
+          type: array
+      required:
+      - status
+      type: object
+      x-do-not-generate: true
+      x-konfig-is-parameter:
+      - status
+    konfig-generated-schema-single-parameter-schema-get--pet-findByTags:
+      properties:
+        tags:
+          items:
+            type: string
+          type: array
+      required:
+      - tags
+      type: object
+      x-do-not-generate: true
+      x-konfig-is-parameter:
+      - tags
+    konfig-generated-schema-single-parameter-schema-delete--pet-petId:
+      properties:
+        petId:
+          format: int64
+          type: integer
+      required:
+      - petId
+      type: object
+      x-do-not-generate: true
+      x-konfig-is-parameter:
+      - petId
+    konfig-generated-schema-single-parameter-schema-get--pet-petId:
+      properties:
+        petId:
+          format: int64
+          type: integer
+      required:
+      - petId
+      type: object
+      x-do-not-generate: true
+      x-konfig-is-parameter:
+      - petId
+    konfig-generated-schema-single-parameter-schema-post--pet-petId:
+      properties:
+        petId:
+          format: int64
+          type: integer
+        name:
+          description: Updated name of the pet
+          type: string
+        status:
+          description: Updated status of the pet
+          type: string
+      required:
+      - petId
+      type: object
+      x-do-not-generate: true
+      x-konfig-is-parameter:
+      - petId
+    konfig-generated-schema-single-parameter-schema-post--pet-petId-uploadImage:
+      properties:
+        petId:
+          format: int64
+          type: integer
+        additionalMetadata:
+          description: Additional data to pass to server
+          type: string
+        file:
+          description: file to upload
+          format: binary
+          type: string
+      required:
+      - petId
+      type: object
+      x-do-not-generate: true
+      x-konfig-is-parameter:
+      - petId
+    konfig-generated-schema-single-parameter-schema-get--store-inventory:
+      properties: {}
+      type: object
+      x-do-not-generate: true
+      x-konfig-is-parameter: []
+    konfig-generated-schema-single-parameter-schema-post--store-order:
+      properties:
+        id:
+          format: int64
+          type: integer
+        petId:
+          format: int64
+          type: integer
+        quantity:
+          format: int32
+          type: integer
+        shipDate:
+          format: date-time
+          type: string
+        status:
+          description: Order Status
+          enum:
+          - placed
+          - approved
+          - delivered
+          type: string
+        complete:
+          default: false
+          type: boolean
+      type: object
+      x-do-not-generate: true
+      x-konfig-is-parameter: []
+    konfig-generated-schema-single-parameter-schema-delete--store-order-orderId:
+      properties:
+        orderId:
+          type: string
+      required:
+      - orderId
+      type: object
+      x-do-not-generate: true
+      x-konfig-is-parameter:
+      - orderId
+    konfig-generated-schema-single-parameter-schema-get--store-order-orderId:
+      properties:
+        orderId:
+          format: int64
+          maximum: 5
+          minimum: 1
+          type: integer
+      required:
+      - orderId
+      type: object
+      x-do-not-generate: true
+      x-konfig-is-parameter:
+      - orderId
+    konfig-generated-schema-single-parameter-schema-post--user:
+      properties:
+        id:
+          format: int64
+          type: integer
+        username:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+        phone:
+          type: string
+        userStatus:
+          description: User Status
+          format: int32
+          type: integer
+      type: object
+      x-do-not-generate: true
+      x-konfig-is-parameter: []
+    konfig-generated-schema-single-parameter-schema-post--user-createWithArray:
+      properties: {}
+      type: object
+      x-do-not-generate: true
+      x-konfig-is-parameter: []
+    konfig-generated-schema-single-parameter-schema-post--user-createWithList:
+      properties: {}
+      type: object
+      x-do-not-generate: true
+      x-konfig-is-parameter: []
+    konfig-generated-schema-single-parameter-schema-get--user-login:
+      properties:
+        username:
+          pattern: "^[a-zA-Z0-9]+[a-zA-Z0-9\\.\\-_]*[a-zA-Z0-9]+$"
+          type: string
+        password:
+          type: string
+      required:
+      - password
+      - username
+      type: object
+      x-do-not-generate: true
+      x-konfig-is-parameter:
+      - username
+      - password
+    konfig-generated-schema-single-parameter-schema-get--user-logout:
+      properties: {}
+      type: object
+      x-do-not-generate: true
+      x-konfig-is-parameter: []
+    konfig-generated-schema-single-parameter-schema-delete--user-username:
+      properties:
+        username:
+          type: string
+      required:
+      - username
+      type: object
+      x-do-not-generate: true
+      x-konfig-is-parameter:
+      - username
+    konfig-generated-schema-single-parameter-schema-get--user-username:
+      properties:
+        username:
+          type: string
+      required:
+      - username
+      type: object
+      x-do-not-generate: true
+      x-konfig-is-parameter:
+      - username
     PaginateResponse_edges_node:
       example:
         message: message
@@ -896,7 +1254,9 @@ components:
             write:pets: modify pets in your account
             read:pets: read your pets
       type: oauth2
+      x-konfig-globally-required-security: false
     api_key:
       in: header
       name: api_key
       type: apiKey
+      x-konfig-globally-required-security: false

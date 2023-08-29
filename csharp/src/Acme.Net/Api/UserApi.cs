@@ -445,8 +445,8 @@ namespace Acme.Net.Api
                 Acme.Net.Client.GlobalConfiguration.Instance,
                 new Acme.Net.Client.Configuration { BasePath = basePath }
             );
-            this.Client = new Acme.Net.Client.ApiClient(this.Configuration.BasePath);
-            this.AsynchronousClient = new Acme.Net.Client.ApiClient(this.Configuration.BasePath);
+            this.Client = new Acme.Net.Client.ApiClient(this.Configuration);
+            this.AsynchronousClient = new Acme.Net.Client.ApiClient(this.Configuration);
             this.ExceptionFactory = Acme.Net.Client.Configuration.DefaultExceptionFactory;
         }
 
@@ -464,9 +464,9 @@ namespace Acme.Net.Api
                 Acme.Net.Client.GlobalConfiguration.Instance,
                 configuration
             );
-            this.Client = new Acme.Net.Client.ApiClient(this.Configuration.BasePath);
-            this.AsynchronousClient = new Acme.Net.Client.ApiClient(this.Configuration.BasePath);
-            ExceptionFactory = Acme.Net.Client.Configuration.DefaultExceptionFactory;
+            this.Client = new Acme.Net.Client.ApiClient(this.Configuration);
+            this.AsynchronousClient = new Acme.Net.Client.ApiClient(this.Configuration);
+            this.ExceptionFactory = Acme.Net.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -1340,8 +1340,8 @@ namespace Acme.Net.Api
                 localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
             }
 
-            localVarRequestOptions.QueryParameters.Add(Acme.Net.Client.ClientUtils.ParameterToMultiMap("", "username", username));
-            localVarRequestOptions.QueryParameters.Add(Acme.Net.Client.ClientUtils.ParameterToMultiMap("", "password", password));
+            localVarRequestOptions.QueryParameters.Add(Acme.Net.Client.ClientUtils.ParameterToMultiMap("", "username", username, ""));
+            localVarRequestOptions.QueryParameters.Add(Acme.Net.Client.ClientUtils.ParameterToMultiMap("", "password", password, ""));
 
             localVarRequestOptions.Operation = "UserApi.Login";
             localVarRequestOptions.OperationIndex = operationIndex;
@@ -1423,8 +1423,8 @@ namespace Acme.Net.Api
                 localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
             }
 
-            localVarRequestOptions.QueryParameters.Add(Acme.Net.Client.ClientUtils.ParameterToMultiMap("", "username", username));
-            localVarRequestOptions.QueryParameters.Add(Acme.Net.Client.ClientUtils.ParameterToMultiMap("", "password", password));
+            localVarRequestOptions.QueryParameters.Add(Acme.Net.Client.ClientUtils.ParameterToMultiMap("", "username", username, ""));
+            localVarRequestOptions.QueryParameters.Add(Acme.Net.Client.ClientUtils.ParameterToMultiMap("", "password", password, ""));
 
             localVarRequestOptions.Operation = "UserApi.Login";
             localVarRequestOptions.OperationIndex = operationIndex;

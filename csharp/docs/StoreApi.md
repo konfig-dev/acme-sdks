@@ -19,9 +19,9 @@ For valid response try integer IDs with value < 1000. Anything above 1000 or non
 
 ### Example
 ```csharp
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using Acme.Net.Api;
 using Acme.Net.Client;
 using Acme.Net.Model;
 
@@ -31,21 +31,29 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration config = new Configuration();
-            config.BasePath = "http://petstore.swagger.io/v2";
-            var apiInstance = new StoreApi(config);
+
+            AcmeClient client = new AcmeClient();
+            // Configure custom BasePath if desired
+            client.SetBasePath("http://petstore.swagger.io/v2");
+
             var orderId = "orderId_example";  // string | ID of the order that needs to be deleted
 
             try
             {
                 // Delete purchase order by ID
-                apiInstance.DeleteOrder(orderId);
+                client.Store.DeleteOrder(orderId);
             }
-            catch (ApiException  e)
+            catch (ApiException e)
             {
-                Debug.Print("Exception when calling StoreApi.DeleteOrder: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
+                Console.WriteLine("Exception when calling StoreApi.DeleteOrder: " + e.Message);
+                Console.WriteLine("Status Code: "+ e.ErrorCode);
+                Console.WriteLine(e.StackTrace);
+            }
+            catch (ClientException e)
+            {
+                Console.WriteLine(e.Response.StatusCode);
+                Console.WriteLine(e.Response.RawContent);
+                Console.WriteLine(e.InnerException);
             }
         }
     }
@@ -108,9 +116,9 @@ Returns a map of status codes to quantities
 
 ### Example
 ```csharp
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using Acme.Net.Api;
 using Acme.Net.Client;
 using Acme.Net.Model;
 
@@ -120,26 +128,31 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration config = new Configuration();
-            config.BasePath = "http://petstore.swagger.io/v2";
-            // Configure API key authorization: api_key
-            config.AddApiKey("api_key", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("api_key", "Bearer");
 
-            var apiInstance = new StoreApi(config);
+            AcmeClient client = new AcmeClient();
+            // Configure custom BasePath if desired
+            client.SetBasePath("http://petstore.swagger.io/v2");
+            // Configure API key authorization: api_key
+            client.SetApiKey("YOUR_API_KEY");
+
 
             try
             {
                 // Returns pet inventories by status
-                Dictionary<string, int> result = apiInstance.GetInventory();
-                Debug.WriteLine(result);
+                Dictionary<string, int> result = client.Store.GetInventory();
+                Console.WriteLine(result);
             }
-            catch (ApiException  e)
+            catch (ApiException e)
             {
-                Debug.Print("Exception when calling StoreApi.GetInventory: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
+                Console.WriteLine("Exception when calling StoreApi.GetInventory: " + e.Message);
+                Console.WriteLine("Status Code: "+ e.ErrorCode);
+                Console.WriteLine(e.StackTrace);
+            }
+            catch (ClientException e)
+            {
+                Console.WriteLine(e.Response.StatusCode);
+                Console.WriteLine(e.Response.RawContent);
+                Console.WriteLine(e.InnerException);
             }
         }
     }
@@ -199,9 +212,9 @@ For valid response try integer IDs with value <= 5 or > 10. Other values will ge
 
 ### Example
 ```csharp
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using Acme.Net.Api;
 using Acme.Net.Client;
 using Acme.Net.Model;
 
@@ -211,22 +224,30 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration config = new Configuration();
-            config.BasePath = "http://petstore.swagger.io/v2";
-            var apiInstance = new StoreApi(config);
+
+            AcmeClient client = new AcmeClient();
+            // Configure custom BasePath if desired
+            client.SetBasePath("http://petstore.swagger.io/v2");
+
             var orderId = 789L;  // long | ID of pet that needs to be fetched
 
             try
             {
                 // Find purchase order by ID
-                Order result = apiInstance.GetOrderById(orderId);
-                Debug.WriteLine(result);
+                Order result = client.Store.GetOrderById(orderId);
+                Console.WriteLine(result);
             }
-            catch (ApiException  e)
+            catch (ApiException e)
             {
-                Debug.Print("Exception when calling StoreApi.GetOrderById: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
+                Console.WriteLine("Exception when calling StoreApi.GetOrderById: " + e.Message);
+                Console.WriteLine("Status Code: "+ e.ErrorCode);
+                Console.WriteLine(e.StackTrace);
+            }
+            catch (ClientException e)
+            {
+                Console.WriteLine(e.Response.StatusCode);
+                Console.WriteLine(e.Response.RawContent);
+                Console.WriteLine(e.InnerException);
             }
         }
     }
@@ -290,9 +311,9 @@ Place an order for a pet
 
 ### Example
 ```csharp
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using Acme.Net.Api;
 using Acme.Net.Client;
 using Acme.Net.Model;
 
@@ -302,22 +323,30 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration config = new Configuration();
-            config.BasePath = "http://petstore.swagger.io/v2";
-            var apiInstance = new StoreApi(config);
+
+            AcmeClient client = new AcmeClient();
+            // Configure custom BasePath if desired
+            client.SetBasePath("http://petstore.swagger.io/v2");
+
             var order = new Order(); // Order | order placed for purchasing the pet
 
             try
             {
                 // Place an order for a pet
-                Order result = apiInstance.PlaceOrder(order);
-                Debug.WriteLine(result);
+                Order result = client.Store.PlaceOrder(order);
+                Console.WriteLine(result);
             }
-            catch (ApiException  e)
+            catch (ApiException e)
             {
-                Debug.Print("Exception when calling StoreApi.PlaceOrder: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
+                Console.WriteLine("Exception when calling StoreApi.PlaceOrder: " + e.Message);
+                Console.WriteLine("Status Code: "+ e.ErrorCode);
+                Console.WriteLine(e.StackTrace);
+            }
+            catch (ClientException e)
+            {
+                Console.WriteLine(e.Response.StatusCode);
+                Console.WriteLine(e.Response.RawContent);
+                Console.WriteLine(e.InnerException);
             }
         }
     }

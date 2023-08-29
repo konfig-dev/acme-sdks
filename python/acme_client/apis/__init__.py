@@ -1,20 +1,3 @@
-
-# flake8: noqa
-
-# Import all APIs into this package.
-# If you have many APIs here with many many models used in each API this may
-# raise a `RecursionError`.
-# In order to avoid this, import only the API that you directly need like:
-#
-#   from acme_client.api.miscellaneous_api import MiscellaneousApi
-#
-# or import this package, but before doing it, use:
-#
-#   import sys
-#   sys.setrecursionlimit(n)
-
-# Import APIs into API package:
-from acme_client.api.miscellaneous_api import MiscellaneousApi
-from acme_client.api.pet_api import PetApi
-from acme_client.api.store_api import StoreApi
-from acme_client.api.user_api import UserApi
+# do not import all endpoints into this module because that uses a lot of memory and stack frames
+# if you need the ability to import all endpoints then import them from
+# tags, paths, or path_to_api, or tag_to_api

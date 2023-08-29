@@ -16,9 +16,9 @@ Iterate through a bunch of items
 
 ### Example
 ```csharp
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using Acme.Net.Api;
 using Acme.Net.Client;
 using Acme.Net.Model;
 
@@ -28,22 +28,30 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration config = new Configuration();
-            config.BasePath = "http://petstore.swagger.io/v2";
-            var apiInstance = new MiscellaneousApi(config);
+
+            AcmeClient client = new AcmeClient();
+            // Configure custom BasePath if desired
+            client.SetBasePath("http://petstore.swagger.io/v2");
+
             var paginateRequest = new PaginateRequest(); // PaginateRequest |  (optional) 
 
             try
             {
                 // Pagination sandbox
-                PaginateResponse result = apiInstance.Paginate(paginateRequest);
-                Debug.WriteLine(result);
+                PaginateResponse result = client.Miscellaneous.Paginate(paginateRequest);
+                Console.WriteLine(result);
             }
-            catch (ApiException  e)
+            catch (ApiException e)
             {
-                Debug.Print("Exception when calling MiscellaneousApi.Paginate: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
+                Console.WriteLine("Exception when calling MiscellaneousApi.Paginate: " + e.Message);
+                Console.WriteLine("Status Code: "+ e.ErrorCode);
+                Console.WriteLine(e.StackTrace);
+            }
+            catch (ClientException e)
+            {
+                Console.WriteLine(e.Response.StatusCode);
+                Console.WriteLine(e.Response.RawContent);
+                Console.WriteLine(e.InnerException);
             }
         }
     }

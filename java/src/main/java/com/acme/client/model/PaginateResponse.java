@@ -35,6 +35,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
+import org.apache.commons.lang3.StringUtils;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
@@ -63,6 +64,10 @@ public class PaginateResponse {
   }
 
   public PaginateResponse edges(PaginateResponseEdges edges) {
+
+    
+    
+    
     
     this.edges = edges;
     return this;
@@ -81,11 +86,19 @@ public class PaginateResponse {
 
 
   public void setEdges(PaginateResponseEdges edges) {
+
+    
+    
+    
     this.edges = edges;
   }
 
 
   public PaginateResponse pageInfo(PaginateResponsePageInfo pageInfo) {
+
+    
+    
+    
     
     this.pageInfo = pageInfo;
     return this;
@@ -104,6 +117,10 @@ public class PaginateResponse {
 
 
   public void setPageInfo(PaginateResponsePageInfo pageInfo) {
+
+    
+    
+    
     this.pageInfo = pageInfo;
   }
 

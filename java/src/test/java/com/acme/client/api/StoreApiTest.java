@@ -13,9 +13,14 @@
 package com.acme.client.api;
 
 import com.acme.client.ApiException;
+import com.acme.client.ApiClient;
+import com.acme.client.ApiException;
+import com.acme.client.Configuration;
+import java.time.OffsetDateTime;
 import com.acme.client.model.Order;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeAll;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,7 +33,14 @@ import java.util.Map;
 @Disabled
 public class StoreApiTest {
 
-    private final StoreApi api = new StoreApi();
+    private static StoreApi api;
+
+    
+    @BeforeAll
+    public static void beforeClass() {
+        ApiClient apiClient = Configuration.getDefaultApiClient();
+        api = new StoreApi(apiClient);
+    }
 
     /**
      * Delete purchase order by ID
@@ -40,7 +52,8 @@ public class StoreApiTest {
     @Test
     public void deleteOrderTest() throws ApiException {
         String orderId = null;
-        api.deleteOrder(orderId);
+        api.deleteOrder(orderId)
+                .execute();
         // TODO: test validations
     }
 
@@ -53,7 +66,8 @@ public class StoreApiTest {
      */
     @Test
     public void getInventoryTest() throws ApiException {
-        Map<String, Integer> response = api.getInventory();
+        Map<String, Integer> response = api.getInventory()
+                .execute();
         // TODO: test validations
     }
 
@@ -67,7 +81,8 @@ public class StoreApiTest {
     @Test
     public void getOrderByIdTest() throws ApiException {
         Long orderId = null;
-        Order response = api.getOrderById(orderId);
+        Order response = api.getOrderById(orderId)
+                .execute();
         // TODO: test validations
     }
 
@@ -80,8 +95,20 @@ public class StoreApiTest {
      */
     @Test
     public void placeOrderTest() throws ApiException {
-        Order order = null;
-        Order response = api.placeOrder(order);
+        Long id = null;
+        Long petId = null;
+        Integer quantity = null;
+        OffsetDateTime shipDate = null;
+        String status = null;
+        Boolean complete = null;
+        Order response = api.placeOrder()
+                .id(id)
+                .petId(petId)
+                .quantity(quantity)
+                .shipDate(shipDate)
+                .status(status)
+                .complete(complete)
+                .execute();
         // TODO: test validations
     }
 

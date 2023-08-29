@@ -105,27 +105,62 @@ Then manually install the following JARs:
 Please follow the [installation](#installation) instruction and execute the following Java code:
 
 ```java
-
-// Import classes:
 import com.acme.client.ApiClient;
 import com.acme.client.ApiException;
+import com.acme.client.ApiResponse;
+import com.acme.client.Acme;
 import com.acme.client.Configuration;
 import com.acme.client.model.*;
 import com.acme.client.api.MiscellaneousApi;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 public class Example {
   public static void main(String[] args) {
-    ApiClient apiClient = Configuration.getDefaultApiClient();
-    apiClient.setBasePath("http://petstore.swagger.io/v2");
+    Configuration configuration = new Configuration();
+    configuration.host = "http://petstore.swagger.io/v2";
 
-    MiscellaneousApi apiInstance = new MiscellaneousApi(apiClient);
-    PaginateRequest paginateRequest = new PaginateRequest(); // PaginateRequest | 
+    Acme client = new Acme(configuration);
+    Integer first = 56;
+    String after = "after_example";
     try {
-      PaginateResponse result = apiInstance.paginate(paginateRequest);
+      PaginateResponse result = client
+              .miscellaneous
+              .paginate()
+              .first(first)
+              .after(after)
+              .execute();
       System.out.println(result);
+
+      System.out.println(result.getEdges());
+
+      System.out.println(result.getPageInfo());
+
     } catch (ApiException e) {
       System.err.println("Exception when calling MiscellaneousApi#paginate");
-      System.err.println("Status code: " + e.getCode());
+      System.err.println("Status code: " + e.getStatusCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+
+    // Use .executeWithHttpInfo() to retrieve HTTP Status Code, Headers and Request
+    try {
+      ApiResponse<PaginateResponse> response = client
+              .miscellaneous
+              .paginate()
+              .first(first)
+              .after(after)
+              .executeWithHttpInfo();
+      System.out.println(response.getResponseBody());
+      System.out.println(response.getResponseHeaders());
+      System.out.println(response.getStatusCode());
+      System.out.println(response.getRoundTripTime());
+      System.out.println(response.getRequest());
+    } catch (ApiException e) {
+      System.err.println("Exception when calling MiscellaneousApi#paginate");
+      System.err.println("Status code: " + e.getStatusCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
       e.printStackTrace();
@@ -176,6 +211,8 @@ Class | Method | HTTP request | Description
  - [PaginateResponsePageInfo](docs/PaginateResponsePageInfo.md)
  - [Pet](docs/Pet.md)
  - [Tag](docs/Tag.md)
+ - [UpdateWithFormRequest](docs/UpdateWithFormRequest.md)
+ - [UploadImageRequest](docs/UploadImageRequest.md)
  - [User](docs/User.md)
 
 

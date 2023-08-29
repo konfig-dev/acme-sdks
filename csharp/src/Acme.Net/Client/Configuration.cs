@@ -58,6 +58,12 @@ namespace Acme.Net.Client
                     string.Format("Error calling {0}: {1}", methodName, response.RawContent),
                     response.RawContent, response.Headers);
             }
+
+            // This occurs when response was successful but something happened in the client library
+            // (e.g. deserialization error)
+            if (response.Exception != null)
+                throw new ClientException(response, response.Exception);
+
             return null;
         };
 
@@ -110,11 +116,12 @@ namespace Acme.Net.Client
         public Configuration()
         {
             Proxy = null;
-            UserAgent = WebUtility.UrlEncode("Konfig/1.0.0/csharp");
+            UserAgent = "Konfig/1.0.0/csharp";
             BasePath = "http://petstore.swagger.io/v2";
             DefaultHeaders = new ConcurrentDictionary<string, string>();
             ApiKey = new ConcurrentDictionary<string, string>();
             ApiKeyPrefix = new ConcurrentDictionary<string, string>();
+            VerifySsl = true;
             OAuthFlow = Auth.OAuthFlow.IMPLICIT;
             OAuthTokenUrl = "";
             Servers = new List<IReadOnlyDictionary<string, object>>()
@@ -232,6 +239,12 @@ namespace Acme.Net.Client
         /// </summary>
         /// <value>The password.</value>
         public virtual string Password { get; set; }
+
+        /// <summary>
+        /// Gets or sets the verifySsl flag.
+        /// </summary>
+        /// <value>verifySsl flag.</value>
+        public virtual bool VerifySsl { get; set; }
 
         /// <summary>
         /// Gets the API key with prefix.
@@ -602,6 +615,7 @@ namespace Acme.Net.Client
                 UserAgent = second.UserAgent ?? first.UserAgent,
                 Username = second.Username ?? first.Username,
                 Password = second.Password ?? first.Password,
+                VerifySsl = second.VerifySsl && first.VerifySsl,
                 AccessToken = second.AccessToken ?? first.AccessToken,
                 OAuthTokenUrl = second.OAuthTokenUrl ?? first.OAuthTokenUrl,
                 OAuthClientId = second.OAuthClientId ?? first.OAuthClientId,
