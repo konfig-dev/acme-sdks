@@ -1,3 +1,5 @@
+# coding: utf-8
+
 # flake8: noqa
 
 # import all models into this package
@@ -17,6 +19,8 @@ from acme_client.model.find_by_status_response import FindByStatusResponse
 from acme_client.model.find_by_tags200_response import FindByTags200Response
 from acme_client.model.find_by_tags_response import FindByTagsResponse
 from acme_client.model.get_inventory_response import GetInventoryResponse
+from acme_client.model.login200_response import Login200Response
+from acme_client.model.login_response import LoginResponse
 from acme_client.model.order import Order
 from acme_client.model.paginate_request import PaginateRequest
 from acme_client.model.paginate_response import PaginateResponse
@@ -24,5 +28,8 @@ from acme_client.model.paginate_response_edges import PaginateResponseEdges
 from acme_client.model.paginate_response_edges_node import PaginateResponseEdgesNode
 from acme_client.model.paginate_response_page_info import PaginateResponsePageInfo
 from acme_client.model.pet import Pet
+from acme_client.model.pet_photo_urls import PetPhotoUrls
 from acme_client.model.tag import Tag
+from acme_client.model.update_with_form_request import UpdateWithFormRequest
+from acme_client.model.upload_image_request import UploadImageRequest
 from acme_client.model.user import User

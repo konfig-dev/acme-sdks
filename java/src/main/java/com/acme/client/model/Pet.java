@@ -37,6 +37,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
+import org.apache.commons.lang3.StringUtils;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
@@ -131,6 +132,10 @@ public class Pet {
   }
 
   public Pet tags(List<Tag> tags) {
+
+    
+    
+    
     
     this.tags = tags;
     return this;
@@ -157,11 +162,19 @@ public class Pet {
 
 
   public void setTags(List<Tag> tags) {
+
+    
+    
+    
     this.tags = tags;
   }
 
 
   public Pet id(Long id) {
+
+    
+    
+    
     
     this.id = id;
     return this;
@@ -180,11 +193,19 @@ public class Pet {
 
 
   public void setId(Long id) {
+
+    
+    
+    
     this.id = id;
   }
 
 
   public Pet category(Category category) {
+
+    
+    
+    
     
     this.category = category;
     return this;
@@ -203,11 +224,19 @@ public class Pet {
 
 
   public void setCategory(Category category) {
+
+    
+    
+    
     this.category = category;
   }
 
 
   public Pet name(String name) {
+
+    
+    
+    
     
     this.name = name;
     return this;
@@ -226,11 +255,19 @@ public class Pet {
 
 
   public void setName(String name) {
+
+    
+    
+    
     this.name = name;
   }
 
 
   public Pet photoUrls(List<String> photoUrls) {
+
+    
+    
+    
     
     this.photoUrls = photoUrls;
     return this;
@@ -254,11 +291,19 @@ public class Pet {
 
 
   public void setPhotoUrls(List<String> photoUrls) {
+
+    
+    
+    
     this.photoUrls = photoUrls;
   }
 
 
   public Pet status(StatusEnum status) {
+
+    
+    
+    
     
     this.status = status;
     return this;
@@ -279,6 +324,10 @@ public class Pet {
 
 
   public void setStatus(StatusEnum status) {
+
+    
+    
+    
     this.status = status;
   }
 

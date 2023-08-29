@@ -16,7 +16,7 @@ All URIs are relative to *http://petstore.swagger.io/v2*
 
 <a name="create"></a>
 # **create**
-> create(user)
+> create(user).execute();
 
 Create user
 
@@ -24,38 +24,80 @@ This can only be done by the logged in user.
 
 ### Example
 ```java
-// Import classes:
 import com.acme.client.ApiClient;
 import com.acme.client.ApiException;
+import com.acme.client.ApiResponse;
+import com.acme.client.Acme;
 import com.acme.client.Configuration;
 import com.acme.client.auth.*;
 import com.acme.client.model.*;
 import com.acme.client.api.UserApi;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 public class Example {
   public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://petstore.swagger.io/v2");
+    Configuration configuration = new Configuration();
+    configuration.host = "http://petstore.swagger.io/v2";
     
     // Configure API key authorization: api_key
-    ApiKeyAuth api_key = (ApiKeyAuth) defaultClient.getAuthentication("api_key");
-    api_key.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //api_key.setApiKeyPrefix("Token");
+    configuration.api_key  = "YOUR API KEY";
 
-    UserApi apiInstance = new UserApi(defaultClient);
-    User user = new User(); // User | Created user object
+    Acme client = new Acme(configuration);
+    Long id = 56L;
+    String username = "username_example";
+    String firstName = "firstName_example";
+    String lastName = "lastName_example";
+    String email = "email_example";
+    String password = "password_example";
+    String phone = "phone_example";
+    Integer userStatus = 56; // User Status
     try {
-      apiInstance.create(user);
+      client
+              .user
+              .create()
+              .id(id)
+              .username(username)
+              .firstName(firstName)
+              .lastName(lastName)
+              .email(email)
+              .password(password)
+              .phone(phone)
+              .userStatus(userStatus)
+              .execute();
     } catch (ApiException e) {
       System.err.println("Exception when calling UserApi#create");
-      System.err.println("Status code: " + e.getCode());
+      System.err.println("Status code: " + e.getStatusCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+
+    // Use .executeWithHttpInfo() to retrieve HTTP Status Code, Headers and Request
+    try {
+      client
+              .user
+              .create()
+              .id(id)
+              .username(username)
+              .firstName(firstName)
+              .lastName(lastName)
+              .email(email)
+              .password(password)
+              .phone(phone)
+              .userStatus(userStatus)
+              .executeWithHttpInfo();
+    } catch (ApiException e) {
+      System.err.println("Exception when calling UserApi#create");
+      System.err.println("Status code: " + e.getStatusCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
       e.printStackTrace();
     }
   }
 }
+
 ```
 
 ### Parameters
@@ -84,7 +126,7 @@ null (empty response body)
 
 <a name="createWithArray"></a>
 # **createWithArray**
-> createWithArray(user)
+> createWithArray(user).execute();
 
 Creates list of users with given input array
 
@@ -92,38 +134,56 @@ Creates list of users with given input array
 
 ### Example
 ```java
-// Import classes:
 import com.acme.client.ApiClient;
 import com.acme.client.ApiException;
+import com.acme.client.ApiResponse;
+import com.acme.client.Acme;
 import com.acme.client.Configuration;
 import com.acme.client.auth.*;
 import com.acme.client.model.*;
 import com.acme.client.api.UserApi;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 public class Example {
   public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://petstore.swagger.io/v2");
+    Configuration configuration = new Configuration();
+    configuration.host = "http://petstore.swagger.io/v2";
     
     // Configure API key authorization: api_key
-    ApiKeyAuth api_key = (ApiKeyAuth) defaultClient.getAuthentication("api_key");
-    api_key.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //api_key.setApiKeyPrefix("Token");
+    configuration.api_key  = "YOUR API KEY";
 
-    UserApi apiInstance = new UserApi(defaultClient);
-    List<User> user = Arrays.asList(); // List<User> | List of user object
+    Acme client = new Acme(configuration);
     try {
-      apiInstance.createWithArray(user);
+      client
+              .user
+              .createWithArray()
+              .execute();
     } catch (ApiException e) {
       System.err.println("Exception when calling UserApi#createWithArray");
-      System.err.println("Status code: " + e.getCode());
+      System.err.println("Status code: " + e.getStatusCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+
+    // Use .executeWithHttpInfo() to retrieve HTTP Status Code, Headers and Request
+    try {
+      client
+              .user
+              .createWithArray()
+              .executeWithHttpInfo();
+    } catch (ApiException e) {
+      System.err.println("Exception when calling UserApi#createWithArray");
+      System.err.println("Status code: " + e.getStatusCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
       e.printStackTrace();
     }
   }
 }
+
 ```
 
 ### Parameters
@@ -152,7 +212,7 @@ null (empty response body)
 
 <a name="createWithList"></a>
 # **createWithList**
-> createWithList(user)
+> createWithList(user).execute();
 
 Creates list of users with given input array
 
@@ -160,38 +220,56 @@ Creates list of users with given input array
 
 ### Example
 ```java
-// Import classes:
 import com.acme.client.ApiClient;
 import com.acme.client.ApiException;
+import com.acme.client.ApiResponse;
+import com.acme.client.Acme;
 import com.acme.client.Configuration;
 import com.acme.client.auth.*;
 import com.acme.client.model.*;
 import com.acme.client.api.UserApi;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 public class Example {
   public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://petstore.swagger.io/v2");
+    Configuration configuration = new Configuration();
+    configuration.host = "http://petstore.swagger.io/v2";
     
     // Configure API key authorization: api_key
-    ApiKeyAuth api_key = (ApiKeyAuth) defaultClient.getAuthentication("api_key");
-    api_key.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //api_key.setApiKeyPrefix("Token");
+    configuration.api_key  = "YOUR API KEY";
 
-    UserApi apiInstance = new UserApi(defaultClient);
-    List<User> user = Arrays.asList(); // List<User> | List of user object
+    Acme client = new Acme(configuration);
     try {
-      apiInstance.createWithList(user);
+      client
+              .user
+              .createWithList()
+              .execute();
     } catch (ApiException e) {
       System.err.println("Exception when calling UserApi#createWithList");
-      System.err.println("Status code: " + e.getCode());
+      System.err.println("Status code: " + e.getStatusCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+
+    // Use .executeWithHttpInfo() to retrieve HTTP Status Code, Headers and Request
+    try {
+      client
+              .user
+              .createWithList()
+              .executeWithHttpInfo();
+    } catch (ApiException e) {
+      System.err.println("Exception when calling UserApi#createWithList");
+      System.err.println("Status code: " + e.getStatusCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
       e.printStackTrace();
     }
   }
 }
+
 ```
 
 ### Parameters
@@ -220,7 +298,7 @@ null (empty response body)
 
 <a name="delete"></a>
 # **delete**
-> delete(username)
+> delete(username).execute();
 
 Delete user
 
@@ -228,38 +306,57 @@ This can only be done by the logged in user.
 
 ### Example
 ```java
-// Import classes:
 import com.acme.client.ApiClient;
 import com.acme.client.ApiException;
+import com.acme.client.ApiResponse;
+import com.acme.client.Acme;
 import com.acme.client.Configuration;
 import com.acme.client.auth.*;
 import com.acme.client.model.*;
 import com.acme.client.api.UserApi;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 public class Example {
   public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://petstore.swagger.io/v2");
+    Configuration configuration = new Configuration();
+    configuration.host = "http://petstore.swagger.io/v2";
     
     // Configure API key authorization: api_key
-    ApiKeyAuth api_key = (ApiKeyAuth) defaultClient.getAuthentication("api_key");
-    api_key.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //api_key.setApiKeyPrefix("Token");
+    configuration.api_key  = "YOUR API KEY";
 
-    UserApi apiInstance = new UserApi(defaultClient);
-    String username = "username_example"; // String | The name that needs to be deleted
+    Acme client = new Acme(configuration);
+    String username = "username_example"; // The name that needs to be deleted
     try {
-      apiInstance.delete(username);
+      client
+              .user
+              .delete(username)
+              .execute();
     } catch (ApiException e) {
       System.err.println("Exception when calling UserApi#delete");
-      System.err.println("Status code: " + e.getCode());
+      System.err.println("Status code: " + e.getStatusCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+
+    // Use .executeWithHttpInfo() to retrieve HTTP Status Code, Headers and Request
+    try {
+      client
+              .user
+              .delete(username)
+              .executeWithHttpInfo();
+    } catch (ApiException e) {
+      System.err.println("Exception when calling UserApi#delete");
+      System.err.println("Status code: " + e.getStatusCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
       e.printStackTrace();
     }
   }
 }
+
 ```
 
 ### Parameters
@@ -290,7 +387,7 @@ null (empty response body)
 
 <a name="getByName"></a>
 # **getByName**
-> User getByName(username)
+> User getByName(username).execute();
 
 Get user by user name
 
@@ -298,32 +395,76 @@ Get user by user name
 
 ### Example
 ```java
-// Import classes:
 import com.acme.client.ApiClient;
 import com.acme.client.ApiException;
+import com.acme.client.ApiResponse;
+import com.acme.client.Acme;
 import com.acme.client.Configuration;
 import com.acme.client.model.*;
 import com.acme.client.api.UserApi;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 public class Example {
   public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://petstore.swagger.io/v2");
+    Configuration configuration = new Configuration();
+    configuration.host = "http://petstore.swagger.io/v2";
 
-    UserApi apiInstance = new UserApi(defaultClient);
-    String username = "username_example"; // String | The name that needs to be fetched. Use user1 for testing.
+    Acme client = new Acme(configuration);
+    String username = "username_example"; // The name that needs to be fetched. Use user1 for testing.
     try {
-      User result = apiInstance.getByName(username);
+      User result = client
+              .user
+              .getByName(username)
+              .execute();
       System.out.println(result);
+
+      System.out.println(result.getId());
+
+      System.out.println(result.getUsername());
+
+      System.out.println(result.getFirstName());
+
+      System.out.println(result.getLastName());
+
+      System.out.println(result.getEmail());
+
+      System.out.println(result.getPassword());
+
+      System.out.println(result.getPhone());
+
+      System.out.println(result.getUserStatus());
+
     } catch (ApiException e) {
       System.err.println("Exception when calling UserApi#getByName");
-      System.err.println("Status code: " + e.getCode());
+      System.err.println("Status code: " + e.getStatusCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+
+    // Use .executeWithHttpInfo() to retrieve HTTP Status Code, Headers and Request
+    try {
+      ApiResponse<User> response = client
+              .user
+              .getByName(username)
+              .executeWithHttpInfo();
+      System.out.println(response.getResponseBody());
+      System.out.println(response.getResponseHeaders());
+      System.out.println(response.getStatusCode());
+      System.out.println(response.getRoundTripTime());
+      System.out.println(response.getRequest());
+    } catch (ApiException e) {
+      System.err.println("Exception when calling UserApi#getByName");
+      System.err.println("Status code: " + e.getStatusCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
       e.printStackTrace();
     }
   }
 }
+
 ```
 
 ### Parameters
@@ -354,7 +495,7 @@ No authorization required
 
 <a name="login"></a>
 # **login**
-> String login(username, password)
+> String login(username, password).execute();
 
 Logs user into the system
 
@@ -362,33 +503,59 @@ Logs user into the system
 
 ### Example
 ```java
-// Import classes:
 import com.acme.client.ApiClient;
 import com.acme.client.ApiException;
+import com.acme.client.ApiResponse;
+import com.acme.client.Acme;
 import com.acme.client.Configuration;
 import com.acme.client.model.*;
 import com.acme.client.api.UserApi;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 public class Example {
   public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://petstore.swagger.io/v2");
+    Configuration configuration = new Configuration();
+    configuration.host = "http://petstore.swagger.io/v2";
 
-    UserApi apiInstance = new UserApi(defaultClient);
-    String username = "username_example"; // String | The user name for login
-    String password = "password_example"; // String | The password for login in clear text
+    Acme client = new Acme(configuration);
+    String username = "username_example"; // The user name for login
+    String password = "password_example"; // The password for login in clear text
     try {
-      String result = apiInstance.login(username, password);
-      System.out.println(result);
+      String result = client
+              .user
+              .login(username, password)
+              .execute();
     } catch (ApiException e) {
       System.err.println("Exception when calling UserApi#login");
-      System.err.println("Status code: " + e.getCode());
+      System.err.println("Status code: " + e.getStatusCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+
+    // Use .executeWithHttpInfo() to retrieve HTTP Status Code, Headers and Request
+    try {
+      ApiResponse<String> response = client
+              .user
+              .login(username, password)
+              .executeWithHttpInfo();
+      System.out.println(response.getResponseBody());
+      System.out.println(response.getResponseHeaders());
+      System.out.println(response.getStatusCode());
+      System.out.println(response.getRoundTripTime());
+      System.out.println(response.getRequest());
+    } catch (ApiException e) {
+      System.err.println("Exception when calling UserApi#login");
+      System.err.println("Status code: " + e.getStatusCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
       e.printStackTrace();
     }
   }
 }
+
 ```
 
 ### Parameters
@@ -419,7 +586,7 @@ No authorization required
 
 <a name="logout"></a>
 # **logout**
-> logout()
+> logout().execute();
 
 Logs out current logged in user session
 
@@ -427,37 +594,56 @@ Logs out current logged in user session
 
 ### Example
 ```java
-// Import classes:
 import com.acme.client.ApiClient;
 import com.acme.client.ApiException;
+import com.acme.client.ApiResponse;
+import com.acme.client.Acme;
 import com.acme.client.Configuration;
 import com.acme.client.auth.*;
 import com.acme.client.model.*;
 import com.acme.client.api.UserApi;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 public class Example {
   public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://petstore.swagger.io/v2");
+    Configuration configuration = new Configuration();
+    configuration.host = "http://petstore.swagger.io/v2";
     
     // Configure API key authorization: api_key
-    ApiKeyAuth api_key = (ApiKeyAuth) defaultClient.getAuthentication("api_key");
-    api_key.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //api_key.setApiKeyPrefix("Token");
+    configuration.api_key  = "YOUR API KEY";
 
-    UserApi apiInstance = new UserApi(defaultClient);
+    Acme client = new Acme(configuration);
     try {
-      apiInstance.logout();
+      client
+              .user
+              .logout()
+              .execute();
     } catch (ApiException e) {
       System.err.println("Exception when calling UserApi#logout");
-      System.err.println("Status code: " + e.getCode());
+      System.err.println("Status code: " + e.getStatusCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+
+    // Use .executeWithHttpInfo() to retrieve HTTP Status Code, Headers and Request
+    try {
+      client
+              .user
+              .logout()
+              .executeWithHttpInfo();
+    } catch (ApiException e) {
+      System.err.println("Exception when calling UserApi#logout");
+      System.err.println("Status code: " + e.getStatusCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
       e.printStackTrace();
     }
   }
 }
+
 ```
 
 ### Parameters
@@ -483,7 +669,7 @@ null (empty response body)
 
 <a name="update"></a>
 # **update**
-> update(username, user)
+> update(username, user).execute();
 
 Updated user
 
@@ -491,39 +677,81 @@ This can only be done by the logged in user.
 
 ### Example
 ```java
-// Import classes:
 import com.acme.client.ApiClient;
 import com.acme.client.ApiException;
+import com.acme.client.ApiResponse;
+import com.acme.client.Acme;
 import com.acme.client.Configuration;
 import com.acme.client.auth.*;
 import com.acme.client.model.*;
 import com.acme.client.api.UserApi;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 public class Example {
   public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://petstore.swagger.io/v2");
+    Configuration configuration = new Configuration();
+    configuration.host = "http://petstore.swagger.io/v2";
     
     // Configure API key authorization: api_key
-    ApiKeyAuth api_key = (ApiKeyAuth) defaultClient.getAuthentication("api_key");
-    api_key.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //api_key.setApiKeyPrefix("Token");
+    configuration.api_key  = "YOUR API KEY";
 
-    UserApi apiInstance = new UserApi(defaultClient);
-    String username = "username_example"; // String | name that need to be deleted
-    User user = new User(); // User | Updated user object
+    Acme client = new Acme(configuration);
+    String username = "username_example"; // name that need to be deleted
+    Long id = 56L;
+    String username = "username_example";
+    String firstName = "firstName_example";
+    String lastName = "lastName_example";
+    String email = "email_example";
+    String password = "password_example";
+    String phone = "phone_example";
+    Integer userStatus = 56; // User Status
     try {
-      apiInstance.update(username, user);
+      client
+              .user
+              .update(username)
+              .id(id)
+              .username(username)
+              .firstName(firstName)
+              .lastName(lastName)
+              .email(email)
+              .password(password)
+              .phone(phone)
+              .userStatus(userStatus)
+              .execute();
     } catch (ApiException e) {
       System.err.println("Exception when calling UserApi#update");
-      System.err.println("Status code: " + e.getCode());
+      System.err.println("Status code: " + e.getStatusCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+
+    // Use .executeWithHttpInfo() to retrieve HTTP Status Code, Headers and Request
+    try {
+      client
+              .user
+              .update(username)
+              .id(id)
+              .username(username)
+              .firstName(firstName)
+              .lastName(lastName)
+              .email(email)
+              .password(password)
+              .phone(phone)
+              .userStatus(userStatus)
+              .executeWithHttpInfo();
+    } catch (ApiException e) {
+      System.err.println("Exception when calling UserApi#update");
+      System.err.println("Status code: " + e.getStatusCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
       e.printStackTrace();
     }
   }
 }
+
 ```
 
 ### Parameters

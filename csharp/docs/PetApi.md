@@ -21,9 +21,9 @@ Add a new pet to the store
 
 ### Example
 ```csharp
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using Acme.Net.Api;
 using Acme.Net.Client;
 using Acme.Net.Model;
 
@@ -33,25 +33,32 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration config = new Configuration();
-            config.BasePath = "http://petstore.swagger.io/v2";
-            // Configure OAuth2 access token for authorization: petstore_auth
-            config.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new PetApi(config);
+            AcmeClient client = new AcmeClient();
+            // Configure custom BasePath if desired
+            client.SetBasePath("http://petstore.swagger.io/v2");
+            // Configure OAuth2 access token for authorization: petstore_auth
+            client.SetAccessToken("YOUR_ACCESS_TOKEN");
+
             var pet = new Pet(); // Pet | Pet object that needs to be added to the store
 
             try
             {
                 // Add a new pet to the store
-                Pet result = apiInstance.Add(pet);
-                Debug.WriteLine(result);
+                Pet result = client.Pet.Add(pet);
+                Console.WriteLine(result);
             }
-            catch (ApiException  e)
+            catch (ApiException e)
             {
-                Debug.Print("Exception when calling PetApi.Add: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
+                Console.WriteLine("Exception when calling PetApi.Add: " + e.Message);
+                Console.WriteLine("Status Code: "+ e.ErrorCode);
+                Console.WriteLine(e.StackTrace);
+            }
+            catch (ClientException e)
+            {
+                Console.WriteLine(e.Response.StatusCode);
+                Console.WriteLine(e.Response.RawContent);
+                Console.WriteLine(e.InnerException);
             }
         }
     }
@@ -114,9 +121,9 @@ Deletes a pet
 
 ### Example
 ```csharp
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using Acme.Net.Api;
 using Acme.Net.Client;
 using Acme.Net.Model;
 
@@ -126,28 +133,33 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration config = new Configuration();
-            config.BasePath = "http://petstore.swagger.io/v2";
-            // Configure API key authorization: api_key
-            config.AddApiKey("api_key", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("api_key", "Bearer");
-            // Configure OAuth2 access token for authorization: petstore_auth
-            config.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new PetApi(config);
+            AcmeClient client = new AcmeClient();
+            // Configure custom BasePath if desired
+            client.SetBasePath("http://petstore.swagger.io/v2");
+            // Configure API key authorization: api_key
+            client.SetApiKey("YOUR_API_KEY");
+            // Configure OAuth2 access token for authorization: petstore_auth
+            client.SetAccessToken("YOUR_ACCESS_TOKEN");
+
             var petId = 789L;  // long | Pet id to delete
 
             try
             {
                 // Deletes a pet
-                apiInstance.Delete(petId);
+                client.Pet.Delete(petId);
             }
-            catch (ApiException  e)
+            catch (ApiException e)
             {
-                Debug.Print("Exception when calling PetApi.Delete: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
+                Console.WriteLine("Exception when calling PetApi.Delete: " + e.Message);
+                Console.WriteLine("Status Code: "+ e.ErrorCode);
+                Console.WriteLine(e.StackTrace);
+            }
+            catch (ClientException e)
+            {
+                Console.WriteLine(e.Response.StatusCode);
+                Console.WriteLine(e.Response.RawContent);
+                Console.WriteLine(e.InnerException);
             }
         }
     }
@@ -208,9 +220,9 @@ Multiple status values can be provided with comma separated strings
 
 ### Example
 ```csharp
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using Acme.Net.Api;
 using Acme.Net.Client;
 using Acme.Net.Model;
 
@@ -220,25 +232,32 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration config = new Configuration();
-            config.BasePath = "http://petstore.swagger.io/v2";
-            // Configure OAuth2 access token for authorization: petstore_auth
-            config.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new PetApi(config);
+            AcmeClient client = new AcmeClient();
+            // Configure custom BasePath if desired
+            client.SetBasePath("http://petstore.swagger.io/v2");
+            // Configure OAuth2 access token for authorization: petstore_auth
+            client.SetAccessToken("YOUR_ACCESS_TOKEN");
+
             var status = new List<string>(); // List<string> | Status values that need to be considered for filter
 
             try
             {
                 // Finds Pets by status
-                List<Pet> result = apiInstance.FindByStatus(status);
-                Debug.WriteLine(result);
+                List<Pet> result = client.Pet.FindByStatus(status);
+                Console.WriteLine(result);
             }
-            catch (ApiException  e)
+            catch (ApiException e)
             {
-                Debug.Print("Exception when calling PetApi.FindByStatus: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
+                Console.WriteLine("Exception when calling PetApi.FindByStatus: " + e.Message);
+                Console.WriteLine("Status Code: "+ e.ErrorCode);
+                Console.WriteLine(e.StackTrace);
+            }
+            catch (ClientException e)
+            {
+                Console.WriteLine(e.Response.StatusCode);
+                Console.WriteLine(e.Response.RawContent);
+                Console.WriteLine(e.InnerException);
             }
         }
     }
@@ -303,9 +322,9 @@ Multiple tags can be provided with comma separated strings. Use tag1, tag2, tag3
 
 ### Example
 ```csharp
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using Acme.Net.Api;
 using Acme.Net.Client;
 using Acme.Net.Model;
 
@@ -315,25 +334,32 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration config = new Configuration();
-            config.BasePath = "http://petstore.swagger.io/v2";
-            // Configure OAuth2 access token for authorization: petstore_auth
-            config.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new PetApi(config);
+            AcmeClient client = new AcmeClient();
+            // Configure custom BasePath if desired
+            client.SetBasePath("http://petstore.swagger.io/v2");
+            // Configure OAuth2 access token for authorization: petstore_auth
+            client.SetAccessToken("YOUR_ACCESS_TOKEN");
+
             var tags = new List<string>(); // List<string> | Tags to filter by
 
             try
             {
                 // Finds Pets by tags
-                List<Pet> result = apiInstance.FindByTags(tags);
-                Debug.WriteLine(result);
+                List<Pet> result = client.Pet.FindByTags(tags);
+                Console.WriteLine(result);
             }
-            catch (ApiException  e)
+            catch (ApiException e)
             {
-                Debug.Print("Exception when calling PetApi.FindByTags: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
+                Console.WriteLine("Exception when calling PetApi.FindByTags: " + e.Message);
+                Console.WriteLine("Status Code: "+ e.ErrorCode);
+                Console.WriteLine(e.StackTrace);
+            }
+            catch (ClientException e)
+            {
+                Console.WriteLine(e.Response.StatusCode);
+                Console.WriteLine(e.Response.RawContent);
+                Console.WriteLine(e.InnerException);
             }
         }
     }
@@ -398,9 +424,9 @@ Returns a single pet
 
 ### Example
 ```csharp
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using Acme.Net.Api;
 using Acme.Net.Client;
 using Acme.Net.Model;
 
@@ -410,27 +436,32 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration config = new Configuration();
-            config.BasePath = "http://petstore.swagger.io/v2";
-            // Configure API key authorization: api_key
-            config.AddApiKey("api_key", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("api_key", "Bearer");
 
-            var apiInstance = new PetApi(config);
+            AcmeClient client = new AcmeClient();
+            // Configure custom BasePath if desired
+            client.SetBasePath("http://petstore.swagger.io/v2");
+            // Configure API key authorization: api_key
+            client.SetApiKey("YOUR_API_KEY");
+
             var petId = 789L;  // long | ID of pet to return
 
             try
             {
                 // Find pet by ID
-                Pet result = apiInstance.GetById(petId);
-                Debug.WriteLine(result);
+                Pet result = client.Pet.GetById(petId);
+                Console.WriteLine(result);
             }
-            catch (ApiException  e)
+            catch (ApiException e)
             {
-                Debug.Print("Exception when calling PetApi.GetById: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
+                Console.WriteLine("Exception when calling PetApi.GetById: " + e.Message);
+                Console.WriteLine("Status Code: "+ e.ErrorCode);
+                Console.WriteLine(e.StackTrace);
+            }
+            catch (ClientException e)
+            {
+                Console.WriteLine(e.Response.StatusCode);
+                Console.WriteLine(e.Response.RawContent);
+                Console.WriteLine(e.InnerException);
             }
         }
     }
@@ -494,9 +525,9 @@ Update an existing pet
 
 ### Example
 ```csharp
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using Acme.Net.Api;
 using Acme.Net.Client;
 using Acme.Net.Model;
 
@@ -506,25 +537,32 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration config = new Configuration();
-            config.BasePath = "http://petstore.swagger.io/v2";
-            // Configure OAuth2 access token for authorization: petstore_auth
-            config.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new PetApi(config);
+            AcmeClient client = new AcmeClient();
+            // Configure custom BasePath if desired
+            client.SetBasePath("http://petstore.swagger.io/v2");
+            // Configure OAuth2 access token for authorization: petstore_auth
+            client.SetAccessToken("YOUR_ACCESS_TOKEN");
+
             var pet = new Pet(); // Pet | Pet object that needs to be added to the store
 
             try
             {
                 // Update an existing pet
-                Pet result = apiInstance.Update(pet);
-                Debug.WriteLine(result);
+                Pet result = client.Pet.Update(pet);
+                Console.WriteLine(result);
             }
-            catch (ApiException  e)
+            catch (ApiException e)
             {
-                Debug.Print("Exception when calling PetApi.Update: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
+                Console.WriteLine("Exception when calling PetApi.Update: " + e.Message);
+                Console.WriteLine("Status Code: "+ e.ErrorCode);
+                Console.WriteLine(e.StackTrace);
+            }
+            catch (ClientException e)
+            {
+                Console.WriteLine(e.Response.StatusCode);
+                Console.WriteLine(e.Response.RawContent);
+                Console.WriteLine(e.InnerException);
             }
         }
     }
@@ -589,9 +627,9 @@ Updates a pet in the store with form data
 
 ### Example
 ```csharp
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using Acme.Net.Api;
 using Acme.Net.Client;
 using Acme.Net.Model;
 
@@ -601,12 +639,13 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration config = new Configuration();
-            config.BasePath = "http://petstore.swagger.io/v2";
-            // Configure OAuth2 access token for authorization: petstore_auth
-            config.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new PetApi(config);
+            AcmeClient client = new AcmeClient();
+            // Configure custom BasePath if desired
+            client.SetBasePath("http://petstore.swagger.io/v2");
+            // Configure OAuth2 access token for authorization: petstore_auth
+            client.SetAccessToken("YOUR_ACCESS_TOKEN");
+
             var petId = 789L;  // long | ID of pet that needs to be updated
             var name = "name_example";  // string | Updated name of the pet (optional) 
             var status = "status_example";  // string | Updated status of the pet (optional) 
@@ -614,13 +653,19 @@ namespace Example
             try
             {
                 // Updates a pet in the store with form data
-                apiInstance.UpdateWithForm(petId, name, status);
+                client.Pet.UpdateWithForm(petId, name, status);
             }
-            catch (ApiException  e)
+            catch (ApiException e)
             {
-                Debug.Print("Exception when calling PetApi.UpdateWithForm: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
+                Console.WriteLine("Exception when calling PetApi.UpdateWithForm: " + e.Message);
+                Console.WriteLine("Status Code: "+ e.ErrorCode);
+                Console.WriteLine(e.StackTrace);
+            }
+            catch (ClientException e)
+            {
+                Console.WriteLine(e.Response.StatusCode);
+                Console.WriteLine(e.Response.RawContent);
+                Console.WriteLine(e.InnerException);
             }
         }
     }
@@ -681,9 +726,9 @@ uploads an image
 
 ### Example
 ```csharp
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using Acme.Net.Api;
 using Acme.Net.Client;
 using Acme.Net.Model;
 
@@ -693,12 +738,13 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration config = new Configuration();
-            config.BasePath = "http://petstore.swagger.io/v2";
-            // Configure OAuth2 access token for authorization: petstore_auth
-            config.AccessToken = "YOUR_ACCESS_TOKEN";
 
-            var apiInstance = new PetApi(config);
+            AcmeClient client = new AcmeClient();
+            // Configure custom BasePath if desired
+            client.SetBasePath("http://petstore.swagger.io/v2");
+            // Configure OAuth2 access token for authorization: petstore_auth
+            client.SetAccessToken("YOUR_ACCESS_TOKEN");
+
             var petId = 789L;  // long | ID of pet to update
             var additionalMetadata = "additionalMetadata_example";  // string | Additional data to pass to server (optional) 
             var file = new System.IO.MemoryStream(System.IO.File.ReadAllBytes("/path/to/file.txt"));  // System.IO.Stream | file to upload (optional) 
@@ -706,14 +752,20 @@ namespace Example
             try
             {
                 // uploads an image
-                ApiResponse result = apiInstance.UploadImage(petId, additionalMetadata, file);
-                Debug.WriteLine(result);
+                ApiResponse result = client.Pet.UploadImage(petId, additionalMetadata, file);
+                Console.WriteLine(result);
             }
-            catch (ApiException  e)
+            catch (ApiException e)
             {
-                Debug.Print("Exception when calling PetApi.UploadImage: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
+                Console.WriteLine("Exception when calling PetApi.UploadImage: " + e.Message);
+                Console.WriteLine("Status Code: "+ e.ErrorCode);
+                Console.WriteLine(e.StackTrace);
+            }
+            catch (ClientException e)
+            {
+                Console.WriteLine(e.Response.StatusCode);
+                Console.WriteLine(e.Response.RawContent);
+                Console.WriteLine(e.InnerException);
             }
         }
     }

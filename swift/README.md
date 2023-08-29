@@ -105,6 +105,8 @@ Class | Method | HTTP request | Description
  - [PaginateResponsePageInfo](docs/PaginateResponsePageInfo.md)
  - [Pet](docs/Pet.md)
  - [Tag](docs/Tag.md)
+ - [UpdateWithFormRequest](docs/UpdateWithFormRequest.md)
+ - [UploadImageRequest](docs/UploadImageRequest.md)
  - [User](docs/User.md)
 
 

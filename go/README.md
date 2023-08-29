@@ -116,6 +116,8 @@ Class | Method | HTTP request | Description
  - [PaginateResponsePageInfo](docs/PaginateResponsePageInfo.md)
  - [Pet](docs/Pet.md)
  - [Tag](docs/Tag.md)
+ - [UpdateWithFormRequest](docs/UpdateWithFormRequest.md)
+ - [UploadImageRequest](docs/UploadImageRequest.md)
  - [User](docs/User.md)
 
 
@@ -193,8 +195,3 @@ Each of these functions takes a value of the given basic type and returns a poin
 * `PtrFloat64`
 * `PtrString`
 * `PtrTime`
-
-## Author
-
-
-

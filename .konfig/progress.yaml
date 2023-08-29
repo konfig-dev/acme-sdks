@@ -84,3 +84,4 @@ securityParameters:
     query: false
   username:
     query: false
+validServerUrls: {}

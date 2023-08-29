@@ -29,6 +29,7 @@ using RestSharp.Serializers;
 using RestSharpMethod = RestSharp.Method;
 using Polly;
 using Acme.Net.Client.Auth;
+using Acme.Net.Client;
 
 namespace Acme.Net.Client
 {
@@ -138,14 +139,7 @@ namespace Acme.Net.Client
             }
 
             // at this point, it must be a model (json)
-            try
-            {
-                return JsonConvert.DeserializeObject(response.Content, type, _serializerSettings);
-            }
-            catch (Exception e)
-            {
-                throw new ApiException(500, e.Message);
-            }
+            return JsonConvert.DeserializeObject(response.Content, type, _serializerSettings);
         }
 
         public ISerializer Serializer => this;
@@ -171,7 +165,7 @@ namespace Acme.Net.Client
     /// </summary>
     public partial class ApiClient : ISynchronousClient, IAsynchronousClient
     {
-        private readonly string _baseUrl;
+        private readonly IReadableConfiguration _configuration;
 
         /// <summary>
         /// Specifies the settings on a <see cref="JsonSerializer" /> object.
@@ -208,20 +202,20 @@ namespace Acme.Net.Client
         /// </summary>
         public ApiClient()
         {
-            _baseUrl = Acme.Net.Client.GlobalConfiguration.Instance.BasePath;
+            _configuration = Acme.Net.Client.GlobalConfiguration.Instance;
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ApiClient" />
         /// </summary>
-        /// <param name="basePath">The target service's base path in URL format.</param>
+        /// <param name="configuration">The configuration for this Client instance</param>
         /// <exception cref="ArgumentException"></exception>
-        public ApiClient(string basePath)
+        public ApiClient(IReadableConfiguration configuration)
         {
-            if (string.IsNullOrEmpty(basePath))
-                throw new ArgumentException("basePath cannot be empty");
+            if (configuration == null)
+                throw new ArgumentException("configuration cannot be empty");
 
-            _baseUrl = basePath;
+            _configuration = configuration;
         }
 
         /// <summary>
@@ -401,6 +395,11 @@ namespace Acme.Net.Client
                 Cookies = new List<Cookie>()
             };
 
+            if (response.ErrorException != null)
+            {
+                transformed.Exception = response.ErrorException;
+            }
+
             if (response.Headers != null)
             {
                 foreach (var responseHeader in response.Headers)
@@ -436,7 +435,7 @@ namespace Acme.Net.Client
 
         private ApiResponse<T> Exec<T>(RestRequest req, RequestOptions options, IReadableConfiguration configuration)
         {
-            var baseUrl = configuration.GetOperationServerUrl(options.Operation, options.OperationIndex) ?? _baseUrl;
+            var baseUrl = configuration.GetOperationServerUrl(options.Operation, options.OperationIndex) ?? _configuration.BasePath;
 
             var cookies = new CookieContainer();
 
@@ -454,11 +453,15 @@ namespace Acme.Net.Client
                 CookieContainer = cookies,
                 MaxTimeout = configuration.Timeout,
                 Proxy = configuration.Proxy,
-                UserAgent = configuration.UserAgent
+            };
+            if (!configuration.VerifySsl)
+            {
+                clientOptions.RemoteCertificateValidationCallback = (sender, certificate, chain, sslPolicyErrors) => true;
             };
 
             RestClient client = new RestClient(clientOptions)
                 .UseSerializer(() => new CustomJsonCodec(SerializerSettings, configuration));
+            client.AddDefaultHeader("User-Agent", configuration.UserAgent);
 
             if (!string.IsNullOrEmpty(configuration.OAuthTokenUrl) &&
                 !string.IsNullOrEmpty(configuration.OAuthClientId) &&
@@ -556,18 +559,22 @@ namespace Acme.Net.Client
 
         private async Task<ApiResponse<T>> ExecAsync<T>(RestRequest req, RequestOptions options, IReadableConfiguration configuration, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            var baseUrl = configuration.GetOperationServerUrl(options.Operation, options.OperationIndex) ?? _baseUrl;
+            var baseUrl = configuration.GetOperationServerUrl(options.Operation, options.OperationIndex) ?? _configuration.BasePath;
 
             var clientOptions = new RestClientOptions(baseUrl)
             {
                 ClientCertificates = configuration.ClientCertificates,
                 MaxTimeout = configuration.Timeout,
                 Proxy = configuration.Proxy,
-                UserAgent = configuration.UserAgent
+            };
+            if (!configuration.VerifySsl)
+            {
+                clientOptions.RemoteCertificateValidationCallback = (sender, certificate, chain, sslPolicyErrors) => true;
             };
 
             RestClient client = new RestClient(clientOptions)
                 .UseSerializer(() => new CustomJsonCodec(SerializerSettings, configuration));
+            client.AddDefaultHeader("User-Agent", configuration.UserAgent);
 
             if (!string.IsNullOrEmpty(configuration.OAuthTokenUrl) &&
                 !string.IsNullOrEmpty(configuration.OAuthClientId) &&

@@ -33,6 +33,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
+import org.apache.commons.lang3.StringUtils;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
@@ -69,6 +70,10 @@ public class PaginateResponsePageInfo {
   }
 
   public PaginateResponsePageInfo hasNextPage(Boolean hasNextPage) {
+
+    
+    
+    
     
     this.hasNextPage = hasNextPage;
     return this;
@@ -87,11 +92,19 @@ public class PaginateResponsePageInfo {
 
 
   public void setHasNextPage(Boolean hasNextPage) {
+
+    
+    
+    
     this.hasNextPage = hasNextPage;
   }
 
 
   public PaginateResponsePageInfo hasPreviousPage(Boolean hasPreviousPage) {
+
+    
+    
+    
     
     this.hasPreviousPage = hasPreviousPage;
     return this;
@@ -110,11 +123,19 @@ public class PaginateResponsePageInfo {
 
 
   public void setHasPreviousPage(Boolean hasPreviousPage) {
+
+    
+    
+    
     this.hasPreviousPage = hasPreviousPage;
   }
 
 
   public PaginateResponsePageInfo startCursor(String startCursor) {
+
+    
+    
+    
     
     this.startCursor = startCursor;
     return this;
@@ -133,11 +154,19 @@ public class PaginateResponsePageInfo {
 
 
   public void setStartCursor(String startCursor) {
+
+    
+    
+    
     this.startCursor = startCursor;
   }
 
 
   public PaginateResponsePageInfo endCursor(String endCursor) {
+
+    
+    
+    
     
     this.endCursor = endCursor;
     return this;
@@ -156,6 +185,10 @@ public class PaginateResponsePageInfo {
 
 
   public void setEndCursor(String endCursor) {
+
+    
+    
+    
     this.endCursor = endCursor;
   }
 

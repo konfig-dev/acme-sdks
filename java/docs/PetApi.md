@@ -16,7 +16,7 @@ All URIs are relative to *http://petstore.swagger.io/v2*
 
 <a name="add"></a>
 # **add**
-> Pet add(pet)
+> Pet add(pet).execute();
 
 Add a new pet to the store
 
@@ -24,37 +24,89 @@ Add a new pet to the store
 
 ### Example
 ```java
-// Import classes:
 import com.acme.client.ApiClient;
 import com.acme.client.ApiException;
+import com.acme.client.ApiResponse;
+import com.acme.client.Acme;
 import com.acme.client.Configuration;
 import com.acme.client.auth.*;
 import com.acme.client.model.*;
 import com.acme.client.api.PetApi;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 public class Example {
   public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://petstore.swagger.io/v2");
+    Configuration configuration = new Configuration();
+    configuration.host = "http://petstore.swagger.io/v2";
     
     // Configure OAuth2 access token for authorization: petstore_auth
-    OAuth petstore_auth = (OAuth) defaultClient.getAuthentication("petstore_auth");
-    petstore_auth.setAccessToken("YOUR ACCESS TOKEN");
+    configuration.accessToken = "YOUR ACCESS TOKEN";
 
-    PetApi apiInstance = new PetApi(defaultClient);
-    Pet pet = new Pet(); // Pet | Pet object that needs to be added to the store
+    Acme client = new Acme(configuration);
+    String name = "name_example";
+    List<String> photoUrls = Arrays.asList();
+    List<Tag> tags = Arrays.asList();
+    Long id = 56L;
+    Category category = new Category();
+    String status = "available"; // pet status in the store
     try {
-      Pet result = apiInstance.add(pet);
+      Pet result = client
+              .pet
+              .add(name, photoUrls)
+              .tags(tags)
+              .id(id)
+              .category(category)
+              .status(status)
+              .execute();
       System.out.println(result);
+
+      System.out.println(result.getTags());
+
+      System.out.println(result.getId());
+
+      System.out.println(result.getCategory());
+
+      System.out.println(result.getName());
+
+      System.out.println(result.getPhotoUrls());
+
+      System.out.println(result.getStatus());
+
     } catch (ApiException e) {
       System.err.println("Exception when calling PetApi#add");
-      System.err.println("Status code: " + e.getCode());
+      System.err.println("Status code: " + e.getStatusCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+
+    // Use .executeWithHttpInfo() to retrieve HTTP Status Code, Headers and Request
+    try {
+      ApiResponse<Pet> response = client
+              .pet
+              .add(name, photoUrls)
+              .tags(tags)
+              .id(id)
+              .category(category)
+              .status(status)
+              .executeWithHttpInfo();
+      System.out.println(response.getResponseBody());
+      System.out.println(response.getResponseHeaders());
+      System.out.println(response.getStatusCode());
+      System.out.println(response.getRoundTripTime());
+      System.out.println(response.getRequest());
+    } catch (ApiException e) {
+      System.err.println("Exception when calling PetApi#add");
+      System.err.println("Status code: " + e.getStatusCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
       e.printStackTrace();
     }
   }
 }
+
 ```
 
 ### Parameters
@@ -84,7 +136,7 @@ public class Example {
 
 <a name="delete"></a>
 # **delete**
-> delete(petId)
+> delete(petId).execute();
 
 Deletes a pet
 
@@ -92,42 +144,60 @@ Deletes a pet
 
 ### Example
 ```java
-// Import classes:
 import com.acme.client.ApiClient;
 import com.acme.client.ApiException;
+import com.acme.client.ApiResponse;
+import com.acme.client.Acme;
 import com.acme.client.Configuration;
 import com.acme.client.auth.*;
 import com.acme.client.model.*;
 import com.acme.client.api.PetApi;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 public class Example {
   public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://petstore.swagger.io/v2");
+    Configuration configuration = new Configuration();
+    configuration.host = "http://petstore.swagger.io/v2";
     
     // Configure API key authorization: api_key
-    ApiKeyAuth api_key = (ApiKeyAuth) defaultClient.getAuthentication("api_key");
-    api_key.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //api_key.setApiKeyPrefix("Token");
+    configuration.api_key  = "YOUR API KEY";
 
     // Configure OAuth2 access token for authorization: petstore_auth
-    OAuth petstore_auth = (OAuth) defaultClient.getAuthentication("petstore_auth");
-    petstore_auth.setAccessToken("YOUR ACCESS TOKEN");
+    configuration.accessToken = "YOUR ACCESS TOKEN";
 
-    PetApi apiInstance = new PetApi(defaultClient);
-    Long petId = 56L; // Long | Pet id to delete
+    Acme client = new Acme(configuration);
+    Long petId = 56L; // Pet id to delete
     try {
-      apiInstance.delete(petId);
+      client
+              .pet
+              .delete(petId)
+              .execute();
     } catch (ApiException e) {
       System.err.println("Exception when calling PetApi#delete");
-      System.err.println("Status code: " + e.getCode());
+      System.err.println("Status code: " + e.getStatusCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+
+    // Use .executeWithHttpInfo() to retrieve HTTP Status Code, Headers and Request
+    try {
+      client
+              .pet
+              .delete(petId)
+              .executeWithHttpInfo();
+    } catch (ApiException e) {
+      System.err.println("Exception when calling PetApi#delete");
+      System.err.println("Status code: " + e.getStatusCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
       e.printStackTrace();
     }
   }
 }
+
 ```
 
 ### Parameters
@@ -156,7 +226,7 @@ null (empty response body)
 
 <a name="findByStatus"></a>
 # **findByStatus**
-> List&lt;Pet&gt; findByStatus(status)
+> List&lt;Pet&gt; findByStatus(status).execute();
 
 Finds Pets by status
 
@@ -164,37 +234,64 @@ Multiple status values can be provided with comma separated strings
 
 ### Example
 ```java
-// Import classes:
 import com.acme.client.ApiClient;
 import com.acme.client.ApiException;
+import com.acme.client.ApiResponse;
+import com.acme.client.Acme;
 import com.acme.client.Configuration;
 import com.acme.client.auth.*;
 import com.acme.client.model.*;
 import com.acme.client.api.PetApi;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 public class Example {
   public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://petstore.swagger.io/v2");
+    Configuration configuration = new Configuration();
+    configuration.host = "http://petstore.swagger.io/v2";
     
     // Configure OAuth2 access token for authorization: petstore_auth
-    OAuth petstore_auth = (OAuth) defaultClient.getAuthentication("petstore_auth");
-    petstore_auth.setAccessToken("YOUR ACCESS TOKEN");
+    configuration.accessToken = "YOUR ACCESS TOKEN";
 
-    PetApi apiInstance = new PetApi(defaultClient);
-    List<String> status = Arrays.asList("available"); // List<String> | Status values that need to be considered for filter
+    Acme client = new Acme(configuration);
+    List<String> status = Arrays.asList("available"); // Status values that need to be considered for filter
     try {
-      List<Pet> result = apiInstance.findByStatus(status);
+      List<Pet> result = client
+              .pet
+              .findByStatus(status)
+              .execute();
       System.out.println(result);
+
     } catch (ApiException e) {
       System.err.println("Exception when calling PetApi#findByStatus");
-      System.err.println("Status code: " + e.getCode());
+      System.err.println("Status code: " + e.getStatusCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+
+    // Use .executeWithHttpInfo() to retrieve HTTP Status Code, Headers and Request
+    try {
+      ApiResponse<List<Pet>> response = client
+              .pet
+              .findByStatus(status)
+              .executeWithHttpInfo();
+      System.out.println(response.getResponseBody());
+      System.out.println(response.getResponseHeaders());
+      System.out.println(response.getStatusCode());
+      System.out.println(response.getRoundTripTime());
+      System.out.println(response.getRequest());
+    } catch (ApiException e) {
+      System.err.println("Exception when calling PetApi#findByStatus");
+      System.err.println("Status code: " + e.getStatusCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
       e.printStackTrace();
     }
   }
 }
+
 ```
 
 ### Parameters
@@ -224,7 +321,7 @@ public class Example {
 
 <a name="findByTags"></a>
 # **findByTags**
-> List&lt;Pet&gt; findByTags(tags)
+> List&lt;Pet&gt; findByTags(tags).execute();
 
 Finds Pets by tags
 
@@ -232,37 +329,64 @@ Multiple tags can be provided with comma separated strings. Use tag1, tag2, tag3
 
 ### Example
 ```java
-// Import classes:
 import com.acme.client.ApiClient;
 import com.acme.client.ApiException;
+import com.acme.client.ApiResponse;
+import com.acme.client.Acme;
 import com.acme.client.Configuration;
 import com.acme.client.auth.*;
 import com.acme.client.model.*;
 import com.acme.client.api.PetApi;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 public class Example {
   public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://petstore.swagger.io/v2");
+    Configuration configuration = new Configuration();
+    configuration.host = "http://petstore.swagger.io/v2";
     
     // Configure OAuth2 access token for authorization: petstore_auth
-    OAuth petstore_auth = (OAuth) defaultClient.getAuthentication("petstore_auth");
-    petstore_auth.setAccessToken("YOUR ACCESS TOKEN");
+    configuration.accessToken = "YOUR ACCESS TOKEN";
 
-    PetApi apiInstance = new PetApi(defaultClient);
-    List<String> tags = Arrays.asList(); // List<String> | Tags to filter by
+    Acme client = new Acme(configuration);
+    List<String> tags = Arrays.asList(); // Tags to filter by
     try {
-      List<Pet> result = apiInstance.findByTags(tags);
+      List<Pet> result = client
+              .pet
+              .findByTags(tags)
+              .execute();
       System.out.println(result);
+
     } catch (ApiException e) {
       System.err.println("Exception when calling PetApi#findByTags");
-      System.err.println("Status code: " + e.getCode());
+      System.err.println("Status code: " + e.getStatusCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+
+    // Use .executeWithHttpInfo() to retrieve HTTP Status Code, Headers and Request
+    try {
+      ApiResponse<List<Pet>> response = client
+              .pet
+              .findByTags(tags)
+              .executeWithHttpInfo();
+      System.out.println(response.getResponseBody());
+      System.out.println(response.getResponseHeaders());
+      System.out.println(response.getStatusCode());
+      System.out.println(response.getRoundTripTime());
+      System.out.println(response.getRequest());
+    } catch (ApiException e) {
+      System.err.println("Exception when calling PetApi#findByTags");
+      System.err.println("Status code: " + e.getStatusCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
       e.printStackTrace();
     }
   }
 }
+
 ```
 
 ### Parameters
@@ -292,7 +416,7 @@ public class Example {
 
 <a name="getById"></a>
 # **getById**
-> Pet getById(petId)
+> Pet getById(petId).execute();
 
 Find pet by ID
 
@@ -300,39 +424,76 @@ Returns a single pet
 
 ### Example
 ```java
-// Import classes:
 import com.acme.client.ApiClient;
 import com.acme.client.ApiException;
+import com.acme.client.ApiResponse;
+import com.acme.client.Acme;
 import com.acme.client.Configuration;
 import com.acme.client.auth.*;
 import com.acme.client.model.*;
 import com.acme.client.api.PetApi;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 public class Example {
   public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://petstore.swagger.io/v2");
+    Configuration configuration = new Configuration();
+    configuration.host = "http://petstore.swagger.io/v2";
     
     // Configure API key authorization: api_key
-    ApiKeyAuth api_key = (ApiKeyAuth) defaultClient.getAuthentication("api_key");
-    api_key.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //api_key.setApiKeyPrefix("Token");
+    configuration.api_key  = "YOUR API KEY";
 
-    PetApi apiInstance = new PetApi(defaultClient);
-    Long petId = 56L; // Long | ID of pet to return
+    Acme client = new Acme(configuration);
+    Long petId = 56L; // ID of pet to return
     try {
-      Pet result = apiInstance.getById(petId);
+      Pet result = client
+              .pet
+              .getById(petId)
+              .execute();
       System.out.println(result);
+
+      System.out.println(result.getTags());
+
+      System.out.println(result.getId());
+
+      System.out.println(result.getCategory());
+
+      System.out.println(result.getName());
+
+      System.out.println(result.getPhotoUrls());
+
+      System.out.println(result.getStatus());
+
     } catch (ApiException e) {
       System.err.println("Exception when calling PetApi#getById");
-      System.err.println("Status code: " + e.getCode());
+      System.err.println("Status code: " + e.getStatusCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+
+    // Use .executeWithHttpInfo() to retrieve HTTP Status Code, Headers and Request
+    try {
+      ApiResponse<Pet> response = client
+              .pet
+              .getById(petId)
+              .executeWithHttpInfo();
+      System.out.println(response.getResponseBody());
+      System.out.println(response.getResponseHeaders());
+      System.out.println(response.getStatusCode());
+      System.out.println(response.getRoundTripTime());
+      System.out.println(response.getRequest());
+    } catch (ApiException e) {
+      System.err.println("Exception when calling PetApi#getById");
+      System.err.println("Status code: " + e.getStatusCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
       e.printStackTrace();
     }
   }
 }
+
 ```
 
 ### Parameters
@@ -363,7 +524,7 @@ public class Example {
 
 <a name="update"></a>
 # **update**
-> Pet update(pet)
+> Pet update(pet).execute();
 
 Update an existing pet
 
@@ -371,37 +532,89 @@ Update an existing pet
 
 ### Example
 ```java
-// Import classes:
 import com.acme.client.ApiClient;
 import com.acme.client.ApiException;
+import com.acme.client.ApiResponse;
+import com.acme.client.Acme;
 import com.acme.client.Configuration;
 import com.acme.client.auth.*;
 import com.acme.client.model.*;
 import com.acme.client.api.PetApi;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 public class Example {
   public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://petstore.swagger.io/v2");
+    Configuration configuration = new Configuration();
+    configuration.host = "http://petstore.swagger.io/v2";
     
     // Configure OAuth2 access token for authorization: petstore_auth
-    OAuth petstore_auth = (OAuth) defaultClient.getAuthentication("petstore_auth");
-    petstore_auth.setAccessToken("YOUR ACCESS TOKEN");
+    configuration.accessToken = "YOUR ACCESS TOKEN";
 
-    PetApi apiInstance = new PetApi(defaultClient);
-    Pet pet = new Pet(); // Pet | Pet object that needs to be added to the store
+    Acme client = new Acme(configuration);
+    String name = "name_example";
+    List<String> photoUrls = Arrays.asList();
+    List<Tag> tags = Arrays.asList();
+    Long id = 56L;
+    Category category = new Category();
+    String status = "available"; // pet status in the store
     try {
-      Pet result = apiInstance.update(pet);
+      Pet result = client
+              .pet
+              .update(name, photoUrls)
+              .tags(tags)
+              .id(id)
+              .category(category)
+              .status(status)
+              .execute();
       System.out.println(result);
+
+      System.out.println(result.getTags());
+
+      System.out.println(result.getId());
+
+      System.out.println(result.getCategory());
+
+      System.out.println(result.getName());
+
+      System.out.println(result.getPhotoUrls());
+
+      System.out.println(result.getStatus());
+
     } catch (ApiException e) {
       System.err.println("Exception when calling PetApi#update");
-      System.err.println("Status code: " + e.getCode());
+      System.err.println("Status code: " + e.getStatusCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+
+    // Use .executeWithHttpInfo() to retrieve HTTP Status Code, Headers and Request
+    try {
+      ApiResponse<Pet> response = client
+              .pet
+              .update(name, photoUrls)
+              .tags(tags)
+              .id(id)
+              .category(category)
+              .status(status)
+              .executeWithHttpInfo();
+      System.out.println(response.getResponseBody());
+      System.out.println(response.getResponseHeaders());
+      System.out.println(response.getStatusCode());
+      System.out.println(response.getRoundTripTime());
+      System.out.println(response.getRequest());
+    } catch (ApiException e) {
+      System.err.println("Exception when calling PetApi#update");
+      System.err.println("Status code: " + e.getStatusCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
       e.printStackTrace();
     }
   }
 }
+
 ```
 
 ### Parameters
@@ -433,7 +646,7 @@ public class Example {
 
 <a name="updateWithForm"></a>
 # **updateWithForm**
-> updateWithForm(petId, name, status)
+> updateWithForm(petId).name(name).status(status).execute();
 
 Updates a pet in the store with form data
 
@@ -441,38 +654,63 @@ Updates a pet in the store with form data
 
 ### Example
 ```java
-// Import classes:
 import com.acme.client.ApiClient;
 import com.acme.client.ApiException;
+import com.acme.client.ApiResponse;
+import com.acme.client.Acme;
 import com.acme.client.Configuration;
 import com.acme.client.auth.*;
 import com.acme.client.model.*;
 import com.acme.client.api.PetApi;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 public class Example {
   public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://petstore.swagger.io/v2");
+    Configuration configuration = new Configuration();
+    configuration.host = "http://petstore.swagger.io/v2";
     
     // Configure OAuth2 access token for authorization: petstore_auth
-    OAuth petstore_auth = (OAuth) defaultClient.getAuthentication("petstore_auth");
-    petstore_auth.setAccessToken("YOUR ACCESS TOKEN");
+    configuration.accessToken = "YOUR ACCESS TOKEN";
 
-    PetApi apiInstance = new PetApi(defaultClient);
-    Long petId = 56L; // Long | ID of pet that needs to be updated
-    String name = "name_example"; // String | Updated name of the pet
-    String status = "status_example"; // String | Updated status of the pet
+    Acme client = new Acme(configuration);
+    Long petId = 56L; // ID of pet that needs to be updated
+    String name = "name_example"; // Updated name of the pet
+    String status = "status_example"; // Updated status of the pet
     try {
-      apiInstance.updateWithForm(petId, name, status);
+      client
+              .pet
+              .updateWithForm(petId)
+              .name(name)
+              .status(status)
+              .execute();
     } catch (ApiException e) {
       System.err.println("Exception when calling PetApi#updateWithForm");
-      System.err.println("Status code: " + e.getCode());
+      System.err.println("Status code: " + e.getStatusCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+
+    // Use .executeWithHttpInfo() to retrieve HTTP Status Code, Headers and Request
+    try {
+      client
+              .pet
+              .updateWithForm(petId)
+              .name(name)
+              .status(status)
+              .executeWithHttpInfo();
+    } catch (ApiException e) {
+      System.err.println("Exception when calling PetApi#updateWithForm");
+      System.err.println("Status code: " + e.getStatusCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
       e.printStackTrace();
     }
   }
 }
+
 ```
 
 ### Parameters
@@ -503,7 +741,7 @@ null (empty response body)
 
 <a name="uploadImage"></a>
 # **uploadImage**
-> ModelApiResponse uploadImage(petId, additionalMetadata, _file)
+> ModelApiResponse uploadImage(petId).additionalMetadata(additionalMetadata)._file(_file).execute();
 
 uploads an image
 
@@ -511,39 +749,68 @@ uploads an image
 
 ### Example
 ```java
-// Import classes:
 import com.acme.client.ApiClient;
 import com.acme.client.ApiException;
+import com.acme.client.ApiResponse;
+import com.acme.client.Acme;
 import com.acme.client.Configuration;
 import com.acme.client.auth.*;
 import com.acme.client.model.*;
 import com.acme.client.api.PetApi;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 public class Example {
   public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://petstore.swagger.io/v2");
+    Configuration configuration = new Configuration();
+    configuration.host = "http://petstore.swagger.io/v2";
     
     // Configure OAuth2 access token for authorization: petstore_auth
-    OAuth petstore_auth = (OAuth) defaultClient.getAuthentication("petstore_auth");
-    petstore_auth.setAccessToken("YOUR ACCESS TOKEN");
+    configuration.accessToken = "YOUR ACCESS TOKEN";
 
-    PetApi apiInstance = new PetApi(defaultClient);
-    Long petId = 56L; // Long | ID of pet to update
-    String additionalMetadata = "additionalMetadata_example"; // String | Additional data to pass to server
-    File _file = new File("/path/to/file"); // File | file to upload
+    Acme client = new Acme(configuration);
+    Long petId = 56L; // ID of pet to update
+    String additionalMetadata = "additionalMetadata_example"; // Additional data to pass to server
+    File _file = new File("/path/to/file"); // file to upload
     try {
-      ModelApiResponse result = apiInstance.uploadImage(petId, additionalMetadata, _file);
-      System.out.println(result);
+      ModelApiResponse result = client
+              .pet
+              .uploadImage(petId)
+              .additionalMetadata(additionalMetadata)
+              ._file(_file)
+              .execute();
     } catch (ApiException e) {
       System.err.println("Exception when calling PetApi#uploadImage");
-      System.err.println("Status code: " + e.getCode());
+      System.err.println("Status code: " + e.getStatusCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+
+    // Use .executeWithHttpInfo() to retrieve HTTP Status Code, Headers and Request
+    try {
+      ApiResponse<ModelApiResponse> response = client
+              .pet
+              .uploadImage(petId)
+              .additionalMetadata(additionalMetadata)
+              ._file(_file)
+              .executeWithHttpInfo();
+      System.out.println(response.getResponseBody());
+      System.out.println(response.getResponseHeaders());
+      System.out.println(response.getStatusCode());
+      System.out.println(response.getRoundTripTime());
+      System.out.println(response.getRequest());
+    } catch (ApiException e) {
+      System.err.println("Exception when calling PetApi#uploadImage");
+      System.err.println("Status code: " + e.getStatusCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
       e.printStackTrace();
     }
   }
 }
+
 ```
 
 ### Parameters

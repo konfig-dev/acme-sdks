@@ -23,9 +23,9 @@ This can only be done by the logged in user.
 
 ### Example
 ```csharp
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using Acme.Net.Api;
 using Acme.Net.Client;
 using Acme.Net.Model;
 
@@ -35,26 +35,31 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration config = new Configuration();
-            config.BasePath = "http://petstore.swagger.io/v2";
-            // Configure API key authorization: api_key
-            config.AddApiKey("api_key", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("api_key", "Bearer");
 
-            var apiInstance = new UserApi(config);
+            AcmeClient client = new AcmeClient();
+            // Configure custom BasePath if desired
+            client.SetBasePath("http://petstore.swagger.io/v2");
+            // Configure API key authorization: api_key
+            client.SetApiKey("YOUR_API_KEY");
+
             var user = new User(); // User | Created user object
 
             try
             {
                 // Create user
-                apiInstance.Create(user);
+                client.User.Create(user);
             }
-            catch (ApiException  e)
+            catch (ApiException e)
             {
-                Debug.Print("Exception when calling UserApi.Create: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
+                Console.WriteLine("Exception when calling UserApi.Create: " + e.Message);
+                Console.WriteLine("Status Code: "+ e.ErrorCode);
+                Console.WriteLine(e.StackTrace);
+            }
+            catch (ClientException e)
+            {
+                Console.WriteLine(e.Response.StatusCode);
+                Console.WriteLine(e.Response.RawContent);
+                Console.WriteLine(e.InnerException);
             }
         }
     }
@@ -113,9 +118,9 @@ Creates list of users with given input array
 
 ### Example
 ```csharp
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using Acme.Net.Api;
 using Acme.Net.Client;
 using Acme.Net.Model;
 
@@ -125,26 +130,31 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration config = new Configuration();
-            config.BasePath = "http://petstore.swagger.io/v2";
-            // Configure API key authorization: api_key
-            config.AddApiKey("api_key", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("api_key", "Bearer");
 
-            var apiInstance = new UserApi(config);
+            AcmeClient client = new AcmeClient();
+            // Configure custom BasePath if desired
+            client.SetBasePath("http://petstore.swagger.io/v2");
+            // Configure API key authorization: api_key
+            client.SetApiKey("YOUR_API_KEY");
+
             var user = new List<User>(); // List<User> | List of user object
 
             try
             {
                 // Creates list of users with given input array
-                apiInstance.CreateWithArray(user);
+                client.User.CreateWithArray(user);
             }
-            catch (ApiException  e)
+            catch (ApiException e)
             {
-                Debug.Print("Exception when calling UserApi.CreateWithArray: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
+                Console.WriteLine("Exception when calling UserApi.CreateWithArray: " + e.Message);
+                Console.WriteLine("Status Code: "+ e.ErrorCode);
+                Console.WriteLine(e.StackTrace);
+            }
+            catch (ClientException e)
+            {
+                Console.WriteLine(e.Response.StatusCode);
+                Console.WriteLine(e.Response.RawContent);
+                Console.WriteLine(e.InnerException);
             }
         }
     }
@@ -203,9 +213,9 @@ Creates list of users with given input array
 
 ### Example
 ```csharp
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using Acme.Net.Api;
 using Acme.Net.Client;
 using Acme.Net.Model;
 
@@ -215,26 +225,31 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration config = new Configuration();
-            config.BasePath = "http://petstore.swagger.io/v2";
-            // Configure API key authorization: api_key
-            config.AddApiKey("api_key", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("api_key", "Bearer");
 
-            var apiInstance = new UserApi(config);
+            AcmeClient client = new AcmeClient();
+            // Configure custom BasePath if desired
+            client.SetBasePath("http://petstore.swagger.io/v2");
+            // Configure API key authorization: api_key
+            client.SetApiKey("YOUR_API_KEY");
+
             var user = new List<User>(); // List<User> | List of user object
 
             try
             {
                 // Creates list of users with given input array
-                apiInstance.CreateWithList(user);
+                client.User.CreateWithList(user);
             }
-            catch (ApiException  e)
+            catch (ApiException e)
             {
-                Debug.Print("Exception when calling UserApi.CreateWithList: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
+                Console.WriteLine("Exception when calling UserApi.CreateWithList: " + e.Message);
+                Console.WriteLine("Status Code: "+ e.ErrorCode);
+                Console.WriteLine(e.StackTrace);
+            }
+            catch (ClientException e)
+            {
+                Console.WriteLine(e.Response.StatusCode);
+                Console.WriteLine(e.Response.RawContent);
+                Console.WriteLine(e.InnerException);
             }
         }
     }
@@ -295,9 +310,9 @@ This can only be done by the logged in user.
 
 ### Example
 ```csharp
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using Acme.Net.Api;
 using Acme.Net.Client;
 using Acme.Net.Model;
 
@@ -307,26 +322,31 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration config = new Configuration();
-            config.BasePath = "http://petstore.swagger.io/v2";
-            // Configure API key authorization: api_key
-            config.AddApiKey("api_key", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("api_key", "Bearer");
 
-            var apiInstance = new UserApi(config);
+            AcmeClient client = new AcmeClient();
+            // Configure custom BasePath if desired
+            client.SetBasePath("http://petstore.swagger.io/v2");
+            // Configure API key authorization: api_key
+            client.SetApiKey("YOUR_API_KEY");
+
             var username = "username_example";  // string | The name that needs to be deleted
 
             try
             {
                 // Delete user
-                apiInstance.Delete(username);
+                client.User.Delete(username);
             }
-            catch (ApiException  e)
+            catch (ApiException e)
             {
-                Debug.Print("Exception when calling UserApi.Delete: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
+                Console.WriteLine("Exception when calling UserApi.Delete: " + e.Message);
+                Console.WriteLine("Status Code: "+ e.ErrorCode);
+                Console.WriteLine(e.StackTrace);
+            }
+            catch (ClientException e)
+            {
+                Console.WriteLine(e.Response.StatusCode);
+                Console.WriteLine(e.Response.RawContent);
+                Console.WriteLine(e.InnerException);
             }
         }
     }
@@ -387,9 +407,9 @@ Get user by user name
 
 ### Example
 ```csharp
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using Acme.Net.Api;
 using Acme.Net.Client;
 using Acme.Net.Model;
 
@@ -399,22 +419,30 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration config = new Configuration();
-            config.BasePath = "http://petstore.swagger.io/v2";
-            var apiInstance = new UserApi(config);
+
+            AcmeClient client = new AcmeClient();
+            // Configure custom BasePath if desired
+            client.SetBasePath("http://petstore.swagger.io/v2");
+
             var username = "username_example";  // string | The name that needs to be fetched. Use user1 for testing.
 
             try
             {
                 // Get user by user name
-                User result = apiInstance.GetByName(username);
-                Debug.WriteLine(result);
+                User result = client.User.GetByName(username);
+                Console.WriteLine(result);
             }
-            catch (ApiException  e)
+            catch (ApiException e)
             {
-                Debug.Print("Exception when calling UserApi.GetByName: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
+                Console.WriteLine("Exception when calling UserApi.GetByName: " + e.Message);
+                Console.WriteLine("Status Code: "+ e.ErrorCode);
+                Console.WriteLine(e.StackTrace);
+            }
+            catch (ClientException e)
+            {
+                Console.WriteLine(e.Response.StatusCode);
+                Console.WriteLine(e.Response.RawContent);
+                Console.WriteLine(e.InnerException);
             }
         }
     }
@@ -478,9 +506,9 @@ Logs user into the system
 
 ### Example
 ```csharp
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using Acme.Net.Api;
 using Acme.Net.Client;
 using Acme.Net.Model;
 
@@ -490,23 +518,31 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration config = new Configuration();
-            config.BasePath = "http://petstore.swagger.io/v2";
-            var apiInstance = new UserApi(config);
+
+            AcmeClient client = new AcmeClient();
+            // Configure custom BasePath if desired
+            client.SetBasePath("http://petstore.swagger.io/v2");
+
             var username = "username_example";  // string | The user name for login
             var password = "password_example";  // string | The password for login in clear text
 
             try
             {
                 // Logs user into the system
-                string result = apiInstance.Login(username, password);
-                Debug.WriteLine(result);
+                string result = client.User.Login(username, password);
+                Console.WriteLine(result);
             }
-            catch (ApiException  e)
+            catch (ApiException e)
             {
-                Debug.Print("Exception when calling UserApi.Login: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
+                Console.WriteLine("Exception when calling UserApi.Login: " + e.Message);
+                Console.WriteLine("Status Code: "+ e.ErrorCode);
+                Console.WriteLine(e.StackTrace);
+            }
+            catch (ClientException e)
+            {
+                Console.WriteLine(e.Response.StatusCode);
+                Console.WriteLine(e.Response.RawContent);
+                Console.WriteLine(e.InnerException);
             }
         }
     }
@@ -570,9 +606,9 @@ Logs out current logged in user session
 
 ### Example
 ```csharp
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using Acme.Net.Api;
 using Acme.Net.Client;
 using Acme.Net.Model;
 
@@ -582,25 +618,30 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration config = new Configuration();
-            config.BasePath = "http://petstore.swagger.io/v2";
-            // Configure API key authorization: api_key
-            config.AddApiKey("api_key", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("api_key", "Bearer");
 
-            var apiInstance = new UserApi(config);
+            AcmeClient client = new AcmeClient();
+            // Configure custom BasePath if desired
+            client.SetBasePath("http://petstore.swagger.io/v2");
+            // Configure API key authorization: api_key
+            client.SetApiKey("YOUR_API_KEY");
+
 
             try
             {
                 // Logs out current logged in user session
-                apiInstance.Logout();
+                client.User.Logout();
             }
-            catch (ApiException  e)
+            catch (ApiException e)
             {
-                Debug.Print("Exception when calling UserApi.Logout: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
+                Console.WriteLine("Exception when calling UserApi.Logout: " + e.Message);
+                Console.WriteLine("Status Code: "+ e.ErrorCode);
+                Console.WriteLine(e.StackTrace);
+            }
+            catch (ClientException e)
+            {
+                Console.WriteLine(e.Response.StatusCode);
+                Console.WriteLine(e.Response.RawContent);
+                Console.WriteLine(e.InnerException);
             }
         }
     }
@@ -657,9 +698,9 @@ This can only be done by the logged in user.
 
 ### Example
 ```csharp
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using Acme.Net.Api;
 using Acme.Net.Client;
 using Acme.Net.Model;
 
@@ -669,27 +710,32 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration config = new Configuration();
-            config.BasePath = "http://petstore.swagger.io/v2";
-            // Configure API key authorization: api_key
-            config.AddApiKey("api_key", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // config.AddApiKeyPrefix("api_key", "Bearer");
 
-            var apiInstance = new UserApi(config);
+            AcmeClient client = new AcmeClient();
+            // Configure custom BasePath if desired
+            client.SetBasePath("http://petstore.swagger.io/v2");
+            // Configure API key authorization: api_key
+            client.SetApiKey("YOUR_API_KEY");
+
             var username = "username_example";  // string | name that need to be deleted
             var user = new User(); // User | Updated user object
 
             try
             {
                 // Updated user
-                apiInstance.Update(username, user);
+                client.User.Update(username, user);
             }
-            catch (ApiException  e)
+            catch (ApiException e)
             {
-                Debug.Print("Exception when calling UserApi.Update: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
+                Console.WriteLine("Exception when calling UserApi.Update: " + e.Message);
+                Console.WriteLine("Status Code: "+ e.ErrorCode);
+                Console.WriteLine(e.StackTrace);
+            }
+            catch (ClientException e)
+            {
+                Console.WriteLine(e.Response.StatusCode);
+                Console.WriteLine(e.Response.RawContent);
+                Console.WriteLine(e.InnerException);
             }
         }
     }
