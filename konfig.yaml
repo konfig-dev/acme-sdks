@@ -3,6 +3,17 @@
 outputDirectory: /tmp/acme-sdks-out
 specInputPath: api.yaml
 specPath: api-fixed.yaml
+portal:
+  title: Acme
+  demos:
+    - id: getting-started
+      path: demos/getting-started.md
+    - id: registering-users
+      path: demos/registering-users.md
+    - id: handling-user-data
+      path: demos/handling-user-data.md
+    - id: placing-trades
+      path: demos/placing-trades.md
 generators:
   java:
     version: 1.0.0
