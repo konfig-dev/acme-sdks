@@ -16,6 +16,9 @@ jobs:
       - name: Install konfig
         run: npm install -g konfig-cli
 
+      - name: Give docker git permission
+        run: git config --global --add safe.directory /__w/acme-sdks/acme-sdks
+
       - name: Check git status
         run: git status
 
