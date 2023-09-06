@@ -40,7 +40,7 @@ jobs:
         run: ln -s /usr/bin/python3 /usr/bin/python
 
       - name: Test publish
-        run: konfig publish --skipTests -g python
+        run: konfig publish --skipTests -g typescript
         env:
           TWINE_USERNAME: "konfig"
           TWINE_PASSWORD: ${{ secrets.TWINE_PASSWORD }}
