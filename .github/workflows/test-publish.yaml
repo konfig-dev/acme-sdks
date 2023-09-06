@@ -4,6 +4,20 @@ on: push
 
 jobs:
 
+  # test_branch_name:
+  #   runs-on: ubuntu-latest
+
+  #   steps:
+  #     - name: Get branch name
+  #       id: get_branch_name
+  #       run: |
+  #         echo "bump-./v4:" | 
+  #         sed 's/[^a-zA-Z0-9]/-/g' | 
+  #         sed 's/--*/-/g' |
+  #         sed 's/^-//g' | 
+  #         sed 's/-$//g' |
+  #         cut -c1-255
+
   test_publish:
     runs-on: ubuntu-latest
     container:
@@ -26,3 +40,4 @@ jobs:
         run: konfig publish --skipTests -g python,typescript
         env:
           TWINE_USERNAME: "konfig"
+          TWINE_PASSWORD: ${{ secrets.TWINE_PASSWORD }}
