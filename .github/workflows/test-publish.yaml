@@ -36,6 +36,9 @@ jobs:
       - name: Check git status
         run: git status
 
+      - name: Create link between python and python3
+        run: ln -s /usr/bin/python3 /usr/bin/python
+
       - name: Test publish
         run: konfig publish --skipTests -g python,typescript
         env:
