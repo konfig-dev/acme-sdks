@@ -51,3 +51,4 @@ jobs:
         env:
           TWINE_USERNAME: "konfig"
           TWINE_PASSWORD: ${{ secrets.TWINE_PASSWORD }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
