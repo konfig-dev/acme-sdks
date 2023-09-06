@@ -16,7 +16,8 @@ jobs:
       - name: Install konfig
         run: npm install -g konfig-cli
 
+      - name: Check git status
+        run: git status
+
       - name: Test publish
-        run: |
-            git stash -u
-            konfig publish --skipTests -g python,typescript
+        run: konfig publish --skipTests -g python,typescript
