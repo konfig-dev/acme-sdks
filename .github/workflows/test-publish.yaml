@@ -43,6 +43,9 @@ jobs:
         run: npm install
         working-directory: ./typescript
 
+      - name: Clean git directory
+        run: git stash -u
+
       - name: Test publish
         run: konfig publish --skipTests -g typescript
         env:
