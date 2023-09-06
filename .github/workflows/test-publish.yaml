@@ -24,3 +24,5 @@ jobs:
 
       - name: Test publish
         run: konfig publish --skipTests -g python,typescript
+        env:
+          TWINE_USERNAME: "konfig"
