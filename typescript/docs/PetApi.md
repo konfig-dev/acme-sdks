@@ -35,7 +35,7 @@ const acme = new Acme({
 
 const addResponse = await acme.pet.add({
   name: "doggie",
-  photo_urls: ["photo_urls_example"],
+  photoUrls: ["photoUrls_example"],
   status: "available",
 });
 
@@ -298,7 +298,7 @@ const acme = new Acme({
 
 const updateResponse = await acme.pet.update({
   name: "doggie",
-  photo_urls: ["photo_urls_example"],
+  photoUrls: ["photoUrls_example"],
   status: "available",
 });
 

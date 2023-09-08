@@ -25,6 +25,7 @@ export interface ConfigurationParameters {
     accessToken?: string | Promise<string> | ((name?: string, scopes?: string[]) => string) | ((name?: string, scopes?: string[]) => Promise<string>);
     basePath?: string;
     baseOptions?: any;
+    oauthTokenUrl?: string;
     oauthClientId?: string;
     oauthClientSecret?: string;
     userAgent?: string;
@@ -45,6 +46,10 @@ export class Configuration {
      * @memberof Configuration
      */
     username?: string;
+    /**
+     * token url for OAuth2 Application flow
+     */
+    oauthTokenUrl?: string;
     /**
      * client id for OAuth2 Application flow
      */
@@ -104,7 +109,8 @@ export class Configuration {
         this.accessToken = param.accessToken;
         this.basePath = param.basePath;
         this.baseOptions = param.baseOptions ?? {};
-        this.userAgent = param.userAgent === undefined ? "Konfig/1.0.0/typescript" : param.userAgent;
+        this.userAgent = param.userAgent === undefined ? "Konfig/1.0.1/typescript" : param.userAgent;
+        this.oauthTokenUrl = param.oauthTokenUrl;
         this.oauthClientId = param.oauthClientId;
         this.oauthClientSecret = param.oauthClientSecret;
         this.formDataCtor = param.formDataCtor;

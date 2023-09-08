@@ -13,8 +13,10 @@
 
 import { Configuration } from "./configuration";
 import { RequiredError, RequestArgs } from "./base";
-import axios, { AxiosInstance, AxiosResponse } from 'axios';
+import axios, { AxiosError, AxiosInstance, AxiosResponse } from 'axios';
 import { requestAfterHook } from "./requestAfterHook";
+import { requestBeforeUrlHook } from "./requestBeforeUrlHook";
+import { readableStreamToString, AcmeError, parseIfJson } from "./error";
 
 /**
  *
@@ -102,16 +104,18 @@ export const setBearerAuthToObject = async function (object: any, configuration?
  */
 export const setOAuthToObject = async function (object: any, name: string, scopes: string[], configuration?: Configuration) {
     if (configuration && configuration.oauthClientId && configuration.oauthClientSecret && configuration.accessToken === undefined) {
-        const oauthResponse = await axios.request({
-            url: "",
-            method: "POST",
-            headers: {
-                "content-type": "application/x-www-form-urlencoded",
-            },
-            data: `grant_type=client_credentials&client_id=${configuration.oauthClientId}&client_secret=${configuration.oauthClientSecret}`,
-        });
-        const json = await oauthResponse.data;
-        configuration.accessToken = json.access_token;
+        configuration.accessToken = await wrapAxiosRequest(async () => {
+            const oauthResponse = await axios.request({
+                url: configuration.oauthTokenUrl ?? "",
+                method: "POST",
+                headers: {
+                    "content-type": "application/x-www-form-urlencoded",
+                },
+                data: `grant_type=client_credentials&client_id=${configuration.oauthClientId}&client_secret=${configuration.oauthClientSecret}`,
+            });
+            const json = await oauthResponse.data;
+            return json.access_token;
+        })
     }
     if (configuration && configuration.accessToken) {
         const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
@@ -171,7 +175,46 @@ export const serializeDataIfNeeded = function (value: any, requestOptions: any, 
  * @export
  */
 export const toPathString = function (url: URL) {
-    return url.pathname + url.search + url.hash
+    return removeTrailingSlash(url.pathname) + url.search + url.hash
+}
+
+/**
+ * remove trailing slash from string
+ */
+export const removeTrailingSlash = function (url: string) {
+    return url.replace(/\/$/, "");
+}
+
+/**
+ * Wrap an axios request in a try/catch block to catch network errors and parse the response body
+ */
+async function wrapAxiosRequest<R>(makeRequest: () => Promise<R>): Promise<R> {
+    try {
+        return await makeRequest();
+    } catch (e) {
+        if (e instanceof AxiosError && e.isAxiosError) {
+            try {
+                const responseBody =
+                    e.response?.data instanceof ReadableStream
+                    ? await readableStreamToString(e.response.data)
+                    : e.response?.data
+                throw new AcmeError(e, parseIfJson(responseBody))
+            } catch (innerError) {
+                if (innerError instanceof ReferenceError) {
+                    // Got: "ReferenceError: ReadableStream is not defined"
+                    // This means we are in a Node environment so just throw the original error
+                    throw new AcmeError(e, e.response?.data)
+                }
+                if (innerError instanceof AcmeError) {
+                    // Got "AcmeError" from the above try block
+                    throw innerError;
+                }
+                // Something unexpected happened: propagate the error
+                throw e
+            }
+        }
+        throw e
+    }
 }
 
 /**
@@ -179,10 +222,11 @@ export const toPathString = function (url: URL) {
  * @export
  */
 export const createRequestFunction = function (axiosArgs: RequestArgs, globalAxios: AxiosInstance, BASE_PATH: string, configuration?: Configuration) {
-    return <T = unknown, R = AxiosResponse<T>>(axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+    return async <T = unknown, R = AxiosResponse<T>>(axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+        requestBeforeUrlHook({axiosArgs, basePath, configuration})
         const url = (configuration?.basePath || basePath) + axiosArgs.url
-        requestAfterHook({axiosArgs, basePath, url, configuration})
-        return axios.request<T, R>({...axiosArgs.options, url});
+        await requestAfterHook({axiosArgs, basePath, url, configuration})
+        return wrapAxiosRequest(async () => await axios.request<T, R>({ ...axiosArgs.options, url }));
     };
 }
 
