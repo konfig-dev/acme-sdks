@@ -192,7 +192,7 @@ async function wrapAxiosRequest<R>(makeRequest: () => Promise<R>): Promise<R> {
     try {
         return await makeRequest();
     } catch (e) {
-        if (e instanceof AxiosError && e.isAxiosError) {
+        if (e.isAxiosError) {
             try {
                 const responseBody =
                     e.response?.data instanceof ReadableStream
