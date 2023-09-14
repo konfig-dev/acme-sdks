@@ -25,7 +25,7 @@ export class Acme extends AcmeCustom {
   readonly store: StoreApi;
   readonly user: UserApi;
 
-  constructor(configurationParameters: ConfigurationParameters) {
+  constructor(configurationParameters: ConfigurationParameters = {}) {
     super(configurationParameters);
     const configuration = new Configuration(configurationParameters);
     this.miscellaneous = new MiscellaneousApi(configuration);
