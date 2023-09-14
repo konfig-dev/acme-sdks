@@ -5,6 +5,14 @@ specInputPath: api.yaml
 specPath: api-fixed.yaml
 portal:
   title: Acme
+  documentation:
+    sidebar:
+      sections:
+        label: Guides
+        links:
+          - label: Getting Started
+            id: getting-started
+            path: docs/getting-started.md
   demos:
     - id: getting-started
       path: demos/getting-started.md
