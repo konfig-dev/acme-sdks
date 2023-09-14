@@ -1,6 +1,6 @@
 # acme-typescript-sdk
 
-[![npm](https://img.shields.io/badge/npm-v1.0.1-blue)](https://www.npmjs.com/package/acme-typescript-sdk/v/1.0.1)
+[![npm](https://img.shields.io/badge/npm-v1.0.2-blue)](https://www.npmjs.com/package/acme-typescript-sdk/v/1.0.2)
 
 This is a sample server Petstore server. For this sample, you can use the api key `special-key` to test the authorization filters.
 ## Installing
