@@ -1,6 +1,6 @@
 # StoreApi
 
-All URIs are relative to *http://petstore.swagger.io/v2*
+All URIs are relative to *https://petstore.swagger.io/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -24,8 +24,8 @@ For valid response try integer IDs with value < 1000. Anything above 1000 or non
 import { Acme } from "acme-typescript-sdk";
 
 const acme = new Acme({
-  // Defining the base path is optional and defaults to http://petstore.swagger.io/v2
-  // basePath: "http://petstore.swagger.io/v2",
+  // Defining the base path is optional and defaults to https://petstore.swagger.io/v2
+  // basePath: "https://petstore.swagger.io/v2",
 });
 
 const deleteOrderResponse = await acme.store.deleteOrder({
@@ -76,8 +76,8 @@ Returns a map of status codes to quantities
 import { Acme } from "acme-typescript-sdk";
 
 const acme = new Acme({
-  // Defining the base path is optional and defaults to http://petstore.swagger.io/v2
-  // basePath: "http://petstore.swagger.io/v2",
+  // Defining the base path is optional and defaults to https://petstore.swagger.io/v2
+  // basePath: "https://petstore.swagger.io/v2",
   apiKey: "API_KEY",
 });
 
@@ -122,8 +122,8 @@ For valid response try integer IDs with value <= 5 or > 10. Other values will ge
 import { Acme } from "acme-typescript-sdk";
 
 const acme = new Acme({
-  // Defining the base path is optional and defaults to http://petstore.swagger.io/v2
-  // basePath: "http://petstore.swagger.io/v2",
+  // Defining the base path is optional and defaults to https://petstore.swagger.io/v2
+  // basePath: "https://petstore.swagger.io/v2",
 });
 
 const getOrderByIdResponse = await acme.store.getOrderById({
@@ -174,8 +174,8 @@ Name | Type | Description  | Notes
 import { Acme } from "acme-typescript-sdk";
 
 const acme = new Acme({
-  // Defining the base path is optional and defaults to http://petstore.swagger.io/v2
-  // basePath: "http://petstore.swagger.io/v2",
+  // Defining the base path is optional and defaults to https://petstore.swagger.io/v2
+  // basePath: "https://petstore.swagger.io/v2",
 });
 
 const placeOrderResponse = await acme.store.placeOrder({
