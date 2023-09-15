@@ -1,6 +1,6 @@
 # Getting Started
 
-Welcome to the SnapTrade developer hub. You'll find comprehensive documentation for all our endpoints, as well as detailed guides that will be added shortly.
+Welcome to the SnapTrade developer hub - test. You'll find comprehensive documentation for all our endpoints, as well as detailed guides that will be added shortly.
 
 If you need help or have any questions, send us an email at api@snaptrade.com.
 
