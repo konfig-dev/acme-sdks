@@ -12,7 +12,7 @@ different types of requests.
 
 ## API Status
 
-Call the ::api[pet_add] endpoint to make sure the API is live and that you can make the most basic request. You should receive a response indicating the API status, current server timestamp, and internal API minor version number.
+Call the :api[pet_add] endpoint to make sure the API is live and that you can make the most basic request. You should receive a response indicating the API status, current server timestamp, and internal API minor version number.
 
 Example:
 
