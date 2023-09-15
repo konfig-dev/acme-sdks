@@ -5,7 +5,7 @@ Welcome to the SnapTrade developer hub. You'll find comprehensive documentation 
 If you need help or have any questions, send us an email at api@snaptrade.com.
 
 If you already have API Keys, try using [our demo
-tool](https://demo.konfigthis.com/passiv/snaptrade-sdks/getting-started) to make
+tool](demo:) to make
 different types of requests.
 
 ---
