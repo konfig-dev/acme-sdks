@@ -10,11 +10,9 @@ portal:
       sections:
         - label: Guides
           links:
-            - label: Getting Started
-              id: getting-started
+            - id: getting-started
               path: docs/getting-started.md
-            - label: Client-side Direct API Usage
-              id: client-side-direct-api-usage
+            - id: client-side-direct-api-usage
               path: docs/client-side-direct-api-usage.md
   demos:
     - id: getting-started
