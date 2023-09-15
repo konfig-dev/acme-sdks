@@ -1,7 +1,8 @@
 # yaml-language-server: $schema=https://unpkg.com/konfig-lib@latest/konfig-yaml.schema.json
 
 outputDirectory: /tmp/acme-sdks-out
-specPath: api.yaml
+specInputPath: api.yaml
+specPath: api-fixed.yaml
 portal:
   title: Acme
   documentation:
