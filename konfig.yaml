@@ -5,6 +5,7 @@ specInputPath: api.yaml
 specPath: api-fixed.yaml
 portal:
   title: Acme
+  primaryColor: "#1f334e"
   documentation:
     sidebar:
       sections:
