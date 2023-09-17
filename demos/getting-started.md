@@ -1,5 +1,7 @@
 # Getting Started Test
 
+test
+
 ### 1) Initialize a client with your clientId and consumerKey
 
 You can get your `clientId` and `consumerKey` by contacting [api@snaptrade.com](mailto:api@snaptrade.com)

@@ -49,7 +49,7 @@ paths:
         - petstore_auth:
             - write:pets
             - read:pets
-      description: ''
+      description: 'test'
       requestBody:
         $ref: '#/components/requestBodies/Pet'
       responses:
