@@ -8,7 +8,7 @@ We refer to this model as "client-side direct API", in which client-side code ma
 
 ## Communication Flow
 
-There are three main parties involved in this communication pattern:
+There are three main parties involved in this communication pattern: random edit
 
 - The user running a client-side application on their personal device -- "The Client"
 - The partner company running an authentication backend on their server that allows the user to login and controls access to the application's features -- "The Partner"
@@ -65,8 +65,8 @@ At this point, The Client can begin to pull their account information directly f
 
 ![Access](./assets/Access.png)
 
-
 ## RSA Key Pair
+
 As part of Step 1 in the Registration flow, the partner is expected to generate an RSA key pair on the user's local device. The key pair consists of a private key and a public key.
 
 The private key must be stored on the user's local device, and will be used to decrypt encrypted messages from the SnapTrade server.
@@ -86,8 +86,8 @@ Encrypted messages from SnapTrade consist of two parts:
 1. an encrypted shared key which was encrypted using a users RSA public key, and
 1. the actual message which was encrypted using the shared key.
 
-
 #### Decrypting the encrypted shared key
+
 The user's local device should be able to decrypt the shared key using the private RSA key that came from the RSA key pair generated earlier.
 
 Below is an example code (in Python) for decrypting the encrypted shared key.
@@ -106,6 +106,7 @@ def decrypt_rsa_message(self, encrypted_message):
 ```
 
 #### Decrypting the encrypted shared message
+
 The encrypted message was encrypted using the shared key that was decrypted from the previous step in the AES Mode-OCB. The user's local device uses that key to decrypt the message. In this particular instance, it the shared key is used to obtain the decrypted access token.
 
 The code below is an example (in Python) of how to decrypt the message using the shared key.
@@ -127,6 +128,6 @@ def decrypt_aes_message(self, shared_key, encrypted_message):
 
 The access tokens used to make client-side requests to the SnapTrade API are
 implemented as JWT tokens. To make a request from a user's local device using a
-JWT, the key-value pair of `Authorization: JWT {decrypted token}`` should be added
-to the request headers. The `Signature`` header, as well as the `timestamp`` and
+JWT, the key-value pair of ` Authorization: JWT {decrypted token}`` should be added
+to the request headers. The  `Signature`` header, as well as the `timestamp`` and
 `userId`` query params are no longer required.
