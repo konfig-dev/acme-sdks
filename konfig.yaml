@@ -19,6 +19,8 @@ portal:
           links:
             - id: concepts
               path: docs/getting-started.md
+            - id: connection-messaging
+              path: docs/connection-messaging.md
   demos:
     - id: getting-started
       path: demos/getting-started.md
