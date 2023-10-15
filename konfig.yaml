@@ -19,7 +19,7 @@ portal:
   title: Acme
   primaryColor: "#1f334e"
   logo:
-    light: portal-logo-light.jpg
+    light: portal-logo-light.png
     dark: portal-logo-dark.png
   documentation:
     sidebar:
