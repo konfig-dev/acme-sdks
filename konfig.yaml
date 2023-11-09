@@ -21,6 +21,7 @@ portal:
   logo:
     light: portal-logo-light.png
     dark: portal-logo-dark.png
+  googleAnalyticsId: G-40QFFD7199
   documentation:
     sidebar:
       sections:
