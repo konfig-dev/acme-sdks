@@ -1,5 +1,7 @@
 # Getting Started
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/wTcNtgA6gHs?si=AL2bgKaSF9nxIuPm" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
 Welcome to the SnapTrade developer hub test 2. You'll find comprehensive documentation for all our endpoints, as well as detailed guides that will be added shortly.
 
 If you need help or have any questions, send us an email at api@snaptrade.com.
