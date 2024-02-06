@@ -1,8 +1,14 @@
-# acme-typescript-sdk<a id="acme-typescript-sdk"></a>
+<div align="center">
+
+[![Visit Acme](./header.png)](https://konfigthis.com)
+
+# [Acme](https://konfigthis.com)<a id="acme"></a>
 
 This is a sample server Petstore server. For this sample, you can use the api key `special-key` to test the authorization filters.
 
 [![npm](https://img.shields.io/badge/npm-v1.0.3-blue)](https://www.npmjs.com/package/acme-typescript-sdk/v/1.0.3)
+
+</div>
 
 ## Table of Contents<a id="table-of-contents"></a>
 

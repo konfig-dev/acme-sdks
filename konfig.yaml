@@ -15,6 +15,10 @@ order:
     operations:
       - path: /pet
         method: post
+readmeHeader:
+  title: Acme
+  image: header.png
+  url: https://konfigthis.com
 portal:
   title: Acme
   primaryColor: '#1f334e'
