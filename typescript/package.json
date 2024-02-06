@@ -11,6 +11,7 @@
     "url": "https://github.com/konfig-dev/acme-sdks",
     "directory": "typescript"
   },
+  "homepage": "https://github.com/konfig-dev/acme-sdks/tree/HEAD/typescript#readme",
   "keywords": [
     "axios",
     "typescript",
