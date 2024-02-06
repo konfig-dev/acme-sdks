@@ -70,7 +70,7 @@ generators:
       userId: konfig-dev
       repoId: acme-sdks/tree/main/python
   typescript:
-    version: 1.0.4
+    version: 1.0.5
     npmName: acme-typescript-sdk
     outputDirectory: typescript
     clientName: Acme
