@@ -1,6 +1,6 @@
 {
   "name": "acme-typescript-sdk",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Client for OpenAPI Petstore",
   "author": "Konfig",
   "engines": {
@@ -8,10 +8,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/konfig-dev/acme-sdks",
+    "url": "https://github.com/konfig-dev/acme-sdks.git",
     "directory": "typescript"
   },
-  "homepage": "https://github.com/konfig-dev/acme-sdks/tree/HEAD/typescript#readme",
   "keywords": [
     "axios",
     "typescript",
@@ -32,7 +31,6 @@
   },
   "dependencies": {
     "axios": "1.6.4",
-    "jwt-decode": "4.0.0",
     "buffer": "^6.0.3",
     "file-type": "16.5.4",
     "form-data": "^4.0.0"

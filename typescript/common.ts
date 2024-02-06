@@ -17,7 +17,6 @@ import axios, { AxiosError, AxiosInstance, AxiosResponse } from 'axios';
 import { requestAfterHook } from "./requestAfterHook";
 import { requestBeforeUrlHook } from "./requestBeforeUrlHook";
 import { readableStreamToString, AcmeError, parseIfJson } from "./error";
-import { jwtDecode } from "jwt-decode";
 
 /**
  *
@@ -104,40 +103,25 @@ export const setBearerAuthToObject = async function (object: any, configuration?
  * @export
  */
 export const setOAuthToObject = async function (object: any, name: string, scopes: string[], configuration?: Configuration) {
-    if (configuration === undefined) return;
-    const authenticate = async () => {
-        if (configuration.oauthClientId && configuration.oauthClientSecret && configuration.accessToken === undefined) {
-            configuration.accessToken = await wrapAxiosRequest(async () => {
-                const url = configuration.oauthTokenUrl ?? ""
-                const oauthResponse = await axios.request({
-                    url,
-                    method: "POST",
-                    headers: {
-                        "content-type": "application/x-www-form-urlencoded",
-                    },
-                    data: `grant_type=client_credentials&client_id=${configuration.oauthClientId}&client_secret=${configuration.oauthClientSecret}`,
-                });
-                const json = await oauthResponse.data;
-                return json.access_token;
-            })
-        }
+    if (configuration && configuration.oauthClientId && configuration.oauthClientSecret && configuration.accessToken === undefined) {
+        configuration.accessToken = await wrapAxiosRequest(async () => {
+            const oauthResponse = await axios.request({
+                url: configuration.oauthTokenUrl ?? "",
+                method: "POST",
+                headers: {
+                    "content-type": "application/x-www-form-urlencoded",
+                },
+                data: `grant_type=client_credentials&client_id=${configuration.oauthClientId}&client_secret=${configuration.oauthClientSecret}`,
+            });
+            const json = await oauthResponse.data;
+            return json.access_token;
+        })
     }
-    const token =
-      typeof configuration.accessToken === "function"
-        ? await configuration.accessToken(name, scopes)
-        : await configuration.accessToken;
-    if (token === undefined) {
-        await authenticate();
-    } else {
-        // check that the token is still valid
-        const decodedToken = jwtDecode(token);
-        const currentTime = Date.now() / 1000;
-        if ((decodedToken as any)["exp"] < currentTime) {
-          await authenticate();
-        }
-    }
-    if (token) {
-        object["Authorization"] = "Bearer " + token;
+    if (configuration && configuration.accessToken) {
+        const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+            ? await configuration.accessToken(name, scopes)
+            : await configuration.accessToken;
+        object["Authorization"] = "Bearer " + localVarAccessTokenValue;
     }
 }
 
