@@ -1,5 +1,6 @@
 examples: {}
 examples_2: {}
+examples_3: {}
 operationIds:
   /pet:
     post: pet_add
@@ -44,6 +45,7 @@ requestSchemaNames:
   /pet/{petId}:
     post:
       application/x-www-form-urlencoded: UpdateWithFormRequest
+      multipart/form-data: PetUpdateForm
   /pet/{petId}/uploadImage:
     post:
       multipart/form-data: UploadImageRequest
