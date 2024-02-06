@@ -6,7 +6,7 @@
 
 This is a sample server Petstore server. For this sample, you can use the api key `special-key` to test the authorization filters.
 
-[![npm](https://img.shields.io/badge/npm-v1.0.6-blue)](https://www.npmjs.com/package/acme-typescript-sdk/v/1.0.6)
+[![npm](https://img.shields.io/badge/npm-v1.0.7-blue)](https://www.npmjs.com/package/acme-typescript-sdk/v/1.0.7)
 
 </div>
 

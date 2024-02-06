@@ -1,6 +1,6 @@
 {
   "name": "acme-typescript-sdk",
-  "version": "1.0.5",
+  "version": "1.0.7",
   "description": "Client for OpenAPI Petstore",
   "author": "Konfig",
   "engines": {
