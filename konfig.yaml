@@ -17,7 +17,7 @@ order:
         method: post
 portal:
   title: Acme
-  primaryColor: "#1f334e"
+  primaryColor: '#1f334e'
   logo:
     light: portal-logo-light.png
     dark: portal-logo-dark.png
@@ -66,7 +66,7 @@ generators:
       userId: konfig-dev
       repoId: acme-sdks/tree/main/python
   typescript:
-    version: 1.0.2
+    version: 1.0.3
     npmName: acme-typescript-sdk
     outputDirectory: typescript
     clientName: Acme
